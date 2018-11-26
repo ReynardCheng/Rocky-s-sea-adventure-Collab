@@ -113,11 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &125693110 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4098509908154840, guid: c47da54abc272ed49bb7aa2cf6769785,
-    type: 2}
-  m_PrefabInternal: {fileID: 289933683}
 --- !u!1 &133333979
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,23 +290,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 4098509908154840, guid: c47da54abc272ed49bb7aa2cf6769785, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4098509908154840, guid: c47da54abc272ed49bb7aa2cf6769785, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4098509908154840, guid: c47da54abc272ed49bb7aa2cf6769785, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 82701812545249646, guid: c47da54abc272ed49bb7aa2cf6769785,
+    - target: {fileID: 114256474334018704, guid: c47da54abc272ed49bb7aa2cf6769785,
         type: 2}
-      propertyPath: MaxDistance
-      value: 1976.292
-      objectReference: {fileID: 0}
+      propertyPath: shipViewPos
+      value: 
+      objectReference: {fileID: 2084571082}
+    - target: {fileID: 114256474334018704, guid: c47da54abc272ed49bb7aa2cf6769785,
+        type: 2}
+      propertyPath: ship
+      value: 
+      objectReference: {fileID: 1127121742}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c47da54abc272ed49bb7aa2cf6769785, type: 2}
   m_IsPrefabAsset: 0
@@ -500,7 +488,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4330317577932588, guid: c0f6023a660abba49bd97f9ad4960564, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.034250002
+      value: -0.0040000007
       objectReference: {fileID: 0}
     - target: {fileID: 4330317577932588, guid: c0f6023a660abba49bd97f9ad4960564, type: 2}
       propertyPath: m_LocalPosition.z
@@ -986,7 +974,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 984596444}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 354, y: 237, z: -279}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1105,16 +1093,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114238759800034354, guid: 3ea8b651304154e4ca712827280295ce,
-        type: 2}
-      propertyPath: resourceCountScript
-      value: 
-      objectReference: {fileID: 808148130}
     - target: {fileID: 114745144552950442, guid: 3ea8b651304154e4ca712827280295ce,
         type: 2}
       propertyPath: boostSlider
       value: 
       objectReference: {fileID: 732559098}
+    - target: {fileID: 114238759800034354, guid: 3ea8b651304154e4ca712827280295ce,
+        type: 2}
+      propertyPath: resourceCountScript
+      value: 
+      objectReference: {fileID: 808148130}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ea8b651304154e4ca712827280295ce, type: 2}
   m_IsPrefabAsset: 0
@@ -1314,11 +1302,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1515141631}
   m_CullTransparentMesh: 0
---- !u!4 &1541982236 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4509455665651458, guid: c47da54abc272ed49bb7aa2cf6769785,
-    type: 2}
-  m_PrefabInternal: {fileID: 289933683}
 --- !u!1 &1551749114
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,125 +1495,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1610458987
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1610458988}
-  - component: {fileID: 1610458993}
-  - component: {fileID: 1610458992}
-  - component: {fileID: 1610458991}
-  - component: {fileID: 1610458990}
-  - component: {fileID: 1610458989}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1610458988
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1610458987}
-  m_LocalRotation: {x: 0.034114514, y: -0, z: -0, w: 0.9994179}
-  m_LocalPosition: {x: 0.599999, y: 2.96, z: -8.280001}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 125693110}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 3.91, y: -90, z: 0}
---- !u!114 &1610458989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1610458987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94a0e3cee1ce0a64ba559dce60a63553, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 1610458993}
-  cannonMask:
-    serializedVersion: 2
-    m_Bits: 512
---- !u!114 &1610458990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1610458987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 238aae47c3c4cd34d8f676b1e6ed9bf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerViewPos: {fileID: 1541982236}
-  shipViewPos: {fileID: 2084571082}
-  ship: {fileID: 1127121742}
-  shipView: 0
-  switchSpeed: 0
---- !u!45 &1610458991
-Skybox:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1610458987}
-  m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: a2126534b3a11b34e977105bd9e3cc03, type: 2}
---- !u!81 &1610458992
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1610458987}
-  m_Enabled: 1
---- !u!20 &1610458993
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1610458987}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
 --- !u!1001 &1612324574
 Prefab:
   m_ObjectHideFlags: 0
@@ -1644,7 +1508,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4330317577932588, guid: c0f6023a660abba49bd97f9ad4960564, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.034250002
+      value: -0.0040000007
       objectReference: {fileID: 0}
     - target: {fileID: 4330317577932588, guid: c0f6023a660abba49bd97f9ad4960564, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1702,7 +1566,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4330317577932588, guid: c0f6023a660abba49bd97f9ad4960564, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.034250002
+      value: -0.004
       objectReference: {fileID: 0}
     - target: {fileID: 4330317577932588, guid: c0f6023a660abba49bd97f9ad4960564, type: 2}
       propertyPath: m_LocalPosition.z

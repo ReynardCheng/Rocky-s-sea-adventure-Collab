@@ -6,10 +6,15 @@ public class ShipCollectResources : MonoBehaviour
 {
 
     public ResourceCount resourceCountScript;
+    private AudioSource Audio;
+
+    [Header("Sound")]
+    [SerializeField] AudioClip ResourceCollectSound;
 
     // Use this for initialization
     void Start()
     {
+        Audio = GetComponent<AudioSource>();
         resourceCountScript = FindObjectOfType<ResourceCount>();
     }
 
@@ -25,18 +30,27 @@ public class ShipCollectResources : MonoBehaviour
 		if (other.tag == "Sea Essence")
 		{
 			resourceCountScript.SeaEssenceValue(0, 1);
-			Destroy(other.gameObject);
-		}
+            Destroy(other.gameObject);
+
+            Audio.clip = ResourceCollectSound;
+            Audio.Play();
+        }
 		if (other.tag == "Wooden Plank")
 		{
 			resourceCountScript.WoodenPlankValue(0, 1);
 			Destroy(other.gameObject);
-		}
+
+            Audio.clip = ResourceCollectSound;
+            Audio.Play();
+        }
 		if (other.tag == "Metal Part")
 		{
 			resourceCountScript.MetalValue(0, 1);
 			Destroy(other.gameObject);
-		}
+
+            Audio.clip = ResourceCollectSound;
+            Audio.Play();
+        }
 			
     }
 }

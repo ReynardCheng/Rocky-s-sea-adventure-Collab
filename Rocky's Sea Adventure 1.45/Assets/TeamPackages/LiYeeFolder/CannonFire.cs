@@ -17,6 +17,8 @@ public class CannonFire : MonoBehaviour {
     public Transform Gun; //reference for child of cannon -> the point where bullets fire from
     private Vector3 BulletPos; //position of where bullets fire from in vector3 form
 
+    private AudioSource SoundFromCannon;
+
     /// *********
     /// Enemies Detection
     /// *********
@@ -31,6 +33,9 @@ public class CannonFire : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        SoundFromCannon = GetComponent<AudioSource>();
+
         EnemiesInRange = new List<GameObject>(); //EnemiesInRange = list of enemy targets in the range of the cannon
         //SphereCollider Range = gameObject.GetComponent<SphereCollider>();
     }
@@ -96,6 +101,7 @@ public class CannonFire : MonoBehaviour {
         BulletPos = Gun.transform.position;
         Instantiate(projectile, BulletPos, transform.rotation);
         projectile.GetComponent<BulletFire>().target = TargetingEnemy; //set the target/path for bullets to fly to in a straight line... will want to edit this later on as bullets act like a moving missile.
+        SoundFromCannon.Play();
         nextAtk = Time.time + atkRate;
     }
 

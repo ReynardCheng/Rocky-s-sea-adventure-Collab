@@ -54,14 +54,21 @@ public class BoatMovement : MonoBehaviour
 	[Space]
 	public GameObject theWater;
 
-	// Use this for initialization
-	void Start()
+    [Header("Sound")]
+    [SerializeField] AudioClip BoatMoving;
+    [SerializeField] AudioClip BoatBoosted;
+    private AudioSource m_AudioSource;
+
+    // Use this for initialization
+    void Start()
 	{
 
-		// variables
-		
-		// for movement
-		maxSpeed = 8f;
+        m_AudioSource = GetComponent<AudioSource>();
+
+        // variables
+
+        // for movement
+        maxSpeed = 8f;
 		moveSpeed = 0f;
 		maxReverseSpeed = -5f;
 		deccelerationSpeed = 2f;
@@ -121,9 +128,16 @@ public class BoatMovement : MonoBehaviour
 		{
 			if (moveSpeed < maxSpeed) moveSpeed += accelRate * Time.deltaTime;
 			isInput = true;
-		}
 
-		if (Input.GetKeyUp(KeyCode.W)) isInput = false;
+            //m_AudioSource.clip = BoatMoving;
+            //m_AudioSource.Play();
+        }
+
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            isInput = false;
+            
+        }
 
 
 		if (Input.GetKey(KeyCode.S))
