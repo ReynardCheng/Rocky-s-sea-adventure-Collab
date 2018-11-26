@@ -1,0 +1,14 @@
+Attach CameraSwitch script to Main Camera.
+
+
+CameraSwitch.cs requires two Transform components and one GameObject to be dragged into inspector.
+
+1)playerViewPos
+This Transform is where the camera will be positioned when locked onto player.
+2)shipViewPos
+Create an empty gameobject, and put it as a child of the ship gameobject.
+Position the empty gameobject to where you want the camera to be when in ship view.
+You can also change the rotation of the empty gameobject.
+
+3)ship
+Just drag the ship gameobject into the "ship" field in the inspector.
