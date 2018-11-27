@@ -103,6 +103,7 @@ public class BoatMovement : MonoBehaviour
 		Boost();
 
 		BoostSlider();
+        //Movement();
 
 		BoatRocking();
 
