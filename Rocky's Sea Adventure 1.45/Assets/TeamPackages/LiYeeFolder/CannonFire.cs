@@ -13,8 +13,8 @@ public class CannonFire : MonoBehaviour {
 
     public float atkCD; // Attack cooldown
     public float atkRate; // Attack rate
-    public float nextAtk; // Time for next attack
-    public Transform gun; //reference for child of cannon -> the point where bullets fire from
+    private float nextAtk; // Time for next attack
+    public Transform Gun; //reference for child of cannon -> the point where bullets fire from
     private Vector3 BulletPos; //position of where bullets fire from in vector3 form
 
     private AudioSource SoundFromCannon;
@@ -33,7 +33,6 @@ public class CannonFire : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		gun.transform.parent = GameObject.FindGameObjectWithTag("Ship").transform;
 
         SoundFromCannon = GetComponent<AudioSource>();
 
@@ -43,8 +42,6 @@ public class CannonFire : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
-		atkRate -= Time.deltaTime;
 
         GameObject target = null;
    
@@ -67,19 +64,15 @@ public class CannonFire : MonoBehaviour {
       
         if (target != null)
         {
-			if (atkRate <= 0)
-			{
-				NewShoot();
-			}
-
-			Vector3 direction = gun.transform.position - target.transform.position; //finding the direction to nearest enemy
+            Vector3 direction =  target.transform.position - transform.position; //finding the direction to nearest enemy
          
             float step = speed * Time.deltaTime;
 
-           // Vector3 newDir = Vector3.RotateTowards(gun.transform.forward, direction, step, 40.0f);
-            gun.transform.rotation = Quaternion.LookRotation(direction); //rotate the cannon
-			print("Roating");
-   
+            Vector3 newDir = Vector3.RotateTowards(transform.forward, direction, step, 0.0f);
+            transform.rotation = Quaternion.LookRotation(newDir); //rotate the cannon
+
+        
+            Shoot();
         }
     }
 
@@ -99,28 +92,17 @@ public class CannonFire : MonoBehaviour {
         }
     }
 
-	//private void Shoot()
-	//{
-	//	atkCD = 2f; // Attack cooldown time
-	//	if (Time.time <= nextAtk)
-	//		return;
+    private void Shoot()
+    {
+        atkCD = 0.7f; // Attack cooldown time
+        if (Time.time <= nextAtk)
+        return;
 
-	//	BulletPos = gun.transform.position;
-	//	Instantiate(projectile, BulletPos, transform.rotation);
-	//	projectile.GetComponent<BulletFire>().target = TargetingEnemy; //set the target/path for bullets to fly to in a straight line... will want to edit this later on as bullets act like a moving missile.
-	//	SoundFromCannon.Play();
-	//	nextAtk = Time.time + atkRate;
-	//}
-
-	private void NewShoot()
-	{
-		atkRate = 0.7f; // Attack cooldown time
-
-		BulletPos = gun.transform.position;
-		Instantiate(projectile, BulletPos, transform.rotation);
-		projectile.GetComponent<BulletFire>().target = TargetingEnemy; //set the target/path for bullets to fly to in a straight line... will want to edit this later on as bullets act like a moving missile.
-		SoundFromCannon.Play();
-		//nextAtk = Time.time + atkRate;
-	}
+        BulletPos = Gun.transform.position;
+        Instantiate(projectile, BulletPos, transform.rotation);
+        projectile.GetComponent<BulletFire>().target = TargetingEnemy; //set the target/path for bullets to fly to in a straight line... will want to edit this later on as bullets act like a moving missile.
+        SoundFromCannon.Play();
+        nextAtk = Time.time + atkRate;
+    }
 
 }
