@@ -69,7 +69,7 @@ public class BoatMovement : MonoBehaviour
 
         // for movement
         maxSpeed = 8f;
-		moveSpeed = 5f;
+		moveSpeed = 0f;
 		maxReverseSpeed = -5f;
 		deccelerationSpeed = 2f;
 		currentSteerSpeed = 0f;
@@ -81,7 +81,7 @@ public class BoatMovement : MonoBehaviour
 		isBoosting = false;
 
 		// for floating
-		floatRotation = 0f;
+		floatRotation = -90f;
 		rotateRate = 5f;
 
 		// components
@@ -96,8 +96,8 @@ public class BoatMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-       // transform.rotation = Quaternion.Euler(0, 0, 0);
-        if (controllingBoat) Movement();
+
+		if (controllingBoat) Movement();
 		if (!isInput) StopBoat();
 
 		Boost();
@@ -120,7 +120,7 @@ public class BoatMovement : MonoBehaviour
 
 		//Local Variables 
 
-		float steerRate = 10f; // this is for the steering later
+		float steerRate = 6f; // this is for the steering later
 
 
 		float accelRate = 1.5f;
@@ -173,12 +173,12 @@ public class BoatMovement : MonoBehaviour
 		if (moveSpeed < 0.1 && moveSpeed > -0.1f && !isInput) moveSpeed = 0f;
 
 		//to move the character
-		moveMentOutput = transform.TransformDirection(Vector3.down * -moveSpeed);
+		moveMentOutput = transform.TransformDirection(Vector3.down * moveSpeed);
 
-		chController.Move(moveMentOutput * Time.deltaTime * 20);
+		chController.Move(moveMentOutput * Time.deltaTime);
 
 		// to rotate the boat
-		transform.rotation = Quaternion.Euler(0, currentSteerSpeed, 0);
+		transform.rotation = Quaternion.Euler(-90, currentSteerSpeed, 0);
 	}
 
 	void Boost()
