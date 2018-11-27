@@ -51,6 +51,7 @@ public class EnemyShooter : MonoBehaviour {
             fireRate = coolDownTime;
 
             GameObject weakestCannon = FindLowestHPCannon();
+            print(weakestCannon);
             if (weakestCannon != null)
             {
                 GameObject enemyBullet = Instantiate(bullet, transform.position, Quaternion.identity);
