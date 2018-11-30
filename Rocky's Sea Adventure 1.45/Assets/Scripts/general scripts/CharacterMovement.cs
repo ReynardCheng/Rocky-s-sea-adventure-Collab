@@ -13,7 +13,7 @@ public class CharacterMovement : MonoBehaviour {
 	[Header("Components")]
 	[Space]
 	CharacterController controller;
-	BoatMovement theBoat;
+	BoatController theBoat;
 
 	// have to use this for reference because it is from a namespace
 	public UnityStandardAssets.Characters.FirstPerson.FirstPersonController fpsController;
@@ -23,7 +23,7 @@ public class CharacterMovement : MonoBehaviour {
 		canControlShip = false;
 		moveSpeed = 3f;
 		controller = GetComponent<CharacterController>();
-		theBoat = FindObjectOfType<BoatMovement>();
+		theBoat = FindObjectOfType<BoatController>();
 		fpsController = GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
 	}
 	

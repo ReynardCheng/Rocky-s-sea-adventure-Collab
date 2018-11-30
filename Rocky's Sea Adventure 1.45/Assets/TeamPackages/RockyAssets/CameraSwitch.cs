@@ -14,11 +14,11 @@ public class CameraSwitch : MonoBehaviour {
     private bool switching;
 
 	CharacterMovement chMovement;
-	BoatMovement theBoat;
+	BoatController theBoat;
 
 	private void Start()
 	{
-		theBoat = FindObjectOfType<BoatMovement>();
+		theBoat = FindObjectOfType<BoatController>();
 		chMovement = FindObjectOfType<CharacterMovement>();
 		shipView = false;
 		switching = false; 
@@ -29,7 +29,7 @@ public class CameraSwitch : MonoBehaviour {
 	void Update () {
 
 		if (chMovement.canControlShip) CameraSwitching();
-        if (shipView) theBoat.controllingBoat = true;
+        //if (shipView) theBoat.controllingBoat = true;
 		CameraParent();
 	}
 
