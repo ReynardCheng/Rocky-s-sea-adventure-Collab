@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyShooter : MonoBehaviour {
 
@@ -18,7 +19,11 @@ public class EnemyShooter : MonoBehaviour {
     [SerializeField] float fireRate;
     [SerializeField] float coolDownTime;
 
-
+	[Header("Health & UI")]
+	[Space]
+	[SerializeField] float currentHealth;
+	[SerializeField] float maxHealth;
+	public Image healthBar; 
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +35,12 @@ public class EnemyShooter : MonoBehaviour {
 
         detectShipTrigger = GetComponentInChildren<DetectShipTrigger>();
         ship = FindObjectOfType<BoatCombat>();
+
+		//--------------------
+		//Health related
+		maxHealth = 100;
+		currentHealth = maxHealth;
+
 	}
 	
 	// Update is called once per frame
@@ -41,6 +52,8 @@ public class EnemyShooter : MonoBehaviour {
             shipDetetected = true;
         }
         MoveToShipClosestPart();
+
+		HealthUi();
     }
 
 
@@ -73,6 +86,7 @@ public class EnemyShooter : MonoBehaviour {
         }
     }
 
+	
 
     void MoveToShipClosestPart()
     {
@@ -135,8 +149,33 @@ public class EnemyShooter : MonoBehaviour {
         return weakestCannon;
     }
 
+	//------------------------------------------
+	//health related stuff
+
+	void Health(float damageTaken)
+	{
+		currentHealth -= damageTaken;
+		if (currentHealth <= 0f)
+		{
+			Destroy(gameObject);
+		}
+	}
+
+	void HealthUi()
+	{
+		healthBar.fillAmount = currentHealth / maxHealth;
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == "Cannon Bullet")
+		{
+			Health(10f);
+			print("Enemy Hit");
+		}
+	}
 }
- 
+
 
 /*
 public class EnemyPathfinding : MonoBehaviour
