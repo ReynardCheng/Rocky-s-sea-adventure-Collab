@@ -29,7 +29,7 @@ public class CameraSwitch : MonoBehaviour {
 	void Update () {
 
 		if (chMovement.canControlShip) CameraSwitching();
-
+        if (shipView) theBoat.controllingBoat = true;
 		CameraParent();
 	}
 

@@ -43,7 +43,8 @@ public class BuildCannon : MonoBehaviour
 		{
 			
 			linkedCannon = Instantiate(cannonPrefab, transform.position, cannonPrefab.transform.rotation);
-            linkedCannon.transform.Rotate(transform.localRotation.eulerAngles.z, cannonPrefab.transform.rotation.y, cannonPrefab.transform.rotation.z); //Rotates any cannon to face outwards
+            print(transform.localRotation.eulerAngles.y);
+            linkedCannon.transform.Rotate(180, transform.localRotation.eulerAngles.y, 0); //Rotates any cannon to face outwards
             linkedCannon.transform.parent = transform.parent.parent; //Sets cannon transform to ship
 
             cannonHealth.SetBeginningHealth(30.0f);
