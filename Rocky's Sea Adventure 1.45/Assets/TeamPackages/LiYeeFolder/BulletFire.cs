@@ -6,12 +6,7 @@ public class BulletFire : MonoBehaviour {
 
     public float speed = 10;
     public Transform target;  //Target (set by CannonFire script)}
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
+	public GameObject explosion;
 
 
     // Update is called once per frame
@@ -48,6 +43,7 @@ public class BulletFire : MonoBehaviour {
     {
         if (other.tag == "Enemy")
         {
+			Instantiate(explosion, transform.position,Quaternion.identity);
             Destroy(gameObject); //destroy itself
             return;
         }

@@ -16,8 +16,14 @@ public class CameraSwitch : MonoBehaviour {
 	CharacterMovement chMovement;
 	BoatController theBoat;
 
+	// have to use this for reference because it is from a namespace
+	public UnityStandardAssets.Characters.FirstPerson.FirstPersonController fpsController;
+
 	private void Start()
 	{
+
+		//getting components
+		fpsController = FindObjectOfType<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
 		theBoat = FindObjectOfType<BoatController>();
 		chMovement = FindObjectOfType<CharacterMovement>();
 		shipView = false;
@@ -43,6 +49,7 @@ public class CameraSwitch : MonoBehaviour {
 				shipView = true;
 				StartCoroutine(SwitchView(shipViewPos));
 				transform.parent = ship.transform;
+				fpsController.controllingShip = true;
 			}
 			else
 			{
@@ -50,6 +57,7 @@ public class CameraSwitch : MonoBehaviour {
 				shipView = false;
 				StartCoroutine(SwitchView(playerViewPos));
 				transform.parent = null;
+				fpsController.controllingShip = false;
 			}
 		}
 	}
@@ -75,7 +83,7 @@ public class CameraSwitch : MonoBehaviour {
 
 		if (view == playerViewPos)
 		{
-			chMovement.fpsController.controllingShip = false;
+			fpsController.controllingShip = false;
 			theBoat.controllingBoat = false;
 			//transform.parent = (transform.position == playerViewPos.transform.position) ? transform.parent = chMovement.transform : transform.parent = null;
 		}

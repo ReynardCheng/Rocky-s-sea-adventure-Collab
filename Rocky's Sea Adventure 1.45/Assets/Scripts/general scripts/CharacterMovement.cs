@@ -12,19 +12,18 @@ public class CharacterMovement : MonoBehaviour {
 	//for reference
 	[Header("Components")]
 	[Space]
-	CharacterController controller;
+	//CharacterController controller;
 	BoatController theBoat;
-
-	// have to use this for reference because it is from a namespace
-	public UnityStandardAssets.Characters.FirstPerson.FirstPersonController fpsController;
+	[SerializeField]Rigidbody rb;
 
 	// Use this for initialization
 	void Start () {
 		canControlShip = false;
 		moveSpeed = 3f;
-		controller = GetComponent<CharacterController>();
+		//controller = GetComponent<CharacterController>();
 		theBoat = FindObjectOfType<BoatController>();
-		fpsController = GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
+	//	fpsController = GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
+		rb = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
@@ -42,21 +41,6 @@ public class CharacterMovement : MonoBehaviour {
 		// to ensure that the player moves with the boat
 		//transform.parent = (theBoat.controllingBoat) ? theBoat.transform : transform.parent = null;
 		transform.parent = theBoat.transform;
-
-		if (canControlShip)
-		{
-			if (Input.GetKeyDown(KeyCode.E))
-			{
-				fpsController.controllingShip = true;
-			}
-		}
-		else if (canControlShip && fpsController.controllingShip)
-		{
-			if (Input.GetKeyDown(KeyCode.E))
-			{
-				fpsController.controllingShip = false;
-			}
-		}
 	}
 
 
@@ -68,7 +52,7 @@ public class CharacterMovement : MonoBehaviour {
 
 
 		// for the player to move
-		controller.Move(movement * moveSpeed*Time.deltaTime);
+		//controller.Move(movement * moveSpeed*Time.deltaTime);
 	}
 	private void OnTriggerStay(Collider other)
 	{
