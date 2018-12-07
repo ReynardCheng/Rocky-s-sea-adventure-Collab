@@ -33,30 +33,48 @@ public class BuildCannon : MonoBehaviour
         if (transform.childCount > 0)
         {
             slotTaken = true;
-            cannonHealth.SetBeginningHealth(30.0f);
+           // cannonHealth.SetBeginningHealth(30.0f);
         }
 	}
 
-	void BuildTower()
-	{
-		if (Input.GetKeyDown(KeyCode.E) && canBuild && !slotTaken)
-		{
-			
-			linkedCannon = Instantiate(cannonPrefab, transform.position, cannonPrefab.transform.rotation);
+    void BuildTower()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && canBuild && !slotTaken)
+        {
+           
+            linkedCannon = Instantiate(cannonPrefab, transform.position, cannonPrefab.transform.rotation);
             print(transform.localRotation.eulerAngles.y);
             linkedCannon.transform.Rotate(180, transform.localRotation.eulerAngles.y, 0); //Rotates any cannon to face outwards
+            cannonHealth.SetBeginningHealth(30.0f);
             linkedCannon.transform.parent = transform.parent.parent; //Sets cannon transform to ship
 
-            cannonHealth.SetBeginningHealth(30.0f);
-            
+            //   cannonHealth.SetBeginningHealth(30.0f);
 
-			slotTaken = true;
-			print("Spawned");
-		}
 
-	}
+            slotTaken = true;
+            print("Spawned");
+        }
 
-	void OnTriggerEnter(Collider other) //Add enemy to list of targets when in range of cannon
+    }
+    //void BuildTower()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.E) && canBuild && !slotTaken)
+    //    {
+
+    //        linkedCannon = Instantiate(cannonPrefab, transform.position, cannonPrefab.transform.rotation);
+    //        print(transform.localRotation.eulerAngles.y);
+    //        linkedCannon.transform.Rotate(180, transform.localRotation.eulerAngles.y, 0); //Rotates any cannon to face outwards
+    //        linkedCannon.transform.parent = transform.parent.parent; //Sets cannon transform to ship
+
+    //        cannonHealth.SetBeginningHealth(30.0f, linkedCannon);
+
+
+    //        slotTaken = true;
+    //    }
+
+    //}
+
+    void OnTriggerEnter(Collider other) //Add enemy to list of targets when in range of cannon
 	{
 		if (other.gameObject.tag == "Player")
 		{
