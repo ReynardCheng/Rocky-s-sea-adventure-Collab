@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BoatCombat : MonoBehaviour {
 
-    public int shipHealth = 100;
+    public float shipHealth = 100f;
 
     //public GameObject[] damageSectionHolder;
     public GameObject[] cannonHolder;
@@ -13,7 +13,7 @@ public class BoatCombat : MonoBehaviour {
     public GameObject shipRightSide;
     
 
-    public void TakeDamage(int damageToTake, GameObject damageLocation) //Called from script attached to enemy's bullet. Damagelocation being the bullet gameobject.
+    public void TakeDamage(float damageToTake, GameObject damageLocation) //Called from script attached to enemy's bullet. Damagelocation being the bullet gameobject.
     {
         {
          //float closestCannonDistance = Mathf.Infinity;
