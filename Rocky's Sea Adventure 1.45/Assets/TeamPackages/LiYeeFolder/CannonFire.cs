@@ -56,8 +56,12 @@ public class CannonFire : MonoBehaviour
 
         foreach (GameObject enemy in EnemiesInRange) //For each enemy, find the closest one
         {
+			if (enemy == null)
+			{
+				EnemiesInRange.Remove(enemy);
+			}
 
-            var difference = (enemy.transform.position - position);
+			var difference = (enemy.transform.position - position);
             var curDistance = difference.sqrMagnitude;
             if (curDistance < distance)
             {
