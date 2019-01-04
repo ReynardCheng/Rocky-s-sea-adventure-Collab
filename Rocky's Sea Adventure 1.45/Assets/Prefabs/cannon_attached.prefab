@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114203695031437008}
   - component: {fileID: 54967492047891888}
   - component: {fileID: 65272409780308758}
+  - component: {fileID: 114121056900725636}
   m_Layer: 0
   m_Name: cannon_attached
   m_TagString: Untagged
@@ -38,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1040319059652724}
   m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
-  m_LocalPosition: {x: 116.46111, y: 11.748963, z: -84.465706}
+  m_LocalPosition: {x: -212.06558, y: 201.96152, z: -470.6113}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -111,8 +112,22 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9, y: 8.5, z: 2}
+  m_Size: {x: 9, y: 8.5, z: 7.56}
   m_Center: {x: 4.408592, y: 0.48649514, z: -0.084892265}
+--- !u!114 &114121056900725636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1040319059652724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78116fb51b1f92c4b9b53d07e9997c73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cannonHpBarImage: {fileID: 0}
+  cannonMaxHp: 30
+  cannonCurrentHp: 0
 --- !u!114 &114203695031437008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,8 +143,8 @@ MonoBehaviour:
     type: 2}
   atkCD: 1
   atkRate: 1
-  Gun: {fileID: 4369126309444272}
+  nextAtk: 0
+  gun: {fileID: 4369126309444272}
   speed: 10
   TargetingEnemy: {fileID: 0}
   EnemiesInRange: []
-  CannonHealth: 25

@@ -16,11 +16,17 @@ public class CannonHealth : MonoBehaviour {
         buildCannonScript = GetComponent<BuildCannon>();
 	}
 
-    //public void SetBeginningHealth(float beginningHealth)
-    //{
-    //    cannonCurrentHp = beginningHealth;
-    //} 
-    public void SetBeginningHealth(float beginningHealth)
+	private void Update()
+	{
+
+	}
+
+
+	//public void SetBeginningHealth(float beginningHealth)
+	//{
+	//    cannonCurrentHp = beginningHealth;
+	//} 
+	public void SetBeginningHealth(float beginningHealth)
     {
         cannonCurrentHp = beginningHealth;
         //cannonHpBarImage = linkedCannon.GetComponentInChildren<Image>();
@@ -38,11 +44,11 @@ public class CannonHealth : MonoBehaviour {
         print("cannonCurrentHp:" + cannonCurrentHp / cannonMaxHp);
         cannonHpBarImage.fillAmount = cannonCurrentHp / cannonMaxHp;
 
-        if (cannonCurrentHp <= 0)
-        {
-            DestroyCannon();
-        }
-    }
+		if (cannonCurrentHp <= 0)
+		{
+			DestroyCannon();
+		}
+	}
 
     void DestroyCannon()
     {
@@ -51,6 +57,7 @@ public class CannonHealth : MonoBehaviour {
         Destroy(buildCannonScript.linkedCannon);
         buildCannonScript.linkedCannon = null;
         buildCannonScript.slotTaken = false;
-    }
+		Destroy(gameObject);
+	}
 
 }

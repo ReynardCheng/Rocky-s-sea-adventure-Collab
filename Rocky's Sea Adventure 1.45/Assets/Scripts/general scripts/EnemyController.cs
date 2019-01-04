@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-
+	
     public Transform ship; // The ship; enemy's target
     public float moveSpd = 2.0f; // Moving speed of enemy
     private Vector3 moveDirection;
-
+	
     [Header("Detection Range")]
     public float aggroRange; // Enemy moves towards ship when within this range
     public float atkRange; // Enemy attacks ship when within this range

@@ -28,10 +28,6 @@ public class CannonFire : MonoBehaviour
     public Transform TargetingEnemy;
     public List<GameObject> EnemiesInRange;
 
-    [Header("Health")]
-    public int CannonHealth = 25;
-
-
     // Use this for initialization
     void Start()
     {

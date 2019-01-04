@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using ReynardsNameSpace;
 public class BulletFire : MonoBehaviour {
 
     public float speed = 10;

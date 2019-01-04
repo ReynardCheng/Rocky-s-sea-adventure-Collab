@@ -113,9 +113,6 @@ public class BoatController : MonoBehaviour
 			thisCenter = new GameObject("Center").transform;
 			thisCenter.SetParent(transform);
 		}
-
-		thisCenter.position = centerOfMass + transform.position;
-		GetComponent<Rigidbody>().centerOfMass = thisCenter.position;
 	}
 
 	void Movement()

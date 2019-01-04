@@ -14,7 +14,10 @@ public class CharacterMovement : MonoBehaviour {
 	[Space]
 	//CharacterController controller;
 	BoatController theBoat;
-	[SerializeField]Rigidbody rb;
+	[SerializeField] Rigidbody rb;
+
+	[Header("CharacterFace)")]
+	public GameObject mesh;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +27,10 @@ public class CharacterMovement : MonoBehaviour {
 		theBoat = FindObjectOfType<BoatController>();
 	//	fpsController = GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
 		rb = GetComponent<Rigidbody>();
+
+
+		// this adds the script from the namespace to rotate the character mesh
+		mesh.gameObject.AddComponent<ReynardsNameSpace.CharacterRotate>();
 	}
 	
 	// Update is called once per frame
