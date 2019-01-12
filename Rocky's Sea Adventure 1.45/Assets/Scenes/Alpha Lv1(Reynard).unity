@@ -234,7 +234,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1822593}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e17587c1cea181f4f94717a9757c52ff, type: 3}
   m_Name: 
@@ -401,9 +401,10 @@ GameObject:
   - component: {fileID: 96870211}
   - component: {fileID: 96870210}
   - component: {fileID: 96870212}
-  m_Layer: 0
+  - component: {fileID: 96870213}
+  m_Layer: 11
   m_Name: Cannon Slot (4)
-  m_TagString: Untagged
+  m_TagString: CannonSlot
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -463,6 +464,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &96870213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 96870208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbd6e5f5298c6c4fbd395c27ffa0eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuToSpawn: {fileID: 1662064079342822, guid: 68e43ac8a6cbe7a4c8172669188878c6,
+    type: 2}
+  hitPosition: {fileID: 0}
 --- !u!4 &121327058 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: d8c41be67f41aa545ae053b0b927f821,
@@ -701,7 +716,7 @@ Prefab:
     - target: {fileID: 114221131308118890, guid: c85ab52739c307845ad280692a7808a8,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c85ab52739c307845ad280692a7808a8, type: 2}
@@ -717,9 +732,10 @@ GameObject:
   - component: {fileID: 215829643}
   - component: {fileID: 215829642}
   - component: {fileID: 215829644}
-  m_Layer: 0
+  - component: {fileID: 215829645}
+  m_Layer: 11
   m_Name: Cannon Slot (5)
-  m_TagString: Untagged
+  m_TagString: CannonSlot
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -779,6 +795,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &215829645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 215829640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbd6e5f5298c6c4fbd395c27ffa0eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuToSpawn: {fileID: 1662064079342822, guid: 68e43ac8a6cbe7a4c8172669188878c6,
+    type: 2}
+  hitPosition: {fileID: 0}
 --- !u!1 &243587305
 GameObject:
   m_ObjectHideFlags: 0
@@ -1299,7 +1329,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4369126309444272, guid: fa5e62785108b244085d5d3d45b21ff6, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1040319059652724, guid: fa5e62785108b244085d5d3d45b21ff6, type: 2}
       propertyPath: m_IsActive
@@ -1639,6 +1669,9 @@ MonoBehaviour:
   cannonMask:
     serializedVersion: 2
     m_Bits: 512
+  cannonSlot:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &603407261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1931,9 +1964,10 @@ GameObject:
   - component: {fileID: 719017069}
   - component: {fileID: 719017068}
   - component: {fileID: 719017070}
-  m_Layer: 0
+  - component: {fileID: 719017071}
+  m_Layer: 11
   m_Name: Cannon Slot (2)
-  m_TagString: Untagged
+  m_TagString: CannonSlot
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1993,6 +2027,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &719017071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 719017066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbd6e5f5298c6c4fbd395c27ffa0eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuToSpawn: {fileID: 1662064079342822, guid: 68e43ac8a6cbe7a4c8172669188878c6,
+    type: 2}
+  hitPosition: {fileID: 0}
 --- !u!1 &725662495
 GameObject:
   m_ObjectHideFlags: 0
@@ -3251,7 +3299,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4791319739457022, guid: 20ab7c25b089dbd4c8e8be1cb913ce68, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114666001969990748, guid: 20ab7c25b089dbd4c8e8be1cb913ce68,
         type: 2}
@@ -3329,9 +3377,10 @@ GameObject:
   - component: {fileID: 1283781816}
   - component: {fileID: 1283781815}
   - component: {fileID: 1283781817}
-  m_Layer: 0
+  - component: {fileID: 1283781818}
+  m_Layer: 11
   m_Name: Cannon Slot (1)
-  m_TagString: Untagged
+  m_TagString: CannonSlot
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3391,6 +3440,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1283781818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1283781813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbd6e5f5298c6c4fbd395c27ffa0eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuToSpawn: {fileID: 1662064079342822, guid: 68e43ac8a6cbe7a4c8172669188878c6,
+    type: 2}
+  hitPosition: {fileID: 0}
 --- !u!4 &1359463136 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: d8c41be67f41aa545ae053b0b927f821,
@@ -3574,7 +3637,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: e6fec471c20b9d148b1f87910e67bea4, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6fec471c20b9d148b1f87910e67bea4, type: 3}
@@ -3987,91 +4050,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1585352212
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1585352216}
-  - component: {fileID: 1585352215}
-  - component: {fileID: 1585352214}
-  - component: {fileID: 1585352213}
-  m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &1585352213
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1585352212}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1585352214
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1585352212}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &1585352215
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1585352212}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1585352216
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1585352212}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 80.632, y: 5.6183896, z: -167.97478}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1629398309
 GameObject:
@@ -4660,9 +4638,10 @@ GameObject:
   - component: {fileID: 1874331240}
   - component: {fileID: 1874331239}
   - component: {fileID: 1874331241}
-  m_Layer: 0
+  - component: {fileID: 1874331242}
+  m_Layer: 11
   m_Name: Cannon Slot (3)
-  m_TagString: Untagged
+  m_TagString: CannonSlot
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4722,6 +4701,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1874331242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1874331237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbd6e5f5298c6c4fbd395c27ffa0eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuToSpawn: {fileID: 1662064079342822, guid: 68e43ac8a6cbe7a4c8172669188878c6,
+    type: 2}
+  hitPosition: {fileID: 0}
 --- !u!1 &1916699097
 GameObject:
   m_ObjectHideFlags: 0
@@ -4802,9 +4795,10 @@ GameObject:
   - component: {fileID: 2030952061}
   - component: {fileID: 2030952060}
   - component: {fileID: 2030952062}
-  m_Layer: 0
+  - component: {fileID: 2030952063}
+  m_Layer: 11
   m_Name: Cannon Slot
-  m_TagString: Untagged
+  m_TagString: CannonSlot
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4864,6 +4858,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2030952063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2030952058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbd6e5f5298c6c4fbd395c27ffa0eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuToSpawn: {fileID: 1662064079342822, guid: 68e43ac8a6cbe7a4c8172669188878c6,
+    type: 2}
+  hitPosition: {fileID: 0}
 --- !u!1 &2031254298
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,11 +8,11 @@ public class RaycastToWorld : MonoBehaviour {
 	public static bool menuSpawned;
 	public Camera cam;
 	SpawnMenu theMenu;
-    public LayerMask cannonMask;
+    public LayerMask cannonMask,cannonSlot;
 
 	// Use this for initialization
 	void Start () {
-		theMenu = FindObjectOfType<SpawnMenu>();
+
 		menuSpawned = false;
 	}
 	
@@ -35,14 +35,29 @@ public class RaycastToWorld : MonoBehaviour {
 		{
             if (hit.collider != null)
             {
-                if (hit.collider.tag == "Cannon")
+				if ( hit.collider.tag == "Cannon") 
                 {
+					theMenu = hit.collider.gameObject.GetComponent<SpawnMenu>();
+					theMenu.hitPosition = hit.collider.transform;
                     theMenu.MenuPosition();
                     print("HIt");
                 }
-            }
-			
-
+				else if (hit.collider.tag == "CannonSlot")
+				{
+					theMenu = hit.collider.gameObject.GetComponent<SpawnMenu>();
+					theMenu.hitPosition = hit.collider.transform;
+					theMenu.MenuPosition();
+					print("HIt SLot	");
+				}
+			}
 		}
+
+		//else if (Physics.Raycast(ray, out hit, cannonSlot))
+		//{
+		//	if (hit.collider != null)
+		//	{
+
+		//	}
+		//}
 	}
 }

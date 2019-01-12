@@ -24,9 +24,10 @@ GameObject:
   - component: {fileID: 114203695031437008}
   - component: {fileID: 54967492047891888}
   - component: {fileID: 65272409780308758}
+  - component: {fileID: 114448677973767654}
   m_Layer: 0
   m_Name: cannon_attached
-  m_TagString: Untagged
+  m_TagString: Cannon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,3 +135,17 @@ MonoBehaviour:
   TargetingEnemy: {fileID: 0}
   EnemiesInRange: []
   CannonHealth: 25
+--- !u!114 &114448677973767654
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1040319059652724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbd6e5f5298c6c4fbd395c27ffa0eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuToSpawn: {fileID: 1662064079342822, guid: 68e43ac8a6cbe7a4c8172669188878c6,
+    type: 2}
+  hitPosition: {fileID: 0}

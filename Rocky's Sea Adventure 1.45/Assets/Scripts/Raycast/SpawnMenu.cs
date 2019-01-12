@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnMenu : MonoBehaviour {
 
 	public GameObject menuToSpawn;
+	public Transform hitPosition;
 
 	// Use this for initialization
 	void Start () {
@@ -21,8 +22,8 @@ public class SpawnMenu : MonoBehaviour {
 		Transform menuParent = this.transform;
 		RaycastToWorld.menuSpawned = true;
 
-		menuToSpawn.transform.position = Input.mousePosition;
-		Instantiate(menuToSpawn,menuParent,true);
+		menuToSpawn.transform.position = hitPosition.position;
+		Instantiate(menuToSpawn,hitPosition,true);
 		
 		print("positionChanged");
 	}
