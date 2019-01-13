@@ -10,6 +10,9 @@ public class EnemyBulletScript : MonoBehaviour
     public Vector3 moveDirection;
     private Rigidbody rb;
 
+	[Header("Damage to give")]
+	public int damageToGive;
+
     // Use this for initialization
     void Start()
     {
@@ -31,5 +34,11 @@ public class EnemyBulletScript : MonoBehaviour
             other.gameObject.GetComponent<BoatCombat>().TakeDamage(5, gameObject);
             Destroy(gameObject);
         }
+
+		if (other.tag == "Cannon")
+		{
+			other.gameObject.GetComponentInChildren<CannonController>().damageCannon(damageToGive);
+			Destroy(gameObject);
+		}
     }
 }

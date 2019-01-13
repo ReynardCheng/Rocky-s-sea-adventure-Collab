@@ -12,6 +12,7 @@ public class BuildCannon : MonoBehaviour
     private bool canBuild;
 	public bool slotTaken; // == true when a cannon is already built in position
 
+	Vector3 face;
 
 	// Use this for initialization
 	void Start()
@@ -25,7 +26,7 @@ public class BuildCannon : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		BuildTower();
+		//BuildTower();
 	}
 
 	void CheckForCannon()   //Runs at beginning of game to "start" the default cannons
@@ -50,31 +51,47 @@ public class BuildCannon : MonoBehaviour
 
             //   cannonHealth.SetBeginningHealth(30.0f);
 
-
             slotTaken = true;
             print("Spawned");
         }
-
     }
-    //void BuildTower()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.E) && canBuild && !slotTaken)
-    //    {
 
-    //        linkedCannon = Instantiate(cannonPrefab, transform.position, cannonPrefab.transform.rotation);
-    //        print(transform.localRotation.eulerAngles.y);
-    //        linkedCannon.transform.Rotate(180, transform.localRotation.eulerAngles.y, 0); //Rotates any cannon to face outwards
-    //        linkedCannon.transform.parent = transform.parent.parent; //Sets cannon transform to ship
+	public void BuildTowerButton()
+	{
+		//to get thet settings on where the cannon should face
+		face = GetComponentInParent<SpawnMenu>().cannonFace;
 
-    //        cannonHealth.SetBeginningHealth(30.0f, linkedCannon);
+		linkedCannon = Instantiate(cannonPrefab, transform.position, cannonPrefab.transform.rotation);
+		linkedCannon.transform.Rotate(face); //Rotates any cannon to face outwards
+		linkedCannon.transform.parent = transform.parent.parent; //Sets cannon transform to ship
+
+		//   cannonHealth.SetBeginningHealth(30.0f);
+
+		slotTaken = true;
+		RaycastToWorld.menuSpawned = false;
+		Destroy(gameObject);
+		print("Spawned");
+
+	}
+	//void BuildTower()
+	//{
+	//    if (Input.GetKeyDown(KeyCode.E) && canBuild && !slotTaken)
+	//    {
+
+	//        linkedCannon = Instantiate(cannonPrefab, transform.position, cannonPrefab.transform.rotation);
+	//        print(transform.localRotation.eulerAngles.y);
+	//        linkedCannon.transform.Rotate(180, transform.localRotation.eulerAngles.y, 0); //Rotates any cannon to face outwards
+	//        linkedCannon.transform.parent = transform.parent.parent; //Sets cannon transform to ship
+
+	//        cannonHealth.SetBeginningHealth(30.0f, linkedCannon);
 
 
-    //        slotTaken = true;
-    //    }
+	//        slotTaken = true;
+	//    }
 
-    //}
+	//}
 
-    void OnTriggerEnter(Collider other) //Add enemy to list of targets when in range of cannon
+	void OnTriggerEnter(Collider other) //Add enemy to list of targets when in range of cannon
 	{
 		if (other.gameObject.tag == "Player")
 		{

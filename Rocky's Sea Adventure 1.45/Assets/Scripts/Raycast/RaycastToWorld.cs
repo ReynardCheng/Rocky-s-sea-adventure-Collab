@@ -51,13 +51,5 @@ public class RaycastToWorld : MonoBehaviour {
 				}
 			}
 		}
-
-		//else if (Physics.Raycast(ray, out hit, cannonSlot))
-		//{
-		//	if (hit.collider != null)
-		//	{
-
-		//	}
-		//}
 	}
 }

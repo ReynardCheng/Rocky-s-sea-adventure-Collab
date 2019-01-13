@@ -7,6 +7,8 @@ public class SpawnMenu : MonoBehaviour {
 	public GameObject menuToSpawn;
 	public Transform hitPosition;
 
+	public Vector3 cannonFace;
+
 	// Use this for initialization
 	void Start () {
 		

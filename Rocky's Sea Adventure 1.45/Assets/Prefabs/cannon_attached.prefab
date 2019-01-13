@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 4369126309444272}
   - component: {fileID: 33057644822137394}
   - component: {fileID: 23232748323346698}
-  - component: {fileID: 114203695031437008}
   - component: {fileID: 54967492047891888}
   - component: {fileID: 65272409780308758}
   - component: {fileID: 114448677973767654}
+  - component: {fileID: 114069224536780048}
   m_Layer: 0
   m_Name: cannon_attached
   m_TagString: Cannon
@@ -114,7 +114,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 9, y: 8.5, z: 2}
   m_Center: {x: 4.408592, y: 0.48649514, z: -0.084892265}
---- !u!114 &114203695031437008
+--- !u!114 &114069224536780048
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,19 +122,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1040319059652724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb78d9322a74eb04f94cba099bb15e20, type: 3}
+  m_Script: {fileID: 11500000, guid: 37983946d0096bb4d97728ba06156643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 54070552391506400, guid: af711a1a6983b164083b54f8f6fb64bb,
     type: 2}
-  atkCD: 1
-  atkRate: 1
-  nextAtk: 0
-  gun: {fileID: 4369126309444272}
+  atkRate: 0
   speed: 10
   TargetingEnemy: {fileID: 0}
   EnemiesInRange: []
-  CannonHealth: 25
 --- !u!114 &114448677973767654
 MonoBehaviour:
   m_ObjectHideFlags: 1

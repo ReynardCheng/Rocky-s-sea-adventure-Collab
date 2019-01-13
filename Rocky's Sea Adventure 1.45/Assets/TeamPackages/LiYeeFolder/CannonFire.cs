@@ -83,10 +83,6 @@ public class CannonFire : MonoBehaviour
 
             float step = speed * Time.deltaTime;
 
-            // Vector3 newDir = Vector3.RotateTowards(gun.transform.forward, direction, step, 40.0f);
-         //   gun.transform.rotation = Quaternion.LookRotation(direction); //rotate the cannon
-            print("Roating");
-
         }
     }
 
