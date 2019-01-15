@@ -68,8 +68,8 @@ public class BoatController : MonoBehaviour
 
 		// variables
 		// for movement
-		moveSpeed = 2f;
-		movementThreshold = 4f;
+		moveSpeed = 4f;
+		movementThreshold = 15f;
 		controllingBoat = false;
 		boost = 100f;
 		boostUsageRate = 20f;
@@ -157,7 +157,8 @@ public class BoatController : MonoBehaviour
 		if (steerFactor <= -0.1f) steerFactor = -0.05f;
 		print("Steering");
 		horizontalInput = Input.GetAxis("Horizontal(P1)");
-		steerFactor = Mathf.Lerp(steerFactor, horizontalInput*steerSpeed, Time.deltaTime / movementThreshold);
+		//steerFactor = Mathf.Lerp(steerFactor, horizontalInput * steerSpeed, Time.deltaTime / movementThreshold);
+		steerFactor = Mathf.Lerp(steerFactor, horizontalInput * steerSpeed, Time.deltaTime / 10);
 		transform.Rotate(0.0f, -steerFactor, 0.0f);
 	}
 

@@ -41,8 +41,9 @@ public class BulletFire : MonoBehaviour {
 	}
 	void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Enemy" && other.gameObject == target.gameObject)
         {
+			other.GetComponent<EnemyController>().Health(10);
 			Instantiate(explosion, transform.position,Quaternion.identity);
             Destroy(gameObject); //destroy itself
             return;

@@ -26,21 +26,21 @@ public class EnemyBulletScript : MonoBehaviour
     void Update()
     {
         transform.Translate(moveDirection * bulletSpd, Space.World);
-		transform.position = Vector3.MoveTowards(transform.position, target.position, 0);
+	//	transform.position = Vector3.MoveTowards(transform.position, target.position, 0);
     }
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.tag == "Cannon")
-		{
-			other.gameObject.GetComponentInChildren<CannonController>().damageCannon(damageToGive);
-			print("HitCannon");
-			Destroy(gameObject);
-		}
+		//if (other.tag == "Cannon")
+		//{
+		//	other.gameObject.GetComponentInChildren<CannonController>().damageCannon(damageToGive);
+		//	print("HitCannon");
+		//	Destroy(gameObject);
+		//}
 
-		else if (other.tag == "Ship")
+		if (other.tag == "Ship")
 		{
-			other.gameObject.GetComponent<BoatCombat>().TakeDamage(5, gameObject);
+			other.gameObject.GetComponent<BoatCombat1>().TakeDamage(5, gameObject);
 			Destroy(gameObject);
 		}
 	}

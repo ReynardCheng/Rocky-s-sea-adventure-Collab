@@ -85,9 +85,9 @@ public class CannonController : MonoBehaviour {
 		atkRate = 2f; // Attack cooldown time
 
 		//BulletPos = gun.transform.position;
-		Instantiate(projectile, transform.position, transform.rotation);
 		projectile.GetComponent<BulletFire>().target = TargetingEnemy; //set the target/path for bullets to fly to in a straight line... will want to edit this later on as bullets act like a moving missile.
-		SoundFromCannon.Play();
+		Instantiate(projectile, transform.position, transform.rotation);
+		//SoundFromCannon.Play();
 		//nextAtk = Time.time + atkRate;
 	}
 

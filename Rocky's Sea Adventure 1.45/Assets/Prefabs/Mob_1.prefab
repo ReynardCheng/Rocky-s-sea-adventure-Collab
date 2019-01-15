@@ -42,7 +42,8 @@ GameObject:
   - component: {fileID: 114907442830679922}
   - component: {fileID: 65887123533798526}
   - component: {fileID: 114114285040584962}
-  m_Layer: 0
+  - component: {fileID: 114339599897516126}
+  m_Layer: 10
   m_Name: Mob_1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -150,8 +151,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1248365883909398}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.5022499, y: 0.11175032, z: -1.7549988}
-  m_LocalScale: {x: 0.375, y: 0.37500066, z: 0.37500066}
+  m_LocalPosition: {x: 0.5022499, y: 0.095, z: -1.7549988}
+  m_LocalScale: {x: 0.375, y: 0.37500113, z: 0.37500113}
   m_Children:
   - {fileID: 4645377130355508}
   - {fileID: 224725286437679962}
@@ -235,7 +236,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1248365883909398}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.33675545, y: 0.2849784, z: 0.5434027}
@@ -262,7 +263,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1248365883909398}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83a6905fffa5b6f489b4002fe1d5efdc, type: 3}
   m_Name: 
@@ -319,6 +320,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipDetected: 0
+--- !u!114 &114339599897516126
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1248365883909398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db38b3018e1ce34b9e7d89a60f616f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 0
+  healthBar: {fileID: 114114347190040572}
+  bullet: {fileID: 1320870172768074, guid: 1863dd99fc418bf4282b2b5b31f0403c, type: 2}
+  fireRate: 0
+  coolDownTime: 0
+  moveSpeed: 0
+  distanceToStopMoving: 250
+  ship: {fileID: 0}
 --- !u!114 &114740772320359846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -373,7 +394,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1248365883909398}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f30f065469928b34eb6175e0bffdbc4d, type: 3}
   m_Name: 
@@ -470,7 +491,7 @@ RectTransform:
   m_GameObject: {fileID: 1937688306968810}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0.265}
-  m_LocalScale: {x: 0.003, y: 0.003, z: 0.003}
+  m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
   m_Children:
   - {fileID: 224715043221207538}
   m_Father: {fileID: 4708149189102926}
@@ -478,6 +499,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0758, y: -0.083}
+  m_AnchoredPosition: {x: 0.02, y: 0}
   m_SizeDelta: {x: 280.4506, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}

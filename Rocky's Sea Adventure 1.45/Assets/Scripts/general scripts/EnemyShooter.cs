@@ -45,6 +45,7 @@ public class EnemyShooter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
         if (detectShipTrigger.shipDetected) //changed
         {
             FireRate();
@@ -53,7 +54,6 @@ public class EnemyShooter : MonoBehaviour {
         }
         MoveToShipClosestPart();
 
-		HealthUi();
     }
 
 
@@ -155,9 +155,11 @@ public class EnemyShooter : MonoBehaviour {
 	//------------------------------------------
 	//health related stuff
 
-	void Health(float damageTaken)
+	public void Health(float damageTaken)
 	{
 		currentHealth -= damageTaken;
+		HealthUi();
+
 		if (currentHealth <= 0f)
 		{
 			Destroy(gameObject);
@@ -167,16 +169,10 @@ public class EnemyShooter : MonoBehaviour {
 	void HealthUi()
 	{
 		healthBar.fillAmount = currentHealth / maxHealth;
+		print("Updating");
 	}
 
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.tag == "Cannon Bullet")
-		{
-			Health(10f);
-			print("Enemy Hit");
-		}
-	}
+	
 }
 
 

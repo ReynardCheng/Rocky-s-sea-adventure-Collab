@@ -20,7 +20,7 @@ public class BuildCannon : MonoBehaviour
 		slotTaken = false;
 
        // cannonHealth = GetComponent<CannonHealth>();
-        CheckForCannon();
+        //CheckForCannon();
 	}
 
 	// Update is called once per frame
@@ -38,23 +38,7 @@ public class BuildCannon : MonoBehaviour
         }
 	}
 
-    void BuildTower()
-    {
-        if (Input.GetKeyDown(KeyCode.E) && canBuild && !slotTaken)
-        {
-           
-        //    linkedCannon = Instantiate(cannonPrefab, transform.position, cannonPrefab.transform.rotation);
-            print(transform.localRotation.eulerAngles.y);
-            linkedCannon.transform.Rotate(180, transform.localRotation.eulerAngles.y, 0); //Rotates any cannon to face outwards
-           // cannonHealth.SetBeginningHealth(30.0f);
-            linkedCannon.transform.parent = transform.parent.parent; //Sets cannon transform to ship
-
-            //   cannonHealth.SetBeginningHealth(30.0f);
-
-            slotTaken = true;
-            print("Spawned");
-        }
-    }
+    
 
 	public void BuildTowerButton()
 	{
@@ -68,8 +52,8 @@ public class BuildCannon : MonoBehaviour
 
 		linkedCannon.transform.localEulerAngles = face;
 
+		linkedCannon.GetComponentInParent<BuildCannon>().slotTaken = true;
 
-		slotTaken = true;
 		RaycastToWorld.menuSpawned = false;
 		print(face);
 		Destroy(gameObject);

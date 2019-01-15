@@ -23,6 +23,7 @@ public class CameraSwitch : MonoBehaviour {
 	{
 
 		//getting components
+		transform.position = playerViewPos.position;
 		fpsController = FindObjectOfType<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
 		theBoat = FindObjectOfType<BoatController>();
 		chMovement = FindObjectOfType<CharacterMovement>();
