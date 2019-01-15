@@ -6,8 +6,8 @@ public class BuildCannon : MonoBehaviour
 {
 
 	public GameObject cannonPrefab;
-    public CannonHealth cannonHealth;
-    public GameObject linkedCannon;
+	//    public CannonHealth cannonHealth;
+	public GameObject linkedCannon;
 
     private bool canBuild;
 	public bool slotTaken; // == true when a cannon is already built in position
@@ -19,7 +19,7 @@ public class BuildCannon : MonoBehaviour
 	{
 		slotTaken = false;
 
-        cannonHealth = GetComponent<CannonHealth>();
+       // cannonHealth = GetComponent<CannonHealth>();
         CheckForCannon();
 	}
 
@@ -43,10 +43,10 @@ public class BuildCannon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && canBuild && !slotTaken)
         {
            
-            linkedCannon = Instantiate(cannonPrefab, transform.position, cannonPrefab.transform.rotation);
+        //    linkedCannon = Instantiate(cannonPrefab, transform.position, cannonPrefab.transform.rotation);
             print(transform.localRotation.eulerAngles.y);
             linkedCannon.transform.Rotate(180, transform.localRotation.eulerAngles.y, 0); //Rotates any cannon to face outwards
-            cannonHealth.SetBeginningHealth(30.0f);
+           // cannonHealth.SetBeginningHealth(30.0f);
             linkedCannon.transform.parent = transform.parent.parent; //Sets cannon transform to ship
 
             //   cannonHealth.SetBeginningHealth(30.0f);
@@ -61,17 +61,18 @@ public class BuildCannon : MonoBehaviour
 		//to get thet settings on where the cannon should face
 		face = GetComponentInParent<SpawnMenu>().cannonFace;
 
-		linkedCannon = Instantiate(cannonPrefab, transform.position, cannonPrefab.transform.rotation);
-		//linkedCannon.transform.Rotate(face); //Rotates any cannon to face outwards
-		linkedCannon.transform.Rotate(face);
-		linkedCannon.transform.parent = transform.parent.parent; //Sets cannon transform to ship
 
-		//   cannonHealth.SetBeginningHealth(30.0f);
+		linkedCannon = Instantiate(cannonPrefab, transform.position, cannonPrefab.transform.rotation);
+
+		linkedCannon.transform.parent = transform.parent;
+
+		linkedCannon.transform.localEulerAngles = face;
+
 
 		slotTaken = true;
 		RaycastToWorld.menuSpawned = false;
+		print(face);
 		Destroy(gameObject);
-		print("Spawned");
 
 	}
 	//void BuildTower()
