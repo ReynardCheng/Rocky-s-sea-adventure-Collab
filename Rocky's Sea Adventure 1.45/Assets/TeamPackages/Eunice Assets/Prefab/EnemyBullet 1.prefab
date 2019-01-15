@@ -39,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1320870172768074}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -368.25113, y: 45.92487, z: 192.85614}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -115,6 +115,7 @@ MonoBehaviour:
   shipPos: {fileID: 0}
   bulletSpd: 0.5
   moveDirection: {x: 0, y: 0, z: 0}
+  target: {fileID: 0}
   damageToGive: 5
 --- !u!135 &135895299017289450
 SphereCollider:
