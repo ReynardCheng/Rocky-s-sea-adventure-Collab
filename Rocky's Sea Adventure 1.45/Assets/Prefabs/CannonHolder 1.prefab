@@ -55,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1860678955656556}
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: 128.3278, y: 55.277954, z: -211.83505}
+  m_LocalPosition: {x: 74.527176, y: 18.62587, z: -172.66069}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4771232742311154}
@@ -142,8 +142,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9, y: 8.5, z: 2}
-  m_Center: {x: 4.408592, y: 0.48649514, z: -0.084892265}
+  m_Size: {x: 6.01, y: 4.06, z: 4.12}
+  m_Center: {x: 3.59, y: 0.4, z: -0.33}
 --- !u!65 &65441847479572590
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -154,8 +154,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.3770599, y: 0.49912262, z: 1}
-  m_Center: {x: 0.5061569, y: 0.1842537, z: 0}
+  m_Size: {x: 1.464283, y: 0.54824257, z: 0.70760345}
+  m_Center: {x: 0.4737835, y: 0.16172504, z: -0.16464615}
 --- !u!114 &114061815045027548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,7 +173,8 @@ MonoBehaviour:
   speed: 10
   TargetingEnemy: {fileID: 0}
   EnemiesInRange: []
-  Health: 0
+  Health: 100
+  parent: {fileID: 0}
 --- !u!114 &114773557918782640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -188,3 +189,4 @@ MonoBehaviour:
   menuToSpawn: {fileID: 1662064079342822, guid: 68e43ac8a6cbe7a4c8172669188878c6,
     type: 2}
   hitPosition: {fileID: 0}
+  cannonFace: {x: 0, y: 0, z: 0}

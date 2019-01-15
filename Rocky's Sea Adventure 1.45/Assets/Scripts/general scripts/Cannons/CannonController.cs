@@ -19,6 +19,9 @@ public class CannonController : MonoBehaviour {
 	[Header("Health")]
 	public int Health;
 
+	[Header("Parent")]
+	public GameObject parent;
+
 	// Use this for initialization
 	void Start () {
 

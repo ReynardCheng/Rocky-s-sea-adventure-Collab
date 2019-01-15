@@ -69,7 +69,9 @@ public class EnemyShooter : MonoBehaviour {
             {
                 GameObject enemyBullet = Instantiate(bullet, transform.position, Quaternion.identity);
                 enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (weakestCannon.transform.position - transform.position).normalized;
-            }
+				enemyBullet.GetComponent<EnemyBulletScript>().target = weakestCannon.transform;
+
+			}
             else
             {
                 GameObject enemyBullet = Instantiate(bullet, transform.position, Quaternion.identity);
@@ -119,8 +121,9 @@ public class EnemyShooter : MonoBehaviour {
             {
                 if (ship.cannonHolder[i].GetComponent<BuildCannon>().slotTaken)
                 {
-                    float cannonHealth = ship.cannonHolder[i].GetComponent<CannonHealth>().cannonCurrentHp;
-                    if (cannonHealth < lowestHealth)
+					// float cannonHealth = ship.cannonHolder[i].GetComponent<CannonHealth>().cannonCurrentHp;
+					float cannonHealth = ship.cannonHolder[i].GetComponent<CannonController>().Health;
+					if (cannonHealth < lowestHealth)
                     {
                         weakestCannon = ship.cannonHolder[i];
                         lowestHealth = cannonHealth;
