@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class CharacterMovement : MonoBehaviour {
 
 	[Header("Variables")]
@@ -16,6 +17,7 @@ public class CharacterMovement : MonoBehaviour {
 	BoatController theBoat;
 	[SerializeField]Rigidbody rb;
 
+	public cannonTypes menutype;
 	// Use this for initialization
 	void Start () {
 		canControlShip = false;

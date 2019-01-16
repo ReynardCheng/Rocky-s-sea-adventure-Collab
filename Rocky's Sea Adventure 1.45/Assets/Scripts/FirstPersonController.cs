@@ -216,7 +216,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			float horizontal = CrossPlatformInputManager.GetAxis("Horizontal(P1)");
 			float vertical = CrossPlatformInputManager.GetAxis("Vertical(P1)");
 
-			Vector3 lookDirection = new Vector3(-vertical, 0, horizontal);
+			Vector3 lookDirection = new Vector3(-vertical, 90, horizontal);
 
 			playerMesh.transform.LookAt(transform.position + lookDirection);
 		}

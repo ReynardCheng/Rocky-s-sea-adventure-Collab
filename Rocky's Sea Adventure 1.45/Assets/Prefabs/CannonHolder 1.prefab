@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 23069089664809156}
   - component: {fileID: 54575141363680442}
   - component: {fileID: 65320057532288144}
-  - component: {fileID: 114773557918782640}
   - component: {fileID: 114061815045027548}
   m_Layer: 0
   m_Name: cannon_attached (1)
@@ -170,23 +169,8 @@ MonoBehaviour:
   projectile: {fileID: 54936653049254952, guid: 843a2c5aa240a95478b0a434f50b80fc,
     type: 2}
   atkRate: 0
-  speed: 10
   TargetingEnemy: {fileID: 0}
   EnemiesInRange: []
   Health: 100
   parent: {fileID: 0}
---- !u!114 &114773557918782640
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1449643513187618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dbd6e5f5298c6c4fbd395c27ffa0eb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuToSpawn: {fileID: 1662064079342822, guid: 68e43ac8a6cbe7a4c8172669188878c6,
-    type: 2}
-  hitPosition: {fileID: 0}
-  cannonFace: {x: 0, y: 0, z: 0}
+  cannonType: 0

@@ -122,7 +122,7 @@ public class EnemyShooter : MonoBehaviour {
                 if (ship.cannonHolder[i].GetComponent<BuildCannon>().slotTaken)
                 {
 					// float cannonHealth = ship.cannonHolder[i].GetComponent<CannonHealth>().cannonCurrentHp;
-					float cannonHealth = ship.cannonHolder[i].GetComponent<CannonController>().Health;
+					float cannonHealth = ship.cannonHolder[i].GetComponent<CannonController>().health;
 					if (cannonHealth < lowestHealth)
                     {
                         weakestCannon = ship.cannonHolder[i];

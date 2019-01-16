@@ -9,7 +9,6 @@ public class CannonController : MonoBehaviour {
 	public float atkRate; // Attack rate
 
 	[Header("Enemy Detection")]
-	public int speed = 10;
 	public Transform TargetingEnemy;
 	public List<GameObject> EnemiesInRange;
 
@@ -17,13 +16,17 @@ public class CannonController : MonoBehaviour {
 	private AudioSource SoundFromCannon;
 
 	[Header("Health")]
-	public int Health;
+	public int health;
 
 	[Header("Parent")]
 	public GameObject parent;
 
+	public cannonTypes cannonType;
+
 	// Use this for initialization
 	void Start () {
+
+		health = 50;
 
 		SoundFromCannon = GetComponent<AudioSource>();
 
@@ -35,7 +38,6 @@ public class CannonController : MonoBehaviour {
 	void Update () {
 
 		TargetEnemy();
-
 	}
 
 	void TargetEnemy()
@@ -65,7 +67,7 @@ public class CannonController : MonoBehaviour {
 			}
 		}
 
-		if (target != null)
+		if (target != null && cannonType != cannonTypes.defence)
 		{
 			if (atkRate <= 0)
 			{
@@ -73,8 +75,6 @@ public class CannonController : MonoBehaviour {
 			}
 
 			Vector3 direction = transform.position - target.transform.position; //finding the direction to nearest enemy
-
-			float step = speed * Time.deltaTime;
 
 		}
 
@@ -93,7 +93,11 @@ public class CannonController : MonoBehaviour {
 
 	public void damageCannon(int damageToTake)
 	{
-		Health -= damageToTake;
+		health -= damageToTake;
+		if (health <= 0)
+		{
+			Destroy(gameObject);
+		}
 	}
 
 	void OnTriggerEnter(Collider other) //Add enemy to list of targets when in range of cannon

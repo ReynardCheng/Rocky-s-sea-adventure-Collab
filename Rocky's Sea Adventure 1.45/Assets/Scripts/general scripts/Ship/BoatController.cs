@@ -38,10 +38,13 @@ public class BoatController : MonoBehaviour
 	//this is used so that the boat only moves when the player is at the steering wheel 
 	public bool controllingBoat;
 
+	// for stoopping of movement
+	public bool hitWall;
+
 	// This is for getting components
 	[Header("Components")]
 	[Space]
-	[SerializeField] CharacterController chController;
+	//[SerializeField] CharacterController chController;
 	[SerializeField] Rigidbody rb;
 
 	[Header("UI")]
@@ -76,7 +79,7 @@ public class BoatController : MonoBehaviour
 		isBoosting = false;
 
 		// components
-		chController = GetComponent<CharacterController>();
+	//	chController = GetComponent<CharacterController>();
 		rb = GetComponent<Rigidbody>();
 
 		// For ui
@@ -98,7 +101,6 @@ public class BoatController : MonoBehaviour
 		Boost();
 
 		BoostSlider();
-
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -127,16 +129,21 @@ public class BoatController : MonoBehaviour
 		foreach(Transform t in raycastColliders)
 		{
 			Ray ray = new Ray(t.position, t.forward);
-			Physics.Raycast(ray, out hit, 1f, collisionsThatAffectBoat);
+
+			Physics.Raycast(ray, out hit, 5f, collisionsThatAffectBoat);
 
 			// Hitting something that affects boat
 			if (hit.collider != null)
 			{
+				print("hitWall");
 				return;
 			}
 		}
+
+		if (hitWall) return;
+
+		transform.Translate(0.0f, -(movementFactor / moveSpeed), 0.0f);
 		
-		transform.Translate(0.0f, 0.0f, movementFactor / moveSpeed);
 	}
 
 	private void OnDrawGizmos()
@@ -147,6 +154,7 @@ public class BoatController : MonoBehaviour
 			{
 				Gizmos.color = Color.red;
 				Gizmos.DrawLine(t.position, t.position + t.forward * 1f);
+				print("isdrawing");
 			}
 		}
 	}
@@ -155,11 +163,11 @@ public class BoatController : MonoBehaviour
 	{
 		if (steerFactor >= 0.1f) steerFactor = 0.05f;
 		if (steerFactor <= -0.1f) steerFactor = -0.05f;
-		print("Steering");
 		horizontalInput = Input.GetAxis("Horizontal(P1)");
 		//steerFactor = Mathf.Lerp(steerFactor, horizontalInput * steerSpeed, Time.deltaTime / movementThreshold);
 		steerFactor = Mathf.Lerp(steerFactor, horizontalInput * steerSpeed, Time.deltaTime / 10);
-		transform.Rotate(0.0f, -steerFactor, 0.0f);
+		transform.Rotate(0.0f, 0, steerFactor);
+	//	print(horizontalInput);
 	}
 
 	void Boost()
@@ -200,5 +208,6 @@ public class BoatController : MonoBehaviour
 			Destroy(other.gameObject);
 		}
 	}
+	
 
 }

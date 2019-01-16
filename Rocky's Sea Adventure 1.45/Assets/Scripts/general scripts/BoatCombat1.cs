@@ -8,21 +8,124 @@ public class BoatCombat1 : MonoBehaviour
 	public float shipHealth = 100f;
 	public GameObject[] cannonHolder;
 
+	private bool canDefend = false;
+
+	[SerializeField] private GameObject shipRightSide, shipLeftSide;
+
 	[SerializeField] private LayerMask cannonMask;
+	[SerializeField] private LayerMask cannonSlot;
 
 	public void TakeDamage(int damageToTake, GameObject damageLocation)
 	{
+		//This array contains the cannons that is within
+		//the damage radius of enemy projectile that hit the ship
 		Collider[] cannonsInRange = Physics.OverlapSphere(damageLocation.transform.position, 5.0f, cannonMask);
-		print(cannonsInRange.Length);
-		if (cannonsInRange.Length == 0)
+
+		///////////////////////////
+		//Finding if ship left side or right side is closer to damagelocation
+		bool RightSideCloser;
+		var leftDiff = damageLocation.transform.position - shipLeftSide.transform.position;
+		var leftDiffSqr = leftDiff.sqrMagnitude;
+
+		var rightDiff = damageLocation.transform.position - shipRightSide.transform.position;
+		var rightDiffSqr = rightDiff.sqrMagnitude;
+
+		if (leftDiffSqr > rightDiffSqr)
+			RightSideCloser = true;
+		else
+			RightSideCloser = false;
+		////////////////////////////////////////
+
+
+		//This for loop checks if there are 
+		//Currently any defence cannons on the ship,
+		//and if they are on the correct side of the ship
+		//and are able to protect the ship or its cannons
+		for (int i = 0; i < cannonHolder.Length; i++)
 		{
-			print("heya");
+			if (cannonHolder[i].GetComponentInChildren<CannonController>() != null)
+			{
+				if (cannonHolder[i].GetComponentInChildren<CannonController>().cannonType == cannonTypes.defence)
+				{
+					if (i > 2 && i < 6 && RightSideCloser)
+						canDefend = true;
+					else if (i < 3 && !RightSideCloser)
+						canDefend = true;
+					else
+						canDefend = false;
+				}
+			}
+		}
+
+		//If there are currently defence cannons on the ship,
+		//And damagelocation is the same side of ship as the defence cannon,
+		if (canDefend == true)
+		{
+			print("defending!");
+			//Check if the enemy projectile's damage radius can hit at least one cannonslot
+			if (Physics.OverlapSphere(damageLocation.transform.position, 5.0f, cannonSlot).Length != 0)
+			{
+				GameObject cannonToDamage = null;
+
+				//If Ship right side is closer,
+				//Damage the defence cannons on the right side.
+				if (RightSideCloser)
+				{
+					for (int i = 3; i < 6; i++)
+					{
+						if (cannonHolder[i].GetComponentInChildren<CannonController>() != null)
+						{
+							if (cannonHolder[i].GetComponentInChildren<CannonController>().cannonType == cannonTypes.defence)
+							{
+								cannonToDamage = cannonHolder[i].GetComponentInChildren<CannonController>().gameObject;
+								DamageCannons(cannonToDamage, damageToTake);
+							}
+						}
+					}
+				}
+
+				//If Ship left side is closer,
+				//Damage the defence cannons on the right side.
+				if (!RightSideCloser)
+				{
+					if (cannonToDamage == null)
+					{
+						for (int i = 0; i < 3; i++)
+						{
+							if (cannonHolder[i].GetComponentInChildren<CannonController>() != null)
+							{
+								if (cannonHolder[i].GetComponentInChildren<CannonController>().cannonType == cannonTypes.defence)
+								{
+									cannonToDamage = cannonHolder[i].GetComponentInChildren<CannonController>().gameObject;
+									DamageCannons(cannonToDamage, damageToTake);
+								}
+							}
+						}
+					}
+				}
+
+			}
+		}
+		else if (cannonsInRange.Length == 0)
+		{
+			print("damageShip!");
 			DamageShip(damageToTake);
 		}
 		else
 		{
-			print("dqdddddddqw");
-			DamageCannons(cannonsInRange, damageToTake, damageLocation);
+			print("damagingCannons!");
+			//Finding Which Cannon to Damage
+			GameObject cannonToDamage = null;
+			float distance = Mathf.Infinity;
+
+			foreach (Collider cannon in cannonsInRange)
+			{
+				float curDistance = (cannon.gameObject.transform.position - damageLocation.transform.position).sqrMagnitude;
+				if (curDistance < distance)
+					cannonToDamage = cannon.gameObject;
+			}
+
+			DamageCannons(cannonToDamage, damageToTake);
 		}
 	}
 
@@ -30,22 +133,14 @@ public class BoatCombat1 : MonoBehaviour
 	private void DamageShip(float damageToTake)
 	{
 		shipHealth -= damageToTake;
+		print("Ship Health:" + shipHealth);
 	}
 
-	private void DamageCannons(Collider[] cannonsInRange, int damageToTake, GameObject damageLocation)
+	private void DamageCannons(GameObject cannonToDamage, int damageToTake)
 	{
-		//Finding Which Cannon to Damage
-		GameObject cannonToDamage = null;
-		float distance = Mathf.Infinity;
-
-		foreach (Collider cannon in cannonsInRange)
-		{
-			float curDistance = (cannon.gameObject.transform.position - damageLocation.transform.position).sqrMagnitude;
-			if (curDistance < distance)
-				cannonToDamage = cannon.gameObject;
-		}
-
-		//Finding which Cannon To Damage End
 		cannonToDamage.GetComponentInChildren<CannonController>().damageCannon(damageToTake);
+
+		//Restarting bools
+		canDefend = false;
 	}
 }

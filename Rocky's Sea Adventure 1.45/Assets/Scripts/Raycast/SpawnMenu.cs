@@ -8,6 +8,7 @@ public class SpawnMenu : MonoBehaviour {
 	public Transform hitPosition;
 
 	public Vector3 cannonFace;
+	public cannonTypes cannonType;
 
 	// Use this for initialization
 	void Start () {
