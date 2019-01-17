@@ -10,6 +10,7 @@ public class RaycastToWorld : MonoBehaviour {
 
 	public Camera cam;
 	SpawnMenu theMenu;
+    private ResourceCount resourceCount;
     public LayerMask cannonMask;
 
 	[Header("reference to cannon")]
@@ -27,7 +28,7 @@ public class RaycastToWorld : MonoBehaviour {
 	//[SerializeField]Button[] buttons;
 	// Use this for initialization
 	void Start () {
-
+        resourceCount = FindObjectOfType<ResourceCount>();
 		menuSpawned = false;
 	}
 	
@@ -99,42 +100,63 @@ public class RaycastToWorld : MonoBehaviour {
 
 	public void BuildNormalCannon()
 	{
-		GameObject cannon = Instantiate(normalCannon, menu.transform.parent.position, Quaternion.identity);
+        if (resourceCount.woodCount >= 1 && resourceCount.metalCount >=1)
+        {
+            resourceCount.WoodenPlankValue(1, 0);
+            resourceCount.MetalValue(1, 0);
+            GameObject cannon = Instantiate(normalCannon, menu.transform.parent.position, Quaternion.identity);
 
-		cannon.transform.parent = menu.transform.parent;
-		cannon.transform.rotation = menu.transform.parent.transform.rotation;
-		menuSpawned = false;
-		Destroy(menu.gameObject);
+            cannon.transform.parent = menu.transform.parent;
+            cannon.transform.rotation = menu.transform.parent.transform.rotation;
+            menuSpawned = false;
+            Destroy(menu.gameObject);
+        }
 	}
 
 	public void upgradeAoe()
 	{
-		print("Aoe");
-		GameObject cannon = Instantiate(aoeCannon, menu.transform.parent.position, Quaternion.identity);
-		cannon.transform.rotation = menu.transform.parent.transform.rotation;
-		cannon.transform.parent = menu.transform.parent.parent;
-		menuSpawned = false;
-		Destroy(menu.transform.parent.gameObject);
+        if (resourceCount.woodCount >= 1 && resourceCount.metalCount >= 3)
+        {
+            resourceCount.WoodenPlankValue(1, 0);
+            resourceCount.MetalValue(3, 0);
+            print("Aoe");
+            GameObject cannon = Instantiate(aoeCannon, menu.transform.parent.position, Quaternion.identity);
+            cannon.transform.rotation = menu.transform.parent.transform.rotation;
+            cannon.transform.parent = menu.transform.parent.parent;
+            menuSpawned = false;
+            Destroy(menu.transform.parent.gameObject);
+        }
 	
 	}
 
 	public void upgradeOilSlick()
 	{
-		print("Slick");
-		GameObject cannon = Instantiate(oiSlickCannon, menu.transform.parent.position, Quaternion.identity);
-		cannon.transform.rotation = menu.transform.parent.transform.rotation;
-		cannon.transform.parent = menu.transform.parent.parent;
-		menuSpawned = false;
-		Destroy(menu.transform.parent.gameObject);
+        if (resourceCount.woodCount >= 3 && resourceCount.metalCount >= 1)
+        {
+            resourceCount.WoodenPlankValue(3, 0);
+            resourceCount.MetalValue(1, 0);
+            print("Slick");
+            GameObject cannon = Instantiate(oiSlickCannon, menu.transform.parent.position, Quaternion.identity);
+            cannon.transform.rotation = menu.transform.parent.transform.rotation;
+            cannon.transform.parent = menu.transform.parent.parent;
+            menuSpawned = false;
+            Destroy(menu.transform.parent.gameObject);
+        }
 	}
+
 	public void upgradeDefence()
 	{
-		print("Defence");
-		GameObject cannon = Instantiate(defenceCannon, menu.transform.parent.position, Quaternion.identity);
-		cannon.transform.rotation = menu.transform.parent.transform.rotation;
-		cannon.transform.parent = menu.transform.parent.parent;
-		menuSpawned = false;
-		Destroy(menu.transform.parent.gameObject);
+        if (resourceCount.woodCount >= 2 && resourceCount.metalCount >= 2)
+        {
+            resourceCount.WoodenPlankValue(2, 0);
+            resourceCount.MetalValue(2, 0);
+            print("Defence");
+            GameObject cannon = Instantiate(defenceCannon, menu.transform.parent.position, Quaternion.identity);
+            cannon.transform.rotation = menu.transform.parent.transform.rotation;
+            cannon.transform.parent = menu.transform.parent.parent;
+            menuSpawned = false;
+            Destroy(menu.transform.parent.gameObject);
+        }
 	}
 
 	
