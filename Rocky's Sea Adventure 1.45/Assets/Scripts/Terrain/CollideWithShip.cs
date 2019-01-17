@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CollideWithShip : MonoBehaviour {
 
+
+
 	// Use this for initialization
 	void Start () {
 		
@@ -17,6 +19,7 @@ public class CollideWithShip : MonoBehaviour {
 	{
 		if (other.gameObject.layer == 13)
 		{
+			other.GetComponentInParent<BoatController>().movementFactor = 0;
 			other.gameObject.GetComponentInParent<BoatController>().hitWall = true;
 		}
 	}
