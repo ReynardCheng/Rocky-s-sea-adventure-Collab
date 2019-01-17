@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class BoatController : MonoBehaviour
 {
 
+    public bool reachedEnd;
+
 	[Header("Health")]
 	[Space]
 	[SerializeField] float health;
@@ -46,6 +48,8 @@ public class BoatController : MonoBehaviour
 	[Space]
 	//[SerializeField] CharacterController chController;
 	[SerializeField] Rigidbody rb;
+	[SerializeField] GUI theGUI;
+	[SerializeField] BoatCombat1 theBoatCombat;
 
 	[Header("UI")]
 	[Space]
@@ -63,8 +67,9 @@ public class BoatController : MonoBehaviour
 	public LayerMask collisionsThatAffectBoat;
 	public Transform[] raycastColliders;
 
-    // Use this for initialization
-    void Start()
+	
+	// Use this for initialization
+	void Start()
 	{
 		
         m_AudioSource = GetComponent<AudioSource>();
@@ -81,6 +86,8 @@ public class BoatController : MonoBehaviour
 		// components
 	//	chController = GetComponent<CharacterController>();
 		rb = GetComponent<Rigidbody>();
+		theGUI = FindObjectOfType<GUI>();
+		theBoatCombat = GetComponent<BoatCombat1>();
 
 		// For ui
 		boostSlider.maxValue = boost;
@@ -101,6 +108,8 @@ public class BoatController : MonoBehaviour
 		Boost();
 
 		BoostSlider();
+
+		if (theBoatCombat.shipHealth <= 0) theGUI.lose = true;
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -125,6 +134,8 @@ public class BoatController : MonoBehaviour
 		verticalInput = Input.GetAxis("Vertical(P1)");
 		movementFactor = Mathf.Lerp(movementFactor, verticalInput, Time.deltaTime / movementThreshold);
 
+		float boostFactor =1;
+
 		RaycastHit hit;
 		foreach(Transform t in raycastColliders)
 		{
@@ -142,7 +153,8 @@ public class BoatController : MonoBehaviour
 
 		if (hitWall) return;
 
-		transform.Translate(0.0f, -(movementFactor / moveSpeed), 0.0f);
+		boostFactor = (isBoosting) ? 1.5f : 1;
+		transform.Translate(0.0f, -(movementFactor * boostFactor / moveSpeed), 0.0f);
 		
 	}
 
@@ -200,6 +212,10 @@ public class BoatController : MonoBehaviour
 	}
 
 
+	//-------------------------
+	// for when the game ends
+
+
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.tag == "Boost")
@@ -207,7 +223,10 @@ public class BoatController : MonoBehaviour
 			boost += 100;
 			Destroy(other.gameObject);
 		}
-	}
-	
 
+        if (other.tag == "End Point")
+        {
+			theGUI.gameEnded = true;
+        }
+	}
 }

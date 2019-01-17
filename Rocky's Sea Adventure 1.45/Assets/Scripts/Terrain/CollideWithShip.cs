@@ -5,7 +5,6 @@ using UnityEngine;
 public class CollideWithShip : MonoBehaviour {
 
 
-
 	// Use this for initialization
 	void Start () {
 		
@@ -13,7 +12,8 @@ public class CollideWithShip : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+
 	}
 	private void OnTriggerStay(Collider other)
 	{
