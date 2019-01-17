@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BoatCombat1 : MonoBehaviour
 {
 
-	public float shipHealth = 100f;
+	public int shipHealth = 100;
+    private float shipMaxHP; //Keep this one as float yo
+
 	public GameObject[] cannonHolder;
+    private int cannonToDamageIndex;
 
 	private bool canDefend = false;
 
@@ -15,7 +19,17 @@ public class BoatCombat1 : MonoBehaviour
 	[SerializeField] private LayerMask cannonMask;
 	[SerializeField] private LayerMask cannonSlot;
 
-	public void TakeDamage(int damageToTake, GameObject damageLocation)
+    [SerializeField] private Slider shipHealthBar;
+    [SerializeField] private Text shipHealthText;
+
+    public void Start()
+    {
+        shipMaxHP = shipHealth;
+        shipHealthText.text = shipHealth.ToString();
+        shipHealthBar.value = shipMaxHP;
+    }
+
+    public void TakeDamage(int damageToTake, GameObject damageLocation)
 	{
 		//This array contains the cannons that is within
 		//the damage radius of enemy projectile that hit the ship
@@ -127,13 +141,15 @@ public class BoatCombat1 : MonoBehaviour
 
 			DamageCannons(cannonToDamage, damageToTake);
 		}
+
 	}
 
 
-	private void DamageShip(float damageToTake)
+	private void DamageShip(int damageToTake)
 	{
 		shipHealth -= damageToTake;
-		print("Ship Health:" + shipHealth);
+        shipHealthText.text = shipHealth.ToString();
+        shipHealthBar.value = shipHealth / shipMaxHP;
 	}
 
 	private void DamageCannons(GameObject cannonToDamage, int damageToTake)

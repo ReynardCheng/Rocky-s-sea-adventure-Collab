@@ -40,6 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4583658638568494}
   - component: {fileID: 65402308300159268}
+  - component: {fileID: 54292575138486000}
   m_Layer: 12
   m_Name: AoeCannon
   m_TagString: Cannon
@@ -116,6 +117,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1714446557544420}
   m_Mesh: {fileID: 4300000, guid: 833106c86923e9a468626fcfe6fae866, type: 3}
+--- !u!54 &54292575138486000
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1941821989435148}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!54 &54311755149466176
 Rigidbody:
   m_ObjectHideFlags: 1

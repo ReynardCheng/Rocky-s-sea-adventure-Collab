@@ -50,17 +50,17 @@ public class RaycastToWorld : MonoBehaviour {
 
 
 		if (Physics.Raycast(ray, out hit, Mathf.Infinity, cannonMask))
-		{
-			if (hit.collider != null)
+        {
+            if (hit.collider != null)
 			{
-				if (hit.collider.gameObject.layer == 11 && hit.collider.transform.childCount < 1)
+				if (hit.collider.gameObject.layer == 11 && hit.collider.GetComponent<CannonController>() == null)
 				{
 					Transform hitPos = hit.collider.transform;
 					menuSpawned = true;
 					menu = Instantiate(normalMenu, hit.transform, true);
 					menu.transform.position = new Vector3(hitPos.position.x, hitPos.position.y + 1, hitPos.position.z);
 					menu.GetComponentInChildren<Button>().onClick.AddListener(BuildNormalCannon);
-					menu.transform.SetParent(hit.collider.transform);
+                    menu.transform.SetParent(hit.collider.transform);
 				}
 
 				if (hit.collider.gameObject.layer == 12)
