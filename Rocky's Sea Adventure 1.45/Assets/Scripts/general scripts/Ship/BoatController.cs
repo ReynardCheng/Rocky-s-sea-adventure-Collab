@@ -48,6 +48,8 @@ public class BoatController : MonoBehaviour
 	[Space]
 	//[SerializeField] CharacterController chController;
 	[SerializeField] Rigidbody rb;
+	[SerializeField] GUI theGUI;
+	[SerializeField] BoatCombat1 theBoatCombat;
 
 	[Header("UI")]
 	[Space]
@@ -84,6 +86,8 @@ public class BoatController : MonoBehaviour
 		// components
 	//	chController = GetComponent<CharacterController>();
 		rb = GetComponent<Rigidbody>();
+		theGUI = FindObjectOfType<GUI>();
+		theBoatCombat = GetComponent<BoatCombat1>();
 
 		// For ui
 		boostSlider.maxValue = boost;
@@ -104,6 +108,8 @@ public class BoatController : MonoBehaviour
 		Boost();
 
 		BoostSlider();
+
+		if (theBoatCombat.shipHealth <= 0) theGUI.lose = true;
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -220,7 +226,7 @@ public class BoatController : MonoBehaviour
 
         if (other.tag == "End Point")
         {
-            reachedEnd = true;
+			theGUI.gameEnded = true;
         }
 	}
 }

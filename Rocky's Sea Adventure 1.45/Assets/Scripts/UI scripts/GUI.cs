@@ -17,27 +17,27 @@ public class GUI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		rctTransformY = bckGroundRecttransform.sizeDelta.y;
+		rctTransformY = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (gameEnded)
+		if (gameEnded || lose)
 		{
-			if(bckGroundRecttransform.sizeDelta.y < -1) winAnimation();
+			if(bckGroundRecttransform.localScale.y < 1) winAnimation();
 		}
 
 	}
 	void winAnimation()
 	{
-		if (!lose) winLoseText.text = ("You Win");
-		else if (lose) winLoseText.text = ("You Lose");
-		rctTransformY += Time.deltaTime * rate;
-		bckGroundRecttransform.sizeDelta = new Vector2(bckGroundRecttransform.sizeDelta.x, rctTransformY);
-
+		if (!lose) winLoseText.text = ("              " + "Level Cleared");
+		else if (lose) winLoseText.text = ("              "+ "You Lose");
 		//rctTransformY += Time.deltaTime * rate;
-		////increase the scale such that it would look like an animation
-		//bckGroundRecttransform.localScale = new Vector3(1, rctTransformY, 1);
+		//bckGroundRecttransform.sizeDelta = new Vector2(bckGroundRecttransform.sizeDelta.x, rctTransformY);
+
+		rctTransformY += Time.deltaTime * rate;
+		//increase the scale such that it would look like an animation
+		bckGroundRecttransform.localScale = new Vector3(1, rctTransformY, 1);
 	}
 }
