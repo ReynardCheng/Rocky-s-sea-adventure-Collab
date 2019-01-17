@@ -63,8 +63,9 @@ public class BoatController : MonoBehaviour
 	public LayerMask collisionsThatAffectBoat;
 	public Transform[] raycastColliders;
 
-    // Use this for initialization
-    void Start()
+	
+	// Use this for initialization
+	void Start()
 	{
 		
         m_AudioSource = GetComponent<AudioSource>();
@@ -125,6 +126,8 @@ public class BoatController : MonoBehaviour
 		verticalInput = Input.GetAxis("Vertical(P1)");
 		movementFactor = Mathf.Lerp(movementFactor, verticalInput, Time.deltaTime / movementThreshold);
 
+		float boostFactor =1;
+
 		RaycastHit hit;
 		foreach(Transform t in raycastColliders)
 		{
@@ -142,7 +145,8 @@ public class BoatController : MonoBehaviour
 
 		if (hitWall) return;
 
-		transform.Translate(0.0f, -(movementFactor / moveSpeed), 0.0f);
+		boostFactor = (isBoosting) ? 1.5f : 1;
+		transform.Translate(0.0f, -(movementFactor * boostFactor / moveSpeed), 0.0f);
 		
 	}
 
@@ -198,6 +202,10 @@ public class BoatController : MonoBehaviour
 
 		boostSlider.value = boost;
 	}
+
+
+	//-------------------------
+	// for when the game ends
 
 
 	private void OnTriggerEnter(Collider other)
