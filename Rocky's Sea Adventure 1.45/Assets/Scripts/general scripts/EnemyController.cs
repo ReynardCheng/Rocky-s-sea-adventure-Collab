@@ -24,9 +24,15 @@ public class EnemyController : MonoBehaviour
 	public BoatCombat1 ship;
 	private DetectShipTrigger detectShipTrigger;
 
+	[Header("Detect the ship before it moves")]
+	public bool shipInRange;
+
 	// Use this for initialization
 	void Start()
 	{
+		//for detecting ship before moving
+		shipInRange = false;
+
 		maxHealth = 100;
 		currentHealth = maxHealth;
 
@@ -46,7 +52,7 @@ public class EnemyController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		MoveToShip();
+		if (shipInRange) MoveToShip();
 		if (detectShipTrigger.shipDetected)
 		{
 			FireRate();
