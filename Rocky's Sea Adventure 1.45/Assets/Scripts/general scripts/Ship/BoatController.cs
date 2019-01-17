@@ -71,7 +71,7 @@ public class BoatController : MonoBehaviour
 
 		// variables
 		// for movement
-		moveSpeed = 1f;
+		moveSpeed = 5f;
 		movementThreshold = 15f;
 		controllingBoat = false;
 		boost = 100f;
