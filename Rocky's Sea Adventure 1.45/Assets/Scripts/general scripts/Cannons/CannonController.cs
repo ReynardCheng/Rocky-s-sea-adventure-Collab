@@ -83,10 +83,28 @@ public class CannonController : MonoBehaviour {
 	private void NewShoot()
 	{
 		atkRate = 2f; // Attack cooldown time
-
 		//BulletPos = gun.transform.position;
-		projectile.GetComponent<BulletFire>().target = TargetingEnemy; //set the target/path for bullets to fly to in a straight line... will want to edit this later on as bullets act like a moving missile.
-		Instantiate(projectile, transform.position, transform.rotation);
+
+        switch (cannonType)
+        {
+            case cannonTypes.normal:
+                projectile.GetComponent<BulletFire>().target = TargetingEnemy; //set the target/path for bullets to fly to in a straight line... will want to edit this later on as bullets act like a moving missile.
+                Instantiate(projectile, transform.position, transform.rotation);
+                break;
+            case cannonTypes.aoe:
+                projectile.GetComponent<AoeFire>().target = TargetingEnemy; 
+                Instantiate(projectile, transform.position, transform.rotation);
+                break;
+            case cannonTypes.oilSlick:
+                projectile.GetComponent<OilSlickFire>().target = TargetingEnemy;
+                Instantiate(projectile, transform.position, transform.rotation);
+                break;
+            default:
+                projectile.GetComponent<BulletFire>().target = TargetingEnemy;
+                Instantiate(projectile, transform.position, transform.rotation);
+                break;
+
+        }
 		//SoundFromCannon.Play();
 		//nextAtk = Time.time + atkRate;
 	}
@@ -96,7 +114,7 @@ public class CannonController : MonoBehaviour {
 		health -= damageToTake;
 		if (health <= 0)
 		{
-			Destroy(gameObject);
+			Destroy(gameObject.transform.parent.gameObject);
 		}
 	}
 
