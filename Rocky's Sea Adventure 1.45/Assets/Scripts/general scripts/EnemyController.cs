@@ -23,6 +23,8 @@ public class EnemyController : MonoBehaviour
 
 	public BoatCombat1 ship;
 	private DetectShipTrigger detectShipTrigger;
+    private bool oilSlicked = false;
+    private bool slowedDown = false;
 
 	[Header("Detect the ship before it moves")]
 	public bool shipInRange;
@@ -122,5 +124,59 @@ public class EnemyController : MonoBehaviour
 		healthBar.fillAmount = currentHealth / maxHealth;
 	}
 	
+
+    private void OnTriggerStay(Collider other)
+    {
+        // If Enemy is in oil slick and is not affected by oil slick,
+        // Start damaging Enemy over time & give slow effect.
+        if (other.tag == "Oil Slick" && !oilSlicked)
+        {
+            StartCoroutine(DotDamage(1, 11));
+
+            if (!slowedDown)
+            {
+                SlowDownEnemy(0.5f);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // If Enemy leaves oil slick, no longer affected by oil slick.
+        if (other.tag == "Oil Slick")
+        {
+            oilSlicked = false;
+            slowedDown = false;
+            SlowDownEnemy(-1); // Returns enemy's speed back to normal, unreduced state.
+        }
+
+    }
+
+
+    // ----- Oil slick's Damage over Time (DoT), call this when Enemy is affected by oil slick.
+    IEnumerator DotDamage(float dmgDelay, float dmgAmount)
+    {
+        oilSlicked = true;
+
+        while (oilSlicked)
+        {
+            Health(dmgAmount);
+            yield return new WaitForSeconds(dmgDelay);
+        }
+
+        oilSlicked = false;
+    }
+
+    // ----- Slows down enemy's moveSpeed, call this when Enemy is affected by oil slick.
+    // --- Float slowFactor e.g. Slow Factor of 0.1 = reduce Enemy moveSpeed by 10%, DO NOT MAKE SLOW FACTOR > 1 unless it is meant to increase speed.
+    public void SlowDownEnemy(float slowFactor)
+    {
+
+        if (!slowedDown)
+        {
+            moveSpeed = moveSpeed * (1 - slowFactor);
+            slowedDown = true;
+        }
+    }
 
 }
