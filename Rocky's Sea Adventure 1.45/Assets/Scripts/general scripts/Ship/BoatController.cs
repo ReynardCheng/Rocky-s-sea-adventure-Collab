@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class BoatController : MonoBehaviour
 {
 
+    public bool reachedEnd;
+
 	[Header("Health")]
 	[Space]
 	[SerializeField] float health;
@@ -207,7 +209,10 @@ public class BoatController : MonoBehaviour
 			boost += 100;
 			Destroy(other.gameObject);
 		}
-	}
-	
 
+        if (other.tag == "End Point")
+        {
+            reachedEnd = true;
+        }
+	}
 }
