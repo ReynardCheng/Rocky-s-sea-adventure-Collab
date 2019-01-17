@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Explosion.cs" />
     <Compile Include="Assets\Scripts\FirstPersonController.cs" />
     <Compile Include="Assets\Scripts\general scripts\BoatCombat1.cs" />
     <Compile Include="Assets\Scripts\general scripts\Cannons\BuildCannon.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Assets\Scripts\general scripts\GameInputManager.cs" />
     <Compile Include="Assets\Scripts\general scripts\MathScript.cs" />
     <Compile Include="Assets\Scripts\general scripts\MiniMap.cs" />
+    <Compile Include="Assets\Scripts\general scripts\Particle\DestroyParticle.cs" />
     <Compile Include="Assets\Scripts\general scripts\RadialButton.cs" />
     <Compile Include="Assets\Scripts\general scripts\RadialMenu.cs" />
     <Compile Include="Assets\Scripts\general scripts\ResourceCount.cs" />
@@ -87,6 +89,7 @@
     <Compile Include="Assets\Scripts\Raycast\FaceCamera.cs" />
     <Compile Include="Assets\Scripts\Raycast\RaycastToWorld.cs" />
     <Compile Include="Assets\Scripts\Raycast\SpawnMenu.cs" />
+    <Compile Include="Assets\Scripts\SparkParticles.cs" />
     <Compile Include="Assets\Scripts\Terrain\CollideWithShip.cs" />
     <Compile Include="Assets\Scripts\UI scripts\EnemyUI.cs" />
     <Compile Include="Assets\TeamPackages\Eunice Assets\EnemyBulletScript.cs" />

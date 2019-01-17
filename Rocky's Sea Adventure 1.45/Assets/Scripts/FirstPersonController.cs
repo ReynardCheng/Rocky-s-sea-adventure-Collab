@@ -58,6 +58,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+		
         }
 
 
@@ -216,9 +217,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			float horizontal = CrossPlatformInputManager.GetAxis("Horizontal(P1)");
 			float vertical = CrossPlatformInputManager.GetAxis("Vertical(P1)");
 
-			Vector3 lookDirection = new Vector3(-vertical, 90, horizontal);
 
-			playerMesh.transform.LookAt(transform.position + lookDirection);
+			if (horizontal != 0 || vertical !=0)
+			{
+				Vector3 lookDirection = new Vector3(-vertical, 90, horizontal);
+				playerMesh.transform.LookAt(transform.position + lookDirection);
+			}
+
+
 		}
 
         private void GetInput(out float speed)
