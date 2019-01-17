@@ -154,7 +154,7 @@ public class BoatController : MonoBehaviour
 			{
 				Gizmos.color = Color.red;
 				Gizmos.DrawLine(t.position, t.position + t.forward * 1f);
-				print("isdrawing");
+				//print("isdrawing");
 			}
 		}
 	}
