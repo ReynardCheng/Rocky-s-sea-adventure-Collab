@@ -21,22 +21,23 @@ public class ResourceCount : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         seaEssenceCount = 0;
         woodCount = 0;
         metalCount = 0;
-
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-	
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            SeaEssenceValue(0,1);
+            WoodenPlankValue(0,1);
+            MetalValue(0,1);
+        }
     }
- 
 
-	// Sea Essence --------------------------------------------------------------------------
-	public void SeaEssenceValue(int resourceToDeduct, int resourceToAdd)
+    // Sea Essence --------------------------------------------------------------------------
+    public void SeaEssenceValue(int resourceToDeduct, int resourceToAdd)
 	{
 		seaEssenceCount -= resourceToDeduct;
 		seaEssenceCount += resourceToAdd;
@@ -55,7 +56,7 @@ public class ResourceCount : MonoBehaviour
 		woodCount -= resourceToDeduct;
 		woodCount += resourceToAdd;
 
-        woodText.text = "Wood Count: " + woodCount;
+        woodText.text = "Wooden Planks: " + woodCount;
 
 		if (woodCount <= 0)
 		{
