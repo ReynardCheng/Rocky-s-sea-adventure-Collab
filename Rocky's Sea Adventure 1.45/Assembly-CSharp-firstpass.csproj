@@ -54,10 +54,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
+<<<<<<< HEAD
       <HintPath>D:\Unity 2018.2.18f1\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>D:\Unity 2018.2.18f1\Editor\Data\Managed/UnityEditor.dll</HintPath>
+=======
+      <HintPath>C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>C:\Program Files\Unity\Editor\Data\Managed/UnityEditor.dll</HintPath>
+>>>>>>> 3720952e2cc49d05d15f0cac529dabaa27836712
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -128,7 +135,11 @@
     <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
     <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
     <Reference Include="UnityEditor.StandardEvents">
+<<<<<<< HEAD
       <HintPath>D:/SP Y2S2/GDDS/Final x2 RSA/Rocky-s-sea-adventure-Collab/Rocky's Sea Adventure 1.45/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+=======
+      <HintPath>D:/sp work/Year 2/GDDS2/Term 2/Hack Turtles/Rock's Sea Adventure Repository/Rocky-s-sea-adventure-Collab/Rocky's Sea Adventure 1.45/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+>>>>>>> 3720952e2cc49d05d15f0cac529dabaa27836712
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/SP Y2S2/GDDS/Final x2 RSA/Rocky-s-sea-adventure-Collab/Rocky's Sea Adventure 1.45/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
@@ -368,7 +379,11 @@
       <HintPath>D:/Unity 2018.2.18f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/UnityScript.Lang.dll</HintPath>
     </Reference>
     <Reference Include="Boo.Lang">
+<<<<<<< HEAD
       <HintPath>D:/Unity 2018.2.18f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/Boo.Lang.dll</HintPath>
+=======
+      <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unity/Boo.Lang.dll</HintPath>
+>>>>>>> 3720952e2cc49d05d15f0cac529dabaa27836712
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
