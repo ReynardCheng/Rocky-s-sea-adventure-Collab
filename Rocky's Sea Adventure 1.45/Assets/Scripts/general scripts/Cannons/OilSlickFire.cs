@@ -46,8 +46,8 @@ public class OilSlickFire : MonoBehaviour
         if (other.tag == "Enemy" && other.gameObject == target.gameObject)
         {
             other.GetComponent<EnemyController>().Health(10);
-            //Instantiate(explosion, transform.position, Quaternion.identity);
-            GameObject oilSlick = Instantiate(oilSlickPrefab, other.transform.position, Quaternion.identity);
+			//Instantiate(explosion, transform.position, Quaternion.identity);
+			GameObject oilSlick = Instantiate(oilSlickPrefab, new Vector3(other.transform.position.x, other.transform.position.y - 2, other.transform.position.z), Quaternion.identity);
             Destroy(oilSlick, 4);
             Destroy(gameObject); //destroy itself
             return;

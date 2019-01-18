@@ -131,7 +131,7 @@ public class EnemyController : MonoBehaviour
         // Start damaging Enemy over time & give slow effect.
         if (other.tag == "Oil Slick" && !oilSlicked)
         {
-            StartCoroutine(DotDamage(1, 11));
+            StartCoroutine(DotDamage(1, 4));
 
             if (!slowedDown)
             {
