@@ -9882,6 +9882,9 @@ MonoBehaviour:
   ship: {fileID: 1283827573}
   shipView: 1
   switchSpeed: 0
+  turnSpeed: 3
+  player: {fileID: 0}
+  offset: {x: 4, y: 2, z: 4}
   fpsController: {fileID: 0}
 --- !u!45 &603407262
 Skybox:
@@ -16774,7 +16777,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.08
+  m_Intensity: 0.18
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -19168,6 +19171,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1f89fcfc96b3bbb47b48620c0cb9c9a5, type: 2}
+    - target: {fileID: 100000, guid: 486c5938fd0b4b140940864c50798695, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 486c5938fd0b4b140940864c50798695, type: 3}
   m_IsPrefabAsset: 0
@@ -21602,7 +21609,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1235929928}
   m_LocalRotation: {x: 1, y: 0.0000000874228, z: -0.000000087422755, w: -0.00000026822087}
-  m_LocalPosition: {x: 0.24, y: -1.55, z: 5.04}
+  m_LocalPosition: {x: 0.24, y: -1.3, z: 22}
   m_LocalScale: {x: 0.25, y: 0.2500005, z: 0.2500005}
   m_Children: []
   m_Father: {fileID: 1283827574}
@@ -21644,8 +21651,8 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
-  orthographic: 1
+  field of view: 76
+  orthographic: 0
   orthographic size: 20
   m_Depth: -1
   m_CullingMask:
