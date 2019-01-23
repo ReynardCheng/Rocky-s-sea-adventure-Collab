@@ -18,10 +18,12 @@ public class RaycastToWorld : MonoBehaviour {
 	public GameObject aoeCannon;
 	public GameObject oiSlickCannon;
 	public GameObject defenceCannon;
+    private GameObject selectedCannon;
 
 	[Header("reference to menus")]
 	public GameObject normalMenu;
 	public GameObject upgradeMenu;
+    public GameObject buildProgressSlider;
 
 	[SerializeField] GameObject menu;
 	
@@ -44,7 +46,6 @@ public class RaycastToWorld : MonoBehaviour {
 
 	void RaycastToWorldPos()
 	{
-
 		Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 
@@ -72,8 +73,9 @@ public class RaycastToWorld : MonoBehaviour {
 
 						menuSpawned = true;
 						menu = Instantiate(upgradeMenu, hit.transform, true);
+                        selectedCannon = hit.collider.gameObject;
 						menu.transform.position = new Vector3(hitPos.position.x, hitPos.position.y + 2, hitPos.position.z);
-						menu.transform.SetParent(hit.collider.transform);
+						menu.transform.SetParent(hit.collider.transform.parent);
 						Button[] buttons;
 						buttons = menu.GetComponentsInChildren<Button>();
 
@@ -104,12 +106,7 @@ public class RaycastToWorld : MonoBehaviour {
         {
             resourceCount.WoodenPlankValue(1, 0);
             resourceCount.MetalValue(1, 0);
-            GameObject cannon = Instantiate(normalCannon, menu.transform.parent.position, Quaternion.identity);
-
-            cannon.transform.parent = menu.transform.parent;
-            cannon.transform.rotation = menu.transform.parent.transform.rotation;
-            menuSpawned = false;
-            Destroy(menu.gameObject);
+            StartCoroutine(BuildTime(4, normalCannon));
         }
 	}
 
@@ -120,14 +117,16 @@ public class RaycastToWorld : MonoBehaviour {
             resourceCount.WoodenPlankValue(1, 0);
             resourceCount.MetalValue(3, 0);
             print("Aoe");
-            GameObject cannon = Instantiate(aoeCannon, menu.transform.parent.position, Quaternion.identity);
-            cannon.transform.rotation = menu.transform.parent.transform.rotation;
-            cannon.transform.parent = menu.transform.parent.parent;
-            menuSpawned = false;
-            Destroy(menu.transform.parent.gameObject);
+            Destroy(selectedCannon);
+            StartCoroutine(BuildTime(7, aoeCannon));
+            //GameObject cannon = Instantiate(aoeCannon, menu.transform.parent.position, Quaternion.identity);
+            //cannon.transform.rotation = menu.transform.parent.transform.rotation;
+            //cannon.transform.parent = menu.transform.parent.parent;
+            //menuSpawned = false;
+            //Destroy(menu.transform.parent.gameObject);
         }
-	
-	}
+
+    }
 
 	public void upgradeOilSlick()
 	{
@@ -136,11 +135,13 @@ public class RaycastToWorld : MonoBehaviour {
             resourceCount.WoodenPlankValue(3, 0);
             resourceCount.MetalValue(1, 0);
             print("Slick");
-            GameObject cannon = Instantiate(oiSlickCannon, menu.transform.parent.position, Quaternion.identity);
-            cannon.transform.rotation = menu.transform.parent.transform.rotation;
-            cannon.transform.parent = menu.transform.parent.parent;
-            menuSpawned = false;
-            Destroy(menu.transform.parent.gameObject);
+            Destroy(selectedCannon);
+            StartCoroutine(BuildTime(7, oiSlickCannon));
+            //GameObject cannon = Instantiate(oiSlickCannon, menu.transform.parent.position, Quaternion.identity);
+            //cannon.transform.rotation = menu.transform.parent.transform.rotation;
+            //cannon.transform.parent = menu.transform.parent.parent;
+            //menuSpawned = false;
+            //Destroy(menu.transform.parent.gameObject);
         }
 	}
 
@@ -151,13 +152,39 @@ public class RaycastToWorld : MonoBehaviour {
             resourceCount.WoodenPlankValue(2, 0);
             resourceCount.MetalValue(2, 0);
             print("Defence");
-            GameObject cannon = Instantiate(defenceCannon, menu.transform.parent.position, Quaternion.identity);
-            cannon.transform.rotation = menu.transform.parent.transform.rotation;
-            cannon.transform.parent = menu.transform.parent.parent;
-            menuSpawned = false;
-            Destroy(menu.transform.parent.gameObject);
+            Destroy(selectedCannon);
+            StartCoroutine(BuildTime(7, defenceCannon));
+            //GameObject cannon = Instantiate(defenceCannon, menu.transform.parent.position, Quaternion.identity);
+            //cannon.transform.rotation = menu.transform.parent.transform.rotation;
+            //cannon.transform.parent = menu.transform.parent.parent;
+            //menuSpawned = false;
+            //Destroy(menu.transform.parent.gameObject);
         }
 	}
 
-	
+    public IEnumerator BuildTime(float buildTime, GameObject cannonToBuild)
+    {
+        float timeFinishedBuilding = Time.time + buildTime;
+        GameObject canvas = Instantiate(buildProgressSlider, menu.transform.parent.position, Quaternion.identity);
+        Slider slider = canvas.GetComponentInChildren<Slider>();
+
+        canvas.transform.SetParent(menu.transform.parent);
+        canvas.transform.rotation = Quaternion.Euler(0, -90, 0);
+
+        menu.SetActive(false);
+
+        while (Time.time < timeFinishedBuilding)
+        {
+            slider.value = 1 - ((timeFinishedBuilding - Time.time) / buildTime);
+            yield return null;
+        }
+
+        Destroy(canvas);
+        GameObject cannon = Instantiate(cannonToBuild, menu.transform.parent.position, Quaternion.identity);
+
+        cannon.transform.parent = menu.transform.parent;
+        cannon.transform.rotation = menu.transform.parent.transform.rotation;
+        menuSpawned = false;
+        Destroy(menu.gameObject);
+    }
 }

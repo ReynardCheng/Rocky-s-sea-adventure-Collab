@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
 {
 
 	private GameObject closestShipSection;
+    private Camera cam;
 
 	[Header("Health & UI")]
 	[Space]
@@ -20,7 +21,7 @@ public class EnemyController : MonoBehaviour
 	[SerializeField] float coolDownTime;
 	[SerializeField] float moveSpeed, distanceToStopMoving;
 	private bool inRange;
-
+    
 	public BoatCombat1 ship;
 	private DetectShipTrigger detectShipTrigger;
     private bool oilSlicked = false;
@@ -42,9 +43,11 @@ public class EnemyController : MonoBehaviour
 		coolDownTime = 3f;
 
 		moveSpeed = 3.0f;
-		//distanceToStopMoving = 150.0f;
+        //distanceToStopMoving = 150.0f;
 
-		ship = FindObjectOfType<BoatCombat1>();
+        cam = Camera.main;
+        
+        ship = FindObjectOfType<BoatCombat1>();
 
 		detectShipTrigger = GetComponentInChildren<DetectShipTrigger>();
 
@@ -60,6 +63,7 @@ public class EnemyController : MonoBehaviour
 			FireRate();
 			Shoot();
 		}
+        DeactivateHealthBar();
 	}
 
 	void MoveToShip()
@@ -123,8 +127,28 @@ public class EnemyController : MonoBehaviour
 	{
 		healthBar.fillAmount = currentHealth / maxHealth;
 	}
-	
 
+    void DeactivateHealthBar()
+    {
+        //Performs checks to disable health UI only if player not controlling boat
+        if (!ship.GetComponent<BoatController>().controllingBoat)
+        {
+            //Get magnitude of enemy to camera
+            Vector3 enemyToShip = (ship.transform.position - transform.position);
+            Vector3 enemyToCamera = (cam.transform.position - transform.position);
+            if (Vector3.Dot(enemyToShip, enemyToCamera) < 0)
+            {
+                healthBar.transform.parent.gameObject.SetActive(false);
+            }
+            else
+                healthBar.transform.parent.gameObject.SetActive(true);
+        }
+        else
+            healthBar.transform.parent.gameObject.SetActive(true);
+    }
+
+	//
+    //---------------------------------------------
     private void OnTriggerStay(Collider other)
     {
         // If Enemy is in oil slick and is not affected by oil slick,
