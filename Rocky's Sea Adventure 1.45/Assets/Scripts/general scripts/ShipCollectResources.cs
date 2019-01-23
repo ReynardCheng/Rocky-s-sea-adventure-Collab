@@ -29,7 +29,7 @@ public class ShipCollectResources : MonoBehaviour
 
 		if (other.tag == "Sea Essence")
 		{
-			resourceCountScript.SeaEssenceValue(0, 1);
+			resourceCountScript.SeaEssenceValue(0, 10);
             Destroy(other.gameObject);
 
             Audio.clip = ResourceCollectSound;
@@ -37,7 +37,7 @@ public class ShipCollectResources : MonoBehaviour
         }
 		if (other.tag == "Wooden Plank")
 		{
-			resourceCountScript.WoodenPlankValue(0, 1);
+			resourceCountScript.WoodenPlankValue(0, 10);
 			Destroy(other.gameObject);
 
             Audio.clip = ResourceCollectSound;
@@ -45,7 +45,7 @@ public class ShipCollectResources : MonoBehaviour
         }
 		if (other.tag == "Metal Part")
 		{
-			resourceCountScript.MetalValue(0, 1);
+			resourceCountScript.MetalValue(0, 10);
 			Destroy(other.gameObject);
 
             Audio.clip = ResourceCollectSound;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44939375, g: 0.49630773, b: 0.55871016, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1614,7 +1614,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.08
+  m_Intensity: 0.8
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1647,13 +1647,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 735450851}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 354, y: 237, z: -279}
+  m_LocalRotation: {x: -0.0140111465, y: -0.98182136, z: 0.17144129, w: -0.08023998}
+  m_LocalPosition: {x: 0, y: 78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 19.810001, y: -189.344, z: 0}
 --- !u!1 &738663092
 GameObject:
   m_ObjectHideFlags: 0
@@ -1889,6 +1889,18 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -331.402
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 722e7123836797642a6c9b9f4bb365d9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.024
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 722e7123836797642a6c9b9f4bb365d9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.842
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 722e7123836797642a6c9b9f4bb365d9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.795
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 722e7123836797642a6c9b9f4bb365d9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 722e7123836797642a6c9b9f4bb365d9, type: 3}
@@ -1926,6 +1938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e17587c1cea181f4f94717a9757c52ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reachedEnd: 0
   health: 0
   moveSpeed: 0
   movementFactor: 0
@@ -1938,6 +1951,8 @@ MonoBehaviour:
   controllingBoat: 0
   hitWall: 0
   rb: {fileID: 0}
+  theGUI: {fileID: 0}
+  theBoatCombat: {fileID: 0}
   boostSlider: {fileID: 0}
   theWater: {fileID: 2017154891}
   BoatMoving: {fileID: 0}
@@ -1982,6 +1997,8 @@ MonoBehaviour:
   cannonSlot:
     serializedVersion: 2
     m_Bits: 2048
+  shipHealthBar: {fileID: 0}
+  shipHealthText: {fileID: 0}
 --- !u!64 &788464516
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3310,7 +3327,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 1.17, y: -0.15, z: 0}
+  m_Center: {x: 1.08, y: -0.15, z: 0.18}
 --- !u!54 &1078004390
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4993,7 +5010,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1685915858}
   m_OnClick:
     m_PersistentCalls:
