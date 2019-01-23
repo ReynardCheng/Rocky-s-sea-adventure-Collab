@@ -9736,11 +9736,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 603407256}
   m_LocalRotation: {x: 0.024122596, y: -0.7066952, z: 0.024122596, w: 0.7066952}
-  m_LocalPosition: {x: 103.93, y: 8.558, z: -174.98999}
+  m_LocalPosition: {x: 103.93, y: 8.557998, z: -174.98999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 3.91, y: -90, z: 0}
 --- !u!82 &603407258
 AudioSource:
@@ -12539,7 +12539,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 722e7123836797642a6c9b9f4bb365d9, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 13700000, guid: 722e7123836797642a6c9b9f4bb365d9, type: 3}
       propertyPath: m_AABB.m_Center.x
@@ -13149,7 +13149,7 @@ RectTransform:
   - {fileID: 626875219}
   - {fileID: 808148129}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -13820,6 +13820,8 @@ MonoBehaviour:
   canMove: 0
   canControlShip: 0
   rb: {fileID: 0}
+  mainCam: {fileID: 603407264}
+  rotateTarget: {fileID: 0}
   menutype: 1
 --- !u!114 &800462325
 MonoBehaviour:
@@ -18180,6 +18182,8 @@ MonoBehaviour:
   canMove: 0
   canControlShip: 0
   rb: {fileID: 0}
+  mainCam: {fileID: 0}
+  rotateTarget: {fileID: 0}
   menutype: 0
 --- !u!143 &1064059596
 CharacterController:
@@ -32957,7 +32961,7 @@ RectTransform:
   - {fileID: 1524512579}
   - {fileID: 1728985368}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

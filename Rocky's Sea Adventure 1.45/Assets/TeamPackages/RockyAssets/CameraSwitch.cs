@@ -76,7 +76,7 @@ public class CameraSwitch : MonoBehaviour {
 
 	void CameraParent()
 	{
-		transform.parent = (shipView) ? transform.parent = ship.transform : chMovement.transform;
+		transform.parent = (shipView) ? transform.parent = ship.transform : transform.parent = null;
 	}
 
     IEnumerator SwitchView(Transform view)
