@@ -8995,8 +8995,11 @@ MonoBehaviour:
   playerViewPos: {fileID: 2122574095}
   shipViewPos: {fileID: 1224920725}
   ship: {fileID: 1283827573}
-  shipView: 1
+  shipView: 0
   switchSpeed: 0
+  turnSpeed: 3
+  player: {fileID: 0}
+  offset: {x: 4, y: 3, z: 4}
   fpsController: {fileID: 0}
 --- !u!45 &603407262
 Skybox:
@@ -12965,6 +12968,8 @@ MonoBehaviour:
   canMove: 0
   canControlShip: 0
   rb: {fileID: 0}
+  mainCam: {fileID: 0}
+  rotateTarget: {fileID: 0}
   menutype: 1
 --- !u!114 &800462325
 MonoBehaviour:
@@ -13225,9 +13230,9 @@ Transform:
   m_LocalPosition: {x: 93.12, y: 6.15, z: -174.77063}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
-  - {fileID: 2122574095}
   - {fileID: 960424633}
   - {fileID: 212268028}
+  - {fileID: 2122574095}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -15312,7 +15317,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 800462331}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &960424634
 MeshCollider:
@@ -16948,6 +16953,8 @@ MonoBehaviour:
   canMove: 0
   canControlShip: 0
   rb: {fileID: 0}
+  mainCam: {fileID: 0}
+  rotateTarget: {fileID: 0}
   menutype: 0
 --- !u!143 &1064059596
 CharacterController:
@@ -17622,7 +17629,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 486c5938fd0b4b140940864c50798695, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 486c5938fd0b4b140940864c50798695, type: 3}
       propertyPath: m_LocalScale.x
@@ -32590,11 +32597,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2122574094}
   m_LocalRotation: {x: 0.034114502, y: -0, z: -0, w: 0.9994179}
-  m_LocalPosition: {x: -0.08849741, y: 0.6019988, z: -2.7024996}
-  m_LocalScale: {x: 0.25, y: 0.24999993, z: 0.2500002}
+  m_LocalPosition: {x: -0.08849741, y: 0.6019987, z: -2.7024996}
+  m_LocalScale: {x: 0.25000003, y: 0.24999997, z: 0.25000006}
   m_Children: []
   m_Father: {fileID: 800462331}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 3.91, y: -90, z: 0}
 --- !u!4 &2128782564 stripped
 Transform:

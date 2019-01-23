@@ -45,8 +45,15 @@ public class CameraSwitch : MonoBehaviour {
 	void Update () {
 
 		if (chMovement.canControlShip) CameraSwitching();
-		if (!shipView) CameraRotate();
-		
+
+        playerViewPos.position = player.position + offset;
+        playerViewPos.LookAt(player.position);
+
+        if (!fpsController.controllingShip)
+        {
+            CameraRotate();
+        }
+
         //if (shipView) theBoat.controllingBoat = true;
 		CameraParent();
 	}
@@ -69,7 +76,7 @@ public class CameraSwitch : MonoBehaviour {
 				shipView = false;
 				StartCoroutine(SwitchView(playerViewPos));
 				transform.parent = null;
-				fpsController.controllingShip = false;
+				//fpsController.controllingShip = false;
 			}
 		}
 	}
@@ -106,12 +113,16 @@ public class CameraSwitch : MonoBehaviour {
 		}
 	}
 
-	void CameraRotate()
-	{
-		offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * turnSpeed, Vector3.up) * offset;
-		transform.position = player.position + offset;
-		transform.LookAt(player.position);
-	}
+
+    void CameraRotate()
+    {
+        if (!fpsController.controllingShip)
+        {
+            offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * turnSpeed, Vector3.up) * offset;
+            transform.position = player.position + offset;
+            transform.LookAt(player.position);
+        }
+    }
 }
 
 //lerp(a, b, t) = a + (b - a)*t

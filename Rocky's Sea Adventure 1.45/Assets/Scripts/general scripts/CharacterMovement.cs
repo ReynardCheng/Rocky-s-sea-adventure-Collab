@@ -29,6 +29,7 @@ public class CharacterMovement : MonoBehaviour {
 		theBoat = FindObjectOfType<BoatController>();
 		rb = GetComponent<Rigidbody>();
 		rotateTarget = new GameObject("Rotate Target").transform;
+        mainCam = Camera.main;
 	}
 	
 	// Update is called once per frame
