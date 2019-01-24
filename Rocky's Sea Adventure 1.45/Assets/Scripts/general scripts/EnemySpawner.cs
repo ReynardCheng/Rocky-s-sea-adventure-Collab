@@ -15,20 +15,26 @@ public class EnemySpawner : MonoBehaviour {
 	public bool encountered;
 	[SerializeField] float spawnRate;
 	public waveComp[] numberOfWaves;
-	
+
+	// stores all the enemy components
+	[SerializeField] List<EnemyController> enemies;
 
 	// Use this for initialization
 	void Start () {
 		waveValue = 2;
 		//spawnRate = 2;
-		encountered = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
 		spawnRate -= Time.deltaTime;
-		CurrentWave();
+		if (globalSpawner) CurrentWave();
+
+		else if(!globalSpawner)
+		{
+			if (encountered) CurrentWave();
+		}
 	}
 
 	void CurrentWave()
@@ -52,11 +58,34 @@ public class EnemySpawner : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.tag == "Ship" && !encountered)
+		if (other.tag == "Enemy")
 		{
-			waveValue++;
+			enemies.Add(other.gameObject.GetComponent<EnemyController>());
+		}
+
+		if (other.tag == "Ship")
+		{
+			if (!encountered) waveValue++;
 			encountered = true;
+
+			foreach (EnemyController e in enemies)
+			{
+				e.GetComponent<EnemyController>().shipInRange = true;
+			}
 		}
 	}
+	private void OnTriggerExit(Collider other)
+	{
+		if (other.tag == "Ship" && encountered)
+		{
+			foreach (EnemyController e in enemies)
+			{
+				e.GetComponent<EnemyController>().shipInRange = false;
+				e.GetComponent<EnemyController>().GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+			}
+		}
+	}
+
+
 
 }

@@ -555,9 +555,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 38444584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b43dd76b61874da45bea10685ead3578, type: 3}
+  m_Script: {fileID: 11500000, guid: a80cdccca131fe848b969436f3d747d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  globalSpawner: 0
+  encountered: 0
+  spawnRate: 0
+  numberOfWaves: []
   enemies: []
 --- !u!65 &38444586
 BoxCollider:
@@ -7434,7 +7438,7 @@ GameObject:
   - component: {fileID: 483756424}
   - component: {fileID: 483756423}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: globalSpawner 1
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -7451,6 +7455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a80cdccca131fe848b969436f3d747d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  globalSpawner: 1
   encountered: 0
   spawnRate: 0
   numberOfWaves:
@@ -7462,6 +7467,7 @@ MonoBehaviour:
     - {fileID: 114789023933192128, guid: 19bf9722991b23a43a925c91f1ee6d6e, type: 2}
     - {fileID: 114789023933192128, guid: 19bf9722991b23a43a925c91f1ee6d6e, type: 2}
     - {fileID: 114789023933192128, guid: 19bf9722991b23a43a925c91f1ee6d6e, type: 2}
+  enemies: []
 --- !u!4 &483756424
 Transform:
   m_ObjectHideFlags: 0
@@ -15635,9 +15641,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 891111049}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b43dd76b61874da45bea10685ead3578, type: 3}
+  m_Script: {fileID: 11500000, guid: a80cdccca131fe848b969436f3d747d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  globalSpawner: 0
+  encountered: 0
+  spawnRate: 0
+  numberOfWaves:
+  - enemies:
+    - {fileID: 114789023933192128, guid: 19bf9722991b23a43a925c91f1ee6d6e, type: 2}
   enemies: []
 --- !u!65 &891111052
 BoxCollider:
@@ -32483,9 +32495,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1900502578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b43dd76b61874da45bea10685ead3578, type: 3}
+  m_Script: {fileID: 11500000, guid: a80cdccca131fe848b969436f3d747d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  globalSpawner: 0
+  encountered: 0
+  spawnRate: 0
+  numberOfWaves: []
   enemies: []
 --- !u!65 &1900502580
 BoxCollider:

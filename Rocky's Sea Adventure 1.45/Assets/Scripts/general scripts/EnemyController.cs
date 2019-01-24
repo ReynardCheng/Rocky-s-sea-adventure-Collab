@@ -74,6 +74,7 @@ public class EnemyController : MonoBehaviour
 		if (enemyType == spawnType.Global) shipInRange = true;
 
 		if (shipInRange && transform.position.y > sea.transform.position.y || enemyType == spawnType.Global) MoveToShip();
+	
 		if (detectShipTrigger.shipDetected)
 		{
 			FireRate();
