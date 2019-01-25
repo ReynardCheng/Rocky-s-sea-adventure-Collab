@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class EnemyController : MonoBehaviour
 {
+	public enum spawnType { Global, Local }
+	public spawnType enemyType;
 
 	private GameObject closestShipSection;
     private Camera cam;
+
+	[Header("coomponents")]
+	[SerializeField] Rigidbody rb;
 
 	[Header("Health & UI")]
 	[Space]
@@ -30,9 +36,15 @@ public class EnemyController : MonoBehaviour
 	[Header("Detect the ship before it moves")]
 	public bool shipInRange;
 
+	[Header("Rise above water before heading for ship")]
+	public GameObject sea;
+
 	// Use this for initialization
 	void Start()
 	{
+		//getting components
+		rb = GetComponent<Rigidbody>();
+
 		//for detecting ship before moving
 		shipInRange = false;
 
@@ -52,24 +64,33 @@ public class EnemyController : MonoBehaviour
 		detectShipTrigger = GetComponentInChildren<DetectShipTrigger>();
 
 		InvokeRepeating("FindShipTarget", 0, 1f);
+
+		sea = GameObject.Find("Sea");
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		if (shipInRange) MoveToShip();
+		if (enemyType == spawnType.Global) shipInRange = true;
+
+		if (shipInRange && transform.position.y > sea.transform.position.y || enemyType == spawnType.Global) MoveToShip();
+	
 		if (detectShipTrigger.shipDetected)
 		{
 			FireRate();
 			Shoot();
 		}
         DeactivateHealthBar();
+
+		MoveAboveWater();
 	}
 
 	void MoveToShip()
 	{
+		Vector3 direction = ship.transform.position - transform.position;
 		if (distanceToStopMoving < (ship.transform.position - transform.position).sqrMagnitude)
-			transform.position = Vector3.MoveTowards(transform.position, closestShipSection.transform.position, moveSpeed * Time.deltaTime);
+			rb.velocity = direction.normalized * moveSpeed;
+		//transform.position = Vector3.MoveTowards(transform.position, closestShipSection.transform.position, moveSpeed * Time.deltaTime);
 	}
 
 	//An InvokeRepeating initialized at start to find which section of ship to move to and shoot at.
@@ -146,6 +167,14 @@ public class EnemyController : MonoBehaviour
         else
             healthBar.transform.parent.gameObject.SetActive(true);
     }
+
+	void MoveAboveWater()
+	{
+		if (transform.position.y < sea.transform.position.y + 2)
+		{
+			transform.Translate(0, 1 * Time.deltaTime, 0, Space.World);
+		}
+	}
 
 	//
     //---------------------------------------------
