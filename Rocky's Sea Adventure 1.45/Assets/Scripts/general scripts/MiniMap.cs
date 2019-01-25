@@ -5,7 +5,6 @@ using UnityEngine;
 public class MiniMap : MonoBehaviour
 {
 	public Transform player;
-	bool revertFogState = false;
 
 	private void LateUpdate()
 	{
@@ -16,14 +15,9 @@ public class MiniMap : MonoBehaviour
 		//transform.rotation = Quaternion.Euler(90f, player.eulerAngles.y, 0f);
 	}
 
-	void OnPreRender()
+	// Update is called once per frame
+	void Update()
 	{
-		revertFogState = RenderSettings.fog;
-		RenderSettings.fog = false;
-	}
 
-	void OnPostRender()
-	{
-		RenderSettings.fog = revertFogState;
 	}
 }

@@ -21,7 +21,7 @@ public class CannonHealthUI : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        print(other.tag);
         if (other.tag == "Cannon" && cannon == null)
         {
             cannon = other.GetComponentInChildren<CannonController>();

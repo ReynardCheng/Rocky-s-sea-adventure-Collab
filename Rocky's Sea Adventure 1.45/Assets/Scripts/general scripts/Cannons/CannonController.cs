@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CannonController : MonoBehaviour {
 
@@ -17,6 +18,9 @@ public class CannonController : MonoBehaviour {
 
 	[Header("Health")]
 	public int health;
+	private int maxHealth;
+	public Image healthbar;
+	public GameObject smokeEffect;
 
 	[Header("Parent")]
 	public GameObject parent;
@@ -27,6 +31,7 @@ public class CannonController : MonoBehaviour {
 	void Start () {
 
 		health = 50;
+		maxHealth = health;
 
 		SoundFromCannon = GetComponent<AudioSource>();
 
@@ -115,7 +120,19 @@ public class CannonController : MonoBehaviour {
 		if (health <= 0)
 		{
 			Destroy(gameObject.transform.parent.gameObject);
+		} else {
+			UpdateCannonUI();
+
+			if (health <= 30){
+				smokeEffect.SetActive(true);
+			} else {
+				smokeEffect.SetActive(false);
+			}
 		}
+	}
+
+	public void UpdateCannonUI(){
+		healthbar.fillAmount = (float) health / maxHealth;
 	}
 
 	void OnTriggerEnter(Collider other) //Add enemy to list of targets when in range of cannon
