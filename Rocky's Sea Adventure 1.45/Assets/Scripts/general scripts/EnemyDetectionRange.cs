@@ -23,6 +23,7 @@ public class EnemyDetectionRange : MonoBehaviour {
 			foreach (EnemyController e in enemies)
 			{
 				e.GetComponent<EnemyController>().shipInRange = true;
+			
 			}
 		}
 	}
