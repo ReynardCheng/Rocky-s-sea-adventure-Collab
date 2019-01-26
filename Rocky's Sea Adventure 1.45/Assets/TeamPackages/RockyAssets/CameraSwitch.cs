@@ -16,6 +16,12 @@ public class CameraSwitch : MonoBehaviour {
 	CharacterMovement chMovement;
 	BoatController theBoat;
 
+	[Header("For third person rotating")]
+	public float turnSpeed;
+	public Transform player;
+
+	public Vector3 offset;
+
 	// have to use this for reference because it is from a namespace
 	public UnityStandardAssets.Characters.FirstPerson.FirstPersonController fpsController;
 
@@ -27,6 +33,9 @@ public class CameraSwitch : MonoBehaviour {
 		fpsController = FindObjectOfType<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
 		theBoat = FindObjectOfType<BoatController>();
 		chMovement = FindObjectOfType<CharacterMovement>();
+		player = chMovement.transform;
+
+		// setting variables
 		shipView = false;
 		switching = false; 
 		switchSpeed = 0.1f;
@@ -36,6 +45,15 @@ public class CameraSwitch : MonoBehaviour {
 	void Update () {
 
 		if (chMovement.canControlShip) CameraSwitching();
+
+        playerViewPos.position = player.position + offset;
+        playerViewPos.LookAt(player.position);
+
+        if (!fpsController.controllingShip)
+        {
+            CameraRotate();
+        }
+
         //if (shipView) theBoat.controllingBoat = true;
 		CameraParent();
 	}
@@ -58,19 +76,20 @@ public class CameraSwitch : MonoBehaviour {
 				shipView = false;
 				StartCoroutine(SwitchView(playerViewPos));
 				transform.parent = null;
-				fpsController.controllingShip = false;
+				//fpsController.controllingShip = false;
 			}
 		}
 	}
 
 	void CameraParent()
 	{
-		transform.parent = (shipView) ? transform.parent = ship.transform : chMovement.transform;
+		transform.parent = (shipView) ? transform.parent = ship.transform : transform.parent = null;
 	}
 
     IEnumerator SwitchView(Transform view)
     {
         float fractionLerped = 0f;   //Declaring variable for lerping. This is the fraction of how much of the switch is completed.
+
 
         while((transform.position != view.transform.position) && (transform.rotation != view.transform.rotation))   //while switch isnt finished yet...
         {
@@ -93,6 +112,17 @@ public class CameraSwitch : MonoBehaviour {
 			theBoat.controllingBoat = true;
 		}
 	}
+
+
+    void CameraRotate()
+    {
+        if (!fpsController.controllingShip)
+        {
+            offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * turnSpeed, Vector3.up) * offset;
+            transform.position = player.position + offset;
+            transform.LookAt(player.position);
+        }
+    }
 }
 
 //lerp(a, b, t) = a + (b - a)*t

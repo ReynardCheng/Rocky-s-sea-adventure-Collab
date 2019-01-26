@@ -42,8 +42,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+		CharacterMovement theCharacter;
 		public Transform playerMesh;
 		public bool controllingShip;
+		bool moving;
 
         // Use this for initialization
         private void Start()
@@ -58,13 +60,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
-		
+			theCharacter = FindObjectOfType<CharacterMovement>();
         }
 
 
         // Update is called once per frame
         private void Update()
         {
+			
 			if (!controllingShip)
 			{
 				// RotateView();
@@ -136,7 +139,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				{
 					m_MoveDir += Physics.gravity * m_GravityMultiplier * Time.fixedDeltaTime;
 				}
-				m_CollisionFlags = m_CharacterController.Move(m_MoveDir * Time.fixedDeltaTime);
+				m_CollisionFlags = m_CharacterController.Move(m_MoveDir  * Time.fixedDeltaTime);
 
 				ProgressStepCycle(speed);
 				// UpdateCameraPosition(speed);
@@ -145,8 +148,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			}
         }
 
-
-        private void PlayJumpSound()
+		private void PlayJumpSound()
         {
             m_AudioSource.clip = m_JumpSound;
             m_AudioSource.Play();
@@ -218,13 +220,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			float vertical = CrossPlatformInputManager.GetAxis("Vertical(P1)");
 
 
-			if (horizontal != 0 || vertical !=0)
+			if (horizontal != 0 || vertical != 0)
 			{
-				Vector3 lookDirection = new Vector3(-vertical, 90, horizontal);
-				playerMesh.transform.LookAt(transform.position + lookDirection);
+				Vector3 lookDirection = new Vector3(horizontal, 90, vertical);
+				playerMesh.transform.localRotation = Quaternion.LookRotation(lookDirection);
 			}
-
-
+			
 		}
 
         private void GetInput(out float speed)
