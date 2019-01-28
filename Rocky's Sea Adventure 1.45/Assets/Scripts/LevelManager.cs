@@ -54,7 +54,7 @@ public class LevelManager : MonoBehaviour {
             Lose();
         }
 
-        Collider[] colliders = Physics.OverlapSphere(boatCombatScript.transform.position, changeSkyboxRadius);
+        Collider[] colliders = Physics.OverlapSphere(boatCombatScript.transform.position, changeSkyboxRadius); // Gets all colliders in a radius around the position, and store them into an array.
         bool bossIsNear = false;
 
         if (colliders.Length > 0)
