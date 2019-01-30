@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class EnemyBulletScript : MonoBehaviour
 {
-	[SerializeField] GameObject shipPos;
+    public enum bulletType { normal, sticky, huge }
+    public bulletType bulletState;
+
+    [SerializeField] GameObject shipPos;
    // private ShipScript ship; // Bullet's target: whatever gameObject with ShipScript attached
 	public float bulletSpd; // Moving speed of bullet
     public Vector3 moveDirection;

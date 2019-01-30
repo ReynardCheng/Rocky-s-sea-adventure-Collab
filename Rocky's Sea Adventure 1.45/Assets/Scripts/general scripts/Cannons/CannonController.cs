@@ -7,6 +7,8 @@ public class CannonController : MonoBehaviour {
 	[Header("Shooting")]
 	public Rigidbody projectile; //reference for projectile
 	public float atkRate; // Attack rate
+    public float slowDebuffTimer = 1;
+ 
 
 	[Header("Enemy Detection")]
 	public Transform TargetingEnemy;
@@ -25,7 +27,7 @@ public class CannonController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+        
 		health = 50;
 
 		SoundFromCannon = GetComponent<AudioSource>();
@@ -43,6 +45,7 @@ public class CannonController : MonoBehaviour {
 	void TargetEnemy()
 	{
 		atkRate -= Time.deltaTime;
+        slowDebuffTimer -= Time.deltaTime;
 
 		GameObject target = null;
 
@@ -82,8 +85,14 @@ public class CannonController : MonoBehaviour {
 
 	private void NewShoot()
 	{
-		atkRate = 2f; // Attack cooldown time
-		//BulletPos = gun.transform.position;
+        if (slowDebuffTimer > 0)
+        {
+            atkRate = 2f * 2;
+        }
+        else if (slowDebuffTimer <= 0)
+        {
+            atkRate = 2f;
+        }
 
         switch (cannonType)
         {
