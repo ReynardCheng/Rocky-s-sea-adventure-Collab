@@ -145,7 +145,7 @@ public class BoatCombat1 : MonoBehaviour
 	}
 
 
-	private void DamageShip(int damageToTake)
+	public void DamageShip(int damageToTake)
 	{
 		shipHealth -= damageToTake;
         shipHealthText.text = shipHealth.ToString();
