@@ -7,7 +7,13 @@ using UnityEngine.UI;
 public class EnemyController : MonoBehaviour
 {
 	public enum spawnType { Global, Local }
-	public spawnType enemyType;
+	public spawnType spawnTypes;
+
+	[Header("EnemyTypes")]
+	[SerializeField] int spAtk;
+	public EnemyBulletScript stickBullet;
+	public enum EnemyType { Normal, Sticky }
+	public EnemyType enemyType;
 
 	private GameObject closestShipSection;
     private Camera cam;
@@ -40,7 +46,7 @@ public class EnemyController : MonoBehaviour
 	public GameObject sea;
 
 	// Use this for initialization
-	void Start()
+	public void Start()
 	{
 		//getting components
 		rb = GetComponent<Rigidbody>();
@@ -69,16 +75,14 @@ public class EnemyController : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void Update()
+	public void Update()
 	{
-		if (enemyType == spawnType.Global) shipInRange = true;
+		if (spawnTypes == spawnType.Global) shipInRange = true;
 
-		if (shipInRange && transform.position.y > sea.transform.position.y || enemyType == spawnType.Global) MoveToShip();
-		if (detectShipTrigger.shipDetected)
-		{
-			FireRate();
-			Shoot();
-		}
+		if (shipInRange && transform.position.y > sea.transform.position.y || spawnTypes == spawnType.Global) MoveToShip();
+
+		EnemyTypes();
+
         DeactivateHealthBar();
 
 		MoveAboveWater();
@@ -129,6 +133,41 @@ public class EnemyController : MonoBehaviour
 		}
 	}
 
+	void EnemyTypes()
+	{
+		if (detectShipTrigger.shipDetected && enemyType == EnemyType.Normal)
+		{
+			FireRate();
+			Shoot();
+		}
+
+		if (detectShipTrigger.shipDetected && enemyType == EnemyType.Sticky)
+		{
+			FireRate();
+			StickyEnemy();
+		}
+	}
+
+	void StickyEnemy()
+	{
+		if (enemyType == EnemyType.Sticky)
+		{
+			if (fireRate <= 0 && spAtk <= 0)
+			{
+				GameObject enemyBullet = Instantiate(stickBullet.gameObject, transform.position, Quaternion.identity);
+				enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (closestShipSection.transform.position - transform.position).normalized;
+				spAtk = Random.Range(3, 7);
+				fireRate = coolDownTime;
+				print("SpecialSHot");
+			}
+
+			else if (fireRate <= 0 && spAtk > 0)
+			{
+				Shoot();
+				spAtk--;
+			}
+		}
+	}
 
 	//------------------------------------------
 	//health related stuff
@@ -174,6 +213,7 @@ public class EnemyController : MonoBehaviour
 			transform.Translate(0, 1 * Time.deltaTime, 0, Space.World);
 		}
 	}
+
 
 	//
     //---------------------------------------------
