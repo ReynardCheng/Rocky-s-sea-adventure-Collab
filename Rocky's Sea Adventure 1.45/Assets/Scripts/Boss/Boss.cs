@@ -7,27 +7,40 @@ public class Boss : MonoBehaviour {
     [Header("Components")]
     [SerializeField] Rigidbody rb;
 
+    //---------------------------------------------------
     [Space]
+    [Header ("health variables")]
     [SerializeField] int health;
     [SerializeField] int maxHealth;
 
+    //---------------------------------------------------
     [Space]
     [Header("Movement Variables")]
     [SerializeField] float moveSpeed;
 
     // for changing to a different move pattern
     [SerializeField] bool shipInRange;
+    [SerializeField] float stuck;
+
+    // to keep a safe distance
+    [SerializeField] bool keepDistance;
+    [SerializeField] float minDis, maxDis;
     [SerializeField] Transform playerPos; // move to the player / normal movement
+
+    // movement pattern
     [SerializeField] float changeMovement; // acts as a timer such that once it reaches 0 the boss will change its move pattern
     public Transform[] movementPositions; // sets the positions that the boss will move to
     [SerializeField] int positionToMove; // sets the current position for the boss to move to, position is relative to array element
     [SerializeField] int positionsMoved; // counts how many times the enemy has used this different move pattern
-                                         // to return to original move pattern
+                                     
+    // to return to original move pattern
     [SerializeField] int movedLimit; // sets the limit of how many times the boss can move in this pattern before returning to original movement
     public int minChange, maxChange; // resets the timer on a random range 
 
     // move pattern when it is low on health
     public Transform nest;
+
+    //---------------------------------------------------------------------------------------------------------------------------
 
     [Space]
     [Header("Attack Variables")]
@@ -41,14 +54,24 @@ public class Boss : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
 
         //for setting variables
+        moveSpeed = 10;
+        movedLimit = 5;
+        maxHealth = 100;
+        health = maxHealth;
         changeMovement = maxChange;
         playerPos = GameObject.FindGameObjectWithTag("Ship").transform;
+    }
+
+    private void Update()
+    {
+        Movement();
     }
 
     //-----------------------------------------------------
     // movement related functions
     void Movement()
     {
+
         changeMovement -= Time.deltaTime;
 
         if (changeMovement > 0)
@@ -56,8 +79,25 @@ public class Boss : MonoBehaviour {
             if (shipInRange)
             {
                 // normal movement here
-                Vector3 direction = transform.position - playerPos.position;
-                rb.velocity = direction.normalized * moveSpeed;
+                Vector3 direction = playerPos.position - transform.position;
+
+                float distance = Vector3.Distance(playerPos.position, transform.position);
+                print(distance);
+
+                if (distance < 5)
+                {
+                    keepDistance = true;
+                }
+                if (keepDistance)
+                {
+                    rb.velocity = direction.normalized * -moveSpeed / 2;
+                }
+
+                if (distance > 14)
+                {
+                    rb.velocity = direction.normalized * moveSpeed;
+                    keepDistance = false;
+                }
             }
         }
 
@@ -65,13 +105,12 @@ public class Boss : MonoBehaviour {
         {
             MovePatterns();
         }
-
     }
 
     void MovePatterns()
     {
         // input movePatterns here
-        Vector3 patternDirection = transform.position - movementPositions[positionToMove].position;
+        Vector3 patternDirection = movementPositions[positionToMove].position - transform.position;
         rb.velocity = patternDirection.normalized * moveSpeed;
 
         // if low on health move in this pattern
@@ -124,13 +163,32 @@ public class Boss : MonoBehaviour {
 
         if (other.tag == "BossSpots")
         {
-            positionToMove = Random.Range(1, positionToMove + 1);
+            positionToMove = Random.Range(1, movementPositions.Length);
             positionsMoved++;
 
             if (positionsMoved >= movedLimit)
             {
                 changeMovement = Random.Range(minChange, maxChange + 1);
+                positionsMoved = 0;
             }
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+
+        if (other.tag == "BossSpots")
+        {
+            stuck += Time.deltaTime;
+
+            if (stuck > 1f) positionToMove = Random.Range(1, movementPositions.Length);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+
+        if (other.tag == "BossSpots")
+        {
+            stuck = 0f;
         }
     }
 }
