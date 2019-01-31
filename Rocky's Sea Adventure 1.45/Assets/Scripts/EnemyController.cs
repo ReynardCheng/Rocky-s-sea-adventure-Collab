@@ -11,7 +11,6 @@ public class EnemyController : MonoBehaviour
 
 	[Header("EnemyTypes")]
 	[SerializeField] int spAtk;
-	public EnemyBulletScript stickBullet;
 	public enum EnemyType { Normal, Sticky }
 	public EnemyType enemyType;
 
@@ -28,8 +27,9 @@ public class EnemyController : MonoBehaviour
 	public Image healthBar;
 
 	[Header("Projectiles and Targetting")]
-	public GameObject bullet;
-	[SerializeField] float fireRate;
+	public GameObject normalBullet;
+    public EnemyBulletScript stickBullet;
+    [SerializeField] float fireRate;
 	[SerializeField] float coolDownTime;
 	[SerializeField] float moveSpeed, distanceToStopMoving;
 	private bool inRange;
@@ -91,14 +91,20 @@ public class EnemyController : MonoBehaviour
 	void MoveToShip()
 	{
 		Vector3 direction = ship.transform.position - transform.position;
-		if (distanceToStopMoving < (ship.transform.position - transform.position).sqrMagnitude)
-			rb.velocity = direction.normalized * moveSpeed;
-		//transform.position = Vector3.MoveTowards(transform.position, closestShipSection.transform.position, moveSpeed * Time.deltaTime);
-	}
+        //if (distanceToStopMoving < (ship.transform.position - transform.position).sqrMagnitude)
+        if ((ship.transform.position - transform.position).sqrMagnitude < distanceToStopMoving)
+        {
+            rb.velocity = direction.normalized * -moveSpeed/1.3f;
+        }
+        else if (distanceToStopMoving < (ship.transform.position - transform.position).sqrMagnitude)
+            rb.velocity = direction.normalized * moveSpeed;
 
-	//An InvokeRepeating initialized at start to find which section of ship to move to and shoot at.
-	//Repeats every second
-	void FindShipTarget()
+        //transform.position = Vector3.MoveTowards(transform.position, closestShipSection.transform.position, moveSpeed * Time.deltaTime);
+    }
+
+    //An InvokeRepeating initialized at start to find which section of ship to move to and shoot at.
+    //Repeats every second
+    void FindShipTarget()
 	{
 		var distance = Mathf.Infinity;
 
@@ -128,7 +134,7 @@ public class EnemyController : MonoBehaviour
 		if (fireRate <= 0)
 		{
 			fireRate = coolDownTime;
-			GameObject enemyBullet = Instantiate(bullet, transform.position, Quaternion.identity);
+			GameObject enemyBullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
 			enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (closestShipSection.transform.position - transform.position).normalized;
 		}
 	}

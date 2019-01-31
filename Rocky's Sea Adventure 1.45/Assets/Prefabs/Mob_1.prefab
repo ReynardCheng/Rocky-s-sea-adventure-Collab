@@ -331,16 +331,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f5c7c8a5475b2428563ac03f29578a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnTypes: 0
+  spAtk: 0
   enemyType: 1
   rb: {fileID: 0}
   currentHealth: 0
   maxHealth: 0
   healthBar: {fileID: 114114347190040572}
-  bullet: {fileID: 1320870172768074, guid: 1863dd99fc418bf4282b2b5b31f0403c, type: 2}
+  normalBullet: {fileID: 1320870172768074, guid: 1863dd99fc418bf4282b2b5b31f0403c,
+    type: 2}
+  stickBullet: {fileID: 114326127406601132, guid: 1863dd99fc418bf4282b2b5b31f0403c,
+    type: 2}
   fireRate: 0
   coolDownTime: 0
   moveSpeed: 0
-  distanceToStopMoving: 250
+  distanceToStopMoving: 500
   ship: {fileID: 0}
   shipInRange: 0
   sea: {fileID: 0}
