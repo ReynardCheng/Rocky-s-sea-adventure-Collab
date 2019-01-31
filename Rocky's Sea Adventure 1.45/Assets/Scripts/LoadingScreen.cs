@@ -9,20 +9,38 @@ public class LoadingScreen : MonoBehaviour {
     public static LoadingScreen theLoadingScreen;
     public GameObject loadScreen;
     public Slider loadingBar;
+    public static bool loaded;
+
 
     //public AudioSource theAudio;
 
 
     private void Awake()
     {
-       // DontDestroyOnLoad(gameObject);
+        if (loaded ==true)
+        {
+            Destroy(gameObject);
+        }
+      
     }
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        loaded = true;
         theLoadingScreen = GetComponent<LoadingScreen>();
-        //theAuduo = GetComponent<AudioSource>();
-	}
+        //theAudio = GetComponent<AudioSource>();
+
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void Update()
+    {
+        if (loadScreen.activeInHierarchy) //check if loading screen gameobject is active
+        {
+            print("loadScreen Active");
+        }
+    }
 
     public void loadLevel(string sceneName)
     {
