@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class EnemyBulletScript : MonoBehaviour
 {
-    public enum bulletType { normal, sticky, huge }
+    public enum bulletType { normal, sticky, laser }
     public bulletType bulletState;
 
     [SerializeField] GameObject shipPos;
    // private ShipScript ship; // Bullet's target: whatever gameObject with ShipScript attached
 	public float bulletSpd; // Moving speed of bullet
     public Vector3 moveDirection;
-    private Rigidbody rb;
-	public Transform target;
 
 	[Header("Damage to give")]
 	public int damageToGive;
@@ -20,7 +18,7 @@ public class EnemyBulletScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+		Destroy(gameObject, 10);
 		shipPos = GameObject.FindGameObjectWithTag("Ship");
 		// ship = GameObject.FindObjectOfType<ShipScript>();
     }
@@ -28,7 +26,14 @@ public class EnemyBulletScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(moveDirection * bulletSpd, Space.World);
+		if (bulletState == bulletType.normal || bulletState == bulletType.sticky)
+		{
+			transform.Translate(moveDirection * bulletSpd, Space.World);
+		}
+		if (bulletState == bulletType.laser)
+		{
+			transform.Translate(moveDirection * bulletSpd * 20, Space.World);
+		}
 	//	transform.position = Vector3.MoveTowards(transform.position, target.position, 0);
     }
 
@@ -43,8 +48,9 @@ public class EnemyBulletScript : MonoBehaviour
 
 		if (other.tag == "Ship")
 		{
-			other.gameObject.GetComponent<BoatCombat1>().TakeDamage(5, gameObject);
-			Destroy(gameObject);
+			other.gameObject.GetComponent<BoatCombat1>().TakeDamage(damageToGive, gameObject);
+			if (bulletState != bulletType.laser)
+				Destroy(gameObject);
 		}
 	}
 }
