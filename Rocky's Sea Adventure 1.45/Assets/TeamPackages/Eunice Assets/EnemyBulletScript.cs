@@ -48,7 +48,7 @@ public class EnemyBulletScript : MonoBehaviour
 
 		if (other.tag == "Ship")
 		{
-			other.gameObject.GetComponent<BoatCombat1>().TakeDamage(damageToGive, gameObject);
+			other.gameObject.GetComponentInParent<BoatCombat1>().TakeDamage(damageToGive, gameObject);
 			if (bulletState != bulletType.laser)
 				Destroy(gameObject);
 		}

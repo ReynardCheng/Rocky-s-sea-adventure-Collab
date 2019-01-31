@@ -166,7 +166,7 @@ public class BoatController : MonoBehaviour
 		if (hitWall) return;
 
 		boostFactor = (isBoosting) ? 1.5f : 1;
-		transform.Translate(0.0f, -(movementFactor * boostFactor / moveSpeed), 0.0f);
+		transform.Translate(0.0f, 0.0f, (movementFactor * boostFactor / moveSpeed));
 		
 	}
 
@@ -190,7 +190,7 @@ public class BoatController : MonoBehaviour
 		horizontalInput = Input.GetAxis("Horizontal(P1)");
 		//steerFactor = Mathf.Lerp(steerFactor, horizontalInput * steerSpeed, Time.deltaTime / movementThreshold);
 		steerFactor = Mathf.Lerp(steerFactor, horizontalInput * steerSpeed, Time.deltaTime / 10);
-		transform.Rotate(0.0f, 0, steerFactor);
+		transform.Rotate(0.0f, steerFactor, 0);
 	//	print(horizontalInput);
 	}
 
