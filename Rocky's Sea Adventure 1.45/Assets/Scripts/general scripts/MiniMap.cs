@@ -11,6 +11,7 @@ public class MiniMap : MonoBehaviour
 	[Header("Moving The Camera")]
 	[SerializeField] CharacterMovement theCharacter;
 	[SerializeField] float scrollSpeed;
+	[SerializeField] float zoomAmount;
 	public Transform miniMapCam;
 	public float borderThickness;
 
@@ -20,6 +21,7 @@ public class MiniMap : MonoBehaviour
 
 	private void Start()
 	{
+	
 		theCharacter = FindObjectOfType<CharacterMovement>();
 		borderThickness = 10f;
 	}
@@ -32,6 +34,7 @@ public class MiniMap : MonoBehaviour
 			newPosition.y = transform.position.y;
 			transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * 5);
 			raycastCam.fieldOfView = 60f;
+			zoomAmount = raycastCam.fieldOfView;
 		}
 		//transform.rotation = Quaternion.Euler(90f, player.eulerAngles.y, 0f);
 	}
@@ -70,8 +73,14 @@ public class MiniMap : MonoBehaviour
 
 	void handleZoom()
 	{
-		if (Input.GetAxisRaw("Mouse ScrollWheel") > 0) raycastCam.fieldOfView--;
-		if (Input.GetAxisRaw("Mouse ScrollWheel") < 0) raycastCam.fieldOfView++;
+
+		if (zoomAmount > 20)
+			if (Input.GetAxisRaw("Mouse ScrollWheel") > 0) zoomAmount -= 8;
+
+		if (zoomAmount < 110)
+			if (Input.GetAxisRaw("Mouse ScrollWheel") < 0) zoomAmount += 8;
+
+		raycastCam.fieldOfView = Mathf.Lerp(raycastCam.fieldOfView, zoomAmount, Time.deltaTime * 3);
 	}
 
 	void ShootRayCast()

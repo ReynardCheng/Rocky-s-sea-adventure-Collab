@@ -215,6 +215,7 @@ public class BuildCannonManager : MonoBehaviour
     {
         Destroy(menu);
         menuSpawned = false;
+		selectedCannon = null;
     }
 
     public void DismantleCannon()
