@@ -37,7 +37,7 @@ public class BoatCombat1 : MonoBehaviour
 		//This array contains the cannons that is within
 		//the damage radius of enemy projectile that hit the ship
 		Collider[] cannonsInRange = Physics.OverlapSphere(damageLocation.transform.position, 2, cannonMask);
-
+		print("Cannons in Range:" + cannonsInRange.Length);
 		///////////////////////////
 		//Finding if ship left side or right side is closer to damagelocation
 		//bool RightSideCloser;
