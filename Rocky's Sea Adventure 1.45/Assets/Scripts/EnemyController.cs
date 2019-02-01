@@ -53,7 +53,7 @@ public class EnemyController : MonoBehaviour
     private bool slowedDown = false;
 
 	[Header("Detect the ship before it moves")]
-	public bool shipInRange;
+	public bool chaseShip;
 
 	[Header("Rise above water before heading for ship")]
 	public GameObject sea;
@@ -64,8 +64,6 @@ public class EnemyController : MonoBehaviour
 		//getting components
 		rb = GetComponent<Rigidbody>();
 
-		//for detecting ship before moving
-		shipInRange = false;
 
 		maxHealth = 100;
 		currentHealth = maxHealth;
@@ -91,9 +89,9 @@ public class EnemyController : MonoBehaviour
 	// Update is called once per frame
 	public void Update()
 	{
-		if (spawnTypes == spawnType.Global) shipInRange = true;
+		if (spawnTypes == spawnType.Global) chaseShip = true;
 
-		if (shipInRange && transform.position.y > sea.transform.position.y || spawnTypes == spawnType.Global) MoveToShip();
+		if (chaseShip && transform.position.y > sea.transform.position.y || spawnTypes == spawnType.Global) MoveToShip();
 
 		EnemyTypes();
 
