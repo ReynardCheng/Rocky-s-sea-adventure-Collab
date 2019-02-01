@@ -350,7 +350,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   moveSpeed: 0
-  shipInRange: 0
+  shipInRange: 1
   stuck: 0
   keepDistance: 0
   minDis: 0
@@ -362,6 +362,7 @@ MonoBehaviour:
   - {fileID: 132280246}
   - {fileID: 388023979}
   - {fileID: 92725754}
+  actualPositionToMove: {fileID: 0}
   positionToMove: 0
   positionsMoved: 0
   movedLimit: 0

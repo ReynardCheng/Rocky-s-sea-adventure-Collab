@@ -29,8 +29,10 @@ public class Boss : MonoBehaviour {
 
     // movement pattern
     [SerializeField] float changeMovement; // acts as a timer such that once it reaches 0 the boss will change its move pattern
-    public Transform[] movementPositions; // sets the positions that the boss will move to
-    [SerializeField] int positionToMove; // sets the current position for the boss to move to, position is relative to array element
+    public List<Transform> movementPositions = new List<Transform>(); // sets the positions that the boss will move to
+	private Transform[] storedPositions;
+	public Transform actualPositionToMove;
+	[SerializeField] int positionToMove; // sets the current position for the boss to move to, position is relative to array element
     [SerializeField] int positionsMoved; // counts how many times the enemy has used this different move pattern
                                      
     // to return to original move pattern
@@ -60,7 +62,12 @@ public class Boss : MonoBehaviour {
         health = maxHealth;
         changeMovement = maxChange;
         playerPos = GameObject.FindGameObjectWithTag("Ship").transform;
-    }
+
+		storedPositions = new Transform[movementPositions.Count];
+		movementPositions.CopyTo(storedPositions);
+
+		positionToMove = GetRandomIntFromArray();
+	}
 
     private void Update()
     {
@@ -103,7 +110,7 @@ public class Boss : MonoBehaviour {
 
         if (changeMovement <= 0)
         {
-            MovePatterns();
+			MovePatterns();
         }
     }
 
@@ -111,19 +118,53 @@ public class Boss : MonoBehaviour {
     {
         // input movePatterns here
         Vector3 patternDirection = movementPositions[positionToMove].position - transform.position;
-        rb.velocity = patternDirection.normalized * moveSpeed;
+
+		rb.velocity = patternDirection.normalized * moveSpeed * 5;
 
         // if low on health move in this pattern
         if (health < 30)
         {
             // move to nest
         }
-
     }
 
-    //-----------------------------------------------------
-    // attack related functions
-    void NormalAttack()
+	private Vector3 GetPositionFromArray()
+	{
+		if (movementPositions.Count <= 0)
+		{
+			foreach (Transform t in storedPositions)
+			{
+				movementPositions.Add(t);
+			}
+		}
+
+		int random = Random.Range(0, movementPositions.Count);
+		Vector3 position = movementPositions[random].position;
+		movementPositions.RemoveAt(random);
+
+		return position;
+	}
+
+	private int GetRandomIntFromArray()
+	{
+		if (movementPositions.Count <= 0)
+		{
+			foreach (Transform t in storedPositions)
+			{
+				movementPositions.Add(t);
+			}
+			movementPositions.Remove(actualPositionToMove);
+		}
+
+		int random = Random.Range(0, movementPositions.Count);
+		actualPositionToMove = movementPositions[random];
+
+		return random;
+	}
+
+	//-----------------------------------------------------
+	// attack related functions
+	void NormalAttack()
     {
         //instantiate something
         spAtkCounter--;
@@ -163,7 +204,9 @@ public class Boss : MonoBehaviour {
 
         if (other.tag == "BossSpots")
         {
-            positionToMove = Random.Range(1, movementPositions.Length);
+			movementPositions.Remove(actualPositionToMove);
+
+			positionToMove = GetRandomIntFromArray();
             positionsMoved++;
 
             if (positionsMoved >= movedLimit)
@@ -173,16 +216,7 @@ public class Boss : MonoBehaviour {
             }
         }
     }
-    private void OnTriggerStay(Collider other)
-    {
 
-        if (other.tag == "BossSpots")
-        {
-            stuck += Time.deltaTime;
-
-            if (stuck > 1f) positionToMove = Random.Range(1, movementPositions.Length);
-        }
-    }
     private void OnTriggerExit(Collider other)
     {
 
