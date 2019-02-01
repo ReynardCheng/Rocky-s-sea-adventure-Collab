@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.77074414, g: 0.77375007, b: 0.75479865, a: 1}
+  m_IndirectSpecularColor: {r: 0.7737731, g: 0.7768009, b: 0.7577793, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2088,19 +2088,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30f065469928b34eb6175e0bffdbc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipDetetected: 1
-  detectShipTrigger: {fileID: 0}
-  moveSpeed: 5
-  distanceToStopMoving: 70
-  shipSideMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  bullet: {fileID: 1320870172768074, guid: 1863dd99fc418bf4282b2b5b31f0403c, type: 2}
-  fireRate: 0
-  coolDownTime: 3
-  currentHealth: 0
-  maxHealth: 0
-  healthBar: {fileID: 0}
 --- !u!54 &113712035
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -30529,19 +30516,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30f065469928b34eb6175e0bffdbc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipDetetected: 1
-  detectShipTrigger: {fileID: 0}
-  moveSpeed: 5
-  distanceToStopMoving: 70
-  shipSideMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  bullet: {fileID: 1320870172768074, guid: 1863dd99fc418bf4282b2b5b31f0403c, type: 2}
-  fireRate: 0
-  coolDownTime: 3
-  currentHealth: 0
-  maxHealth: 0
-  healthBar: {fileID: 0}
 --- !u!54 &1780438386
 Rigidbody:
   m_ObjectHideFlags: 0

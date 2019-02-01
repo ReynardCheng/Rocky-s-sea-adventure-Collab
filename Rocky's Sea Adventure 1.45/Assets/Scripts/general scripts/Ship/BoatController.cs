@@ -48,7 +48,7 @@ public class BoatController : MonoBehaviour
 	[Space]
 	//[SerializeField] CharacterController chController;
 	[SerializeField] Rigidbody rb;
-	[SerializeField] GUI theGUI;
+	[SerializeField] myGUI theGUI;
 	[SerializeField] BoatCombat1 theBoatCombat;
 
 	[Header("UI")]
@@ -94,7 +94,7 @@ public class BoatController : MonoBehaviour
 		// components
 	//	chController = GetComponent<CharacterController>();
 		rb = GetComponent<Rigidbody>();
-		theGUI = FindObjectOfType<GUI>();
+		theGUI = FindObjectOfType<myGUI>();
 		theBoatCombat = GetComponent<BoatCombat1>();
 		theCharacter = FindObjectOfType<CharacterMovement>();
 
