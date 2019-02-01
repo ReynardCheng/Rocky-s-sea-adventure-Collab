@@ -197,7 +197,7 @@ Transform:
   m_GameObject: {fileID: 1970045201477588}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.095000006, z: 1.448}
-  m_LocalScale: {x: 0.375, y: 0.37500063, z: 0.37500063}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_Children:
   - {fileID: 4898312416510426}
   - {fileID: 224850574322539946}
@@ -421,7 +421,7 @@ MonoBehaviour:
   moveSpeed: 0
   distanceToStopMoving: 500
   ship: {fileID: 0}
-  shipInRange: 0
+  chaseShip: 0
   sea: {fileID: 0}
 --- !u!114 &114457022898305036
 MonoBehaviour:

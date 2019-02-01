@@ -22,8 +22,20 @@ public class EnemyDetectionRange : MonoBehaviour {
 		{
 			foreach (EnemyController e in enemies)
 			{
-				e.GetComponent<EnemyController>().shipInRange = true;
+				e.GetComponent<EnemyController>().chaseShip = true;
 			}
 		}
 	}
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Ship")
+        {
+            foreach (EnemyController e in enemies)
+            {
+                e.GetComponent<EnemyController>().chaseShip = false;
+                e.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
+        }
+    }
 }
