@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour
 
 	[Header("Projectiles and Targetting")]
 	public GameObject normalBullet;
-    public EnemyBulletScript stickBullet;
+    public GameObject stickBullet;
 	public GameObject laserBeam;
 
     [SerializeField] float fireRate;
