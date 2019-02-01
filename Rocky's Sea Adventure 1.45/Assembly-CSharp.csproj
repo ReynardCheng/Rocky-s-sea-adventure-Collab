@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\AoeFire.cs" />
     <Compile Include="Assets\Scripts\BeEEAM\Beam.cs" />
+    <Compile Include="Assets\Scripts\Boss\Boss.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Explosion.cs" />
@@ -78,7 +79,6 @@
     <Compile Include="Assets\Scripts\general scripts\ClickToUpgrade.cs" />
     <Compile Include="Assets\Scripts\general scripts\DetectShipTrigger.cs" />
     <Compile Include="Assets\Scripts\general scripts\EnemyDetectionRange.cs" />
-    <Compile Include="Assets\Scripts\general scripts\EnemyShooter.cs" />
     <Compile Include="Assets\Scripts\general scripts\EuniceEnemy.cs" />
     <Compile Include="Assets\Scripts\general scripts\FloatMovement.cs" />
     <Compile Include="Assets\Scripts\general scripts\GameInputManager.cs" />
@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\general scripts\ShipCollectResources.cs" />
     <Compile Include="Assets\Scripts\general scripts\UpgradeMenuSpawner.cs" />
     <Compile Include="Assets\Scripts\general scripts\WaveController.cs" />
+    <Compile Include="Assets\Scripts\LaserBeam.cs" />
     <Compile Include="Assets\Scripts\LevelManager.cs" />
     <Compile Include="Assets\Scripts\LoadingScreen.cs" />
     <Compile Include="Assets\Scripts\Raycast\FaceCamera.cs" />
@@ -127,17 +128,6 @@
     <None Include="Assets\Water\Water4\Shaders\FXWater4Advanced.shader" />
     <Reference Include="UnityEditor.StandardEvents">
 <<<<<<< HEAD
-      <HintPath>D:/Users/Lily/Documents/GitHub/GDDS 2/Rocky-s-sea-adventure-Collab/Rocky's Sea Adventure 1.45/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/Users/Lily/Documents/GitHub/GDDS 2/Rocky-s-sea-adventure-Collab/Rocky's Sea Adventure 1.45/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/Users/Lily/Documents/GitHub/GDDS 2/Rocky-s-sea-adventure-Collab/Rocky's Sea Adventure 1.45/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/Users/Lily/Documents/GitHub/GDDS 2/Rocky-s-sea-adventure-Collab/Rocky's Sea Adventure 1.45/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-=======
       <HintPath>D:/Rocky/Wek/rockys-sea-adventure-collab/Rocky-s-sea-adventure-Collab/Rocky's Sea Adventure 1.45/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
@@ -148,7 +138,18 @@
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>D:/Rocky/Wek/rockys-sea-adventure-collab/Rocky-s-sea-adventure-Collab/Rocky's Sea Adventure 1.45/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
->>>>>>> dcfb29a8933549d9c2952175c859fbab17ed239c
+=======
+      <HintPath>D:/sp work/Year 2/GDDS2/Term 2/Hack Turtles/Rock's Sea Adventure Repository/Rocky-s-sea-adventure-Collab/Rocky's Sea Adventure 1.45/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro.Editor">
+      <HintPath>D:/sp work/Year 2/GDDS2/Term 2/Hack Turtles/Rock's Sea Adventure Repository/Rocky-s-sea-adventure-Collab/Rocky's Sea Adventure 1.45/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PackageManagerUI.Editor">
+      <HintPath>D:/sp work/Year 2/GDDS2/Term 2/Hack Turtles/Rock's Sea Adventure Repository/Rocky-s-sea-adventure-Collab/Rocky's Sea Adventure 1.45/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>D:/sp work/Year 2/GDDS2/Term 2/Hack Turtles/Rock's Sea Adventure Repository/Rocky-s-sea-adventure-Collab/Rocky's Sea Adventure 1.45/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+>>>>>>> 4757d522948da69e437431e3dedee67ca721dd6f
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Rocky/Documents/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -350,16 +351,16 @@
     </Reference>
     <Reference Include="UnityEngine.Analytics">
 <<<<<<< HEAD
-      <HintPath>C:/Users/Lily/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.StandardEvents">
-      <HintPath>C:/Users/Lily/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
-=======
       <HintPath>C:/Users/Rocky/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/Rocky/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
->>>>>>> dcfb29a8933549d9c2952175c859fbab17ed239c
+=======
+      <HintPath>C:/Users/Reynard Cheng/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StandardEvents">
+      <HintPath>C:/Users/Reynard Cheng/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
+>>>>>>> 4757d522948da69e437431e3dedee67ca721dd6f
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:/Rocky/Documents/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>

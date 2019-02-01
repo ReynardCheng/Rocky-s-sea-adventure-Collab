@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour
 
 	[Header("EnemyTypes")]
 	[SerializeField] int spAtk;
-	public enum EnemyType { Normal, Sticky }
+	public enum EnemyType { Normal, Sticky, Laser }
 	public EnemyType enemyType;
 
 	private GameObject closestShipSection;
@@ -29,11 +29,24 @@ public class EnemyController : MonoBehaviour
 	[Header("Projectiles and Targetting")]
 	public GameObject normalBullet;
     public EnemyBulletScript stickBullet;
+	public GameObject laserBeam;
+
     [SerializeField] float fireRate;
-	[SerializeField] float coolDownTime;
+	[SerializeField] float coolDownTime;    //This value is the attack speed.
 	[SerializeField] float moveSpeed, distanceToStopMoving;
+
+
+	//LASER ENEMY VARIABLES
+	private Vector3 laserDirection;
+	private float laserTiming;
+	private bool aiming;	//True when showing where to shoot laser, false when laser is actually shot.
+	private bool canMove;
+
+
+
 	private bool inRange;
     
+
 	public BoatCombat1 ship;
 	private DetectShipTrigger detectShipTrigger;
     private bool oilSlicked = false;
@@ -61,6 +74,7 @@ public class EnemyController : MonoBehaviour
 		coolDownTime = 3f;
 
 		moveSpeed = 3.0f;
+		canMove = true;
         //distanceToStopMoving = 150.0f;
 
         cam = Camera.main;
@@ -90,16 +104,21 @@ public class EnemyController : MonoBehaviour
 
 	void MoveToShip()
 	{
-		Vector3 direction = ship.transform.position - transform.position;
-        //if (distanceToStopMoving < (ship.transform.position - transform.position).sqrMagnitude)
-        if ((ship.transform.position - transform.position).sqrMagnitude < distanceToStopMoving)
-        {
-            rb.velocity = direction.normalized * -moveSpeed/1.3f;
-        }
-        else if (distanceToStopMoving < (ship.transform.position - transform.position).sqrMagnitude)
-            rb.velocity = direction.normalized * moveSpeed;
+		if (canMove)
+		{
+			Vector3 direction = ship.transform.position - transform.position;
+			//if (distanceToStopMoving < (ship.transform.position - transform.position).sqrMagnitude)
+			if ((ship.transform.position - transform.position).sqrMagnitude < distanceToStopMoving)
+			{
+				rb.velocity = direction.normalized * -moveSpeed / 1.3f;
+			}
+			else if (distanceToStopMoving < (ship.transform.position - transform.position).sqrMagnitude)
+				rb.velocity = direction.normalized * moveSpeed;
 
-        //transform.position = Vector3.MoveTowards(transform.position, closestShipSection.transform.position, moveSpeed * Time.deltaTime);
+			//transform.position = Vector3.MoveTowards(transform.position, closestShipSection.transform.position, moveSpeed * Time.deltaTime);
+		}
+		else
+			rb.velocity = Vector3.zero;
     }
 
     //An InvokeRepeating initialized at start to find which section of ship to move to and shoot at.
@@ -152,6 +171,12 @@ public class EnemyController : MonoBehaviour
 			FireRate();
 			StickyEnemy();
 		}
+
+		if (detectShipTrigger.shipDetected && enemyType == EnemyType.Laser || aiming)
+		{
+			FireRate();
+			LaserEnemy();
+		}
 	}
 
 	void StickyEnemy()
@@ -164,7 +189,6 @@ public class EnemyController : MonoBehaviour
 				enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (closestShipSection.transform.position - transform.position).normalized;
 				spAtk = Random.Range(3, 7);
 				fireRate = coolDownTime;
-				print("SpecialSHot");
 			}
 
 			else if (fireRate <= 0 && spAtk > 0)
@@ -172,6 +196,53 @@ public class EnemyController : MonoBehaviour
 				Shoot();
 				spAtk--;
 			}
+		}
+	}
+
+	void LaserEnemy()
+	{
+		//Needed to continue laser stuff even when ship moves out of range.
+		if (detectShipTrigger.shipDetected == false)
+			detectShipTrigger.shipDetected = true;
+
+		//Start the beam. Show where it shoots.
+		if (fireRate <= 0 && !aiming)
+		{
+			aiming = true;
+			canMove = false;
+
+			laserDirection = closestShipSection.transform.position;
+
+			GameObject laserAim = gameObject.transform.Find("Aimer Beam Parent").gameObject;
+			laserAim.SetActive(true);
+			laserAim.transform.LookAt(closestShipSection.transform.position);
+
+			laserTiming = 8;
+			fireRate = Mathf.Infinity;
+		}
+		laserTiming -= Time.deltaTime;
+		FireLaserBeam();
+	}
+
+	//Actual firing of the beam
+	void FireLaserBeam()
+	{
+		//TIme to shoot the beam
+		if(laserTiming <= 0 && aiming)
+		{
+			//Turns off Aiming beam
+			gameObject.transform.Find("Aimer Beam Parent").gameObject.SetActive(false);
+			aiming = false;
+
+			//GameObject enemyBullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
+			//enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (closestShipSection.transform.position - transform.position).normalized;
+
+			GameObject laser = Instantiate(laserBeam, transform.position, Quaternion.identity);
+
+			laser.GetComponent<EnemyBulletScript>().moveDirection = (laserDirection - transform.position).normalized;
+			fireRate = coolDownTime;
+
+			canMove = true;
 		}
 	}
 
