@@ -69,7 +69,7 @@ MonoBehaviour:
       screenEdgeMask:
         intensity: 0.03
   depthOfField:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       focusDistance: 10
       aperture: 5.6
@@ -80,7 +80,7 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       shutterAngle: 270
-      sampleCount: 10
+      sampleCount: 4
       frameBlending: 0
   eyeAdaptation:
     m_Enabled: 0
@@ -100,10 +100,10 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.5
+        intensity: 1.88
         threshold: 1.1
-        softKnee: 0.59
-        radius: 4
+        softKnee: 0.36
+        radius: 2.09
         antiFlicker: 0
       lensDirt:
         texture: {fileID: 0}
