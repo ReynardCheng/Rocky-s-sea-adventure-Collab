@@ -42,7 +42,7 @@ public class ResourceCount : MonoBehaviour
 		seaEssenceCount -= resourceToDeduct;
 		seaEssenceCount += resourceToAdd;
 
-		seaEssenceText.text = "Sea Essence: " + seaEssenceCount;
+		seaEssenceText.text = seaEssenceCount.ToString();
 
 		if (seaEssenceCount <= 0)
 		{
@@ -56,7 +56,7 @@ public class ResourceCount : MonoBehaviour
 		woodCount -= resourceToDeduct;
 		woodCount += resourceToAdd;
 
-        woodText.text = "Wooden Planks: " + woodCount;
+        woodText.text = woodCount.ToString();
 
 		if (woodCount <= 0)
 		{
@@ -70,7 +70,7 @@ public class ResourceCount : MonoBehaviour
 		metalCount -= resourceToDeduct;
 		metalCount += resourceToAdd;
 
-		metalText.text = "Metal Count: " + metalCount;
+		metalText.text = metalCount.ToString();
 
 		if (metalCount <= 0)
 		{
