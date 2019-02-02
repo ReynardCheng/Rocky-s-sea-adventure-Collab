@@ -48,7 +48,7 @@ public class BoatController : MonoBehaviour
 	[Space]
 	//[SerializeField] CharacterController chController;
 	[SerializeField] Rigidbody rb;
-	[SerializeField] GUI theGUI;
+	[SerializeField] myGUI theGUI;
 	[SerializeField] BoatCombat1 theBoatCombat;
 
 	[Header("UI")]
@@ -67,6 +67,14 @@ public class BoatController : MonoBehaviour
 	public LayerMask collisionsThatAffectBoat;
 	public Transform[] raycastColliders;
 
+	[Header("miniMap")]
+	CharacterMovement theCharacter;
+
+
+    //Ramming
+    public int moveFactor;
+    public int RamDamageToShip = 5;
+    public float RamDamageToEnemy = 10f;
 	
 	// Use this for initialization
 	void Start()
@@ -86,8 +94,9 @@ public class BoatController : MonoBehaviour
 		// components
 	//	chController = GetComponent<CharacterController>();
 		rb = GetComponent<Rigidbody>();
-		theGUI = FindObjectOfType<GUI>();
+		theGUI = FindObjectOfType<myGUI>();
 		theBoatCombat = GetComponent<BoatCombat1>();
+		theCharacter = FindObjectOfType<CharacterMovement>();
 
 		// For ui
 		boostSlider.maxValue = boost;
@@ -98,7 +107,7 @@ public class BoatController : MonoBehaviour
 	void Update()
 	{
 		// transform.rotation = Quaternion.Euler(0, 0, 0);
-		if (controllingBoat)
+		if (controllingBoat && !theCharacter.crRunning)
 		{
 			Movement();
 			Steer();
@@ -110,7 +119,8 @@ public class BoatController : MonoBehaviour
 		BoostSlider();
 
 		if (theBoatCombat.shipHealth <= 0) theGUI.lose = true;
-	}
+
+    }
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// This part is for movement only
@@ -134,7 +144,9 @@ public class BoatController : MonoBehaviour
 		verticalInput = Input.GetAxis("Vertical(P1)");
 		movementFactor = Mathf.Lerp(movementFactor, verticalInput, Time.deltaTime / movementThreshold);
 
-		float boostFactor =1;
+        moveFactor = (int)(moveSpeed * verticalInput);
+
+        float boostFactor =1;
 
 		RaycastHit hit;
 		foreach(Transform t in raycastColliders)
@@ -146,7 +158,7 @@ public class BoatController : MonoBehaviour
 			// Hitting something that affects boat
 			if (hit.collider != null)
 			{
-				print("hitWall");
+                print("hitWall");
 				return;
 			}
 		}
@@ -154,7 +166,7 @@ public class BoatController : MonoBehaviour
 		if (hitWall) return;
 
 		boostFactor = (isBoosting) ? 1.5f : 1;
-		transform.Translate(0.0f, -(movementFactor * boostFactor / moveSpeed), 0.0f);
+		transform.Translate(0.0f, 0.0f, (movementFactor * boostFactor / moveSpeed));
 		
 	}
 
@@ -178,7 +190,7 @@ public class BoatController : MonoBehaviour
 		horizontalInput = Input.GetAxis("Horizontal(P1)");
 		//steerFactor = Mathf.Lerp(steerFactor, horizontalInput * steerSpeed, Time.deltaTime / movementThreshold);
 		steerFactor = Mathf.Lerp(steerFactor, horizontalInput * steerSpeed, Time.deltaTime / 10);
-		transform.Rotate(0.0f, 0, steerFactor);
+		transform.Rotate(0.0f, steerFactor, 0);
 	//	print(horizontalInput);
 	}
 
@@ -190,13 +202,16 @@ public class BoatController : MonoBehaviour
 		boost = isBoosting ? boost -= boostUsageRate * Time.deltaTime : boost;
 
 		if (boost > 100f) boost = 100f;
-	}
+    }
 
-	
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
 
-	// this next part is for UI
-	void BoostSlider()
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // this next part is for UI
+    void BoostSlider()
 	{
 		if (controllingBoat)
 		{
@@ -215,7 +230,7 @@ public class BoatController : MonoBehaviour
 	//-------------------------
 	// for when the game ends
 
-
+        //when collect boost
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.tag == "Boost")
@@ -228,5 +243,28 @@ public class BoatController : MonoBehaviour
         {
 			theGUI.gameEnded = true;
         }
-	}
+
+        /// *************************************************************
+        /// Ship ramming tiem
+        /// *************************************************************
+
+        ///move factor as dmg multiplier
+       
+            if (other.tag == "Enemy")
+            {
+                EnemyController enemyController = other.GetComponent<EnemyController>();
+                enemyController.Health(RamDamageToEnemy*moveFactor);
+
+                print("ramming damage to enemy:"+ RamDamageToEnemy*moveFactor);
+
+                //damage ship when ram enemy
+                BoatCombat1 theBoatCombat = GetComponentInParent<BoatCombat1>();
+                theBoatCombat.DamageShip(RamDamageToShip * moveFactor);
+
+
+             }
+
+
+    }
+	
 }

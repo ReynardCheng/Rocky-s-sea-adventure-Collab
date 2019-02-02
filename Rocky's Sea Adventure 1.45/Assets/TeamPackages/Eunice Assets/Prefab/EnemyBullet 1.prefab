@@ -112,10 +112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f284f613a38b88d4bad5f4861621b119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletState: 0
   shipPos: {fileID: 0}
   bulletSpd: 0.5
   moveDirection: {x: 0, y: 0, z: 0}
-  target: {fileID: 0}
   damageToGive: 5
 --- !u!135 &135895299017289450
 SphereCollider:

@@ -15,11 +15,26 @@ public class CollideWithShip : MonoBehaviour {
 
 
 	}
-	private void OnTriggerStay(Collider other)
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 13)
+        {
+            //ram dmg when hit rocks
+            BoatCombat1 theBoatCombat = other.GetComponentInParent<BoatCombat1>();
+            BoatController boatControl = other.GetComponentInParent<BoatController>();
+            theBoatCombat.DamageShip(boatControl.RamDamageToShip * boatControl.moveFactor);
+            print("damage ship:" + boatControl.RamDamageToShip * boatControl.moveFactor);
+        }
+
+    }
+
+    private void OnTriggerStay(Collider other)
 	{
 		if (other.gameObject.layer == 13)
 		{
-			other.GetComponentInParent<BoatController>().movementFactor = 0;
+            
+			other.gameObject.GetComponentInParent<BoatController>().movementFactor = 0;
 			other.gameObject.GetComponentInParent<BoatController>().hitWall = true;
 		}
 	}

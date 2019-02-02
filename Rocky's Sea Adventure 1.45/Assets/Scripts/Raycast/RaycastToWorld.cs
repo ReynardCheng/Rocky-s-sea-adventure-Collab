@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum cannonTypes { normal, aoe, oilSlick,defence };
+public enum cannonType { normal, aoe, oilSlick,defence };
 
 public class RaycastToWorld : MonoBehaviour {
 	public static bool menuSpawned;
