@@ -35,6 +35,9 @@ public class EnemyController : MonoBehaviour
 	[SerializeField] float coolDownTime;    //This value is the attack speed.
 	[SerializeField] float moveSpeed, distanceToStopMoving;
 
+	[Header("Variable")]
+	public float offsetAboveWater;
+
 
 	//LASER ENEMY VARIABLES
 	private Vector3 laserDirection;
@@ -114,10 +117,17 @@ public class EnemyController : MonoBehaviour
 				rb.velocity = direction.normalized * moveSpeed;
 
 			//transform.position = Vector3.MoveTowards(transform.position, closestShipSection.transform.position, moveSpeed * Time.deltaTime);
+
+			Vector3 targetDir = ship.transform.position - transform.position;
+
+			Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir,Mathf.Infinity,Mathf.Infinity);
+			transform.rotation = Quaternion.LookRotation(targetDir);
 		}
 		else
 			rb.velocity = Vector3.zero;
     }
+
+
 
     //An InvokeRepeating initialized at start to find which section of ship to move to and shoot at.
     //Repeats every second
@@ -187,6 +197,7 @@ public class EnemyController : MonoBehaviour
 				enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (closestShipSection.transform.position - transform.position).normalized;
 				spAtk = Random.Range(3, 7);
 				fireRate = coolDownTime;
+			
 			}
 
 			else if (fireRate <= 0 && spAtk > 0)
@@ -283,7 +294,7 @@ public class EnemyController : MonoBehaviour
 
 	void MoveAboveWater()
 	{
-		if (transform.position.y < sea.transform.position.y + 2)
+		if (transform.position.y < sea.transform.position.y + offsetAboveWater)
 		{
 			transform.Translate(0, 1 * Time.deltaTime, 0, Space.World);
 		}
