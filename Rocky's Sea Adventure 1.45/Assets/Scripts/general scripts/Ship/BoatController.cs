@@ -166,7 +166,7 @@ public class BoatController : MonoBehaviour
 		if (hitWall) return;
 
 		boostFactor = (isBoosting) ? 1.5f : 1;
-		transform.Translate(0.0f, 0.0f, (movementFactor * boostFactor / moveSpeed));
+		transform.Translate(0.0f, 0.0f, (movementFactor * boostFactor * moveSpeed/5));
 		
 	}
 

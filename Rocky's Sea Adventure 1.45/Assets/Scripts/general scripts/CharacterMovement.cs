@@ -156,6 +156,14 @@ public class CharacterMovement : MonoBehaviour {
 		{
 			canControlShip = true;
 		}
+
+		if (other.tag == "ShipMast")
+		{
+			if (Input.GetKeyDown(KeyCode.E))
+			{
+
+			}
+		}
 	}
 	private void OnTriggerExit(Collider other)
 	{
