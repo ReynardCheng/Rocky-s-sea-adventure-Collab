@@ -14,11 +14,14 @@ public class EnemyBulletScript : MonoBehaviour
 
 	[Header("Damage to give")]
 	public int damageToGive;
+    private bool canDamage;
 
     // Use this for initialization
     void Start()
     {
-		Destroy(gameObject, 10);
+        canDamage = false;
+
+        Destroy(gameObject, 10);
 		shipPos = GameObject.FindGameObjectWithTag("Ship");
 		// ship = GameObject.FindObjectOfType<ShipScript>();
     }
@@ -46,11 +49,13 @@ public class EnemyBulletScript : MonoBehaviour
 		//	Destroy(gameObject);
 		//}
 
-		if (other.tag == "Ship")
+		if (other.tag == "Ship" && !canDamage)
 		{
+            canDamage = true;   //This bool prevents bullets from damaging the ship twice.
+
 			other.gameObject.GetComponentInParent<BoatCombat1>().TakeDamage(damageToGive, gameObject);
 			if (bulletState != bulletType.laser)
-				Destroy(gameObject);
+				Destroy(gameObject);                
 		}
 	}
 }

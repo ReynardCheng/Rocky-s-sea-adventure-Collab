@@ -24,7 +24,7 @@ public class BoatController : MonoBehaviour
 	float movementThreshold;
 
 	// this is for boost
-	[SerializeField] float boost;
+	[SerializeField] public float boost;
 	[SerializeField] float boostUsageRate; // this is the rate of decrease of boost
 	[SerializeField] bool isBoosting;
 
@@ -146,7 +146,7 @@ public class BoatController : MonoBehaviour
 
         moveFactor = (int)(moveSpeed * verticalInput);
 
-        float boostFactor =1;
+        float boostFactor = 1;
 
 		RaycastHit hit;
 		foreach(Transform t in raycastColliders)

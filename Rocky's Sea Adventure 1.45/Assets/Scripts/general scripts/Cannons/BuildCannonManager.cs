@@ -11,6 +11,8 @@ public class BuildCannonManager : MonoBehaviour
     
     SpawnMenu theMenu;
     private ResourceCount resourceCount;
+    private BoatController boatController;
+    private BoatCombat1 boatCombat;
     private CharacterMovement characterMovement;
 
     [Header("reference to cannon")]
@@ -25,10 +27,12 @@ public class BuildCannonManager : MonoBehaviour
     public GameObject upgradeMenu;
     public GameObject dismantleMenu;
     public GameObject buildProgressSlider;
+    public GameObject mastMenu;
 
     [SerializeField] GameObject menu;
 
     private bool inRangeToBuild;
+    private bool inShipMastRange;
     private GameObject cannonSlot;
 
     //[SerializeField]Button[] buttons;
@@ -36,6 +40,8 @@ public class BuildCannonManager : MonoBehaviour
     void Start()
     {
         characterMovement = GetComponent<CharacterMovement>();
+        boatController = FindObjectOfType<BoatController>();
+        boatCombat = FindObjectOfType<BoatCombat1>();
         resourceCount = FindObjectOfType<ResourceCount>();
         menuSpawned = false;
     }
@@ -46,6 +52,10 @@ public class BuildCannonManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && !menuSpawned && inRangeToBuild)
         {
             OpenBuildMenu();
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && !menuSpawned && inShipMastRange)
+        {
+            OpenMastMenu();
         }
     }
 
@@ -284,9 +294,7 @@ public class BuildCannonManager : MonoBehaviour
         Destroy(menu.gameObject);
         menuSpawned = false;
     }
-
-
-
+       
     public IEnumerator BuildTime(int timesToSpam, GameObject cannonToBuild)
     {
         float timesSpammed = 0;
@@ -322,12 +330,69 @@ public class BuildCannonManager : MonoBehaviour
         Destroy(menu.gameObject);
     }
 
+    void OpenMastMenu()
+    {
+        Transform spawnLocation = cannonSlot.transform;
+
+        menu = Instantiate(mastMenu, cannonSlot.transform, true);
+        menu.transform.position = new Vector3(spawnLocation.position.x, spawnLocation.position.y + 2, spawnLocation.position.z - 0.1f);
+        menu.transform.SetParent(cannonSlot.transform);
+        menuSpawned = true;
+
+        Button[] buttons;
+        buttons = menu.GetComponentsInChildren<Button>();
+
+        foreach (Button b in buttons)
+        {
+            if (b.gameObject.name.Contains("Repair"))
+            {
+                b.GetComponentInChildren<Button>().onClick.AddListener(RepairShip);
+            }
+            if (b.gameObject.name.Contains("Refill"))
+            {
+                b.GetComponentInChildren<Button>().onClick.AddListener(RefillBoost);
+            }
+            if (b.gameObject.name.Contains("Cancel"))
+            {
+                b.GetComponentInChildren<Button>().onClick.AddListener(CancelBuild);
+            }
+        }
+    }
+
+    void RepairShip()
+    {
+        if (resourceCount.seaEssenceCount >= 1 && boatCombat.shipHealth < boatCombat.shipMaxHP)
+        {
+            resourceCount.SeaEssenceValue(1, 0);
+            boatCombat.DamageShip(-15);
+            if (boatCombat.shipHealth > boatCombat.shipMaxHP)
+                boatCombat.shipHealth = (int)boatCombat.shipMaxHP;
+        }
+    }
+
+    void RefillBoost()
+    {
+        if (resourceCount.seaEssenceCount >= 1 && boatController.boost < 100f)
+        {
+            resourceCount.SeaEssenceValue(1, 0);
+            boatController.boost += 15f;
+            if (boatController.boost > 100f)
+                boatController.boost = 100f;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "CannonSlot")
         {
             cannonSlot = other.gameObject;
             inRangeToBuild = true;
+        }
+
+        if (other.tag == "MastInteraction")
+        {
+            cannonSlot = other.gameObject;
+            inShipMastRange = true;
         }
     }
 
@@ -337,6 +402,12 @@ public class BuildCannonManager : MonoBehaviour
         {
             cannonSlot = null;
             inRangeToBuild = false;
+        }
+
+        if (other.tag == "MastInteraction")
+        {
+            cannonSlot = null;
+            inShipMastRange = false;
         }
     }
 }

@@ -7,7 +7,7 @@ public class BoatCombat1 : MonoBehaviour
 {
 
 	public int shipHealth = 100;
-    private float shipMaxHP; //Keep this one as float yo
+    public float shipMaxHP; //Keep this one as float yo
 
 	public GameObject[] cannonHolder;
     private int cannonToDamageIndex;
