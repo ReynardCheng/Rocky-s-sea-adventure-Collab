@@ -48,21 +48,24 @@ public class CameraSwitch : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (!locked)
-        {
-            if (chMovement.canControlShip) CameraSwitching();
+		if (chMovement.gameStart)
+		{
+			if (!locked)
+			{
+				if (chMovement.canControlShip) CameraSwitching();
 
-            playerViewPos.position = player.position + offset;
-            playerViewPos.LookAt(player.position);
+				playerViewPos.position = player.position + offset;
+				playerViewPos.LookAt(player.position);
 
-            if (!fpsController.controllingShip)
-            {
-                CameraRotate();
-            }
-        }
+				if (!fpsController.controllingShip)
+				{
+					CameraRotate();
+				}
+			}
 
-        //if (shipView) theBoat.controllingBoat = true;
-		CameraParent();
+			//if (shipView) theBoat.controllingBoat = true;
+			CameraParent();
+		}
 	}
 
 	void CameraSwitching()
