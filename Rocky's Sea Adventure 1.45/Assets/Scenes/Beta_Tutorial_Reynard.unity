@@ -1307,6 +1307,7 @@ RectTransform:
   - {fileID: 753302534}
   - {fileID: 1206988008}
   - {fileID: 628719482}
+  - {fileID: 792705839}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6075,8 +6076,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.0690079, y: 0.3387375, z: 0.39389038}
-  m_Center: {x: -0.10442734, y: -0.33063126, z: -0.3030548}
+  m_Size: {x: 73.006546, y: 14.8650055, z: 9.652618}
+  m_Center: {x: -46.31887, y: 72.46189, z: -143.7386}
 --- !u!4 &412448404
 Transform:
   m_ObjectHideFlags: 0
@@ -6084,7 +6085,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 412448401}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 117.22, y: 54.2704, z: -131.77}
+  m_LocalPosition: {x: 120.4, y: -72, z: 105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -9532,6 +9533,7 @@ MonoBehaviour:
   - If you collect enough resources, you can build cannons and fight enemies ahead.
   - Collect all the materials here!
   - Be careful of the rocks though! The ship will get damaged if it hits the rocks.
+  - Be careful of the rocks though! The ship will get damaged if it hits the rocks.
   index: 0
 --- !u!1 &635201954
 GameObject:
@@ -11135,6 +11137,60 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 657838816000b144d82c3dbf88a7bae7, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &792705838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 792705839}
+  - component: {fileID: 792705840}
+  m_Layer: 0
+  m_Name: Script4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &792705839
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 792705838}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 81341438}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &792705840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 792705838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9f5c1a77bc90349ab259218a89d947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canContinueDialogue: 1
+  s:
+  - Press 'E' to stop steering and go to an empty cannon spot.
+  - To build cannons, press 'E' repeatedly!
+  - here are other variations of cannons too.
+  - ' With enough materials, you can upgrade to other types of cannons.'
+  - You can explore the other types of cannons on your own!
+  - You can explore the other types of cannons on your own!
+  index: 0
 --- !u!1 &800462323
 GameObject:
   m_ObjectHideFlags: 0
@@ -16297,6 +16353,7 @@ MonoBehaviour:
   - "Press \u2018E\u2019 to interact with the steering wheel."
   - Once you are in navigation mode, use 'WASD' to steer and move the ship.
   - Go forth and conquer! I'll be back to guide you when you've found resources.
+  - Go forth and conquer! I'll be back to guide you when you've found resources.
   index: 0
 --- !u!1 &1209647320
 GameObject:
@@ -19377,7 +19434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674a2b933c2a7174690dad97313acb48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ship: {fileID: 0}
+  ship: {fileID: 1747135342}
   objective: {fileID: 1861854931}
 --- !u!114 &1385690279
 MonoBehaviour:
@@ -20441,6 +20498,60 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1421881107}
   m_Mesh: {fileID: 4300000, guid: e3623289f2e8d9a4ea153d6de2a9a598, type: 3}
+--- !u!1 &1433489577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1433489581}
+  - component: {fileID: 1433489580}
+  - component: {fileID: 1433489578}
+  m_Layer: 0
+  m_Name: DialogueTrigger2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1433489578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1433489577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff59fca3773ccf643b8ee45d6280c48d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TutControl: {fileID: 1491490878}
+--- !u!65 &1433489580
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1433489577}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 191.50436, y: 14.8650055, z: 9.652615}
+  m_Center: {x: -65.57846, y: 72.46189, z: -143.73851}
+--- !u!4 &1433489581
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1433489577}
+  m_LocalRotation: {x: -0, y: 0.6942668, z: -0, w: 0.71971786}
+  m_LocalPosition: {x: 347.4, y: -72, z: 7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 87.938, z: 0}
 --- !u!1 &1435310494
 GameObject:
   m_ObjectHideFlags: 0
@@ -21278,7 +21389,7 @@ MonoBehaviour:
   FixedCamera: {fileID: 1902183221}
   Player: {fileID: 800462324}
   Textboxes: {fileID: 933267771}
-  Text: {fileID: 0}
+  Text: {fileID: 538789062}
   MapHighlight: {fileID: 897018397}
   CompassHighlight: {fileID: 1607907275}
   Script1: {fileID: 753302533}
@@ -21287,6 +21398,8 @@ MonoBehaviour:
   Script2: {fileID: 1206988007}
   ProceedScript3: 0
   Script3: {fileID: 628719481}
+  ProceedScript4: 0
+  Script4: {fileID: 792705838}
 --- !u!1001 &1496702484
 Prefab:
   m_ObjectHideFlags: 0
@@ -25441,8 +25554,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecd84731565f4e64b9fb2f2d49753d2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceCountScript: {fileID: 0}
-  ResourceCollectSound: {fileID: 0}
+  resourceCountScript: {fileID: 205951807}
+  ResourceCollectSound: {fileID: 8300000, guid: 44c7314e57b8dde40af86b6dae2efde5,
+    type: 3}
 --- !u!114 &1747135348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25595,6 +25709,32 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 4e9e5e18d85b68148807ed6049248782, type: 3}
+--- !u!135 &1747135356
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1747135341}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7862129
+  m_Center: {x: 0.0140657425, y: 0.39469433, z: 2.4253552}
+--- !u!64 &1747135357
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1747135341}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: -1
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 722e7123836797642a6c9b9f4bb365d9, type: 3}
 --- !u!1 &1753152193
 GameObject:
   m_ObjectHideFlags: 0

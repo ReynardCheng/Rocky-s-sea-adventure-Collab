@@ -21,8 +21,9 @@ public class DialogueTrigger1 : MonoBehaviour {
         if (other.tag == "Ship")
         {
             TutControl.ProceedScript3 = true;
+            TutControl.Script3.SetActive(true);
             TutControl.Textboxes.SetActive(true);
-            TutControl.Text.text = "The resources are right in front!";
+            
         }
     }
 

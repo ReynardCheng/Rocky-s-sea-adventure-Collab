@@ -32,6 +32,11 @@ public class TutorialController : MonoBehaviour {
     public bool ProceedScript3;
     public GameObject Script3;
 
+    [Header("Cannon")]
+    public bool ProceedScript4;
+    public GameObject Script4;
+
+
     // Use this for initialization
     void Start () {
         DialogueSys = FindObjectOfType<DialogueSystem>();
@@ -89,7 +94,7 @@ public class TutorialController : MonoBehaviour {
             {
                 Destroy(Script1);
             }
-            if (sentenceNumber == 5)
+            if (sentenceNumber == 6)
             {
                 DialogueSys.isWaitingForUserInput = false;
                 Script2.SetActive(false);
@@ -106,18 +111,42 @@ public class TutorialController : MonoBehaviour {
             sentenceNumber = DialogueScript.onSentence;
             print("Sentence index = " + sentenceNumber);
 
-            if (sentenceNumber == 1)
+            if (sentenceNumber == 0)
             {
                 Destroy(Script2);
-                Player.gameStart = false;
+                Text.text = "The resources are right in front!";
             }
-            if (sentenceNumber == 3)
+            if (sentenceNumber == 4)
             {
-                Player.gameStart = true;
+                
                 DialogueSys.isWaitingForUserInput = false;
                 Script3.SetActive(false);
                 Textboxes.SetActive(false);
+                ProceedScript3 = false;
+            }
+        }
 
+        /// *****************
+        /// Cannon intro
+        /// ******************
+        if (ProceedScript4 == true)
+        {
+            //may want to trigger when all resources done collecting instead
+            sentenceNumber = DialogueScript.onSentence;
+            print("Sentence index = " + sentenceNumber);
+
+            if (sentenceNumber == 0)
+            {
+                Destroy(Script3);
+                Text.text = "Now that you're done collecting resources, let's try building cannons!";
+            }
+            if (sentenceNumber == 6)
+            {
+
+                DialogueSys.isWaitingForUserInput = false;
+                Script4.SetActive(false);
+                Textboxes.SetActive(false);
+                ProceedScript4 = false;
             }
         }
     }
