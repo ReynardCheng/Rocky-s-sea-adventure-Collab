@@ -8,7 +8,7 @@ public class CharacterMovement : MonoBehaviour {
 	[Header("Variables")]
 	[Space]
 	[SerializeField] float moveSpeed;
-	[SerializeField] bool canMove;
+	[SerializeField] public bool canMove;
 	public bool canControlShip;
 	public bool gameStart;
 

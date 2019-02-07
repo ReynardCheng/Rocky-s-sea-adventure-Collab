@@ -62,8 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AoeFire.cs" />
-    <Compile Include="Assets\DialogueScript.cs" />
-    <Compile Include="Assets\DialogueSystem.cs" />
+    <Compile Include="Assets\DialogueTrigger1.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
@@ -113,6 +112,9 @@
     <Compile Include="Assets\Scripts\Boss\Boss.cs" />
     <Compile Include="Assets\Scripts\Compass.cs" />
     <Compile Include="Assets\Scripts\CutSceneController.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\DialogueScript.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\DialogueSystem.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\TutorialController.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Explosion.cs" />
