@@ -258,16 +258,12 @@ public class EnemyController : MonoBehaviour
 			fireRate = coolDownTime;
 
 			canMove = true;
-
-<<<<<<< HEAD
+			
             aiming = false;
             detectShipTrigger.shipDetected = false;
         }
-=======
 			aiming = false;
-			detectShipTrigger.shipDetected = false;
-		}
->>>>>>> d3546582e9f7b40ba25813beada2c7596c303d33
+			detectShipTrigger.shipDetected = false;		
 	}
 
 	//------------------------------------------
