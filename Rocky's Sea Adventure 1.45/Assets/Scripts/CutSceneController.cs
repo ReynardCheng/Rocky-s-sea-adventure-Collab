@@ -8,8 +8,12 @@ public class CutSceneController : MonoBehaviour {
     public GameObject ShipUIMenu;
     public GameObject UIStuff;
     public GameObject CannonUI;
+    public CharacterMovement Player;
 
+    [Header("Dialogue Stuff")]
     public GameObject DialogueThing;
+    public GameObject FixedCamera;
+
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +36,7 @@ public class CutSceneController : MonoBehaviour {
     public void offThisCam()
 	{
 		gameObject.GetComponent<Camera>().enabled = false;
+        Player.gameStart = true;
 
         //set ui stuff back on 
         ShipUIMenu.SetActive(true);
@@ -40,5 +45,7 @@ public class CutSceneController : MonoBehaviour {
 
         //Dialogue lets go
         DialogueThing.SetActive(true);
+        FixedCamera.SetActive(true);
+
     }
 }
