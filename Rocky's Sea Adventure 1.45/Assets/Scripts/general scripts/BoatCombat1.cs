@@ -7,7 +7,7 @@ public class BoatCombat1 : MonoBehaviour
 {
 
 	public int shipHealth = 100;
-    private float shipMaxHP; //Keep this one as float yo
+    public float shipMaxHP; //Keep this one as float yo
 
 	public GameObject[] cannonHolder;
     private int cannonToDamageIndex;
@@ -131,12 +131,10 @@ public class BoatCombat1 : MonoBehaviour
 		//}
 		if (cannonsInRange.Length == 0)
 		{
-			print("damageShip!");
 			DamageShip(damageToTake);
 		}
 		else //There is a cannon within damage range, so damage the closest one.
 		{
-			print("damagingCannons!");
 			//Finding Which Cannon to Damage
 			GameObject cannonToDamage = null;
 			float distance = Mathf.Infinity;
