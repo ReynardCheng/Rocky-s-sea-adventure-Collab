@@ -107,7 +107,7 @@ public class BoatController : MonoBehaviour
 	void Update()
 	{
 		// transform.rotation = Quaternion.Euler(0, 0, 0);
-		if (controllingBoat && !theCharacter.crRunning)
+		if (controllingBoat && !theCharacter.mapOpened && !theCharacter.crRunning)
 		{
 			Movement();
 			Steer();
@@ -203,10 +203,6 @@ public class BoatController : MonoBehaviour
 
 		if (boost > 100f) boost = 100f;
     }
-
-  
-
-
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
