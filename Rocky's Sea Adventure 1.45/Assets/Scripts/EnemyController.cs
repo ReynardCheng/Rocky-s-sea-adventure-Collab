@@ -259,9 +259,15 @@ public class EnemyController : MonoBehaviour
 
 			canMove = true;
 
+<<<<<<< HEAD
             aiming = false;
             detectShipTrigger.shipDetected = false;
         }
+=======
+			aiming = false;
+			detectShipTrigger.shipDetected = false;
+		}
+>>>>>>> d3546582e9f7b40ba25813beada2c7596c303d33
 	}
 
 	//------------------------------------------
@@ -371,14 +377,21 @@ public class EnemyController : MonoBehaviour
         float randomValue = Random.value;
         GameObject resource = null;
 
-        if (randomValue < 0.133f)
-            resource = Instantiate(seaEssence, transform.position, Quaternion.identity);
-        else if(randomValue < 0.266f)
-            resource = Instantiate(woodPlank, transform.position, Quaternion.identity);
-        else if (randomValue < 0.399f)
-            resource = Instantiate(metalPart, transform.position, Quaternion.identity);
-
-        resource.transform.localScale = new Vector3(1, 1, 1);
+		if (randomValue < 0.133f)
+		{
+			resource = Instantiate(seaEssence, transform.position, Quaternion.identity);
+			resource.transform.localScale = new Vector3(1, 1, 1);
+		}
+		else if (randomValue < 0.266f)
+		{
+			resource = Instantiate(woodPlank, transform.position, Quaternion.identity);
+			resource.transform.localScale = new Vector3(1, 1, 1);
+		}
+		else if (randomValue < 0.399f)
+		{
+			resource = Instantiate(metalPart, transform.position, Quaternion.identity);
+			resource.transform.localScale = new Vector3(1, 1, 1);
+		}
         print(randomValue);
     }
 }

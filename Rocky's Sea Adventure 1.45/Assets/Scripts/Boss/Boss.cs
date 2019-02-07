@@ -73,7 +73,7 @@ public class Boss : MonoBehaviour {
     private void Update()
     {
         Movement();
-    }
+	}
 
     //-----------------------------------------------------
     // movement related functions

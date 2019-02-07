@@ -20,14 +20,14 @@ public class BoatCombat1 : MonoBehaviour
 	[SerializeField] private LayerMask cannonSlot;
     [SerializeField] private LayerMask bulletMask;
 
-    [SerializeField] private Slider shipHealthBar;
+    [SerializeField] private Image shipHealthBar;
     [SerializeField] private Text shipHealthText;
 
     public void Start()
     {
         shipMaxHP = shipHealth;
         shipHealthText.text = shipHealth.ToString();
-        shipHealthBar.value = shipMaxHP;
+        shipHealthBar.fillAmount = shipMaxHP;
     }
 
     public void TakeDamage(int damageToTake, GameObject damageLocation)
@@ -156,7 +156,7 @@ public class BoatCombat1 : MonoBehaviour
 	{
 		shipHealth -= damageToTake;
         shipHealthText.text = shipHealth.ToString();
-        shipHealthBar.value = shipHealth / shipMaxHP;
+        shipHealthBar.fillAmount = shipHealth / shipMaxHP;
 	}
 
 	private void DamageCannons(GameObject cannonToDamage, int damageToTake)

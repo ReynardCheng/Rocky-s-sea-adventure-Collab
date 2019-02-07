@@ -118,6 +118,9 @@ public class BoatController : MonoBehaviour
 
 		BoostSlider();
 
+		if (!controllingBoat) movementFactor = 0;
+		
+
 		if (theBoatCombat.shipHealth <= 0) theGUI.lose = true;
 
     }
