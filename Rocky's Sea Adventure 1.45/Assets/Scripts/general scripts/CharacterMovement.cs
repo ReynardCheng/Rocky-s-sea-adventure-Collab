@@ -10,6 +10,8 @@ public class CharacterMovement : MonoBehaviour {
 	[SerializeField] float moveSpeed;
 	[SerializeField] bool canMove;
 	public bool canControlShip;
+	public bool gameStart;
+
 	//for reference
 	[Header("Components")]
 	[Space]
@@ -34,7 +36,7 @@ public class CharacterMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		gameStart = false;
 		raycastCam.enabled = false;
 		canControlShip = false;
 		moveSpeed = 3f;
@@ -46,14 +48,17 @@ public class CharacterMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float horizontal = Input.GetAxis("Horizontal(P1)");
-		float vertical = Input.GetAxis("Vertical(P1)");
+		if (gameStart)
+		{
+			float horizontal = Input.GetAxis("Horizontal(P1)");
+			float vertical = Input.GetAxis("Vertical(P1)");
 
-		ControllingTheBoat();
-		if (horizontal != 0 || vertical != 0) characterRotateMovement();
+			ControllingTheBoat();
+			if (horizontal != 0 || vertical != 0) characterRotateMovement();
 
-		ChangeMap();
-	}
+			ChangeMap();
+		}
+		}
 
 
 	// For methods

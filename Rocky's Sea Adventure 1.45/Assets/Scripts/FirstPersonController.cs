@@ -104,7 +104,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void FixedUpdate()
         {
-			if (!controllingShip)
+			if (!controllingShip && theCharacter.gameStart)
 			{
 				Rotate();
 
