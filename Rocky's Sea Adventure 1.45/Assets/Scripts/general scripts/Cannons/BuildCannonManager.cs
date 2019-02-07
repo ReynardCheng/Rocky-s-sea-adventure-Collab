@@ -14,13 +14,16 @@ public class BuildCannonManager : MonoBehaviour
     private BoatController boatController;
     private BoatCombat1 boatCombat;
     private CharacterMovement characterMovement;
+    private CameraSwitch cameraSwitch;
+    private UnityStandardAssets.Characters.FirstPerson.FirstPersonController fpsController;
 
-    [Header("reference to cannon")]
+    [Header("References to Cannons and Ship")]
     public GameObject normalCannon;
     public GameObject aoeCannon;
     public GameObject oilSlickCannon;
     public GameObject defenceCannon;
     private GameObject selectedCannon;
+    public GameObject shipPartsToHide;
 
     [Header("reference to menus")]
     public GameObject normalMenu;
@@ -28,8 +31,13 @@ public class BuildCannonManager : MonoBehaviour
     public GameObject dismantleMenu;
     public GameObject buildProgressSlider;
     public GameObject mastMenu;
+    public Slider boostSlider;
 
     [SerializeField] GameObject menu;
+
+    public Transform buildLeftView;
+    public Transform buildRightView;
+    public Transform buildMastView;
 
     private bool inRangeToBuild;
     private bool inShipMastRange;
@@ -43,19 +51,26 @@ public class BuildCannonManager : MonoBehaviour
         boatController = FindObjectOfType<BoatController>();
         boatCombat = FindObjectOfType<BoatCombat1>();
         resourceCount = FindObjectOfType<ResourceCount>();
+        cameraSwitch = FindObjectOfType<CameraSwitch>();
+        fpsController = GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
         menuSpawned = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !menuSpawned && inRangeToBuild)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            OpenBuildMenu();
-        }
-        else if (Input.GetKeyDown(KeyCode.E) && !menuSpawned && inShipMastRange)
-        {
-            OpenMastMenu();
+            if (!menuSpawned && inRangeToBuild)
+            {
+                OpenBuildMenu();
+                LockCameraMovement();
+            }
+            else if (!menuSpawned && inShipMastRange)
+            {
+                OpenMastMenu();
+                LockCameraMovement();
+            }
         }
     }
 
@@ -87,7 +102,7 @@ public class BuildCannonManager : MonoBehaviour
                     }
                     if (b.gameObject.name.Contains("Cancel"))
                     {
-                        b.GetComponentInChildren<Button>().onClick.AddListener(CancelBuild);
+                        b.GetComponentInChildren<Button>().onClick.AddListener(Cancel);
                     }
                     if (b.gameObject.name.Contains("Dismantle")) 
                     {
@@ -125,7 +140,7 @@ public class BuildCannonManager : MonoBehaviour
                     }
                     if (b.gameObject.name.Contains("Cancel"))
                     {
-                        b.GetComponentInChildren<Button>().onClick.AddListener(CancelBuild);
+                        b.GetComponentInChildren<Button>().onClick.AddListener(Cancel);
                     }
                     if (b.gameObject.name.Contains("Dismantle"))
                     {
@@ -151,7 +166,7 @@ public class BuildCannonManager : MonoBehaviour
                 {
                     if (b.gameObject.name.Contains("Cancel"))
                     {
-                        b.GetComponentInChildren<Button>().onClick.AddListener(CancelBuild);
+                        b.GetComponentInChildren<Button>().onClick.AddListener(Cancel);
                     }
                     if (b.gameObject.name.Contains("Dismantle"))
                     {
@@ -221,13 +236,6 @@ public class BuildCannonManager : MonoBehaviour
         }
     }
 
-    public void CancelBuild()
-    {
-        Destroy(menu);
-        menuSpawned = false;
-		selectedCannon = null;
-    }
-
     public void DismantleCannon()
     {
         CannonController cannon = menu.transform.parent.GetComponentInChildren<CannonController>();
@@ -290,6 +298,10 @@ public class BuildCannonManager : MonoBehaviour
                 }
                 break;
         }
+        shipPartsToHide.SetActive(true);
+        cameraSwitch.locked = false;
+        fpsController.controllingShip = false;
+
         Destroy(selectedCannon);
         Destroy(menu.gameObject);
         menuSpawned = false;
@@ -319,6 +331,10 @@ public class BuildCannonManager : MonoBehaviour
         }
         //Finished Building Sequence
 
+        shipPartsToHide.SetActive(true);
+        cameraSwitch.locked = false;
+        fpsController.controllingShip = false;
+
         Destroy(canvas);
         Destroy(selectedCannon);
 
@@ -333,6 +349,8 @@ public class BuildCannonManager : MonoBehaviour
     void OpenMastMenu()
     {
         Transform spawnLocation = cannonSlot.transform;
+
+        boostSlider.gameObject.SetActive(true);
 
         menu = Instantiate(mastMenu, cannonSlot.transform, true);
         menu.transform.position = new Vector3(spawnLocation.position.x, spawnLocation.position.y + 2, spawnLocation.position.z - 0.1f);
@@ -354,7 +372,7 @@ public class BuildCannonManager : MonoBehaviour
             }
             if (b.gameObject.name.Contains("Cancel"))
             {
-                b.GetComponentInChildren<Button>().onClick.AddListener(CancelBuild);
+                b.GetComponentInChildren<Button>().onClick.AddListener(Cancel);
             }
         }
     }
@@ -366,7 +384,10 @@ public class BuildCannonManager : MonoBehaviour
             resourceCount.SeaEssenceValue(1, 0);
             boatCombat.DamageShip(-15);
             if (boatCombat.shipHealth > boatCombat.shipMaxHP)
+            {
                 boatCombat.shipHealth = (int)boatCombat.shipMaxHP;
+                boatCombat.DamageShip(0);   //This extra call needed to update UI
+            }
         }
     }
 
@@ -380,6 +401,37 @@ public class BuildCannonManager : MonoBehaviour
                 boatController.boost = 100f;
         }
     }
+
+    void LockCameraMovement()
+    {
+        cameraSwitch.locked = true;
+        fpsController.controllingShip = true;
+
+        if (inRangeToBuild)
+        {
+            if (characterMovement.transform.localPosition.x < 0)
+                StartCoroutine(cameraSwitch.SwitchView(buildLeftView));
+            else if (characterMovement.transform.localPosition.x > 0)
+                StartCoroutine(cameraSwitch.SwitchView(buildRightView));
+            shipPartsToHide.SetActive(false);
+        }
+        else
+            StartCoroutine(cameraSwitch.SwitchView(buildMastView));
+    }
+
+    public void Cancel()
+    {
+        shipPartsToHide.SetActive(true);
+        cameraSwitch.locked = false;
+        fpsController.controllingShip = false;
+
+        boostSlider.gameObject.SetActive(false);
+
+        Destroy(menu);
+        menuSpawned = false;
+        selectedCannon = null;
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {

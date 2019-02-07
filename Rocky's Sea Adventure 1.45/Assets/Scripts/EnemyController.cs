@@ -367,14 +367,16 @@ public class EnemyController : MonoBehaviour
     private void OnDestroy()
     {
         float randomValue = Random.value;
+        GameObject resource = null;
 
         if (randomValue < 0.133f)
-            Instantiate(seaEssence, transform.position, Quaternion.identity);
+            resource = Instantiate(seaEssence, transform.position, Quaternion.identity);
         else if(randomValue < 0.266f)
-            Instantiate(woodPlank, transform.position, Quaternion.identity);
+            resource = Instantiate(woodPlank, transform.position, Quaternion.identity);
         else if (randomValue < 0.399f)
-            Instantiate(metalPart, transform.position, Quaternion.identity);
+            resource = Instantiate(metalPart, transform.position, Quaternion.identity);
 
+        resource.transform.localScale = new Vector3(1, 1, 1);
         print(randomValue);
     }
 }

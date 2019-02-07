@@ -13,10 +13,14 @@ public class CameraSwitch : MonoBehaviour {
 
     private bool switching;
 
+    public bool locked;
+
 	CharacterMovement chMovement;
 	BoatController theBoat;
+    public GameObject shipMastSharedMaterial;
+    public GameObject shipFlagsSharedMaterial;
 
-	[Header("For third person rotating")]
+    [Header("For third person rotating")]
 	public float turnSpeed;
 	public Transform player;
 
@@ -44,14 +48,17 @@ public class CameraSwitch : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (chMovement.canControlShip) CameraSwitching();
-
-        playerViewPos.position = player.position + offset;
-        playerViewPos.LookAt(player.position);
-
-        if (!fpsController.controllingShip)
+        if (!locked)
         {
-            CameraRotate();
+            if (chMovement.canControlShip) CameraSwitching();
+
+            playerViewPos.position = player.position + offset;
+            playerViewPos.LookAt(player.position);
+
+            if (!fpsController.controllingShip)
+            {
+                CameraRotate();
+            }
         }
 
         //if (shipView) theBoat.controllingBoat = true;
@@ -86,7 +93,7 @@ public class CameraSwitch : MonoBehaviour {
 		transform.parent = (shipView) ? transform.parent = ship.transform : transform.parent = null;
 	}
 
-    IEnumerator SwitchView(Transform view)
+    public IEnumerator SwitchView(Transform view)
     {
         float fractionLerped = 0f;   //Declaring variable for lerping. This is the fraction of how much of the switch is completed.
 
@@ -101,16 +108,23 @@ public class CameraSwitch : MonoBehaviour {
         }
         switching = false;
 
-		if (view == playerViewPos)
-		{
-			fpsController.controllingShip = false;
-			theBoat.controllingBoat = false;
-			//transform.parent = (transform.position == playerViewPos.transform.position) ? transform.parent = chMovement.transform : transform.parent = null;
-		}
-		if (view == shipViewPos)
-		{
-			theBoat.controllingBoat = true;
-		}
+        if (!locked)
+        {
+            if (view == playerViewPos)
+            {
+                shipMastSharedMaterial.GetComponent<MeshRenderer>().sharedMaterial.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                shipFlagsSharedMaterial.GetComponent<MeshRenderer>().sharedMaterial.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                fpsController.controllingShip = false;
+                theBoat.controllingBoat = false;
+                //transform.parent = (transform.position == playerViewPos.transform.position) ? transform.parent = chMovement.transform : transform.parent = null;
+            }
+            if (view == shipViewPos)
+            {
+                shipMastSharedMaterial.GetComponent<MeshRenderer>().sharedMaterial.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+                shipFlagsSharedMaterial.GetComponent<MeshRenderer>().sharedMaterial.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+                theBoat.controllingBoat = true;
+            }
+        }
 	}
 
 
