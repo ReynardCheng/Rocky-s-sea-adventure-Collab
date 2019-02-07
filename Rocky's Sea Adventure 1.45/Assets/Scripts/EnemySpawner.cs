@@ -21,16 +21,20 @@ public class EnemySpawner : MonoBehaviour {
 	void Start () {
 		waveValue = 2;
 		//spawnRate = 2;
-		encountered = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		spawnRate -= Time.deltaTime;
-		CurrentWave();
+        if (globalSpawner)
+        {
+            spawnRate -= Time.deltaTime;
+
+            CurrentWave();
+        }
 	}
 
+    ///Global Spawning here
 	void CurrentWave()
 	{
 		int currentWaveInt;
@@ -44,6 +48,7 @@ public class EnemySpawner : MonoBehaviour {
 			{
 				GameObject spawnedEnemy = Instantiate(e, enemySpawnPosition, e.transform.rotation).gameObject;
 				spawnedEnemy.GetComponent<Rigidbody>().AddForce(Random.Range(-300, 300), Random.Range(-300, 300), Random.Range(-300, 300));
+                spawnedEnemy.GetComponent<EnemyController>().spawnTypes = (globalSpawner) ? EnemyController.spawnType.Global : EnemyController.spawnType.Local;
 			}
 
 			spawnRate = Random.Range(5, 8);
@@ -56,7 +61,27 @@ public class EnemySpawner : MonoBehaviour {
 		{
 			waveValue++;
 			encountered = true;
-		}
+
+
+            //Local Spawning here
+            Vector3 enemySpawnPosition = new Vector3(transform.position.x, transform.position.y - 4, transform.position.z);
+            int currentWaveInt = Random.Range(0, waveValue);
+            print(currentWaveInt);
+            foreach (EnemyController e in numberOfWaves[currentWaveInt].enemies)
+            {
+                GameObject spawnedEnemy = Instantiate(e, enemySpawnPosition, e.transform.rotation).gameObject;
+                spawnedEnemy.GetComponent<Rigidbody>().AddForce(Random.Range(-300, 300), Random.Range(-300, 300), Random.Range(-300, 300));
+                spawnedEnemy.GetComponent<EnemyController>().spawnTypes = (globalSpawner) ? EnemyController.spawnType.Global : EnemyController.spawnType.Local;
+                spawnedEnemy.GetComponent<EnemyController>().chaseShip = true;
+            }
+        }
+
+        if(other.tag == "Ship")
+        {
+
+        }
 	}
+
+
 
 }

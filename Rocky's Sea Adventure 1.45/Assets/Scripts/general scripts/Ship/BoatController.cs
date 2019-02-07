@@ -24,7 +24,7 @@ public class BoatController : MonoBehaviour
 	float movementThreshold;
 
 	// this is for boost
-	[SerializeField] float boost;
+	[SerializeField] public float boost;
 	[SerializeField] float boostUsageRate; // this is the rate of decrease of boost
 	[SerializeField] bool isBoosting;
 
@@ -107,7 +107,7 @@ public class BoatController : MonoBehaviour
 	void Update()
 	{
 		// transform.rotation = Quaternion.Euler(0, 0, 0);
-		if (controllingBoat && !theCharacter.crRunning)
+		if (controllingBoat && !theCharacter.mapOpened && !theCharacter.crRunning)
 		{
 			Movement();
 			Steer();
@@ -117,6 +117,9 @@ public class BoatController : MonoBehaviour
 		Boost();
 
 		BoostSlider();
+
+		if (!controllingBoat) movementFactor = 0;
+		
 
 		if (theBoatCombat.shipHealth <= 0) theGUI.lose = true;
 
@@ -146,7 +149,7 @@ public class BoatController : MonoBehaviour
 
         moveFactor = (int)(moveSpeed * verticalInput);
 
-        float boostFactor =1;
+        float boostFactor = 1;
 
 		RaycastHit hit;
 		foreach(Transform t in raycastColliders)
@@ -166,7 +169,7 @@ public class BoatController : MonoBehaviour
 		if (hitWall) return;
 
 		boostFactor = (isBoosting) ? 1.5f : 1;
-		transform.Translate(0.0f, 0.0f, (movementFactor * boostFactor / moveSpeed));
+		transform.Translate(0.0f, 0.0f, (movementFactor * boostFactor * moveSpeed/5));
 		
 	}
 
@@ -203,10 +206,6 @@ public class BoatController : MonoBehaviour
 
 		if (boost > 100f) boost = 100f;
     }
-
-  
-
-
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -35,9 +35,22 @@ public class EnemyController : MonoBehaviour
 	[SerializeField] float coolDownTime;    //This value is the attack speed.
 	[SerializeField] float moveSpeed, distanceToStopMoving;
 
+	[Header("Variable")]
+	public float offsetAboveWater;
 
-	//LASER ENEMY VARIABLES
-	private Vector3 laserDirection;
+    [Header("Drops")]
+    [SerializeField] GameObject seaEssence;
+    [SerializeField] GameObject woodPlank;
+    [SerializeField] GameObject metalPart;
+    
+    [Header("Detect the ship before it moves")]
+    public bool chaseShip;
+
+    [Header("Rise above water before heading for ship")]
+    public GameObject sea;
+
+    //LASER ENEMY VARIABLES
+    private Vector3 laserDirection;
 	private float laserTiming;
 	private bool aiming;	//True when showing where to shoot laser, false when laser is actually shot.
 	private bool canMove;
@@ -52,11 +65,6 @@ public class EnemyController : MonoBehaviour
     private bool oilSlicked = false;
     private bool slowedDown = false;
 
-	[Header("Detect the ship before it moves")]
-	public bool shipInRange;
-
-	[Header("Rise above water before heading for ship")]
-	public GameObject sea;
 
 	// Use this for initialization
 	public void Start()
@@ -64,8 +72,6 @@ public class EnemyController : MonoBehaviour
 		//getting components
 		rb = GetComponent<Rigidbody>();
 
-		//for detecting ship before moving
-		shipInRange = false;
 
 		maxHealth = 100;
 		currentHealth = maxHealth;
@@ -91,9 +97,10 @@ public class EnemyController : MonoBehaviour
 	// Update is called once per frame
 	public void Update()
 	{
-		if (spawnTypes == spawnType.Global) shipInRange = true;
+		if (spawnTypes == spawnType.Global)
+            chaseShip = true;
 
-		if (shipInRange && transform.position.y > sea.transform.position.y || spawnTypes == spawnType.Global) MoveToShip();
+		if (chaseShip && transform.position.y > sea.transform.position.y + offsetAboveWater || spawnTypes == spawnType.Global) MoveToShip();
 
 		EnemyTypes();
 
@@ -116,10 +123,17 @@ public class EnemyController : MonoBehaviour
 				rb.velocity = direction.normalized * moveSpeed;
 
 			//transform.position = Vector3.MoveTowards(transform.position, closestShipSection.transform.position, moveSpeed * Time.deltaTime);
+
+			Vector3 targetDir = ship.transform.position - transform.position;
+
+			Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir,Mathf.Infinity,Mathf.Infinity);
+			transform.rotation = Quaternion.LookRotation(targetDir);
 		}
 		else
 			rb.velocity = Vector3.zero;
     }
+
+
 
     //An InvokeRepeating initialized at start to find which section of ship to move to and shoot at.
     //Repeats every second
@@ -189,6 +203,7 @@ public class EnemyController : MonoBehaviour
 				enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (closestShipSection.transform.position - transform.position).normalized;
 				spAtk = Random.Range(3, 7);
 				fireRate = coolDownTime;
+			
 			}
 
 			else if (fireRate <= 0 && spAtk > 0)
@@ -211,13 +226,14 @@ public class EnemyController : MonoBehaviour
 			aiming = true;
 			canMove = false;
 
-			laserDirection = closestShipSection.transform.position;
 
-			GameObject laserAim = gameObject.transform.Find("Aimer Beam Parent").gameObject;
+			GameObject laserAim = gameObject.transform.Find("Laser Indicator").gameObject;
 			laserAim.SetActive(true);
 			laserAim.transform.LookAt(closestShipSection.transform.position);
 
-			laserTiming = 8;
+            laserDirection = closestShipSection.transform.position;
+
+            laserTiming = 8;
 			fireRate = Mathf.Infinity;
 		}
 		laserTiming -= Time.deltaTime;
@@ -231,8 +247,7 @@ public class EnemyController : MonoBehaviour
 		if(laserTiming <= 0 && aiming)
 		{
 			//Turns off Aiming beam
-			gameObject.transform.Find("Aimer Beam Parent").gameObject.SetActive(false);
-			aiming = false;
+			gameObject.transform.Find("Laser Indicator").gameObject.SetActive(false);
 
 			//GameObject enemyBullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
 			//enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (closestShipSection.transform.position - transform.position).normalized;
@@ -243,6 +258,9 @@ public class EnemyController : MonoBehaviour
 			fireRate = coolDownTime;
 
 			canMove = true;
+
+			aiming = false;
+			detectShipTrigger.shipDetected = false;
 		}
 	}
 
@@ -252,12 +270,12 @@ public class EnemyController : MonoBehaviour
 	public void Health(float damageTaken)
 	{
 		currentHealth -= damageTaken;
-		HealthUi();
 		if (currentHealth <= 0f)
 		{
 			Destroy(gameObject);
-		}
-	}
+        }
+        HealthUi();
+    }
 
 	void HealthUi()
 	{
@@ -285,7 +303,7 @@ public class EnemyController : MonoBehaviour
 
 	void MoveAboveWater()
 	{
-		if (transform.position.y < sea.transform.position.y + 2)
+		if (transform.position.y < sea.transform.position.y + offsetAboveWater)
 		{
 			transform.Translate(0, 1 * Time.deltaTime, 0, Space.World);
 		}
@@ -348,4 +366,26 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        float randomValue = Random.value;
+        GameObject resource = null;
+
+		if (randomValue < 0.133f)
+		{
+			resource = Instantiate(seaEssence, transform.position, Quaternion.identity);
+			resource.transform.localScale = new Vector3(1, 1, 1);
+		}
+		else if (randomValue < 0.266f)
+		{
+			resource = Instantiate(woodPlank, transform.position, Quaternion.identity);
+			resource.transform.localScale = new Vector3(1, 1, 1);
+		}
+		else if (randomValue < 0.399f)
+		{
+			resource = Instantiate(metalPart, transform.position, Quaternion.identity);
+			resource.transform.localScale = new Vector3(1, 1, 1);
+		}
+        print(randomValue);
+    }
 }

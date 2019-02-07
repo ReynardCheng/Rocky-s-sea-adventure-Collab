@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
 	public float skyboxTransitionDuration;
 	public GameObject boss;
 	private SkyboxColor currentSkyboxColor;
+	bool bossIsNear;
 
 	public enum SkyboxColor
 	{
@@ -36,6 +37,8 @@ public class LevelManager : MonoBehaviour
 		boatControl = FindObjectOfType<BoatController>();
 
 		RenderSettings.skybox.SetColor("_Tint", skyboxDefaultColor);
+
+		DynamicGI.UpdateEnvironment();
 	}
 
 	// Update is called once per frame
@@ -57,7 +60,7 @@ public class LevelManager : MonoBehaviour
 		}
 
 		Collider[] colliders = Physics.OverlapSphere(boatCombatScript.transform.position, changeSkyboxRadius); // Gets all colliders in a radius around the position, and store them into an array.
-		bool bossIsNear = false;
+		//bossIsNear = false;
 
 		if (colliders.Length > 0)
 		{
@@ -109,6 +112,8 @@ public class LevelManager : MonoBehaviour
 			//print(duration);
 
 			duration -= Time.deltaTime;
+
+			DynamicGI.UpdateEnvironment();
 
 			yield return null;
 		}

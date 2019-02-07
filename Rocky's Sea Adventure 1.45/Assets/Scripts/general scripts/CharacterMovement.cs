@@ -53,7 +53,6 @@ public class CharacterMovement : MonoBehaviour {
 		if (horizontal != 0 || vertical != 0) characterRotateMovement();
 
 		ChangeMap();
-
 	}
 
 
@@ -76,7 +75,6 @@ public class CharacterMovement : MonoBehaviour {
 			{
 				mapOpened = true;
 				StartCoroutine(AnimateMinimap());
-			
 			}
 		}
 
@@ -155,6 +153,14 @@ public class CharacterMovement : MonoBehaviour {
 		if (other.tag == "SteeringWheel")
 		{
 			canControlShip = true;
+		}
+
+		if (other.tag == "ShipMast")
+		{
+			if (Input.GetKeyDown(KeyCode.E))
+			{
+
+			}
 		}
 	}
 	private void OnTriggerExit(Collider other)

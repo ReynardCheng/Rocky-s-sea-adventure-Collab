@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CannonHealthUI : MonoBehaviour {
 
-    public Slider healthBar;
+    public Image healthBar;
     [SerializeField] private CannonController cannon;
     [SerializeField] private float cannonMaxHP;
 
@@ -13,10 +13,10 @@ public class CannonHealthUI : MonoBehaviour {
 	void Update () {
         if (cannon != null)
         {
-            healthBar.value = cannon.health / cannonMaxHP;
+            healthBar.fillAmount = cannon.health / cannonMaxHP;
         }
         else
-            healthBar.value = 0;
+            healthBar.fillAmount = 0;
 	}
 
     private void OnTriggerEnter(Collider other)
