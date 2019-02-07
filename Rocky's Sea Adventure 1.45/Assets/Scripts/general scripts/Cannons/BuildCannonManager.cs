@@ -335,7 +335,7 @@ public class BuildCannonManager : MonoBehaviour
         cameraSwitch.locked = false;
         fpsController.controllingShip = false;
 
-        Destroy(canvas);
+		Destroy(canvas);
         Destroy(selectedCannon);
 
         GameObject cannon = Instantiate(cannonToBuild, menu.transform.parent.position, Quaternion.identity);

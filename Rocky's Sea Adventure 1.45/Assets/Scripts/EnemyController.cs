@@ -248,7 +248,6 @@ public class EnemyController : MonoBehaviour
 		{
 			//Turns off Aiming beam
 			gameObject.transform.Find("Laser Indicator").gameObject.SetActive(false);
-			aiming = false;
 
 			//GameObject enemyBullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
 			//enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (closestShipSection.transform.position - transform.position).normalized;
@@ -259,6 +258,9 @@ public class EnemyController : MonoBehaviour
 			fireRate = coolDownTime;
 
 			canMove = true;
+
+			aiming = false;
+			detectShipTrigger.shipDetected = false;
 		}
 	}
 
@@ -369,14 +371,21 @@ public class EnemyController : MonoBehaviour
         float randomValue = Random.value;
         GameObject resource = null;
 
-        if (randomValue < 0.133f)
-            resource = Instantiate(seaEssence, transform.position, Quaternion.identity);
-        else if(randomValue < 0.266f)
-            resource = Instantiate(woodPlank, transform.position, Quaternion.identity);
-        else if (randomValue < 0.399f)
-            resource = Instantiate(metalPart, transform.position, Quaternion.identity);
-
-        resource.transform.localScale = new Vector3(1, 1, 1);
+		if (randomValue < 0.133f)
+		{
+			resource = Instantiate(seaEssence, transform.position, Quaternion.identity);
+			resource.transform.localScale = new Vector3(1, 1, 1);
+		}
+		else if (randomValue < 0.266f)
+		{
+			resource = Instantiate(woodPlank, transform.position, Quaternion.identity);
+			resource.transform.localScale = new Vector3(1, 1, 1);
+		}
+		else if (randomValue < 0.399f)
+		{
+			resource = Instantiate(metalPart, transform.position, Quaternion.identity);
+			resource.transform.localScale = new Vector3(1, 1, 1);
+		}
         print(randomValue);
     }
 }
