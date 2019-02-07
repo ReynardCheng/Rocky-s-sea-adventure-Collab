@@ -8869,6 +8869,7 @@ MonoBehaviour:
     type: 2}
   buildProgressSlider: {fileID: 1053254712297592, guid: 760dc5738f3b5b44e9a94199750cd602,
     type: 2}
+  mastMenu: {fileID: 0}
   menu: {fileID: 0}
 --- !u!64 &800462327
 MeshCollider:
@@ -10132,6 +10133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipHealth: 100
+  shipMaxHP: 0
   cannonHolder:
   - {fileID: 123355084}
   - {fileID: 1193343304}
@@ -10350,6 +10352,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 2500
       objectReference: {fileID: 0}
+    - target: {fileID: 137195740625841780, guid: c0b22e6544d722244b9428776b60ae3d,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f4248de3f6095664f97000e850cb9264, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0b22e6544d722244b9428776b60ae3d, type: 2}
   m_IsPrefabAsset: 0

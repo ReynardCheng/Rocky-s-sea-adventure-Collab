@@ -34,7 +34,8 @@ public class Boss : MonoBehaviour {
 	public Transform actualPositionToMove;
 	[SerializeField] int positionToMove; // sets the current position for the boss to move to, position is relative to array element
     [SerializeField] int positionsMoved; // counts how many times the enemy has used this different move pattern
-                                     
+	public Transform bossMesh;
+	
     // to return to original move pattern
     [SerializeField] int movedLimit; // sets the limit of how many times the boss can move in this pattern before returning to original movement
     public int minChange, maxChange; // resets the timer on a random range 
@@ -105,7 +106,9 @@ public class Boss : MonoBehaviour {
                     rb.velocity = direction.normalized * moveSpeed;
                     keepDistance = false;
                 }
-            }
+				
+				bossMesh.transform.rotation = Quaternion.LookRotation(direction);
+			}
         }
 
         if (changeMovement <= 0)
