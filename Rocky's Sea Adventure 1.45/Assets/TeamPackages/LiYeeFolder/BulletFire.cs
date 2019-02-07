@@ -43,6 +43,7 @@ public class BulletFire : MonoBehaviour {
     {
         if (other.tag == "Enemy" && other.gameObject == target.gameObject)
         {
+            print("whatzefuk");
 			other.GetComponent<EnemyController>().Health(10);
 			Instantiate(explosion, transform.position,Quaternion.identity);
             Destroy(gameObject); //destroy itself

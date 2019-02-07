@@ -38,9 +38,19 @@ public class EnemyController : MonoBehaviour
 	[Header("Variable")]
 	public float offsetAboveWater;
 
+    [Header("Drops")]
+    [SerializeField] GameObject seaEssence;
+    [SerializeField] GameObject woodPlank;
+    [SerializeField] GameObject metalPart;
+    
+    [Header("Detect the ship before it moves")]
+    public bool chaseShip;
 
-	//LASER ENEMY VARIABLES
-	private Vector3 laserDirection;
+    [Header("Rise above water before heading for ship")]
+    public GameObject sea;
+
+    //LASER ENEMY VARIABLES
+    private Vector3 laserDirection;
 	private float laserTiming;
 	private bool aiming;	//True when showing where to shoot laser, false when laser is actually shot.
 	private bool canMove;
@@ -55,11 +65,6 @@ public class EnemyController : MonoBehaviour
     private bool oilSlicked = false;
     private bool slowedDown = false;
 
-	[Header("Detect the ship before it moves")]
-	public bool chaseShip;
-
-	[Header("Rise above water before heading for ship")]
-	public GameObject sea;
 
 	// Use this for initialization
 	public void Start()
@@ -92,9 +97,10 @@ public class EnemyController : MonoBehaviour
 	// Update is called once per frame
 	public void Update()
 	{
-		if (spawnTypes == spawnType.Global) chaseShip = true;
+		if (spawnTypes == spawnType.Global)
+            chaseShip = true;
 
-		if (chaseShip && transform.position.y > sea.transform.position.y || spawnTypes == spawnType.Global) MoveToShip();
+		if (chaseShip && transform.position.y > sea.transform.position.y + offsetAboveWater || spawnTypes == spawnType.Global) MoveToShip();
 
 		EnemyTypes();
 
@@ -220,13 +226,14 @@ public class EnemyController : MonoBehaviour
 			aiming = true;
 			canMove = false;
 
-			laserDirection = closestShipSection.transform.position;
 
-			GameObject laserAim = gameObject.transform.Find("Aimer Beam Parent").gameObject;
+			GameObject laserAim = gameObject.transform.Find("Laser Indicator").gameObject;
 			laserAim.SetActive(true);
 			laserAim.transform.LookAt(closestShipSection.transform.position);
 
-			laserTiming = 8;
+            laserDirection = closestShipSection.transform.position;
+
+            laserTiming = 8;
 			fireRate = Mathf.Infinity;
 		}
 		laserTiming -= Time.deltaTime;
@@ -240,7 +247,7 @@ public class EnemyController : MonoBehaviour
 		if(laserTiming <= 0 && aiming)
 		{
 			//Turns off Aiming beam
-			gameObject.transform.Find("Aimer Beam Parent").gameObject.SetActive(false);
+			gameObject.transform.Find("Laser Indicator").gameObject.SetActive(false);
 			aiming = false;
 
 			//GameObject enemyBullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
@@ -261,12 +268,12 @@ public class EnemyController : MonoBehaviour
 	public void Health(float damageTaken)
 	{
 		currentHealth -= damageTaken;
-		HealthUi();
 		if (currentHealth <= 0f)
 		{
 			Destroy(gameObject);
-		}
-	}
+        }
+        HealthUi();
+    }
 
 	void HealthUi()
 	{
@@ -357,4 +364,17 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        float randomValue = Random.value;
+
+        if (randomValue < 0.133f)
+            Instantiate(seaEssence, transform.position, Quaternion.identity);
+        else if(randomValue < 0.266f)
+            Instantiate(woodPlank, transform.position, Quaternion.identity);
+        else if (randomValue < 0.399f)
+            Instantiate(metalPart, transform.position, Quaternion.identity);
+
+        print(randomValue);
+    }
 }
