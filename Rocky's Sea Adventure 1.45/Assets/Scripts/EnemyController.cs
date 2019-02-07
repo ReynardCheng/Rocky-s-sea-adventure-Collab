@@ -248,7 +248,6 @@ public class EnemyController : MonoBehaviour
 		{
 			//Turns off Aiming beam
 			gameObject.transform.Find("Laser Indicator").gameObject.SetActive(false);
-			aiming = false;
 
 			//GameObject enemyBullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
 			//enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (closestShipSection.transform.position - transform.position).normalized;
@@ -259,7 +258,10 @@ public class EnemyController : MonoBehaviour
 			fireRate = coolDownTime;
 
 			canMove = true;
-		}
+
+            aiming = false;
+            detectShipTrigger.shipDetected = false;
+        }
 	}
 
 	//------------------------------------------
