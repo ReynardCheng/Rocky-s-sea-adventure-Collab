@@ -22,6 +22,9 @@ public class LevelManager : MonoBehaviour
 	private SkyboxColor currentSkyboxColor;
 	bool bossIsNear;
 
+    public AudioSource source;
+            
+
 	public enum SkyboxColor
 	{
 		Default, Boss

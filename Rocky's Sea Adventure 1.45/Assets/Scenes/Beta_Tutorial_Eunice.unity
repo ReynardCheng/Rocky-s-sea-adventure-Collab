@@ -1876,7 +1876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232afc77ccaa9b54a8a5a6261e8dfc3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 1420997713}
+  healthBar: {fileID: 0}
   cannon: {fileID: 0}
   cannonMaxHP: 0
 --- !u!65 &123355087
@@ -4948,7 +4948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232afc77ccaa9b54a8a5a6261e8dfc3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 1233725619}
+  healthBar: {fileID: 0}
   cannon: {fileID: 0}
   cannonMaxHP: 0
 --- !u!65 &370856983
@@ -7310,7 +7310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232afc77ccaa9b54a8a5a6261e8dfc3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 260141591}
+  healthBar: {fileID: 0}
   cannon: {fileID: 0}
   cannonMaxHP: 0
 --- !u!65 &534307145
@@ -8284,6 +8284,9 @@ MonoBehaviour:
   ship: {fileID: 907762119}
   shipView: 1
   switchSpeed: 0
+  locked: 0
+  shipMastSharedMaterial: {fileID: 0}
+  shipFlagsSharedMaterial: {fileID: 0}
   turnSpeed: 3
   player: {fileID: 0}
   offset: {x: 4, y: 2, z: 4}
@@ -10447,7 +10450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232afc77ccaa9b54a8a5a6261e8dfc3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 136981381}
+  healthBar: {fileID: 0}
   cannon: {fileID: 0}
   cannonMaxHP: 0
 --- !u!65 &788454369
@@ -10553,6 +10556,7 @@ MonoBehaviour:
   moveSpeed: 0
   canMove: 0
   canControlShip: 0
+  gameStart: 0
   rb: {fileID: 0}
   mainCam: {fileID: 603407264}
   rotateTarget: {fileID: 0}
@@ -10695,6 +10699,7 @@ MonoBehaviour:
     type: 2}
   defenceCannon: {fileID: 1362773878831368, guid: 70b4bd733d29baf408ab79deb68b3158,
     type: 2}
+  shipPartsToHide: {fileID: 0}
   normalMenu: {fileID: 1662064079342822, guid: 68e43ac8a6cbe7a4c8172669188878c6, type: 2}
   upgradeMenu: {fileID: 1852446898709826, guid: 53c3166559f1b104883e0b39a498e2b3,
     type: 2}
@@ -10702,7 +10707,12 @@ MonoBehaviour:
     type: 2}
   buildProgressSlider: {fileID: 1053254712297592, guid: 760dc5738f3b5b44e9a94199750cd602,
     type: 2}
+  mastMenu: {fileID: 0}
+  boostSlider: {fileID: 0}
   menu: {fileID: 0}
+  buildLeftView: {fileID: 0}
+  buildRightView: {fileID: 0}
+  buildMastView: {fileID: 0}
 --- !u!64 &800462327
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12054,6 +12064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipHealth: 100
+  shipMaxHP: 0
   cannonHolder:
   - {fileID: 123355084}
   - {fileID: 1193343304}
@@ -12075,6 +12086,8 @@ MonoBehaviour:
     m_Bits: 0
   shipHealthBar: {fileID: 0}
   shipHealthText: {fileID: 0}
+  defenceCannonDefending: {fileID: 0}
+  defenceCannonDestroyed: {fileID: 0}
 --- !u!114 &907762122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12585,7 +12598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232afc77ccaa9b54a8a5a6261e8dfc3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 1836603922}
+  healthBar: {fileID: 0}
   cannon: {fileID: 0}
   cannonMaxHP: 0
 --- !u!65 &937475814
@@ -15852,7 +15865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232afc77ccaa9b54a8a5a6261e8dfc3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 963877877}
+  healthBar: {fileID: 0}
   cannon: {fileID: 0}
   cannonMaxHP: 0
 --- !u!65 &1193343307
@@ -24042,6 +24055,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1728726350}
   - component: {fileID: 1728726349}
+  - component: {fileID: 1728726351}
   m_Layer: 0
   m_Name: The Level Manager
   m_TagString: Untagged
@@ -24067,6 +24081,7 @@ MonoBehaviour:
   changeSkyboxRadius: 36
   skyboxTransitionDuration: 1
   boss: {fileID: 0}
+  source: {fileID: 0}
   winScreen: {fileID: 1728985369}
   loseScreen: {fileID: 0}
 --- !u!4 &1728726350
@@ -24082,6 +24097,101 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1728726351
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1728726348}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8fc5c08c862c3c24f85e3cd4a69d39b5, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1728985367
 GameObject:
   m_ObjectHideFlags: 0
