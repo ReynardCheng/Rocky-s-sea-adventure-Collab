@@ -10,16 +10,6 @@ public class OilSlickFire : MonoBehaviour
     //public GameObject explosion;
 
     public GameObject oilSlickPrefab;
-
-    private AudioSource source;
-    public AudioClip OilSlickCollide;
-
-
-    private void Awake()
-    {
-        source = GetComponent<AudioSource>();
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -56,10 +46,8 @@ public class OilSlickFire : MonoBehaviour
         if (other.tag == "Enemy" && other.gameObject == target.gameObject)
         {
             other.GetComponent<EnemyController>().Health(10);
-            //Instantiate(explosion, transform.position, Quaternion.identity);
-            GameObject oilSlick = Instantiate(oilSlickPrefab, new Vector3(other.transform.position.x, other.transform.position.y - 2, other.transform.position.z), Quaternion.identity);
-            AudioSource.PlayClipAtPoint(OilSlickCollide, other.transform.position);
-            print("oil slick sound");
+			//Instantiate(explosion, transform.position, Quaternion.identity);
+			GameObject oilSlick = Instantiate(oilSlickPrefab, new Vector3(other.transform.position.x, other.transform.position.y - 2, other.transform.position.z), Quaternion.identity);
             Destroy(oilSlick, 4);
             Destroy(gameObject); //destroy itself
             return;

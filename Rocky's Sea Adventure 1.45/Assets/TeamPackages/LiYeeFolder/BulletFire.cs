@@ -8,14 +8,6 @@ public class BulletFire : MonoBehaviour {
     public Transform target;  //Target (set by CannonFire script)}
 	public GameObject explosion;
 
-    private AudioSource source;
-    public AudioClip basicCollide;
-
-    private void Awake()
-    {
-        source = GetComponent<AudioSource>();
-    }
-
 
     // Update is called once per frame
     void Update () {
@@ -53,8 +45,6 @@ public class BulletFire : MonoBehaviour {
         {
 			other.GetComponent<EnemyController>().Health(10);
 			Instantiate(explosion, transform.position,Quaternion.identity);
-            AudioSource.PlayClipAtPoint(basicCollide, other.transform.position);
-            print("basic ball sound");
             Destroy(gameObject); //destroy itself
             return;
         }

@@ -14,9 +14,8 @@ public class CannonController : MonoBehaviour {
 	public Transform TargetingEnemy;
 	public List<GameObject> EnemiesInRange;
 
-	[Header("CannonSounds")]
+	[Header("CannonSouns")]
 	private AudioSource SoundFromCannon;
-    public AudioClip cannonDestroyed;
 
 	[Header("Health")]
 	public int health;
@@ -26,13 +25,8 @@ public class CannonController : MonoBehaviour {
 
 	public cannonTypes cannonType;
 
-    private void Awake()
-    {
-        SoundFromCannon = GetComponent<AudioSource>();
-    }
-
-    // Use this for initialization
-    void Start () {
+	// Use this for initialization
+	void Start () {
         
 		health = 50;
 
@@ -129,8 +123,7 @@ public class CannonController : MonoBehaviour {
 		health -= damageToTake;
 		if (health <= 0)
 		{
-            AudioSource.PlayClipAtPoint(cannonDestroyed, gameObject.transform.position);
-            Destroy(gameObject.transform.parent.gameObject);
+			Destroy(gameObject.transform.parent.gameObject);
 		}
 	}
 

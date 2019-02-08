@@ -128,15 +128,9 @@ MonoBehaviour:
   projectile: {fileID: 54070552391506400, guid: af711a1a6983b164083b54f8f6fb64bb,
     type: 2}
   atkRate: 0
-  slowDebuffTimer: 1
+  speed: 10
   TargetingEnemy: {fileID: 0}
   EnemiesInRange: []
-  basicFiring: {fileID: 8300000, guid: 243acbb62999ce4488dc4c77079fa15f, type: 3}
-  AoEFiring: {fileID: 8300000, guid: 6ef11fb67bed99443bc6102fe482334a, type: 3}
-  oilSlickFiring: {fileID: 8300000, guid: 7c2b56304f9e3144bb721fddb367cd3c, type: 3}
-  health: 0
-  parent: {fileID: 0}
-  cannonType: 0
 --- !u!114 &114448677973767654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -151,5 +145,3 @@ MonoBehaviour:
   menuToSpawn: {fileID: 1662064079342822, guid: 68e43ac8a6cbe7a4c8172669188878c6,
     type: 2}
   hitPosition: {fileID: 0}
-  cannonFace: {x: 0, y: 0, z: 0}
-  cannonType: 0
