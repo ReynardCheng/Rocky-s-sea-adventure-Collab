@@ -23,6 +23,14 @@ public class BoatCombat1 : MonoBehaviour
     [SerializeField] private Image shipHealthBar;
     [SerializeField] private Text shipHealthText;
 
+    private AudioSource source;
+    public AudioClip defenceCannonDefending;
+    public AudioClip defenceCannonDestroyed;
+
+    private void Awake()
+    {
+        source = GetComponent<AudioSource>();
+    }
     public void Start()
     {
         shipMaxHP = shipHealth;
@@ -66,6 +74,8 @@ public class BoatCombat1 : MonoBehaviour
 				{
                     if ((cannonHolder[i].transform.position - damageLocation.transform.position).magnitude < protectionRadius)
                     {
+                        AudioSource.PlayClipAtPoint(defenceCannonDefending, gameObject.transform.position);
+                        print("defend sound");
                         DamageCannons(cannonHolder[i].gameObject, damageToTake);
                         return;
                     }
