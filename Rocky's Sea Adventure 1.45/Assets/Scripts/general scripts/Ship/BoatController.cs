@@ -50,6 +50,7 @@ public class BoatController : MonoBehaviour
 	[SerializeField] Rigidbody rb;
 	[SerializeField] myGUI theGUI;
 	[SerializeField] BoatCombat1 theBoatCombat;
+    [SerializeField] LevelManager levelManager;
 
 	[Header("UI")]
 	[Space]
@@ -97,6 +98,7 @@ public class BoatController : MonoBehaviour
 		theGUI = FindObjectOfType<myGUI>();
 		theBoatCombat = GetComponent<BoatCombat1>();
 		theCharacter = FindObjectOfType<CharacterMovement>();
+        levelManager = FindObjectOfType<LevelManager>();
 
 		// For ui
 		boostSlider.maxValue = boost;
@@ -240,7 +242,7 @@ public class BoatController : MonoBehaviour
 
         if (other.tag == "End Point")
         {
-			theGUI.gameEnded = true;
+            levelManager.Win();
         }
 
         /// *************************************************************

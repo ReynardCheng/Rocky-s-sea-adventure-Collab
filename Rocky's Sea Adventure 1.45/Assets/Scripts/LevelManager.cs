@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class LevelManager : MonoBehaviour
 	public GameObject boss;
 	private SkyboxColor currentSkyboxColor;
 	bool bossIsNear;
+
+    public string nextLevel;
 
 	public enum SkyboxColor
 	{
@@ -119,10 +122,10 @@ public class LevelManager : MonoBehaviour
 		}
 	}
 
-	void Win()
+	public void Win()
 	{
 		winScreen.gameObject.SetActive(true);
-
+        SceneManager.LoadScene(nextLevel);
 	}
 
 	void Lose()

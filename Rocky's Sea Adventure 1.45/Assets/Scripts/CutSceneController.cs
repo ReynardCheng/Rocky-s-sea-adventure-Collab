@@ -42,10 +42,12 @@ public class CutSceneController : MonoBehaviour {
         ShipUIMenu.SetActive(true);
         UIStuff.SetActive(true);
         CannonUI.SetActive(true);
+        gameObject.SetActive(false);
 
         //Dialogue lets go
         DialogueThing.SetActive(true);
         FixedCamera.SetActive(true);
+        
 
     }
 }

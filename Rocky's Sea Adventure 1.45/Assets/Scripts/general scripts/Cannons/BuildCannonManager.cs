@@ -10,9 +10,9 @@ public class BuildCannonManager : MonoBehaviour
     public static bool menuSpawned;
     
     SpawnMenu theMenu;
-    private ResourceCount resourceCount;
-    private BoatController boatController;
-    private BoatCombat1 boatCombat;
+    public ResourceCount resourceCount;
+    public BoatController boatController;
+    public BoatCombat1 boatCombat;
     private CharacterMovement characterMovement;
     private CameraSwitch cameraSwitch;
     private UnityStandardAssets.Characters.FirstPerson.FirstPersonController fpsController;
@@ -50,7 +50,7 @@ public class BuildCannonManager : MonoBehaviour
         characterMovement = GetComponent<CharacterMovement>();
         boatController = FindObjectOfType<BoatController>();
         boatCombat = FindObjectOfType<BoatCombat1>();
-        resourceCount = FindObjectOfType<ResourceCount>();
+        //resourceCount = FindObjectOfType<ResourceCount>();
         cameraSwitch = FindObjectOfType<CameraSwitch>();
         fpsController = GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
         menuSpawned = false;
@@ -99,6 +99,7 @@ public class BuildCannonManager : MonoBehaviour
                     if (b.gameObject.name.Contains("buildNormal"))
                     {
                         b.GetComponentInChildren<Button>().onClick.AddListener(BuildNormalCannon);
+                        print("good luck");
                     }
                     if (b.gameObject.name.Contains("Cancel"))
                     {

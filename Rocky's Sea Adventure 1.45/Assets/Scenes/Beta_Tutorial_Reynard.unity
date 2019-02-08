@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.31183413, g: 0.4790578, b: 0.59423643, a: 1}
+  m_IndirectSpecularColor: {r: 0.6867311, g: 0.77929825, b: 0.85494787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10886,8 +10886,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -554, y: -268}
+  m_AnchoredPosition: {x: 127.4, y: 17.7}
+  m_SizeDelta: {x: -299.3, y: -232.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &753302535
 MonoBehaviour:
@@ -10942,6 +10942,7 @@ RectTransform:
   - {fileID: 626875219}
   - {fileID: 1162742028}
   - {fileID: 205951806}
+  - {fileID: 1257774813}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11186,8 +11187,8 @@ MonoBehaviour:
   s:
   - Press 'E' to stop steering and go to an empty cannon spot.
   - To build cannons, press 'E' repeatedly!
-  - here are other variations of cannons too.
-  - ' With enough materials, you can upgrade to other types of cannons.'
+  - There are other variations of cannons too.
+  - With enough materials, you can upgrade to other types of cannons.
   - You can explore the other types of cannons on your own!
   - You can explore the other types of cannons on your own!
   index: 0
@@ -11365,6 +11366,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aaae039937c5514a96f55f1519e806e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resourceCount: {fileID: 205951807}
+  boatController: {fileID: 0}
+  boatCombat: {fileID: 0}
   normalCannon: {fileID: 1860678955656556, guid: 08bce7c78fe545047ba60fa614107493,
     type: 2}
   aoeCannon: {fileID: 1941821989435148, guid: 93120b45c5f58b146a80ccf595bc2c0e, type: 2}
@@ -11372,7 +11376,7 @@ MonoBehaviour:
     type: 2}
   defenceCannon: {fileID: 1362773878831368, guid: 70b4bd733d29baf408ab79deb68b3158,
     type: 2}
-  shipPartsToHide: {fileID: 0}
+  shipPartsToHide: {fileID: 1747135344}
   normalMenu: {fileID: 1662064079342822, guid: 68e43ac8a6cbe7a4c8172669188878c6, type: 2}
   upgradeMenu: {fileID: 1852446898709826, guid: 53c3166559f1b104883e0b39a498e2b3,
     type: 2}
@@ -11380,7 +11384,7 @@ MonoBehaviour:
     type: 2}
   buildProgressSlider: {fileID: 1053254712297592, guid: 760dc5738f3b5b44e9a94199750cd602,
     type: 2}
-  mastMenu: {fileID: 0}
+  mastMenu: {fileID: 1400780245194176, guid: 9d98cc66cb67c184aa666188087064d3, type: 2}
   boostSlider: {fileID: 732559098}
   menu: {fileID: 0}
   buildLeftView: {fileID: 1043516713}
@@ -17498,6 +17502,39 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1249490837}
   m_Mesh: {fileID: 4300000, guid: e3623289f2e8d9a4ea153d6de2a9a598, type: 3}
+--- !u!1 &1257774812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1257774813}
+  m_Layer: 0
+  m_Name: Win Screen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1257774813
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1257774812}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 762659128}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1259946857
 GameObject:
   m_ObjectHideFlags: 0
@@ -21797,7 +21834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1524512579
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22946,11 +22983,11 @@ RectTransform:
   m_Father: {fileID: 753302534}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.726, y: 0.6144347}
+  m_AnchorMin: {x: 0.5154686, y: 0.4048807}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 120, y: -16.6}
-  m_SizeDelta: {x: -16, y: -33.2}
-  m_Pivot: {x: 0.5, y: 0.49999985}
+  m_AnchoredPosition: {x: 306, y: -1}
+  m_SizeDelta: {x: -151.6, y: -47.5}
+  m_Pivot: {x: -1.7732815, y: 0.15749973}
 --- !u!114 &1607907277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24956,6 +24993,7 @@ MonoBehaviour:
   changeSkyboxRadius: 36
   skyboxTransitionDuration: 1
   boss: {fileID: 0}
+  nextLevel: Beta_Lv1_Reynard
   winScreen: {fileID: 1728985369}
   loseScreen: {fileID: 0}
 --- !u!4 &1728726350
@@ -25595,6 +25633,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   theGUI: {fileID: 0}
   theBoatCombat: {fileID: 0}
+  levelManager: {fileID: 0}
   boostSlider: {fileID: 732559098}
   theWater: {fileID: 0}
   BoatMoving: {fileID: 0}
@@ -28921,9 +28960,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1924820560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67d5ad4b7db5550459335d7d2a70d3f6, type: 3}
+  m_Script: {fileID: 11500000, guid: e636abc9c28a0cf48a7ad1a5640c84ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winLoseText: {fileID: 571336983}
+  bckGroundRecttransform: {fileID: 1524512579}
+  gameEnded: 0
+  lose: 0
+  rate: 0
 --- !u!114 &1924820566
 MonoBehaviour:
   m_ObjectHideFlags: 0
