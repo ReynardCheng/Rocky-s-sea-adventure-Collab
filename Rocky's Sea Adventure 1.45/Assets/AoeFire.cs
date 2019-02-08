@@ -17,7 +17,14 @@ public class AoeFire : MonoBehaviour {
     public Transform target;  //Target (set by CannonFire script)}
     public GameObject explosion; //explosion effect
 
+    private AudioSource source;
+    public AudioClip AoECollideSound;
 
+
+    private void Awake()
+    {
+        source = GetComponent<AudioSource>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -93,6 +100,7 @@ public class AoeFire : MonoBehaviour {
         {
             //Instantiate(explosion, transform.position, Quaternion.identity);
             //Destroy(gameObject); //destroy itself
+            AudioSource.PlayClipAtPoint(AoECollideSound, other.transform.position);
             Explode();
             return;
         }

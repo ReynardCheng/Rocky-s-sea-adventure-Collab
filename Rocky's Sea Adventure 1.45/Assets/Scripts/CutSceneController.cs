@@ -1,19 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CutSceneController : MonoBehaviour {
-
-    public GameObject ShipUIMenu;
-    public GameObject UIStuff;
-    public GameObject CannonUI;
-    public CharacterMovement Player;
-
-    [Header("Dialogue Stuff")]
-    public GameObject DialogueThing;
-    public GameObject FixedCamera;
-
 
 	// Use this for initialization
 	void Start () {
@@ -25,17 +14,10 @@ public class CutSceneController : MonoBehaviour {
 		
 	}
 
-    private void Awake()
-    {
-        //set all the UI stuff false during cutscene
-        ShipUIMenu.SetActive(false);
-        UIStuff.SetActive(false);
-        CannonUI.SetActive(false);
-    }
-
-    public void offThisCam()
+	public void offThisCam()
 	{
 		gameObject.GetComponent<Camera>().enabled = false;
+<<<<<<< HEAD
         Player.gameStart = true;
 
         //set ui stuff back on 
@@ -50,4 +32,7 @@ public class CutSceneController : MonoBehaviour {
         
 
     }
+=======
+	}
+>>>>>>> b56eb36cfb8207e459fd057428a5245808aa20fa
 }

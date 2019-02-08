@@ -15,7 +15,7 @@ public class ShipCollectResources : MonoBehaviour
     void Start()
     {
         Audio = GetComponent<AudioSource>();
-        //resourceCountScript = FindObjectOfType<ResourceCount>();
+        resourceCountScript = FindObjectOfType<ResourceCount>();
     }
 
     // Update is called once per frame
