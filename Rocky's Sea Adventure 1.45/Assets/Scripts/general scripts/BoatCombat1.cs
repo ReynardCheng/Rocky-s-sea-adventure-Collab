@@ -26,8 +26,10 @@ public class BoatCombat1 : MonoBehaviour
     public void Start()
     {
         shipMaxHP = shipHealth;
-        shipHealthText.text = shipHealth.ToString();
-        shipHealthBar.fillAmount = shipMaxHP;
+	
+		shipHealthBar.fillAmount = shipHealth / shipMaxHP;
+		shipHealthText.text = shipHealth.ToString();
+		
     }
 
     public void TakeDamage(int damageToTake, GameObject damageLocation)
@@ -80,55 +82,7 @@ public class BoatCombat1 : MonoBehaviour
 			}
 		}
 
-		//If there are currently defence cannons on the ship,
-		//And damagelocation is the same side of ship as the defence cannon,
-		//if (canDefend == true)
-		//{
-		//	print("defending!");
-		//	//Check if the enemy projectile's damage radius can hit at least one cannonslot
-		//	if (Physics.OverlapSphere(damageLocation.transform.position, 5.0f, cannonSlot).Length != 0)
-		//	{
-		//		GameObject cannonToDamage = null;
 
-		//		//If Ship right side is closer,
-		//		//Damage the defence cannons on the right side.
-		//		if (RightSideCloser)
-		//		{
-		//			for (int i = 3; i < 6; i++)
-		//			{
-		//				if (cannonHolder[i].GetComponentInChildren<CannonController>() != null)
-		//				{
-		//					if (cannonHolder[i].GetComponentInChildren<CannonController>().cannonType == cannonTypes.defence)
-		//					{
-		//						cannonToDamage = cannonHolder[i].GetComponentInChildren<CannonController>().gameObject;
-		//						DamageCannons(cannonToDamage, damageToTake);
-		//					}
-		//				}
-		//			}
-		//		}
-
-		//		//If Ship left side is closer,
-		//		//Damage the defence cannons on the right side.
-		//		if (!RightSideCloser)
-		//		{
-		//			if (cannonToDamage == null)
-		//			{
-		//				for (int i = 0; i < 3; i++)
-		//				{
-		//					if (cannonHolder[i].GetComponentInChildren<CannonController>() != null)
-		//					{
-		//						if (cannonHolder[i].GetComponentInChildren<CannonController>().cannonType == cannonTypes.defence)
-		//						{
-		//							cannonToDamage = cannonHolder[i].GetComponentInChildren<CannonController>().gameObject;
-		//							DamageCannons(cannonToDamage, damageToTake);
-		//						}
-		//					}
-		//				}
-		//			}
-		//		}
-
-		//	}
-		//}
 		if (cannonsInRange.Length == 0)
 		{
 			DamageShip(damageToTake);
@@ -154,9 +108,13 @@ public class BoatCombat1 : MonoBehaviour
 
 	public void DamageShip(int damageToTake)
 	{
-		shipHealth -= damageToTake;
-        shipHealthText.text = shipHealth.ToString();
-        shipHealthBar.fillAmount = shipHealth / shipMaxHP;
+		if (shipHealth >= 0)
+		{
+			shipHealth -= damageToTake;
+			shipHealthText.text = shipHealth.ToString();
+			shipHealthBar.fillAmount = shipHealth / shipMaxHP;
+		}
+		
 	}
 
 	private void DamageCannons(GameObject cannonToDamage, int damageToTake)

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CutSceneController : MonoBehaviour {
 
+	public bool forFunctions;
+
     public GameObject ShipUIMenu;
     public GameObject UIStuff;
     public GameObject CannonUI;
@@ -25,13 +27,16 @@ public class CutSceneController : MonoBehaviour {
 		
 	}
 
-    private void Awake()
-    {
-        //set all the UI stuff false during cutscene
-        ShipUIMenu.SetActive(false);
-        UIStuff.SetActive(false);
-        CannonUI.SetActive(false);
-    }
+	private void Awake()
+	{
+		if (!forFunctions)
+		{
+			//set all the UI stuff false during cutscene
+			ShipUIMenu.SetActive(false);
+			UIStuff.SetActive(false);
+			CannonUI.SetActive(false);
+		}
+	}
 
     public void offThisCam()
 	{
@@ -47,7 +52,12 @@ public class CutSceneController : MonoBehaviour {
         //Dialogue lets go
         DialogueThing.SetActive(true);
         FixedCamera.SetActive(true);
-        
-
     }
+	public void offAndStartGame()
+	{
+		CharacterMovement player = FindObjectOfType<CharacterMovement>();
+		player.gameStart = true;
+		player.canMove = true;
+		gameObject.SetActive(false);
+	}
 }

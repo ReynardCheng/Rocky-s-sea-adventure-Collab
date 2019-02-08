@@ -50,8 +50,8 @@ public class BuildCannonManager : MonoBehaviour
         characterMovement = GetComponent<CharacterMovement>();
         boatController = FindObjectOfType<BoatController>();
         boatCombat = FindObjectOfType<BoatCombat1>();
-        //resourceCount = FindObjectOfType<ResourceCount>();
-        cameraSwitch = FindObjectOfType<CameraSwitch>();
+		resourceCount = FindObjectOfType<ResourceCount>();
+		cameraSwitch = FindObjectOfType<CameraSwitch>();
         fpsController = GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
         menuSpawned = false;
     }

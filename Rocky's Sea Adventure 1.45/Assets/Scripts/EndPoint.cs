@@ -5,11 +5,15 @@ using UnityEngine;
 public class EndPoint : MonoBehaviour {
 
 	public int intToSave;
+	public string levelToLoad;
+	//settle win lose
+	myGUI theGui;
 	[SerializeField] int highestLevelCleared;
 
 	// Use this for initialization
 	void Start () {
 		highestLevelCleared = PlayerPrefs.GetInt("HighestLevelCleared");
+		theGui = FindObjectOfType<myGUI>();
 	}
 	
 	// Update is called once per frame
@@ -24,6 +28,9 @@ public class EndPoint : MonoBehaviour {
 			{
 				PlayerPrefs.SetInt("HighestLevelCleared", intToSave);
 				print("Saved");
+				other.GetComponent<BoatController>().reachedEnd = true;
+				theGui.lose = false;
+				//LoadingScreen.theLoadingScreen.loadLevel(levelToLoad);
 			}
 		}
 	}

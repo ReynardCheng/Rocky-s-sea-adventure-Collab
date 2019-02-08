@@ -115,6 +115,7 @@ public class TutorialController : MonoBehaviour {
             {
                 Destroy(Script2);
                 Text.text = "The resources are right in front!";
+				Player.canMove = false;
             }
             if (sentenceNumber == 4)
             {
@@ -123,7 +124,8 @@ public class TutorialController : MonoBehaviour {
                 Script3.SetActive(false);
                 Textboxes.SetActive(false);
                 ProceedScript3 = false;
-            }
+				Player.canMove = true;
+			}
         }
 
         /// *****************

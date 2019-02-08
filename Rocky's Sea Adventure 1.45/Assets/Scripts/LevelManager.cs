@@ -22,15 +22,17 @@ public class LevelManager : MonoBehaviour
 	public GameObject boss;
 	private SkyboxColor currentSkyboxColor;
 	bool bossIsNear;
+	[SerializeField] myGUI theGui;
 
-    public string nextLevel;
+
+	public string nextLevel;
 
 	public enum SkyboxColor
 	{
 		Default, Boss
 	}
 
-	public Image winScreen;
+	public Image endScreen;
 	public Image loseScreen;
 
 	// Use this for initialization
@@ -38,6 +40,8 @@ public class LevelManager : MonoBehaviour
 	{
 		boatCombatScript = FindObjectOfType<BoatCombat1>();
 		boatControl = FindObjectOfType<BoatController>();
+
+		theGui = FindObjectOfType<myGUI>();
 
 		RenderSettings.skybox.SetColor("_Tint", skyboxDefaultColor);
 
@@ -47,7 +51,6 @@ public class LevelManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-
 
 		// shipHpBarImage.fillAmount = boatCombatScript.shipHealth / shipMaxHp;
 
@@ -59,6 +62,7 @@ public class LevelManager : MonoBehaviour
 		if (boatCombatScript.shipHealth <= 0)
 		{
 			print("Ship died");
+			theGui.lose = true;
 			Lose();
 		}
 
@@ -93,6 +97,8 @@ public class LevelManager : MonoBehaviour
 			}
 		}
 
+		print(boatCombatScript.shipHealth);
+
 	}
 
 	private void OnDrawGizmos()
@@ -124,12 +130,12 @@ public class LevelManager : MonoBehaviour
 
 	public void Win()
 	{
-		winScreen.gameObject.SetActive(true);
-        SceneManager.LoadScene(nextLevel);
+		endScreen.gameObject.SetActive(true);
+      // SceneManager.LoadScene(nextLevel);
 	}
 
 	void Lose()
 	{
-		loseScreen.gameObject.SetActive(true);
+		endScreen.gameObject.SetActive(true);
 	}
 }
