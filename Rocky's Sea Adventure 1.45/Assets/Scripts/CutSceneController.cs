@@ -17,17 +17,14 @@ public class CutSceneController : MonoBehaviour {
     public GameObject FixedCamera;
 
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
 
-	private void Awake()
+	private void Start()
 	{
 		if (!forFunctions)
 		{

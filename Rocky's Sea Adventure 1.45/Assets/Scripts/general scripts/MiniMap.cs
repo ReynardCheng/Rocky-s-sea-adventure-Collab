@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MiniMap : MonoBehaviour
 {
-	public Transform player;
+	public Transform boat;
 
 	private bool revertFogState = false;
 
@@ -23,6 +23,7 @@ public class MiniMap : MonoBehaviour
 	{
 	
 		theCharacter = FindObjectOfType<CharacterMovement>();
+		boat = FindObjectOfType<BoatController>().transform;
 		borderThickness = 10f;
 	}
 
@@ -30,7 +31,7 @@ public class MiniMap : MonoBehaviour
 	{
 		if (!theCharacter.mapOpened && !theCharacter.crRunning)
 		{
-			Vector3 newPosition = player.position;
+			Vector3 newPosition = boat.position;
 			newPosition.y = transform.position.y;
 			transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * 5);
 			raycastCam.fieldOfView = 60f;

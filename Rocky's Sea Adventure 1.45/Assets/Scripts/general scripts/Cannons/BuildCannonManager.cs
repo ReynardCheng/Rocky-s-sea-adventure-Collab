@@ -45,7 +45,7 @@ public class BuildCannonManager : MonoBehaviour
 
     //[SerializeField]Button[] buttons;
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         characterMovement = GetComponent<CharacterMovement>();
         boatController = FindObjectOfType<BoatController>();
@@ -351,7 +351,7 @@ public class BuildCannonManager : MonoBehaviour
     {
         Transform spawnLocation = cannonSlot.transform;
 
-        boostSlider.gameObject.SetActive(true);
+       // boostSlider.gameObject.SetActive(true);
 
         menu = Instantiate(mastMenu, cannonSlot.transform, true);
         menu.transform.position = new Vector3(spawnLocation.position.x, spawnLocation.position.y + 2, spawnLocation.position.z - 0.1f);
@@ -426,7 +426,7 @@ public class BuildCannonManager : MonoBehaviour
         cameraSwitch.locked = false;
         fpsController.controllingShip = false;
 
-        boostSlider.gameObject.SetActive(false);
+//        boostSlider.gameObject.SetActive(false);
 
         Destroy(menu);
         menuSpawned = false;
