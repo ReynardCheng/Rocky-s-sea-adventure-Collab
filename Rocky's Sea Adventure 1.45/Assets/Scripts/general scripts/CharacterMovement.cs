@@ -45,10 +45,11 @@ public class CharacterMovement : MonoBehaviour {
 		rotateTarget = new GameObject("Rotate Target").transform;
         mainCam = Camera.main;
 	}
-	
+
 	// Update is called once per frame
-	void Update () {
-		if (gameStart)
+	void Update()
+	{
+		if (gameStart && canMove)
 		{
 			float horizontal = Input.GetAxis("Horizontal(P1)");
 			float vertical = Input.GetAxis("Vertical(P1)");
@@ -58,7 +59,19 @@ public class CharacterMovement : MonoBehaviour {
 
 			ChangeMap();
 		}
+
+		if (!canMove)
+		{
+			gameObject.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = false;
+			//theBoat.movementFactor = Mathf.Lerp(theBoat.movementFactor, 0, Time.deltaTime * 3);
+			//theBoat.steerFactor = Mathf.Lerp(theBoat.steerFactor, 0, Time.deltaTime * 3);
+			theBoat.movementFactor = 0f;
+			theBoat.steerFactor = 0f;
 		}
+		else {
+			gameObject.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = true;
+		}
+	}
 
 
 	// For methods

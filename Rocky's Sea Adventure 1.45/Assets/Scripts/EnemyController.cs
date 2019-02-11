@@ -65,6 +65,8 @@ public class EnemyController : MonoBehaviour
     private bool oilSlicked = false;
     private bool slowedDown = false;
 
+	CharacterMovement player;
+
 
 	// Use this for initialization
 	public void Start()
@@ -92,21 +94,26 @@ public class EnemyController : MonoBehaviour
 		InvokeRepeating("FindShipTarget", 0, 1f);
 
 		sea = GameObject.Find("Sea");
+
+		player = FindObjectOfType<CharacterMovement>();
 	}
 
 	// Update is called once per frame
 	public void Update()
 	{
-		if (spawnTypes == spawnType.Global)
-            chaseShip = true;
+		if (player.gameStart)
+		{
+			if (spawnTypes == spawnType.Global)
+				chaseShip = true;
 
-		if (chaseShip && transform.position.y > sea.transform.position.y + offsetAboveWater || spawnTypes == spawnType.Global) MoveToShip();
+			if (chaseShip && transform.position.y > sea.transform.position.y + offsetAboveWater || spawnTypes == spawnType.Global) MoveToShip();
 
-		EnemyTypes();
+			EnemyTypes();
 
-        DeactivateHealthBar();
+			DeactivateHealthBar();
 
-		MoveAboveWater();
+			MoveAboveWater();
+		}
 	}
 
 	void MoveToShip()

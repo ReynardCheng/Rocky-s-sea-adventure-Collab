@@ -45,6 +45,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		CharacterMovement theCharacter;
 		public Transform playerMesh;
 		public bool controllingShip;
+		public bool canMove;
 		bool moving;
 
         // Use this for initialization
@@ -102,8 +103,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
-        private void FixedUpdate()
-        {
+		private void FixedUpdate()
+		{
 			if (!controllingShip && theCharacter.gameStart)
 			{
 				Rotate();
@@ -139,15 +140,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				{
 					m_MoveDir += Physics.gravity * m_GravityMultiplier * Time.fixedDeltaTime;
 				}
-				m_CollisionFlags = m_CharacterController.Move(m_MoveDir  * Time.fixedDeltaTime);
+				m_CollisionFlags = m_CharacterController.Move(m_MoveDir * Time.fixedDeltaTime);
 
 				ProgressStepCycle(speed);
 				// UpdateCameraPosition(speed);
 
 				m_MouseLook.UpdateCursorLock();
 			}
-		
-        }
+
+		}
 
 		private void PlayJumpSound()
         {

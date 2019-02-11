@@ -18,9 +18,11 @@ public class CannonController : MonoBehaviour {
 	private AudioSource SoundFromCannon;
 
 	[Header("Health")]
-	public int health;
+    public int health;
+    private int maxHealth;
+    public GameObject smokeEffect;
 
-	[Header("Parent")]
+    [Header("Parent")]
 	public GameObject parent;
 
 	public cannonTypes cannonType;
@@ -29,6 +31,7 @@ public class CannonController : MonoBehaviour {
 	void Start () {
         
 		health = 50;
+        maxHealth = health;
 
 		SoundFromCannon = GetComponent<AudioSource>();
 
@@ -121,11 +124,23 @@ public class CannonController : MonoBehaviour {
 	public void damageCannon(int damageToTake)
 	{
 		health -= damageToTake;
-		if (health <= 0)
-		{
-			Destroy(gameObject.transform.parent.gameObject);
-		}
-	}
+
+        if (health <= 0)
+        {
+            Destroy(gameObject.transform.parent.gameObject);
+        }
+        else
+        {
+            if (health <= 30)
+            {
+                smokeEffect.SetActive(true);
+            }
+            else
+            {
+                smokeEffect.SetActive(false);
+            }
+        }
+    }
 
 	void OnTriggerEnter(Collider other) //Add enemy to list of targets when in range of cannon
 	{

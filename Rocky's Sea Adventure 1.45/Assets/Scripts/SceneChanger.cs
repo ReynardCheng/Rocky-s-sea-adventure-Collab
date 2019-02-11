@@ -12,4 +12,9 @@ public class SceneChanger : MonoBehaviour
         LoadingScreen.theLoadingScreen.loadLevel(sceneName);
     }
 
+	public void QuitGame()
+	{
+		Application.Quit();
+	}
+
 }

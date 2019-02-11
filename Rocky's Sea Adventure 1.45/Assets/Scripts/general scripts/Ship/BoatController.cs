@@ -102,6 +102,7 @@ public class BoatController : MonoBehaviour
 
 		// For ui
 		boostSlider.maxValue = boost;
+		print("IM FKING WORKING");
 
 	}
 
