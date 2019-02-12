@@ -31,6 +31,9 @@ public class BuildCannonManager : MonoBehaviour
     public GameObject dismantleMenu;
     public GameObject buildProgressSlider;
     public GameObject mastMenu;
+    public GameObject mastInteractMenu;
+    public GameObject cannonInteractMenuPrefab;
+    private GameObject cannonInteractMenu;
     public Slider boostSlider;
 
     [SerializeField] GameObject menu;
@@ -440,6 +443,27 @@ public class BuildCannonManager : MonoBehaviour
 		}
 	}
 
+    public void OpenMastInteractionMenu()
+    {
+        mastInteractMenu.SetActive(true);
+    }
+
+    public void CloseMastInteractionMenu()
+    {
+        mastInteractMenu.SetActive(false);
+    }
+
+    public void OpenCannonInteractionMenu(GameObject cannonSlot)
+    {
+        cannonInteractMenu = Instantiate(cannonInteractMenuPrefab, cannonSlot.transform);
+        cannonInteractMenu.GetComponent<RectTransform>().anchoredPosition = new Vector2(cannonInteractMenu.GetComponent<RectTransform>().anchoredPosition.x, 0.18f);
+    }
+
+    public void CloseCannonInteractionMenu(GameObject cannonSlot)
+    {
+        Destroy(cannonInteractMenu);
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -447,11 +471,15 @@ public class BuildCannonManager : MonoBehaviour
         {
             cannonSlot = other.gameObject;
             inRangeToBuild = true;
+
+            OpenCannonInteractionMenu(cannonSlot);
         }
 
         if (other.tag == "MastInteraction")
         {
             cannonSlot = other.gameObject;
+
+            OpenMastInteractionMenu();
             inShipMastRange = true;
         }
     }
@@ -462,12 +490,16 @@ public class BuildCannonManager : MonoBehaviour
         {
             cannonSlot = null;
             inRangeToBuild = false;
+
+            CloseCannonInteractionMenu(cannonSlot);
         }
 
         if (other.tag == "MastInteraction")
         {
             cannonSlot = null;
             inShipMastRange = false;
+
+            CloseMastInteractionMenu();
         }
     }
 }

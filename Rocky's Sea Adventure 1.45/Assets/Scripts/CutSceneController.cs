@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CutSceneController : MonoBehaviour {
+public class CutSceneController : MonoBehaviour
+{
 
-	public bool forFunctions;
+    public bool forFunctions;
+    public GameObject bel;
 
     public GameObject ShipUIMenu;
     public GameObject UIStuff;
@@ -18,26 +20,27 @@ public class CutSceneController : MonoBehaviour {
 
 
 
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-	private void Start()
-	{
-		if (!forFunctions)
-		{
-			//set all the UI stuff false during cutscene
-			ShipUIMenu.SetActive(false);
-			UIStuff.SetActive(false);
-			CannonUI.SetActive(false);
-		}
-	}
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    private void Start()
+    {
+        if (!forFunctions)
+        {
+            //set all the UI stuff false during cutscene
+            ShipUIMenu.SetActive(false);
+            UIStuff.SetActive(false);
+            CannonUI.SetActive(false);
+        }
+    }
 
     public void offThisCam()
-	{
-		gameObject.GetComponent<Camera>().enabled = false;
+    {
+        gameObject.GetComponent<Camera>().enabled = false;
         Player.gameStart = true;
 
         //set ui stuff back on 
@@ -50,11 +53,20 @@ public class CutSceneController : MonoBehaviour {
         DialogueThing.SetActive(true);
         FixedCamera.SetActive(true);
     }
-	public void offAndStartGame()
-	{
-		CharacterMovement player = FindObjectOfType<CharacterMovement>();
-		player.gameStart = true;
-		player.canMove = true;
-		gameObject.SetActive(false);
-	}
+    public void offAndStartGame()
+    {
+        CharacterMovement player = FindObjectOfType<CharacterMovement>();
+        player.gameStart = true;
+        player.canMove = true;
+        gameObject.SetActive(false);
+    }
+
+    public void SkipAnimation()
+    {
+        Animator anim = gameObject.GetComponent<Animator>();
+        anim.Play("CutSceneAnimation1", 0, 1f);
+
+        Animator fairyAnim = bel.GetComponent<Animator>();
+        fairyAnim.Play("TutorialAnimation", 0, 1f);
+    }
 }
