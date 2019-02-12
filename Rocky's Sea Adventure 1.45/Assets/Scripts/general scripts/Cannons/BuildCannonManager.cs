@@ -59,16 +59,19 @@ public class BuildCannonManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !cameraSwitch.switching)
         {
+
             if (!menuSpawned && inRangeToBuild)
             {
-                OpenBuildMenu();
+				cameraSwitch.switching = true;
+				OpenBuildMenu();
                 LockCameraMovement();
             }
             else if (!menuSpawned && inShipMastRange)
             {
-                OpenMastMenu();
+				cameraSwitch.switching = true;
+				OpenMastMenu();
                 LockCameraMovement();
             }
         }
@@ -422,16 +425,20 @@ public class BuildCannonManager : MonoBehaviour
 
     public void Cancel()
     {
-        shipPartsToHide.SetActive(true);
-        cameraSwitch.locked = false;
-        fpsController.controllingShip = false;
+		if (!cameraSwitch.switching)
+		{
+			shipPartsToHide.SetActive(true);
+			cameraSwitch.locked = false;
+			fpsController.controllingShip = false;
 
-//        boostSlider.gameObject.SetActive(false);
+			// boostSlider.gameObject.SetActive(false);
 
-        Destroy(menu);
-        menuSpawned = false;
-        selectedCannon = null;
-    }
+
+			menuSpawned = false;
+			selectedCannon = null;
+			Destroy(menu);
+		}
+	}
 
 
     private void OnTriggerEnter(Collider other)
