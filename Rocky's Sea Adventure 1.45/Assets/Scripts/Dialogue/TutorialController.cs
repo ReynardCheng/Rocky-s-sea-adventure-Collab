@@ -36,6 +36,9 @@ public class TutorialController : MonoBehaviour {
     public bool ProceedScript4;
     public GameObject Script4;
 
+    [Header("Enemies, ship health and ramming")]
+    public GameObject Script5;
+
 
     // Use this for initialization
     void Start () {

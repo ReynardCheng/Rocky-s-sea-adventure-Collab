@@ -41,9 +41,11 @@ public class DialogueScript : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            
+            //RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero); //collider box to be attached to gameobject
 
-            if (canContinueDialogue == true)
+            //if (hit.collider != null && canContinueDialogue == true)
+
+              if (canContinueDialogue == true)
             {
 
 

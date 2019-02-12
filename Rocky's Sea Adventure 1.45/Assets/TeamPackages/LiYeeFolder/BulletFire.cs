@@ -14,10 +14,9 @@ public class BulletFire : MonoBehaviour {
         if (target) //if enemy target exists
         {
             // Fly towards the target
-            
-			GetComponent<Rigidbody>().velocity = MathScript.ShootInArc(target, this.transform, 30f);
+            Rigidbody rb = GetComponent<Rigidbody>();
+			if(rb) rb.velocity = MathScript.ShootInArc(target, this.transform, 30f);
 			transform.position = Vector3.MoveTowards(transform.position, target.position, 0.5f);
-
         }
         else
         {
