@@ -10,8 +10,13 @@ public class OilSlickFire : MonoBehaviour
     //public GameObject explosion;
 
     public GameObject oilSlickPrefab;
-    // Update is called once per frame
-    void Update()
+
+	// sound related 
+	public AudioClip vfxToPlay;
+
+
+	// Update is called once per frame
+	void Update()
     {
         if (target) //if enemy target exists
         {
@@ -41,13 +46,27 @@ public class OilSlickFire : MonoBehaviour
         var vel = Mathf.Sqrt(dist * Physics.gravity.magnitude / Mathf.Sin(2 * a));
         return vel * dir.normalized;
     }
-    void OnTriggerEnter(Collider other)
+
+	//--------------------------------------------------------
+	//sound related functions
+	void SoundSpawned()
+	{
+		GameObject spawnedSound = new GameObject();
+		spawnedSound.transform.position = CharacterMovement.characterPos.position;
+		spawnedSound.AddComponent<AudioSource>();
+		spawnedSound.GetComponent<AudioSource>().clip = vfxToPlay;
+		spawnedSound.GetComponent<AudioSource>().Play();
+		Destroy(spawnedSound, spawnedSound.GetComponent<AudioSource>().clip.length);
+	}
+
+	void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy" && other.gameObject == target.gameObject)
         {
             other.GetComponent<EnemyController>().Health(10);
 			//Instantiate(explosion, transform.position, Quaternion.identity);
 			GameObject oilSlick = Instantiate(oilSlickPrefab, new Vector3(other.transform.position.x, other.transform.position.y - 2, other.transform.position.z), Quaternion.identity);
+			SoundSpawned();
             Destroy(oilSlick, 4);
             Destroy(gameObject); //destroy itself
             return;

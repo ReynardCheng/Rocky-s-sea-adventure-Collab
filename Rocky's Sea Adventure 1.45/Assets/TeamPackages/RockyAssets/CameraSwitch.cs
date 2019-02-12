@@ -11,7 +11,7 @@ public class CameraSwitch : MonoBehaviour {
 	[SerializeField] private bool shipView;      //This checks what view camera is in right now (ship/player)
     public float switchSpeed;   //How fast the switch will be. The higher the speed, the quicker the switch.
 
-    private bool switching;
+    public bool switching;
 
     public bool locked;
 
@@ -59,7 +59,7 @@ public class CameraSwitch : MonoBehaviour {
 
 				if (!fpsController.controllingShip)
 				{
-					CameraRotate();
+					if (!switching) CameraRotate();
 				}
 			}
 
@@ -98,6 +98,7 @@ public class CameraSwitch : MonoBehaviour {
 
     public IEnumerator SwitchView(Transform view)
     {
+
         float fractionLerped = 0f;   //Declaring variable for lerping. This is the fraction of how much of the switch is completed.
 
 
@@ -135,8 +136,11 @@ public class CameraSwitch : MonoBehaviour {
     {
         if (!fpsController.controllingShip)
         {
+			float rate = 5f;
             offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * turnSpeed, Vector3.up) * offset;
-            transform.position = player.position + offset;
+           // transform.position = player.position + offset;
+			Vector3 posToLerp = player.position + offset;
+			transform.position = Vector3.Lerp(transform.position, posToLerp, Time.deltaTime * rate);
             transform.LookAt(player.position);
         }
     }

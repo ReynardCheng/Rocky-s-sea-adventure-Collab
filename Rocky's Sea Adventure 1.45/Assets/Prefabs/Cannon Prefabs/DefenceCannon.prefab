@@ -215,6 +215,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37983946d0096bb4d97728ba06156643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myAudioSource: {fileID: 0}
+  cannonSounds:
+    cannonFire: {fileID: 8300000, guid: 92350560022ee8546926f2ad330e033b, type: 3}
+    cannonBallHit: {fileID: 8300000, guid: cea2a671dad15e342a5bfc59a9d08d98, type: 3}
+    aoeHit: {fileID: 8300000, guid: 685b46adb5f9a58419ad06c2b4b024ec, type: 3}
+    oilSlickHit: {fileID: 8300000, guid: 06043f87ef6159446b8aa080701862d0, type: 3}
   projectile: {fileID: 54936653049254952, guid: 843a2c5aa240a95478b0a434f50b80fc,
     type: 2}
   atkRate: 0
@@ -224,6 +230,9 @@ MonoBehaviour:
   health: 0
   smokeEffect: {fileID: 1595426174004176}
   parent: {fileID: 0}
+
+  cannonType: 1
+
   cannonType: 3
 --- !u!114 &114744962377406062
 MonoBehaviour:
@@ -4723,3 +4732,4 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+

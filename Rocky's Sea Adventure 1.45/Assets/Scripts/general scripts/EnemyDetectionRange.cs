@@ -6,16 +6,45 @@ public class EnemyDetectionRange : MonoBehaviour {
 
 	[SerializeField] List<EnemyController> enemies;
 
+    [SerializeField] private bool enemiesChasing;
+
+    [SerializeField] private float chaseRange;
+
+    private GameObject ship;
+
 	private void Start()
 	{
-		//enemies = new List<EnemyController>();
+        chaseRange = (GetComponent<BoxCollider>().size.x / 2) + 50;
 	}
 
-	private void OnTriggerEnter(Collider other)
+    private void Update()
+    {
+        if (enemiesChasing)
+        {
+            CheckShipInRange();
+        }
+    }
+
+    void CheckShipInRange()
+    {        
+        if(Vector3.Distance(ship.transform.position, transform.position) > chaseRange)
+        {
+            enemiesChasing = false;
+
+            foreach (EnemyController e in enemies)
+            {
+                e.GetComponent<EnemyController>().chaseShip = false;
+                e.GetComponent<EnemyController>().returningHome = true;
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
 	{
 		if (other.tag == "Enemy")
 		{
-			enemies.Add(other.gameObject.GetComponent<EnemyController>());
+            if (other.GetComponent<EnemyController>().spawnTypes == EnemyController.spawnType.Local)
+			    enemies.Add(other.gameObject.GetComponent<EnemyController>());
 		}
 
 		if (other.tag == "Ship")
@@ -24,18 +53,20 @@ public class EnemyDetectionRange : MonoBehaviour {
 			{
 				e.GetComponent<EnemyController>().chaseShip = true;
 			}
+            ship = other.gameObject;
+            enemiesChasing = true;
 		}
 	}
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Ship")
-        {
-            foreach (EnemyController e in enemies)
-            {
-                e.GetComponent<EnemyController>().chaseShip = false;
-                e.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            }
-        }
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.tag == "Ship")
+    //    {
+    //        foreach (EnemyController e in enemies)
+    //        {
+    //            e.GetComponent<EnemyController>().chaseShip = false;
+    //            e.GetComponent<Rigidbody>().velocity = Vector3.zero;
+    //        }
+    //    }
+    //}
 }

@@ -9,7 +9,7 @@ public class Compass : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        ship = FindObjectOfType<BoatController>().transform;
 	}
 	
 	// Update is called once per frame

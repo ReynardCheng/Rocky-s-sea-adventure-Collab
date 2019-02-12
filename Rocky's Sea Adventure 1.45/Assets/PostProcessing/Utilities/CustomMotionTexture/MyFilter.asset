@@ -103,7 +103,7 @@ MonoBehaviour:
         intensity: 1.88
         threshold: 1.1
         softKnee: 0.36
-        radius: 2.09
+        radius: 3.04
         antiFlicker: 0
       lensDirt:
         texture: {fileID: 0}
@@ -313,7 +313,7 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       colored: 1
-      intensity: 0.5
+      intensity: 0
       size: 1
       luminanceContribution: 0.8
   vignette:
@@ -323,7 +323,7 @@ MonoBehaviour:
       color: {r: 0, g: 0, b: 0, a: 1}
       center: {x: 0.5, y: 0.5}
       intensity: 0.45
-      smoothness: 0.2
+      smoothness: 0.01
       roundness: 1
       mask: {fileID: 0}
       opacity: 1
