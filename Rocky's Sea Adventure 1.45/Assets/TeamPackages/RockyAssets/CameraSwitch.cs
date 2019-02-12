@@ -65,6 +65,9 @@ public class CameraSwitch : MonoBehaviour {
 
 			//if (shipView) theBoat.controllingBoat = true;
 			CameraParent();
+
+			//sets the cursor active when the menu is opened
+			if (BuildCannonManager.menuSpawned) Cursor.visible = true;
 		}
 	}
 
@@ -136,12 +139,14 @@ public class CameraSwitch : MonoBehaviour {
     {
         if (!fpsController.controllingShip)
         {
-			float rate = 5f;
+			float nextStep = 2;
+			float rate = 10f + nextStep;
             offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * turnSpeed, Vector3.up) * offset;
            // transform.position = player.position + offset;
 			Vector3 posToLerp = player.position + offset;
 			transform.position = Vector3.Lerp(transform.position, posToLerp, Time.deltaTime * rate);
             transform.LookAt(player.position);
+			Cursor.visible = false;
         }
     }
 }

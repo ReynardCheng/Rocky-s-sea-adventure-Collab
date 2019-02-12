@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour
 	[Header("Ship HP")]
 	public Image shipHpBarImage;
 	public float shipMaxHp = 100f;
-	private BoatCombat1 boatCombatScript;
+	[SerializeField] BoatCombat1 boatCombatScript;
 
 	private BoatController boatControl;
 

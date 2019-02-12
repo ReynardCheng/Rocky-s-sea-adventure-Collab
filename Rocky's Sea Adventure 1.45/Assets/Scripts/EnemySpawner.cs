@@ -15,11 +15,14 @@ public class EnemySpawner : MonoBehaviour {
 	public bool encountered;
 	[SerializeField] float spawnRate;
 	public waveComp[] numberOfWaves;
-	
+
+	public int maxEnemies = 12;
+	List<GameObject> enemies;
 
 	// Use this for initialization
 	void Start () {
 		waveValue = 2;
+		enemies = new List<GameObject>();
 		//spawnRate = 2;
 	}
 	
@@ -29,8 +32,12 @@ public class EnemySpawner : MonoBehaviour {
         if (globalSpawner)
         {
             spawnRate -= Time.deltaTime;
-
-            CurrentWave();
+			for(int i=0;i<enemies.Count;i++)
+			{
+				if (enemies[i] == null) enemies.Remove(enemies[i]);
+			}
+			if (enemies.Count < maxEnemies)
+				CurrentWave();
         }
 	}
 
@@ -47,7 +54,9 @@ public class EnemySpawner : MonoBehaviour {
 			foreach (EnemyController e in numberOfWaves[currentWaveInt].enemies)
 			{
 				GameObject spawnedEnemy = Instantiate(e, enemySpawnPosition, e.transform.rotation).gameObject;
-				spawnedEnemy.GetComponent<Rigidbody>().AddForce(Random.Range(-300, 300), Random.Range(-300, 300), Random.Range(-300, 300));
+				enemies.Add(spawnedEnemy);
+				spawnedEnemy.transform.Translate(new Vector3(Random.Range(-300, 300), Random.Range(-300, 300), Random.Range(-300, 300)));
+				//spawnedEnemy.GetComponent<Rigidbody>().AddForce(Random.Range(-300, 300), Random.Range(-300, 300), Random.Range(-300, 300));
                 spawnedEnemy.GetComponent<EnemyController>().spawnTypes = (globalSpawner) ? EnemyController.spawnType.Global : EnemyController.spawnType.Local;
 			}
 
