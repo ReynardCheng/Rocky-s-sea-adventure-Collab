@@ -103,8 +103,11 @@ public class LevelManager : MonoBehaviour
 
 	private void OnDrawGizmos()
 	{
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(boatCombatScript.transform.position, changeSkyboxRadius);
+        if (boatCombatScript)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(boatCombatScript.transform.position, changeSkyboxRadius);
+        }
 	}
 
 	public IEnumerator ChangeSkyboxColor(SkyboxColor sc, float duration)

@@ -18,6 +18,7 @@ public class CharacterMovement : MonoBehaviour {
 	[Space]
 	//CharacterController controller;
 	BoatController theBoat;
+    public GameObject steeringMenu;
 	[SerializeField] Rigidbody rb;
 
 	[Header("Camera")]
@@ -175,19 +176,33 @@ public class CharacterMovement : MonoBehaviour {
 		transform.LookAt(rotateTarget);
 	}
 
+    private void OpenSteerMenu()
+    {
+        steeringMenu.SetActive(true);
+    }
 
-	private void OnTriggerStay(Collider other)
+    private void CloseSteerMenu()
+    {
+        steeringMenu.SetActive(false);
+    }
+
+    private void OnTriggerStay(Collider other)
 	{
 		if (other.tag == "SteeringWheel")
 		{
 			canControlShip = true;
+
+            OpenSteerMenu();
 		}
 	}
+
 	private void OnTriggerExit(Collider other)
 	{
 		if (other.tag == "SteeringWheel")
 		{
 			canControlShip = false;
+
+            CloseSteerMenu();
 		}
 	}
 
