@@ -17,12 +17,14 @@ public class AoeFire : MonoBehaviour {
     public Transform target;  //Target (set by CannonFire script)}
     public GameObject explosion; //explosion effect
 
+	[Header ("Sound Related")]
+	public AudioClip vfxToPlay;
 
-    // Update is called once per frame
-    void Update()
+
+
+	// Update is called once per frame
+	void Update()
     {
-
-
         if (target) //if enemy target exists
         {
             // Fly towards the target
@@ -87,13 +89,25 @@ public class AoeFire : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    void OnTriggerEnter(Collider other)
+	void SoundSpawned()
+	{
+		GameObject spawnedSound = new GameObject();
+		spawnedSound.transform.position = CharacterMovement.characterPos.position;
+		spawnedSound.AddComponent<AudioSource>();
+		spawnedSound.GetComponent<AudioSource>().clip = vfxToPlay;
+		spawnedSound.GetComponent<AudioSource>().Play();
+		Destroy(spawnedSound, spawnedSound.GetComponent<AudioSource>().clip.length);
+	}
+
+	void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")
         {
             //Instantiate(explosion, transform.position, Quaternion.identity);
             //Destroy(gameObject); //destroy itself
             Explode();
+			SoundSpawned();
+		//	 myAudio.PlayOneShot(vfxToPlay);
             return;
         }
     }

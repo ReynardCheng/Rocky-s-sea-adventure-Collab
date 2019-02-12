@@ -11,6 +11,7 @@ public class CharacterMovement : MonoBehaviour {
 	[SerializeField] public bool canMove;
 	public bool canControlShip;
 	public bool gameStart;
+	public static Transform characterPos;
 
 	//for reference
 	[Header("Components")]
@@ -44,6 +45,7 @@ public class CharacterMovement : MonoBehaviour {
 		rb = GetComponent<Rigidbody>();
 		rotateTarget = new GameObject("Rotate Target").transform;
         mainCam = Camera.main;
+		characterPos = this.transform; // sets this transform such that other scripts can reference this
 	}
 
 	// Update is called once per frame
