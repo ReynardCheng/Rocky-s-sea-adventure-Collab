@@ -44,6 +44,12 @@ public class CharacterMovement : MonoBehaviour {
 		rb = GetComponent<Rigidbody>();
 		rotateTarget = new GameObject("Rotate Target").transform;
         mainCam = Camera.main;
+
+        if (!FindObjectOfType<CutSceneController>())
+        {
+            gameStart = true;
+            canMove = true;
+        }
 	}
 
 	// Update is called once per frame

@@ -1138,7 +1138,7 @@ GameObject:
   - component: {fileID: 114232222232179704}
   - component: {fileID: 54592512991327866}
   m_Layer: 0
-  m_Name: Squid_Idle (1)
+  m_Name: Normal Squid
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2710,8 +2710,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1764379527352412}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 73.7, y: -8.7, z: -219.5}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 22.400146, y: 2.79467, z: 26.400024}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children:
   - {fileID: 4025255302530276}
@@ -3191,7 +3191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f5c7c8a5475b2428563ac03f29578a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTypes: 0
+  spawnTypes: 1
   spAtk: 0
   enemyType: 0
   rb: {fileID: 0}
@@ -3208,6 +3208,8 @@ MonoBehaviour:
   moveSpeed: 0
   distanceToStopMoving: 500
   offsetAboveWater: -2
+  returningHome: 0
+  patrolRange: 35
   seaEssence: {fileID: 1254451750704074, guid: 73d8df82f1fdfd347bcebd0f7a9b709b, type: 2}
   woodPlank: {fileID: 1280593388170008, guid: cfd9d116f2f6e83419fbbe6530085cc5, type: 2}
   metalPart: {fileID: 1031820603522134, guid: ead7c4bf03b0a2c4a8d03b5c2172d113, type: 2}

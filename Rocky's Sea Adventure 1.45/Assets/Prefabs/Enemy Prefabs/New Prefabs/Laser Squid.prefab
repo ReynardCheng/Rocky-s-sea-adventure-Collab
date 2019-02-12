@@ -2098,7 +2098,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1155749959651084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 38.870384, y: -10.5, z: -208.05829}
+  m_LocalPosition: {x: 2711.3, y: -2.6, z: 614.8}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children:
   - {fileID: 4685932010173716}
@@ -2601,7 +2601,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1808014127532672}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.86, z: -0.1}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0.152}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4974745544230810}
@@ -3250,7 +3250,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 5}
+  m_Size: {x: 7, y: 7, z: 7}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95288722425854176
 Animator:
@@ -3310,6 +3310,8 @@ MonoBehaviour:
   moveSpeed: 0
   distanceToStopMoving: 500
   offsetAboveWater: -2
+  returningHome: 0
+  patrolRange: 35
   seaEssence: {fileID: 1254451750704074, guid: 73d8df82f1fdfd347bcebd0f7a9b709b, type: 2}
   woodPlank: {fileID: 1280593388170008, guid: cfd9d116f2f6e83419fbbe6530085cc5, type: 2}
   metalPart: {fileID: 1031820603522134, guid: ead7c4bf03b0a2c4a8d03b5c2172d113, type: 2}

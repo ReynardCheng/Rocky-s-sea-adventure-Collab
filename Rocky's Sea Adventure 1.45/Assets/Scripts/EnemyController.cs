@@ -6,37 +6,46 @@ using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
-	public enum spawnType { Global, Local }
-	public spawnType spawnTypes;
+    public enum spawnType { Global, Local }
+    public spawnType spawnTypes;
 
-	[Header("EnemyTypes")]
-	[SerializeField] int spAtk;
-	public enum EnemyType { Normal, Sticky, Laser }
-	public EnemyType enemyType;
+    [Header("EnemyTypes")]
+    [SerializeField] int spAtk;
+    public enum EnemyType { Normal, Sticky, Laser }
+    public EnemyType enemyType;
 
-	private GameObject closestShipSection;
+    private GameObject closestShipSection;
     private Camera cam;
 
-	[Header("coomponents")]
-	[SerializeField] Rigidbody rb;
+    [Header("coomponents")]
+    [SerializeField] Rigidbody rb;
 
-	[Header("Health & UI")]
-	[Space]
-	[SerializeField] float currentHealth;
-	[SerializeField] float maxHealth;
-	public Image healthBar;
+    [Header("Health & UI")]
+    [Space]
+    [SerializeField] float currentHealth;
+    [SerializeField] float maxHealth;
+    public Image healthBar;
 
-	[Header("Projectiles and Targetting")]
-	public GameObject normalBullet;
+    [Header("Projectiles and Targetting")]
+    public GameObject normalBullet;
     public GameObject stickBullet;
-	public GameObject laserBeam;
+    public GameObject laserBeam;
 
     [SerializeField] float fireRate;
-	[SerializeField] float coolDownTime;    //This value is the attack speed.
-	[SerializeField] float moveSpeed, distanceToStopMoving;
+    [SerializeField] float coolDownTime;    //This value is the attack speed.
+    [SerializeField] float moveSpeed, distanceToStopMoving;
 
-	[Header("Variable")]
-	public float offsetAboveWater;
+    public float offsetAboveWater;
+
+    [Header("Local Enemy Variables")]
+    private Vector3 localInitialPosition;
+    private bool isHome;
+    public bool returningHome;
+    [SerializeField] private float patrolRange;
+    private bool currentlyPatrolling;
+    private Vector3 patrolDestination;
+    private bool isAtPatrolDestination;
+    private float timeBeforeNextPatrol;
 
     [Header("Drops")]
     [SerializeField] GameObject seaEssence;
@@ -55,8 +64,6 @@ public class EnemyController : MonoBehaviour
 	private bool aiming;	//True when showing where to shoot laser, false when laser is actually shot.
 	private bool canMove;
 
-
-
 	private bool inRange;
     
 
@@ -74,7 +81,6 @@ public class EnemyController : MonoBehaviour
 		//getting components
 		rb = GetComponent<Rigidbody>();
 
-
 		maxHealth = 100;
 		currentHealth = maxHealth;
 
@@ -83,7 +89,7 @@ public class EnemyController : MonoBehaviour
 
 		moveSpeed = 3.0f;
 		canMove = true;
-        //distanceToStopMoving = 150.0f;
+        timeBeforeNextPatrol = 5;
 
         cam = Camera.main;
         
@@ -96,6 +102,14 @@ public class EnemyController : MonoBehaviour
 		sea = GameObject.Find("Sea");
 
 		player = FindObjectOfType<CharacterMovement>();
+
+        if (spawnTypes == spawnType.Local)
+        {
+            localInitialPosition = transform.position;
+            patrolDestination = localInitialPosition;
+            isHome = true;
+            isAtPatrolDestination = true;
+        }
 	}
 
 	// Update is called once per frame
@@ -106,17 +120,56 @@ public class EnemyController : MonoBehaviour
 			if (spawnTypes == spawnType.Global)
 				chaseShip = true;
 
-			if (chaseShip && transform.position.y > sea.transform.position.y + offsetAboveWater || spawnTypes == spawnType.Global) MoveToShip();
+            if (chaseShip && transform.position.y > sea.transform.position.y + offsetAboveWater || spawnTypes == spawnType.Global)
+            {
+                isHome = false;
+                MoveToShip();
+            }
 
 			EnemyTypes();
 
 			DeactivateHealthBar();
 
 			MoveAboveWater();
+
+            if (spawnTypes == spawnType.Local)
+            {
+                if (!chaseShip && returningHome)
+                {
+                    MoveBackHome();
+                }
+
+                if(!chaseShip && isHome)
+                {
+                    Patrol();
+                }
+
+            }
 		}
 	}
 
-	void MoveToShip()
+    void EnemyTypes()
+    {
+        if (detectShipTrigger.shipDetected && enemyType == EnemyType.Normal)
+        {
+            FireRate();
+            Shoot();
+        }
+
+        if (detectShipTrigger.shipDetected && enemyType == EnemyType.Sticky)
+        {
+            FireRate();
+            StickyEnemy();
+        }
+
+        if (detectShipTrigger.shipDetected && enemyType == EnemyType.Laser || aiming)
+        {
+            FireRate();
+            LaserEnemy();
+        }
+    }
+
+    void MoveToShip()
 	{
 		if (canMove)
 		{
@@ -133,14 +186,71 @@ public class EnemyController : MonoBehaviour
 
 			Vector3 targetDir = ship.transform.position - transform.position;
 
-			Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir,Mathf.Infinity,Mathf.Infinity);
+			Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, Mathf.Infinity, Mathf.Infinity);
 			transform.rotation = Quaternion.LookRotation(targetDir);
 		}
 		else
 			rb.velocity = Vector3.zero;
     }
 
+    void MoveBackHome()
+    {
+        Vector3 direction = localInitialPosition - transform.position;
 
+        if (transform.position == localInitialPosition)
+        {
+            isHome = true;
+            returningHome = false;
+        }
+        if (transform.position != localInitialPosition)
+        {
+            rb.velocity = direction.normalized * moveSpeed;
+            isHome = false;
+        }
+    }
+
+    void Patrol()
+    {
+        if (!currentlyPatrolling)
+        {
+            if (isAtPatrolDestination == true)
+            {
+                timeBeforeNextPatrol -= Time.deltaTime;
+            }
+
+            if (timeBeforeNextPatrol < 0)
+            {
+                //Get a new destionation to patrol to
+                patrolDestination = localInitialPosition + new Vector3(Random.Range(-patrolRange, patrolRange), 0, Random.Range(-patrolRange, patrolRange));
+                Vector3 direction = patrolDestination - transform.position;
+                //Set velocity to move towards this destionation
+                rb.velocity = direction.normalized * moveSpeed;
+                currentlyPatrolling = true;
+                isAtPatrolDestination = false;
+            }
+        }
+
+        if (currentlyPatrolling)
+        {
+            if (Vector3.Distance(transform.position, patrolDestination) < 3)
+            {
+                rb.velocity = Vector3.zero;
+                timeBeforeNextPatrol = Random.Range(3f, 5f);
+                currentlyPatrolling = false;
+                isAtPatrolDestination = true;
+            }
+        }
+
+    }
+
+    void ResetPatrol()
+    {
+        //Get a new destionation to patrol to
+        patrolDestination = localInitialPosition + new Vector3(Random.Range(-patrolRange, patrolRange), 0, Random.Range(-patrolRange, patrolRange));
+        Vector3 direction = patrolDestination - transform.position;
+        //Set velocity to move towards this destionation
+        rb.velocity = direction.normalized * moveSpeed;
+    }
 
     //An InvokeRepeating initialized at start to find which section of ship to move to and shoot at.
     //Repeats every second
@@ -179,27 +289,6 @@ public class EnemyController : MonoBehaviour
 		}
 	}
 
-	void EnemyTypes()
-	{
-		if (detectShipTrigger.shipDetected && enemyType == EnemyType.Normal)
-		{
-			FireRate();
-			Shoot();
-		}
-
-		if (detectShipTrigger.shipDetected && enemyType == EnemyType.Sticky)
-		{
-			FireRate();
-			StickyEnemy();
-		}
-
-		if (detectShipTrigger.shipDetected && enemyType == EnemyType.Laser || aiming)
-		{
-			FireRate();
-			LaserEnemy();
-		}
-	}
-
 	void StickyEnemy()
 	{
 		if (enemyType == EnemyType.Sticky)
@@ -223,22 +312,24 @@ public class EnemyController : MonoBehaviour
 
 	void LaserEnemy()
 	{
-		//Needed to continue laser stuff even when ship moves out of range.
-		if (detectShipTrigger.shipDetected == false)
-			detectShipTrigger.shipDetected = true;
-
-		//Start the beam. Show where it shoots.
+		//Start the beam. Show where it shoots
 		if (fireRate <= 0 && !aiming)
 		{
 			aiming = true;
 			canMove = false;
 
+            Vector3 aimDirection = new Vector3(closestShipSection.transform.position.x, closestShipSection.transform.position.y - 2, closestShipSection.transform.position.z);
+            
+            //Laser Indicator is the red cylinder that shows where it shoots.
+            GameObject laserAim = gameObject.transform.Find("Laser Indicator").gameObject;
+			laserAim.SetActive(true); 
 
-			GameObject laserAim = gameObject.transform.Find("Laser Indicator").gameObject;
-			laserAim.SetActive(true);
-			laserAim.transform.LookAt(closestShipSection.transform.position);
+            //Points indicator towards where it shoots
+			laserAim.transform.LookAt(aimDirection);
 
-            laserDirection = closestShipSection.transform.position;
+            //LaserDirection is where the projectile will shoot at.
+            laserDirection = aimDirection;
+            
 
             laserTiming = 8;
 			fireRate = Mathf.Infinity;
@@ -269,8 +360,6 @@ public class EnemyController : MonoBehaviour
             aiming = false;
             detectShipTrigger.shipDetected = false;
         }
-			aiming = false;
-			detectShipTrigger.shipDetected = false;		
 	}
 
 	//------------------------------------------
@@ -395,6 +484,13 @@ public class EnemyController : MonoBehaviour
 			resource = Instantiate(metalPart, transform.position, Quaternion.identity);
 			resource.transform.localScale = new Vector3(1, 1, 1);
 		}
-        print(randomValue);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            ResetPatrol();
+        }
     }
 }
