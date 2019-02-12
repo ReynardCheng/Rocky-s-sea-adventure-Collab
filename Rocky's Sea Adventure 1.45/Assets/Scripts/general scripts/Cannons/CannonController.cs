@@ -40,9 +40,9 @@ public class CannonController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        
 		health = 50;
         maxHealth = health;
+		smokeEffect.SetActive(false);
 
 		myAudioSource  = GetComponent<AudioSource>();
 

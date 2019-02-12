@@ -2902,11 +2902,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 291326733}
   m_Mesh: {fileID: 4300000, guid: cc4023ef364ef8e489bcb184e7678229, type: 3}
---- !u!1 &300691086 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1959485911584050, guid: 496d6980401f5f94aa3791496da161b0,
-    type: 2}
-  m_PrefabInternal: {fileID: 514760499}
 --- !u!1 &322279660
 GameObject:
   m_ObjectHideFlags: 0
@@ -4671,9 +4666,10 @@ MonoBehaviour:
   ship: {fileID: 260053917}
   shipView: 1
   switchSpeed: 0
+  switching: 0
   locked: 0
   shipMastSharedMaterial: {fileID: 330169730}
-  shipFlagsSharedMaterial: {fileID: 300691086}
+  shipFlagsSharedMaterial: {fileID: 989205991}
   turnSpeed: 3
   player: {fileID: 0}
   offset: {x: 4, y: 2, z: 4}
@@ -7566,6 +7562,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &989205991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1669271919912262, guid: 496d6980401f5f94aa3791496da161b0,
+    type: 2}
+  m_PrefabInternal: {fileID: 514760499}
 --- !u!1 &989674456
 GameObject:
   m_ObjectHideFlags: 0
@@ -12090,10 +12091,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1681267902617006, guid: fa664cdfcd570854686b632588826220, type: 2}
-      propertyPath: m_Name
-      value: Rocky (2)
-      objectReference: {fileID: 0}
+    - target: {fileID: 114150431095166918, guid: fa664cdfcd570854686b632588826220,
+        type: 2}
+      propertyPath: shipPartsToHide
+      value: 
+      objectReference: {fileID: 330169730}
+    - target: {fileID: 114150431095166918, guid: fa664cdfcd570854686b632588826220,
+        type: 2}
+      propertyPath: buildLeftView
+      value: 
+      objectReference: {fileID: 208560689}
+    - target: {fileID: 114150431095166918, guid: fa664cdfcd570854686b632588826220,
+        type: 2}
+      propertyPath: buildRightView
+      value: 
+      objectReference: {fileID: 1020927750}
+    - target: {fileID: 114150431095166918, guid: fa664cdfcd570854686b632588826220,
+        type: 2}
+      propertyPath: buildMastView
+      value: 
+      objectReference: {fileID: 538609021}
     - target: {fileID: 114127541669143620, guid: fa664cdfcd570854686b632588826220,
         type: 2}
       propertyPath: mainCam
@@ -12116,64 +12133,13 @@ Prefab:
       objectReference: {fileID: 626875218}
     - target: {fileID: 114127541669143620, guid: fa664cdfcd570854686b632588826220,
         type: 2}
-      propertyPath: shipUI.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114127541669143620, guid: fa664cdfcd570854686b632588826220,
-        type: 2}
-      propertyPath: shipUI.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114127541669143620, guid: fa664cdfcd570854686b632588826220,
-        type: 2}
-      propertyPath: shipUI.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114127541669143620, guid: fa664cdfcd570854686b632588826220,
-        type: 2}
-      propertyPath: shipUI.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114127541669143620, guid: fa664cdfcd570854686b632588826220,
-        type: 2}
-      propertyPath: shipUI.Array.data[4]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114127541669143620, guid: fa664cdfcd570854686b632588826220,
-        type: 2}
-      propertyPath: shipUI.Array.data[5]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114127541669143620, guid: fa664cdfcd570854686b632588826220,
-        type: 2}
-      propertyPath: shipUI.Array.data[6]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114127541669143620, guid: fa664cdfcd570854686b632588826220,
-        type: 2}
       propertyPath: shipUI.Array.data[7]
       value: 
       objectReference: {fileID: 205951805}
-    - target: {fileID: 114150431095166918, guid: fa664cdfcd570854686b632588826220,
-        type: 2}
-      propertyPath: buildLeftView
-      value: 
-      objectReference: {fileID: 208560689}
-    - target: {fileID: 114150431095166918, guid: fa664cdfcd570854686b632588826220,
-        type: 2}
-      propertyPath: buildRightView
-      value: 
-      objectReference: {fileID: 1020927750}
-    - target: {fileID: 114150431095166918, guid: fa664cdfcd570854686b632588826220,
-        type: 2}
-      propertyPath: buildMastView
-      value: 
-      objectReference: {fileID: 538609021}
-    - target: {fileID: 114150431095166918, guid: fa664cdfcd570854686b632588826220,
-        type: 2}
-      propertyPath: shipPartsToHide
-      value: 
-      objectReference: {fileID: 330169730}
+    - target: {fileID: 1681267902617006, guid: fa664cdfcd570854686b632588826220, type: 2}
+      propertyPath: m_Name
+      value: Rocky (2)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa664cdfcd570854686b632588826220, type: 2}
   m_IsPrefabAsset: 0
