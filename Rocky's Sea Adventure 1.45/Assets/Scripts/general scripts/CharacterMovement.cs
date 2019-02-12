@@ -45,7 +45,16 @@ public class CharacterMovement : MonoBehaviour {
 		rb = GetComponent<Rigidbody>();
 		rotateTarget = new GameObject("Rotate Target").transform;
         mainCam = Camera.main;
+<<<<<<< HEAD
+
+        if (!FindObjectOfType<CutSceneController>())
+        {
+            gameStart = true;
+            canMove = true;
+        }
+=======
 		characterPos = this.transform; // sets this transform such that other scripts can reference this
+>>>>>>> 23d6bb7ce45e753e59f5ec092b089c3016e5da69
 	}
 
 	// Update is called once per frame
