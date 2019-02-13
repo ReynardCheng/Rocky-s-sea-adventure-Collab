@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5906037, g: 0.6887968, b: 0.741017, a: 1}
+  m_IndirectSpecularColor: {r: 0.26834235, g: 0.42375287, b: 0.51516885, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1105,6 +1105,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  enemiesChasing: 0
+  chaseRange: 0
 --- !u!65 &100272961
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1198,6 +1200,7 @@ MonoBehaviour:
   - enemies:
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
+  maxEnemies: 12
 --- !u!1 &101684217 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1959485911584050, guid: 496d6980401f5f94aa3791496da161b0,
@@ -1528,6 +1531,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  enemiesChasing: 0
+  chaseRange: 0
 --- !u!65 &128180268
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1621,6 +1626,7 @@ MonoBehaviour:
   - enemies:
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
+  maxEnemies: 12
 --- !u!1 &136981379
 GameObject:
   m_ObjectHideFlags: 0
@@ -3467,6 +3473,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  enemiesChasing: 0
+  chaseRange: 0
 --- !u!65 &253771834
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3560,6 +3568,7 @@ MonoBehaviour:
   - enemies:
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
+  maxEnemies: 12
 --- !u!1 &260141589
 GameObject:
   m_ObjectHideFlags: 0
@@ -5602,12 +5611,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 481864353}
   m_Mesh: {fileID: 4300000, guid: e3623289f2e8d9a4ea153d6de2a9a598, type: 3}
---- !u!114 &483176142 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114190732648221844, guid: 608dd2e60cacf7941a74c3a7aa1060cd,
-    type: 2}
-  m_PrefabInternal: {fileID: 559187890}
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &487366678
 GameObject:
   m_ObjectHideFlags: 0
@@ -5654,7 +5657,7 @@ Transform:
   - {fileID: 689584098}
   - {fileID: 398447972}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -90, y: 180, z: 180}
 --- !u!82 &487366680
 AudioSource:
@@ -5779,7 +5782,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a6905fffa5b6f489b4002fe1d5efdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  closestVertexIndex: -1
 --- !u!114 &487366683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6082,6 +6084,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  enemiesChasing: 0
+  chaseRange: 0
 --- !u!65 &490713679
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6175,6 +6179,7 @@ MonoBehaviour:
   - enemies:
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
+  maxEnemies: 12
 --- !u!1 &496792293
 GameObject:
   m_ObjectHideFlags: 0
@@ -7309,7 +7314,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 3.91, y: -90, z: 0}
 --- !u!82 &603407258
 AudioSource:
@@ -7465,6 +7470,7 @@ MonoBehaviour:
   ship: {fileID: 889326093}
   shipView: 1
   switchSpeed: 0
+  switching: 0
   locked: 0
   shipMastSharedMaterial: {fileID: 379047777}
   shipFlagsSharedMaterial: {fileID: 101684217}
@@ -7927,6 +7933,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  enemiesChasing: 0
+  chaseRange: 0
 --- !u!65 &649570584
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8020,6 +8028,7 @@ MonoBehaviour:
   - enemies:
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
+  maxEnemies: 12
 --- !u!1001 &651312082
 Prefab:
   m_ObjectHideFlags: 0
@@ -8458,7 +8467,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &676892758
 GameObject:
@@ -8660,6 +8669,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  enemiesChasing: 0
+  chaseRange: 0
 --- !u!65 &679635133
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8753,6 +8764,7 @@ MonoBehaviour:
   - enemies:
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
+  maxEnemies: 12
 --- !u!1 &680339231
 GameObject:
   m_ObjectHideFlags: 0
@@ -9509,7 +9521,7 @@ RectTransform:
   - {fileID: 1162742028}
   - {fileID: 205951806}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9782,6 +9794,53 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 789925081}
   m_Mesh: {fileID: 4300000, guid: cc4023ef364ef8e489bcb184e7678229, type: 3}
+--- !u!1001 &797050017
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 224471182049014538, guid: dff8b9a3c78c9354a875524aa9c90f6a,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560150643538528, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -444.6068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560150643538528, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560150643538528, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 558.9859
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560150643538528, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560150643538528, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560150643538528, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560150643538528, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560150643538528, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &812827891
 GameObject:
   m_ObjectHideFlags: 0
@@ -10131,7 +10190,7 @@ Transform:
   - {fileID: 1834804672}
   - {fileID: 1327195481}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &859768415
 GameObject:
@@ -11247,7 +11306,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a6905fffa5b6f489b4002fe1d5efdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  closestVertexIndex: -1
 --- !u!114 &907762124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12003,7 +12061,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &989674456
 GameObject:
@@ -13397,6 +13455,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  enemiesChasing: 0
+  chaseRange: 0
 --- !u!65 &1163683523
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13490,6 +13550,7 @@ MonoBehaviour:
   - enemies:
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
+  maxEnemies: 12
 --- !u!1 &1175892612
 GameObject:
   m_ObjectHideFlags: 0
@@ -14111,7 +14172,7 @@ Transform:
   m_Children:
   - {fileID: 1315611700}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &1235929930
 MonoBehaviour:
@@ -15158,7 +15219,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4800337937764674, guid: 7cdd09e2e9303384d93bf61a11f00809, type: 2}
       propertyPath: m_RootOrder
-      value: 18
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4800337937764674, guid: 7cdd09e2e9303384d93bf61a11f00809, type: 2}
       propertyPath: m_LocalScale.x
@@ -16644,6 +16705,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  enemiesChasing: 0
+  chaseRange: 0
 --- !u!65 &1408886337
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16737,6 +16800,7 @@ MonoBehaviour:
   - enemies:
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
+  maxEnemies: 12
 --- !u!1 &1420997711
 GameObject:
   m_ObjectHideFlags: 0
@@ -17475,6 +17539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forFunctions: 1
+  bel: {fileID: 0}
   ShipUIMenu: {fileID: 0}
   UIStuff: {fileID: 0}
   CannonUI: {fileID: 0}
@@ -19032,6 +19097,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  enemiesChasing: 0
+  chaseRange: 0
 --- !u!65 &1681255792
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19125,6 +19192,7 @@ MonoBehaviour:
   - enemies:
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
+  maxEnemies: 12
 --- !u!1001 &1683321285
 Prefab:
   m_ObjectHideFlags: 0
@@ -19483,7 +19551,7 @@ Transform:
   - {fileID: 68120147}
   - {fileID: 2051054}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1718447326
 GameObject:
@@ -19519,57 +19587,6 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1728726348
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1728726350}
-  - component: {fileID: 1728726349}
-  m_Layer: 0
-  m_Name: The Level Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1728726349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1728726348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a83dd63acdb6864dbcbc3f6893cf0bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shipHpBarImage: {fileID: 0}
-  shipMaxHp: 100
-  skyboxBossColor: {r: 0.22745098, g: 0.22745098, b: 0.22745098, a: 0.5019608}
-  skyboxDefaultColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0.5019608}
-  changeSkyboxRadius: 36
-  skyboxTransitionDuration: 1
-  boss: {fileID: 0}
-  theGui: {fileID: 0}
-  nextLevel: 
-  endScreen: {fileID: 483176142}
-  loseScreen: {fileID: 0}
---- !u!4 &1728726350
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1728726348}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103.64255, y: 2.7686293, z: -90.39522}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1746405711
 GameObject:
   m_ObjectHideFlags: 0
@@ -20588,6 +20605,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  enemiesChasing: 0
+  chaseRange: 0
 --- !u!65 &1841648744
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20681,6 +20700,7 @@ MonoBehaviour:
   - enemies:
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
+  maxEnemies: 12
 --- !u!1 &1845563591
 GameObject:
   m_ObjectHideFlags: 0
@@ -20910,7 +20930,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1861854932
 MonoBehaviour:
@@ -22502,6 +22522,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  enemiesChasing: 0
+  chaseRange: 0
 --- !u!65 &2119737017
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22595,6 +22617,7 @@ MonoBehaviour:
   - enemies:
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
+  maxEnemies: 12
 --- !u!4 &2122574095 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4649233264620126, guid: fa664cdfcd570854686b632588826220,
@@ -22711,6 +22734,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  enemiesChasing: 0
+  chaseRange: 0
 --- !u!65 &2139676324
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22804,6 +22829,7 @@ MonoBehaviour:
   - enemies:
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
     - {fileID: 114370370455620518, guid: 089c735494fce2741955c395a62f75ae, type: 2}
+  maxEnemies: 12
 --- !u!4 &2139676326
 Transform:
   m_ObjectHideFlags: 0

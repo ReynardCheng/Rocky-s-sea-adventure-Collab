@@ -2639,6 +2639,53 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!1001 &944898065
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 224471182049014538, guid: dff8b9a3c78c9354a875524aa9c90f6a,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560150643538528, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 103.64255
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560150643538528, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.7686293
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560150643538528, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -90.39522
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560150643538528, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560150643538528, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560150643538528, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560150643538528, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560150643538528, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1001714831
 GameObject:
   m_ObjectHideFlags: 0
@@ -2835,7 +2882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ecddc2ec59a923439a74fc5c106c6a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 788464511}
+  boat: {fileID: 0}
   theCharacter: {fileID: 0}
   scrollSpeed: 0
   zoomAmount: 0

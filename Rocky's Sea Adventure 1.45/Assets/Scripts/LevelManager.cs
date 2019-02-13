@@ -24,6 +24,17 @@ public class LevelManager : MonoBehaviour
 	bool bossIsNear;
 	[SerializeField] myGUI theGui;
 
+	[Header("PauseScreen")]
+	public GameObject pauseScreen;
+	public bool gamePaused;
+	public GameObject miniMap;
+	[SerializeField] bool mapActive;
+
+	// change button Text
+	public Text mapStatusText;
+
+	// reference to iself
+	public static LevelManager theLevelManager;
 
 	public string nextLevel;
 
@@ -38,6 +49,7 @@ public class LevelManager : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
+		theLevelManager = GetComponent<LevelManager>();
 		boatCombatScript = FindObjectOfType<BoatCombat1>();
 		boatControl = FindObjectOfType<BoatController>();
 
@@ -46,6 +58,14 @@ public class LevelManager : MonoBehaviour
 		RenderSettings.skybox.SetColor("_Tint", skyboxDefaultColor);
 
 		DynamicGI.UpdateEnvironment();
+
+		mapActive = true;
+
+		miniMap = GameObject.Find("MiniMap");
+
+		//gamePaused = false;
+		if (!gamePaused) Time.timeScale = 1;
+
 	}
 
 	// Update is called once per frame
@@ -97,8 +117,8 @@ public class LevelManager : MonoBehaviour
 			}
 		}
 
-		print(boatCombatScript.shipHealth);
-
+		Pause();
+		MapStatus();
 	}
 
 	private void OnDrawGizmos()
@@ -140,5 +160,81 @@ public class LevelManager : MonoBehaviour
 	void Lose()
 	{
 		endScreen.gameObject.SetActive(true);
+	}
+
+	// ----------------------
+	// pause related fuctions
+
+	 void Pause()
+	{
+		if (!gamePaused)
+		{
+			if (Input.GetKeyDown(KeyCode.Escape))
+			{
+				Time.timeScale = 0;
+				gamePaused = true;
+				pauseScreen.SetActive(true);
+				Cursor.visible = true;
+			}
+		}
+
+		else if (gamePaused)
+		{
+			if (Input.GetKeyDown(KeyCode.Escape))
+			{
+				Time.timeScale = 1;
+				gamePaused = false;
+				pauseScreen.SetActive(false);
+				Cursor.visible = false;
+			}
+		}
+	}
+
+	public void Resume()
+	{
+		gamePaused = false;
+		pauseScreen.SetActive(false);
+		Cursor.visible = false;
+		Time.timeScale = 1;
+	}
+
+	public void retry()
+	{
+		Time.timeScale = 1;
+		LoadingScreen.theLoadingScreen.loadLevel(SceneManager.GetActiveScene().name);
+	}
+
+	public void LoadScene(string sceneName)
+	{
+		LoadingScreen.theLoadingScreen.loadLevel(sceneName);
+	}
+
+	void MapStatus()
+	{
+		if (PlayerPrefs.GetInt("MapActive") == 1)
+		{
+			mapActive = true;
+			miniMap.SetActive(true);
+			mapStatusText.text = "mapOpened";
+		}
+
+		if (PlayerPrefs.GetInt("MapActive") == 0)
+		{
+			mapActive = false;
+			miniMap.SetActive(false);
+			mapStatusText.text = "mapClosed";
+		}
+	}
+
+	public void ChangeMapStatus()
+	{
+		if (mapActive)
+		{
+			PlayerPrefs.SetInt("MapActive", 0);
+		}
+		else if (!mapActive)
+		{
+			PlayerPrefs.SetInt("MapActive", 1);
+		}
 	}
 }

@@ -43,6 +43,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
 
 		CharacterMovement theCharacter;
+		BoatController theBoat;
 		public Transform playerMesh;
 		public bool controllingShip;
 		public bool canMove;
@@ -62,6 +63,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
 			theCharacter = FindObjectOfType<CharacterMovement>();
+			theBoat = FindObjectOfType<BoatController>();
         }
 
 
@@ -105,6 +107,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 		private void FixedUpdate()
 		{
+			if (theBoat.controllingBoat)
+			{
+				playerMesh.localRotation = Quaternion.Euler(-90, 0, 0);
+			}
 			if (!controllingShip && theCharacter.gameStart)
 			{
 				Rotate();
