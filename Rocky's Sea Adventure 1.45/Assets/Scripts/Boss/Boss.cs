@@ -6,7 +6,6 @@ public class Boss : MonoBehaviour {
 
     [Header("Components")]
     [SerializeField] Rigidbody rb;
-
     //---------------------------------------------------
     [Space]
     [Header ("health variables")]
@@ -19,7 +18,7 @@ public class Boss : MonoBehaviour {
     [SerializeField] float moveSpeed;
 
     // for changing to a different move pattern
-    [SerializeField] bool shipInRange;
+    [SerializeField] bool shipInAttackRange;
     [SerializeField] float stuck;
 
     // to keep a safe distance
@@ -47,9 +46,12 @@ public class Boss : MonoBehaviour {
 
     [Space]
     [Header("Attack Variables")]
+    bool canAttack;
     [SerializeField] float atkRate;
     [SerializeField] int spAtkCounter; // when it reaches zero this mob will use a different attack
-
+    [SerializeField] GameObject hydroPump;
+    [SerializeField] GameObject attackLocation;
+    
 
     private void Start()
     {
@@ -73,18 +75,22 @@ public class Boss : MonoBehaviour {
     private void Update()
     {
         Movement();
-	}
+
+        if (shipInAttackRange)
+        {
+            Attack();
+        }
+    }
 
     //-----------------------------------------------------
     // movement related functions
     void Movement()
     {
-
         changeMovement -= Time.deltaTime;
 
         if (changeMovement > 0)
         {
-            if (shipInRange)
+            if (shipInAttackRange)
             {
                 // normal movement here
                 Vector3 direction = playerPos.position - transform.position;
@@ -115,6 +121,8 @@ public class Boss : MonoBehaviour {
         {
 			MovePatterns();
         }
+
+        atkRate -= Time.deltaTime;
     }
 
     void MovePatterns()
@@ -167,19 +175,33 @@ public class Boss : MonoBehaviour {
 
 	//-----------------------------------------------------
 	// attack related functions
-	void NormalAttack()
+	void Attack()
     {
-        //instantiate something
-        spAtkCounter--;
+        if (atkRate <= 0)
+        {
+            if (spAtkCounter > 0)
+            {
+                //Normal attack here//////
+                BossBeam beam = Instantiate(hydroPump).GetComponent<BossBeam>();
+                beam.bossMouth = attackLocation.transform;
+                beam.shipLocation = playerPos.position;
+                beam.direction = playerPos.position - attackLocation.transform.position;
+                ////////////////////////
+                atkRate = 7f;
+                spAtkCounter--;
+            }
+            else if (spAtkCounter <= 0)
+                SpecialAttack();
+        }
+
     }
+
 
     void SpecialAttack()
     {
-        if (spAtkCounter <= 0)
-        {
-            //instantiateBeam
-        }
+
     }
+
 
     //-----------------------------------------------------
     // health related functions
@@ -193,6 +215,7 @@ public class Boss : MonoBehaviour {
         }
     }
 
+
     IEnumerator DeathAnimation()
     {
         yield return new WaitForSeconds(0f);
@@ -202,14 +225,17 @@ public class Boss : MonoBehaviour {
     {
         if (other.tag == "Ship")
         {
-            shipInRange = true;
+            shipInAttackRange = true;
         }
+    }
 
-        if (other.tag == "BossSpots")
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "BossSpots")
         {
-			movementPositions.Remove(actualPositionToMove);
+            movementPositions.Remove(actualPositionToMove);
 
-			positionToMove = GetRandomIntFromArray();
+            positionToMove = GetRandomIntFromArray();
             positionsMoved++;
 
             if (positionsMoved >= movedLimit)
@@ -222,10 +248,14 @@ public class Boss : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-
         if (other.tag == "BossSpots")
         {
             stuck = 0f;
+        }
+
+        if (other.tag == "Ship")
+        {
+            shipInAttackRange = false;
         }
     }
 }
