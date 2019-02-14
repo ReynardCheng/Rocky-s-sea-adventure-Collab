@@ -33,9 +33,14 @@ public class CameraSwitch : MonoBehaviour {
 	{
 
 		//getting components
+		//playerViewPos = CharacterMovement.characterPos.Find("Player View Pos");
+
 		transform.position = playerViewPos.position;
 		fpsController = FindObjectOfType<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
 		theBoat = FindObjectOfType<BoatController>();
+
+		//shipViewPos = theBoat.transform.Find("Ship View Position");
+
 		chMovement = FindObjectOfType<CharacterMovement>();
 		player = chMovement.transform;
 
@@ -137,17 +142,20 @@ public class CameraSwitch : MonoBehaviour {
 
     void CameraRotate()
     {
-        if (!fpsController.controllingShip)
-        {
-			float nextStep = 2;
-			float rate = 10f + nextStep;
-            offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * turnSpeed, Vector3.up) * offset;
-           // transform.position = player.position + offset;
-			Vector3 posToLerp = player.position + offset;
-			transform.position = Vector3.Lerp(transform.position, posToLerp, Time.deltaTime * rate);
-            transform.LookAt(player.position);
-			Cursor.visible = false;
-        }
+		if (!LevelManager.theLevelManager.gamePaused)
+		{
+			if (!fpsController.controllingShip)
+			{
+				float nextStep = 2;
+				float rate = 10f + nextStep;
+				offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * turnSpeed, Vector3.up) * offset;
+				// transform.position = player.position + offset;
+				Vector3 posToLerp = player.position + offset;
+				transform.position = Vector3.Lerp(transform.position, posToLerp, Time.deltaTime * rate);
+				transform.LookAt(player.position);
+				Cursor.visible = false;
+			}
+		}
     }
 }
 

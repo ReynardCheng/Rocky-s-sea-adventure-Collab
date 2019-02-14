@@ -66,7 +66,8 @@ public class CharacterMovement : MonoBehaviour {
 			float vertical = Input.GetAxis("Vertical(P1)");
 
 			ControllingTheBoat();
-			if (horizontal != 0 || vertical != 0) characterRotateMovement();
+			if (!theBoat.controllingBoat) if (horizontal != 0 || vertical != 0) characterRotateMovement();
+			if (theBoat.controllingBoat) transform.localRotation = Quaternion.Euler(0, 0, 0);
 
 			ChangeMap();
 		}
@@ -168,12 +169,11 @@ public class CharacterMovement : MonoBehaviour {
 
 	void characterRotateMovement()
 	{
-
-		//Vector3 desiredTransform = new Vector3(-mainCam.transform.position.x, mainCam.transform.position.y, mainCam.transform.position.z);
-		Vector3 desiredTransform = transform.position + transform.position - mainCam.transform.position;
-		desiredTransform = new Vector3(desiredTransform.x, transform.position.y, desiredTransform.z);
-		rotateTarget.transform.position = desiredTransform;
-		transform.LookAt(rotateTarget);
+			//Vector3 desiredTransform = new Vector3(-mainCam.transform.position.x, mainCam.transform.position.y, mainCam.transform.position.z);
+			Vector3 desiredTransform = transform.position + transform.position - mainCam.transform.position;
+			desiredTransform = new Vector3(desiredTransform.x, transform.position.y, desiredTransform.z);
+			rotateTarget.transform.position = desiredTransform;
+			transform.LookAt(rotateTarget);
 	}
 
     private void OpenSteerMenu()

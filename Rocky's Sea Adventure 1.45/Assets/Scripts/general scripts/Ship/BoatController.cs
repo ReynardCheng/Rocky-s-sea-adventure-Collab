@@ -32,7 +32,8 @@ public class BoatController : MonoBehaviour
 	float horizontalInput;
 	public float steerFactor;
 	public float steerSpeed;
-	
+	float maxSteerSpeed;
+
 	//balance
 	public Vector3 centerOfMass;
 	Transform thisCenter;
@@ -80,7 +81,7 @@ public class BoatController : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		
+		maxSteerSpeed = steerSpeed;
         m_AudioSource = GetComponent<AudioSource>();
 
 		// variables
@@ -102,30 +103,33 @@ public class BoatController : MonoBehaviour
 
 		// For ui
 		boostSlider.maxValue = boost;
-		print("IM FKING WORKING");
-
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		// transform.rotation = Quaternion.Euler(0, 0, 0);
-		if (controllingBoat && !theCharacter.mapOpened && !theCharacter.crRunning)
+		if (!LevelManager.theLevelManager.gamePaused)
 		{
-			Movement();
-			Steer();
+			// transform.rotation = Quaternion.Euler(0, 0, 0);
+			if (controllingBoat && !theCharacter.mapOpened && !theCharacter.crRunning)
+			{
+				Movement();
+				Steer();
+			}
+			Balance();
+
+			Boost();
+
+			BoostSlider();
+
+			if (!controllingBoat)
+			{
+				movementFactor = 0;
+				steerFactor = 0;
+			}
+
+			if (theBoatCombat.shipHealth <= 0) theGUI.lose = true;
 		}
-		Balance();
-
-		Boost();
-
-		BoostSlider();
-
-		if (!controllingBoat) movementFactor = 0;
-		
-
-		if (theBoatCombat.shipHealth <= 0) theGUI.lose = true;
-
     }
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -191,11 +195,15 @@ public class BoatController : MonoBehaviour
 
 	void Steer()
 	{
-		if (steerFactor >= 0.3f) steerFactor = 0.3f;
-		if (steerFactor <= -0.3f) steerFactor = -0.3f;
+		//if (steerFactor >= 0.3f) steerFactor = 0.3f;
+		//if (steerFactor <= -0.3f) steerFactor = -0.3f;
+
 		horizontalInput = Input.GetAxis("Horizontal(P1)");
+		//if (horizontalInput > 0 || horizontalInput < 0) steerSpeed = Mathf.Lerp(0, maxSteerSpeed, Time.deltaTime * 20);
+		//steerFactor = steerSpeed * horizontalInput;
 		//steerFactor = Mathf.Lerp(steerFactor, horizontalInput * steerSpeed, Time.deltaTime / movementThreshold);
-		steerFactor = Mathf.Lerp(steerFactor, horizontalInput * steerSpeed, Time.deltaTime / 10);
+		steerFactor = Mathf.Lerp(steerFactor, horizontalInput * steerSpeed, Time.deltaTime * 6);
+		//steerFactor = (horizontalInput * steerSpeed * Time.deltaTime / 10);
 		transform.Rotate(0.0f, steerFactor, 0);
 	//	print(horizontalInput);
 	}
