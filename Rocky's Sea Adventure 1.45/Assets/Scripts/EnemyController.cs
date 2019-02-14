@@ -6,15 +6,15 @@ using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
-    public enum spawnType { Global, Local }
-    public spawnType spawnTypes;
+	public enum spawnType { Global, Local }
+	public spawnType spawnTypes;
 
-    [Header("EnemyTypes")]
-    [SerializeField] int spAtk;
-    public enum EnemyType { Normal, Sticky, Laser }
-    public EnemyType enemyType;
+	[Header("EnemyTypes")]
+	[SerializeField] int spAtk;
+	public enum EnemyType { Normal, Sticky, Laser }
+	public EnemyType enemyType;
 
-    private GameObject closestShipSection;
+	[SerializeField] private GameObject closestShipSection;
     private Camera cam;
 
     [Header("coomponents")]
@@ -285,7 +285,11 @@ public class EnemyController : MonoBehaviour
 		{
 			fireRate = coolDownTime;
 			GameObject enemyBullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
-			enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (closestShipSection.transform.position - transform.position).normalized;
+			//enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (closestShipSection.transform.position - transform.position).normalized;
+
+			Vector3 whereToTarget = new Vector3(closestShipSection.transform.position.x, closestShipSection.transform.position.y - 2, closestShipSection.transform.position.z);
+			
+			enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (whereToTarget - transform.position).normalized;
 		}
 	}
 

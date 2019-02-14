@@ -32,7 +32,8 @@ public class BoatController : MonoBehaviour
 	float horizontalInput;
 	public float steerFactor;
 	public float steerSpeed;
-	
+	float maxSteerSpeed;
+
 	//balance
 	public Vector3 centerOfMass;
 	Transform thisCenter;
@@ -80,7 +81,7 @@ public class BoatController : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		
+		maxSteerSpeed = steerSpeed;
         m_AudioSource = GetComponent<AudioSource>();
 
 		// variables
@@ -196,12 +197,12 @@ public class BoatController : MonoBehaviour
 	{
 		//if (steerFactor >= 0.3f) steerFactor = 0.3f;
 		//if (steerFactor <= -0.3f) steerFactor = -0.3f;
-	
+
 		horizontalInput = Input.GetAxis("Horizontal(P1)");
-		steerFactor = steerSpeed * horizontalInput;
-		steerFactor = steerSpeed * horizontalInput;
+		//if (horizontalInput > 0 || horizontalInput < 0) steerSpeed = Mathf.Lerp(0, maxSteerSpeed, Time.deltaTime * 20);
+		//steerFactor = steerSpeed * horizontalInput;
 		//steerFactor = Mathf.Lerp(steerFactor, horizontalInput * steerSpeed, Time.deltaTime / movementThreshold);
-		//steerFactor = Mathf.Lerp(steerFactor, horizontalInput * steerSpeed, Time.deltaTime / 10);
+		steerFactor = Mathf.Lerp(steerFactor, horizontalInput * steerSpeed, Time.deltaTime * 6);
 		//steerFactor = (horizontalInput * steerSpeed * Time.deltaTime / 10);
 		transform.Rotate(0.0f, steerFactor, 0);
 	//	print(horizontalInput);
