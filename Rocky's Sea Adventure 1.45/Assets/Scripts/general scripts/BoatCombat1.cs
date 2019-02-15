@@ -35,23 +35,24 @@ public class BoatCombat1 : MonoBehaviour
     public void TakeDamage(int damageToTake, GameObject damageLocation)
 	{
         bulletType = damageLocation.GetComponent<EnemyBulletScript>().bulletState;
-        
-		Collider[] cannonsInRange = Physics.OverlapSphere(damageLocation.transform.position, 2, cannonMask);
-		print("Cannons in Range:" + cannonsInRange.Length);
-		for (int i = 0; i < cannonHolder.Length; i++)
-		{
-			if (cannonHolder[i].GetComponentInChildren<CannonController>() != null)
-			{
-				if (cannonHolder[i].GetComponentInChildren<CannonController>().cannonType == cannonTypes.defence)
-				{
+
+        for (int i = 0; i < cannonHolder.Length; i++)
+        {
+            if (cannonHolder[i].GetComponentInChildren<CannonController>() != null)
+            {
+                if (cannonHolder[i].GetComponentInChildren<CannonController>().cannonType == cannonTypes.defence)
+                {
+                    print("yooo");
                     if ((cannonHolder[i].transform.position - damageLocation.transform.position).magnitude < protectionRadius)
                     {
                         DamageCannons(cannonHolder[i].gameObject, damageToTake);
                         return;
                     }
-				}
-			}
-		}
+                }
+            }
+        }
+
+        Collider[] cannonsInRange = Physics.OverlapSphere(damageLocation.transform.position, 3.5f, cannonMask);
 
 
 		if (cannonsInRange.Length == 0)

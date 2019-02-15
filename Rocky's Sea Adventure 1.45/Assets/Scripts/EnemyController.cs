@@ -322,7 +322,7 @@ public class EnemyController : MonoBehaviour
 			aiming = true;
 			canMove = false;
 
-            Vector3 aimDirection = new Vector3(closestShipSection.transform.position.x, closestShipSection.transform.position.y - 2, closestShipSection.transform.position.z);
+            Vector3 aimDirection = new Vector3(closestShipSection.transform.position.x, closestShipSection.transform.position.y - 1, closestShipSection.transform.position.z);
             
             //Laser Indicator is the red cylinder that shows where it shoots.
             GameObject laserAim = gameObject.transform.Find("Laser Indicator").gameObject;
@@ -475,7 +475,7 @@ public class EnemyController : MonoBehaviour
 
 		if (randomValue < 0.133f)
 		{
-			resource = Instantiate(seaEssence, transform.position, Quaternion.identity);
+			resource = Instantiate(seaEssence, new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), Quaternion.identity);
 			resource.transform.localScale = new Vector3(1, 1, 1);
 		}
 		else if (randomValue < 0.266f)
