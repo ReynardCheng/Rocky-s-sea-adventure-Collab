@@ -259,21 +259,30 @@ public class BoatController : MonoBehaviour
         /// *************************************************************
 
         ///move factor as dmg multiplier
-       
-            if (other.tag == "Enemy")
-            {
-                EnemyController enemyController = other.GetComponent<EnemyController>();
-                enemyController.Health(RamDamageToEnemy*moveFactor);
+        // calculation: moveFactor = (int)(moveSpeed * verticalInput) ====> max moveFactor = 25
 
-                print("ramming damage to enemy:"+ RamDamageToEnemy*moveFactor);
+        if (other.tag == "Enemy")
+         {
+            EnemyController enemyController = other.GetComponent<EnemyController>();
+            RamDamageToEnemy = 2;
+            enemyController.Health(RamDamageToEnemy*moveFactor);
+            //max damage to enemy = 2 x 25 = 50
+            print("ramming damage to enemy:"+ RamDamageToEnemy*moveFactor);
 
-                //damage ship when ram enemy
-                BoatCombat1 theBoatCombat = GetComponentInParent<BoatCombat1>();
-                theBoatCombat.DamageShip(RamDamageToShip * moveFactor);
+            //damage ship when ram enemy
+            BoatCombat1 theBoatCombat = GetComponentInParent<BoatCombat1>();
+            RamDamageToShip = 1; // max damage to ship = 1 x (5x5) /5 = 5
+            theBoatCombat.DamageShip(RamDamageToShip * moveFactor/5);
 
+         }
 
-             }
-
+        if (other.gameObject.layer == 10)
+        {
+            //damage ship when ram rocks
+            BoatCombat1 theBoatCombat = GetComponentInParent<BoatCombat1>();
+            RamDamageToShip = 3; //max damage to ship = 3 x (5x5) / 5 = 15 
+            theBoatCombat.DamageShip(RamDamageToShip * moveFactor/5);
+        }
 
     }
 	
