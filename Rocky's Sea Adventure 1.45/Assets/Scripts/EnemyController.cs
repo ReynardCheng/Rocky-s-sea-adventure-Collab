@@ -300,7 +300,12 @@ public class EnemyController : MonoBehaviour
 			if (fireRate <= 0 && spAtk <= 0)
 			{
 				GameObject enemyBullet = Instantiate(stickBullet.gameObject, transform.position, Quaternion.identity);
-				enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (closestShipSection.transform.position - transform.position).normalized;
+				//enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (closestShipSection.transform.position - transform.position).normalized;
+
+				Vector3 whereToTarget = new Vector3(closestShipSection.transform.position.x, closestShipSection.transform.position.y - 2, closestShipSection.transform.position.z);
+
+				enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (whereToTarget - transform.position).normalized;
+
 				spAtk = Random.Range(3, 7);
 				fireRate = coolDownTime;
 			
