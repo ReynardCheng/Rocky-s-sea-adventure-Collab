@@ -37,6 +37,7 @@ public class CannonController : MonoBehaviour {
 	public GameObject parent;
 
 	public cannonTypes cannonType;
+    private Animator cannonAnimator;
 
 	// Use this for initialization
 	void Start () {
@@ -47,7 +48,9 @@ public class CannonController : MonoBehaviour {
 		myAudioSource  = GetComponent<AudioSource>();
 
 		EnemiesInRange = new List<GameObject>(); //EnemiesInRange = list of enemy targets in the range of the cannon
-												 //SphereCollider Range = gameObject.GetComponent<SphereCollider>();
+                                                 //SphereCollider Range = gameObject.GetComponent<SphereCollider>();
+                                              
+        cannonAnimator = GetComponent<Animator>();
 	}
 
 	// Update is called once per frame
@@ -107,38 +110,47 @@ public class CannonController : MonoBehaviour {
             atkRate = 2f;
         }
 
+        if (cannonAnimator)
+        {
+            cannonAnimator.SetTrigger("Shoot");
+        }
+
+        StartCoroutine(shootProjectile());
+
+        myAudioSource.PlayOneShot(cannonSounds.cannonFire);
+	}
+
+    private IEnumerator shootProjectile()
+    {
+        yield return new WaitForSeconds(10/30f);
+
         switch (cannonType)
         {
             case cannonTypes.normal:
                 projectile.GetComponent<BulletFire>().target = TargetingEnemy; //set the target/path for bullets to fly to in a straight line... will want to edit this later on as bullets act like a moving missile.
-				projectile.GetComponent<BulletFire>().vfxToPlay = cannonSounds.cannonBallHit;
+                projectile.GetComponent<BulletFire>().vfxToPlay = cannonSounds.cannonBallHit;
                 Instantiate(projectile, transform.position, transform.rotation);
                 break;
 
             case cannonTypes.aoe:
                 projectile.GetComponent<AoeFire>().target = TargetingEnemy;
-				projectile.GetComponent<AoeFire>().vfxToPlay = cannonSounds.aoeHit;
-				//projectile.GetComponent<AoeFire>()
-				Instantiate(projectile, transform.position, transform.rotation);
+                projectile.GetComponent<AoeFire>().vfxToPlay = cannonSounds.aoeHit;
+                Instantiate(projectile, transform.position, transform.rotation);
                 break;
 
             case cannonTypes.oilSlick:
                 projectile.GetComponent<OilSlickFire>().target = TargetingEnemy;
-				projectile.GetComponent<OilSlickFire>().vfxToPlay = cannonSounds.oilSlickHit;
-				Instantiate(projectile, transform.position, transform.rotation);
-				break;
+                projectile.GetComponent<OilSlickFire>().vfxToPlay = cannonSounds.oilSlickHit;
+                Instantiate(projectile, transform.position, transform.rotation);
+                break;
 
             default:
                 projectile.GetComponent<BulletFire>().target = TargetingEnemy;
-				projectile.GetComponent<BulletFire>().vfxToPlay = cannonSounds.cannonBallHit;
-				Instantiate(projectile, transform.position, transform.rotation);
-				break;
-
+                projectile.GetComponent<BulletFire>().vfxToPlay = cannonSounds.cannonBallHit;
+                Instantiate(projectile, transform.position, transform.rotation);
+                break;
         }
-		//SoundFromCannon.Play();
-		//nextAtk = Time.time + atkRate;
-		myAudioSource.PlayOneShot(cannonSounds.cannonFire);
-	}
+    }
 
 	public void damageCannon(int damageToTake)
 	{
