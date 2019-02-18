@@ -154,6 +154,8 @@ public class BuildCannonManager : MonoBehaviour
                         b.GetComponentInChildren<Button>().onClick.AddListener(DismantleCannon);
                     }
                 }
+
+                LevelManager.theLevelManager.PlaySoundEffect(LevelManager.theLevelManager.upgradeMenuClip);
             }
             //Else it has to be an oil slick, aoe, or defence cannon
             else
@@ -333,10 +335,12 @@ public class BuildCannonManager : MonoBehaviour
             {
                 timesSpammed++;
                 slider.value = timesSpammed / timesToSpam;
+                LevelManager.theLevelManager.PlaySoundEffect(LevelManager.theLevelManager.upgradingClip);
             }
             yield return null;
         }
         //Finished Building Sequence
+        LevelManager.theLevelManager.PlaySoundEffect(LevelManager.theLevelManager.completeUpgradeClip);
 
         shipPartsToHide.SetActive(true);
         cameraSwitch.locked = false;
@@ -406,6 +410,8 @@ public class BuildCannonManager : MonoBehaviour
             boatController.boost += 15f;
             if (boatController.boost > 100f)
                 boatController.boost = 100f;
+            
+            LevelManager.theLevelManager.PlaySoundEffect(LevelManager.theLevelManager.boostRefuelClip);
         }
     }
 
