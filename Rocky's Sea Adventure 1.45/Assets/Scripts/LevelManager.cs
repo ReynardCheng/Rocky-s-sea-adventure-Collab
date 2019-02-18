@@ -47,7 +47,6 @@ public class LevelManager : MonoBehaviour
 	}
 
 	public Image endScreen;
-	public Image loseScreen;
 
     // Use this for initialization
     void Start()
@@ -77,16 +76,18 @@ public class LevelManager : MonoBehaviour
 
 		// shipHpBarImage.fillAmount = boatCombatScript.shipHealth / shipMaxHp;
 
-		if (boatControl.reachedEnd)
-		{
-			Win();
-		}
+		if (!endScreen.gameObject.activeSelf){
+			if (boatControl.reachedEnd)
+			{
+				Win();
+			}
 
-		if (boatCombatScript.shipHealth <= 0)
-		{
-			print("Ship died");
-			theGui.lose = true;
-			Lose();
+			if (boatCombatScript.shipHealth <= 0)
+			{
+				print("Ship died");
+				theGui.lose = true;
+				Lose();
+			}
 		}
 
 		Collider[] colliders = Physics.OverlapSphere(boatCombatScript.transform.position, changeSkyboxRadius); // Gets all colliders in a radius around the position, and store them into an array.
