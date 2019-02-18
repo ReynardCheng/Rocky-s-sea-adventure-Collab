@@ -15,6 +15,7 @@ public class EnemyBulletScript : MonoBehaviour
 	[Header("Damage to give")]
 	public int damageToGive;
     private bool canDamage;
+	public GameObject enemyParticle, stickyParticle;
 
     // Use this for initialization
     void Start()
@@ -54,6 +55,8 @@ public class EnemyBulletScript : MonoBehaviour
             canDamage = true;   //This bool prevents bullets from damaging the ship twice.
 
 			other.gameObject.GetComponentInParent<BoatCombat1>().TakeDamage(damageToGive, gameObject);
+			if (bulletState == bulletType.normal) Instantiate(enemyParticle, transform.position, enemyParticle.transform.rotation);
+			else if (bulletState == bulletType.sticky) Instantiate(stickyParticle, transform.position, enemyParticle.transform.rotation);
 			if (bulletState != bulletType.laser)
 				Destroy(gameObject);                
 		}
