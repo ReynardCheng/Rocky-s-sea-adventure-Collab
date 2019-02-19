@@ -7,6 +7,7 @@ public class CannonController : MonoBehaviour {
 	[System.Serializable]
 	public struct CannonVfx
 	{
+        public AudioClip oilSlickFire;
 		public AudioClip cannonFire;
 		public AudioClip cannonBallHit;
 		public AudioClip aoeHit;
@@ -117,7 +118,14 @@ public class CannonController : MonoBehaviour {
 
         StartCoroutine(shootProjectile());
 
-        myAudioSource.PlayOneShot(cannonSounds.cannonFire);
+        if (cannonType == cannonTypes.oilSlick)
+        {
+            myAudioSource.PlayOneShot(cannonSounds.oilSlickFire);
+        }
+        else
+        {
+            myAudioSource.PlayOneShot(cannonSounds.cannonFire);
+        }
 	}
 
     private IEnumerator shootProjectile()
