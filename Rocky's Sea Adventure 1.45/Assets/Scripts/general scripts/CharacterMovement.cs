@@ -36,8 +36,15 @@ public class CharacterMovement : MonoBehaviour {
 	public GameObject miniMap;
 	public GameObject[] shipUI;
 
+    [Header("PlayerAnimation")]
+    [SerializeField] private Animator meshAnim;
+    [SerializeField] CameraSwitch theCamera;
+    private bool walking;
+
 	// Use this for initialization
 	void Start () {
+        meshAnim = GetComponentInChildren<Animator>();
+        theCamera = FindObjectOfType<CameraSwitch>();
 		gameStart = false;
 		raycastCam.enabled = false;
 		canControlShip = false;
@@ -60,6 +67,9 @@ public class CharacterMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
+        meshAnim.SetBool("Walking", walking);
+        PlayerAnimation();
+
 		if (gameStart && canMove)
 		{
 			float horizontal = Input.GetAxis("Horizontal(P1)");
@@ -67,7 +77,7 @@ public class CharacterMovement : MonoBehaviour {
 
 			ControllingTheBoat();
 			if (!theBoat.controllingBoat) if (horizontal != 0 || vertical != 0) characterRotateMovement();
-			if (theBoat.controllingBoat) transform.localRotation = Quaternion.Euler(0, 0, 0);
+			if (theBoat.controllingBoat) transform.localRotation = Quaternion.Euler(90, 0, 0);
 
 			ChangeMap();
 		}
@@ -83,8 +93,21 @@ public class CharacterMovement : MonoBehaviour {
 		else {
 			gameObject.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = true;
 		}
+     
 	}
 
+    void PlayerAnimation()
+    {
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        {
+            if (!theBoat.controllingBoat && !theCamera.switching) walking = true;
+        }
+        else
+        {
+            walking = false;
+        }
+    
+    }
 
 	// For methods
 	void ControllingTheBoat()
