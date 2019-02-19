@@ -16,6 +16,8 @@ public class TutorialController : MonoBehaviour {
     public CharacterMovement Player;
     public GameObject Textboxes;
     public Text Text;
+    public GameObject ObstructBox;
+    public TutorialInstructions TutInstruct;
 
 
     [Header("Mini-map Intro")]
@@ -42,6 +44,7 @@ public class TutorialController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        TutInstruct = FindObjectOfType<TutorialInstructions>();
         DialogueSys = FindObjectOfType<DialogueSystem>();
         Player.canMove = false;
         OnScript1 = true;
@@ -59,13 +62,18 @@ public class TutorialController : MonoBehaviour {
 
             if (sentenceNumber == 3)
             {
+                
+                ObstructBox.SetActive(true);//test
                 MapHighlight.SetActive(true);
             }
 
             if (sentenceNumber == 5)
             {
+                TutInstruct.haventSteerBefore = false;//test
                 MapHighlight.SetActive(false);
                 CompassHighlight.SetActive(true);
+                
+               
             }
             if (sentenceNumber == 6)
             {
@@ -80,6 +88,7 @@ public class TutorialController : MonoBehaviour {
                 ProceedScript2 = true;
                 Script2.SetActive(true);
                 OnScript1 = false;
+                sentenceNumber = 0;
             }
         }
 
@@ -92,12 +101,12 @@ public class TutorialController : MonoBehaviour {
             sentenceNumber = DialogueScript.onSentence;
             print("Sentence index = " + sentenceNumber);
 
-            //may want to edit to set trigger in front of wheel to pop out dialogue box again
+            
             if (sentenceNumber == 1)
             {
                 Destroy(Script1);
             }
-            if (sentenceNumber == 6)
+            if (sentenceNumber == 5)
             {
                 DialogueSys.isWaitingForUserInput = false;
                 Script2.SetActive(false);

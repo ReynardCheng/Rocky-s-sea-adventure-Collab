@@ -45,23 +45,27 @@ public class DialogueScript : MonoBehaviour
 
             //if (hit.collider != null && canContinueDialogue == true)
 
-              if (canContinueDialogue == true)
-            {
-
-
-                if (!dialogueSys.isSpeaking || dialogueSys.isWaitingForUserInput)
+                if (canContinueDialogue == true)
                 {
-                    if (index >= s.Length)
+
+
+                    if (!dialogueSys.isSpeaking || dialogueSys.isWaitingForUserInput)
                     {
-                        return;
+                        if (index >= s.Length)
+                        {
+                            return;
+                        }
+                        Say(s[index]);
+                        index++;
+                        onSentence++;
                     }
-                    Say(s[index]);
-                    index++;
-                    onSentence++;
+
+
                 }
-            }
         }
     }
+
+
 
     void Say(string s)
     {
@@ -71,5 +75,7 @@ public class DialogueScript : MonoBehaviour
 
         dialogueSys.Say(speech, speaker);
     }
+
+
 
 }
