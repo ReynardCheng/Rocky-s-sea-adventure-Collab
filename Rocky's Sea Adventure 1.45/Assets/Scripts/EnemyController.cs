@@ -76,10 +76,14 @@ public class EnemyController : MonoBehaviour
 
 	CharacterMovement player;
 
+    private AudioSource myAudioSource;
+
 
 	// Use this for initialization
 	public void Start()
 	{
+        myAudioSource = gameObject.AddComponent<AudioSource>();
+
 		//getting components
 		rb = GetComponent<Rigidbody>();
 
@@ -148,6 +152,13 @@ public class EnemyController : MonoBehaviour
                     Patrol();
                 }
 
+            }
+
+            // Play movement sound
+            if (rb.velocity != Vector3.zero && !myAudioSource.isPlaying)
+            {
+                myAudioSource.clip = LevelManager.theLevelManager.squidMovingClip;
+                myAudioSource.Play();
             }
 		}
 	}
@@ -288,11 +299,13 @@ public class EnemyController : MonoBehaviour
 		if (fireRate <= 0)
 		{
 			fireRate = coolDownTime;
+            
 			GameObject enemyBullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
 			//enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (closestShipSection.transform.position - transform.position).normalized;
 
 			Vector3 whereToTarget = new Vector3(closestShipSection.transform.position.x, closestShipSection.transform.position.y - 2, closestShipSection.transform.position.z);
-			
+
+            myAudioSource.PlayOneShot(LevelManager.theLevelManager.normalAttackClip);
 			enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (whereToTarget - transform.position).normalized;
 		}
 	}
@@ -310,7 +323,8 @@ public class EnemyController : MonoBehaviour
 
 				enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (whereToTarget - transform.position).normalized;
 
-				spAtk = Random.Range(3, 7);
+                myAudioSource.PlayOneShot(LevelManager.theLevelManager.stickyAttackClip);
+                spAtk = Random.Range(3, 7);
 				fireRate = coolDownTime;
 			
 			}
@@ -342,7 +356,8 @@ public class EnemyController : MonoBehaviour
 
             //LaserDirection is where the projectile will shoot at.
             laserDirection = aimDirection;
-            
+
+            myAudioSource.PlayOneShot(LevelManager.theLevelManager.laserAttackClip);
 
             laserTiming = 8;
 			fireRate = Mathf.Infinity;

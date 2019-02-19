@@ -17,8 +17,10 @@ public class LevelManager : MonoBehaviour
 	[Header("Misc")]
 	public AudioSource bgm, sfx;
 	public AudioClip levelBgmClip, levelClearClip, levelLostClip, bossNearClip, buttonClickClip;
-	public AudioClip upgradeMenuClip, boostRefuelClip, collectionClip, upgradingClip, completeUpgradeClip;
-	public Color skyboxBossColor;
+    public AudioClip upgradeMenuClip, boostRefuelClip, collectionClip, upgradingClip, completeUpgradeClip;
+    public AudioClip defenceCannonDestroyedClip, cannonDestroyedClip, defenceCannonDefendingClip;
+    public AudioClip normalAttackClip, laserAttackClip, stickyAttackClip, squidMovingClip;
+    public Color skyboxBossColor;
 	public Color skyboxDefaultColor;
 	public float changeSkyboxRadius;
 	public float skyboxTransitionDuration;

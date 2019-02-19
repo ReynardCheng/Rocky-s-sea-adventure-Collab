@@ -158,10 +158,23 @@ public class CannonController : MonoBehaviour {
 
         if (health <= 0)
         {
+            if (cannonType == cannonTypes.defence)
+            {
+                myAudioSource.PlayOneShot(LevelManager.theLevelManager.defenceCannonDestroyedClip);
+            } else
+            {
+                myAudioSource.PlayOneShot(LevelManager.theLevelManager.cannonDestroyedClip);
+            }
+
             Destroy(gameObject.transform.parent.gameObject);
         }
         else
         {
+            if (cannonType == cannonTypes.defence)
+            {
+                myAudioSource.PlayOneShot(LevelManager.theLevelManager.defenceCannonDefendingClip);
+            }
+
             if (health <= 30)
             {
                 smokeEffect.SetActive(true);
