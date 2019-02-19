@@ -58,6 +58,8 @@ public class EnemyController : MonoBehaviour
     [Header("Rise above water before heading for ship")]
     public GameObject sea;
 
+	private Animator anim;
+
     //LASER ENEMY VARIABLES
     private Vector3 laserDirection;
 	private float laserTiming;
@@ -96,6 +98,8 @@ public class EnemyController : MonoBehaviour
         ship = FindObjectOfType<BoatCombat1>();
 
 		detectShipTrigger = GetComponentInChildren<DetectShipTrigger>();
+
+		anim = GetComponent<Animator>();
 
 		InvokeRepeating("FindShipTarget", 0, 1f);
 
@@ -379,8 +383,9 @@ public class EnemyController : MonoBehaviour
 		currentHealth -= damageTaken;
 		if (currentHealth <= 0f)
 		{
-			Destroy(gameObject);
-        }
+			anim.Play("SquidDeath");
+			Destroy(gameObject, anim.GetCurrentAnimatorStateInfo(0).length);
+		}
         HealthUi();
     }
 
