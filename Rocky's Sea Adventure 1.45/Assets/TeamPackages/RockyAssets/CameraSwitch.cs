@@ -91,7 +91,7 @@ public class CameraSwitch : MonoBehaviour {
 				shipView = true;
 				StartCoroutine(SwitchView(shipViewPos));
 				transform.parent = ship.transform;
-				fpsController.controllingShip = true;
+                fpsController.controllingShip = true;
 			}
 			else
 			{
@@ -99,8 +99,8 @@ public class CameraSwitch : MonoBehaviour {
 				shipView = false;
 				StartCoroutine(SwitchView(playerViewPos));
 				transform.parent = null;
-				//fpsController.controllingShip = false;
-			}
+                //fpsController.controllingShip = false;
+            }
 		}
 	}
 

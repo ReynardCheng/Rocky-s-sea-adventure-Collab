@@ -205,6 +205,21 @@ public class BoatController : MonoBehaviour
 		steerFactor = Mathf.Lerp(steerFactor, horizontalInput * steerSpeed, Time.deltaTime * 6);
 		//steerFactor = (horizontalInput * steerSpeed * Time.deltaTime / 10);
 		transform.Rotate(0.0f, steerFactor, 0);
+
+        if (horizontalInput < 0)
+        {
+            theCharacter.steeringLeft = true;
+            theCharacter.steeringRight = false;
+        } else if (horizontalInput > 0)
+        {
+            theCharacter.steeringLeft = false;
+            theCharacter.steeringRight = true;
+        } else
+        {
+            theCharacter.steeringLeft = false;
+            theCharacter.steeringRight = false;
+        }
+        
 	//	print(horizontalInput);
 	}
 

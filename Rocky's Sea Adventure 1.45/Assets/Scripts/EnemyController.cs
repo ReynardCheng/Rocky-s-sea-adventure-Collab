@@ -300,32 +300,50 @@ public class EnemyController : MonoBehaviour
 		if (fireRate <= 0)
 		{
 			fireRate = coolDownTime;
-            
-			GameObject enemyBullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
-			//enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (closestShipSection.transform.position - transform.position).normalized;
 
-			Vector3 whereToTarget = new Vector3(closestShipSection.transform.position.x, closestShipSection.transform.position.y - 2, closestShipSection.transform.position.z);
+            anim.SetTrigger("Attack");
 
-            myAudioSource.PlayOneShot(LevelManager.theLevelManager.normalAttackClip);
-			enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (whereToTarget - transform.position).normalized;
+            StartCoroutine(ShootNormalProjectile());
 		}
 	}
 
-	void StickyEnemy()
+    private IEnumerator ShootNormalProjectile()
+    {
+        yield return new WaitForSeconds(51f / 30f);
+
+        GameObject enemyBullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
+        //enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (closestShipSection.transform.position - transform.position).normalized;
+
+        Vector3 whereToTarget = new Vector3(closestShipSection.transform.position.x, closestShipSection.transform.position.y - 2, closestShipSection.transform.position.z);
+        myAudioSource.PlayOneShot(LevelManager.theLevelManager.normalAttackClip);
+        enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (whereToTarget - transform.position).normalized;
+
+    }
+
+    private IEnumerator ShootSpecialProjectile()
+    {
+        yield return new WaitForSeconds(51f / 30f);
+
+        GameObject enemyBullet = Instantiate(stickBullet.gameObject, transform.position, Quaternion.identity);
+        //enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (closestShipSection.transform.position - transform.position).normalized;
+
+        Vector3 whereToTarget = new Vector3(closestShipSection.transform.position.x, closestShipSection.transform.position.y - 2, closestShipSection.transform.position.z);
+
+        enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (whereToTarget - transform.position).normalized;
+
+        myAudioSource.PlayOneShot(LevelManager.theLevelManager.stickyAttackClip);
+        spAtk = Random.Range(3, 7);
+
+    }
+
+    void StickyEnemy()
 	{
 		if (enemyType == EnemyType.Sticky)
 		{
 			if (fireRate <= 0 && spAtk <= 0)
 			{
-				GameObject enemyBullet = Instantiate(stickBullet.gameObject, transform.position, Quaternion.identity);
-				//enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (closestShipSection.transform.position - transform.position).normalized;
-
-				Vector3 whereToTarget = new Vector3(closestShipSection.transform.position.x, closestShipSection.transform.position.y - 2, closestShipSection.transform.position.z);
-
-				enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (whereToTarget - transform.position).normalized;
-
-                myAudioSource.PlayOneShot(LevelManager.theLevelManager.stickyAttackClip);
-                spAtk = Random.Range(3, 7);
+                anim.SetTrigger("Attack");
+                StartCoroutine(ShootSpecialProjectile());
 				fireRate = coolDownTime;
 			
 			}
@@ -361,7 +379,7 @@ public class EnemyController : MonoBehaviour
             myAudioSource.PlayOneShot(LevelManager.theLevelManager.laserAttackClip);
 
             laserTiming = 8;
-			fireRate = Mathf.Infinity;
+			//fireRate = Mathf.Infinity;
 		}
 		laserTiming -= Time.deltaTime;
 		FireLaserBeam();

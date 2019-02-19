@@ -37,8 +37,11 @@ public class CharacterMovement : MonoBehaviour {
 	public GameObject[] shipUI;
 
     [Header("PlayerAnimation")]
+    public Transform steeringWheelStandPosition;
+    public GameObject steeringWheelBoat, steeringWheelPlayer;
     [SerializeField] private Animator meshAnim;
     [SerializeField] CameraSwitch theCamera;
+    public bool steering, steeringLeft, steeringRight;
     private bool walking;
 
 	// Use this for initialization
@@ -68,6 +71,10 @@ public class CharacterMovement : MonoBehaviour {
 	void Update()
 	{
         meshAnim.SetBool("Walking", walking);
+        meshAnim.SetBool("Steering", steering);
+        meshAnim.SetBool("SteeringLeft", steeringLeft);
+        meshAnim.SetBool("SteeringRight", steeringRight);
+
         PlayerAnimation();
 
 		if (gameStart && canMove)
@@ -76,8 +83,23 @@ public class CharacterMovement : MonoBehaviour {
 			float vertical = Input.GetAxis("Vertical(P1)");
 
 			ControllingTheBoat();
-			if (!theBoat.controllingBoat) if (horizontal != 0 || vertical != 0) characterRotateMovement();
-			if (theBoat.controllingBoat) transform.localRotation = Quaternion.Euler(90, 0, 0);
+            if (!theBoat.controllingBoat)
+            {
+                if (horizontal != 0 || vertical != 0) characterRotateMovement();
+
+                steering = false;
+                steeringWheelBoat.SetActive(true);
+                steeringWheelPlayer.SetActive(false);
+            }
+            if (theBoat.controllingBoat)
+            {
+                steering = true;
+                transform.localRotation = Quaternion.Euler(90, 0, 0);
+                transform.position = steeringWheelStandPosition.position;
+
+                steeringWheelBoat.SetActive(false);
+                steeringWheelPlayer.SetActive(true);
+            }
 
 			ChangeMap();
 		}
