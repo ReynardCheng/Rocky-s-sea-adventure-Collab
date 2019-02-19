@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class LoadingScreen : MonoBehaviour {
 
@@ -39,6 +40,15 @@ public class LoadingScreen : MonoBehaviour {
         if (loadScreen.activeInHierarchy) //check if loading screen gameobject is active
         {
             print("loadScreen Active");
+        }
+
+        if (Input.GetMouseButtonUp(0)){
+            GameObject currentSelection = EventSystem.current.currentSelectedGameObject;
+
+            if (currentSelection && currentSelection.GetComponent<IPointerDownHandler>() != null) {
+                // print("clicked");
+                LevelManager.theLevelManager.PlaySoundEffect(LevelManager.theLevelManager.buttonClickClip);
+            }
         }
     }
 
