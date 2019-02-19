@@ -245,6 +245,7 @@ public class BoatController : MonoBehaviour
 	{
 		if (other.tag == "Boost")
 		{
+			LevelManager.theLevelManager.PlaySoundEffect(LevelManager.theLevelManager.collectionClip);
 			boost += 100;
 			Destroy(other.gameObject);
 		}
