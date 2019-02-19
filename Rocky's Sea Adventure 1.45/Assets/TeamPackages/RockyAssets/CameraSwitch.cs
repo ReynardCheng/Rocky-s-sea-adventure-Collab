@@ -113,9 +113,9 @@ public class CameraSwitch : MonoBehaviour {
     {
 
         float fractionLerped = 0f;   //Declaring variable for lerping. This is the fraction of how much of the switch is completed.
+        player.GetComponent<CharacterMovement>().canMove = false;
 
-
-        while((transform.position != view.transform.position) && (transform.rotation != view.transform.rotation))   //while switch isnt finished yet...
+           while((transform.position != view.transform.position) && (transform.rotation != view.transform.rotation))   //while switch isnt finished yet...
         {
             fractionLerped += Time.deltaTime * switchSpeed;
 
@@ -124,6 +124,7 @@ public class CameraSwitch : MonoBehaviour {
             yield return null;
         }
         switching = false;
+        player.GetComponent<CharacterMovement>().canMove = true;
 
         if (!locked)
         {
