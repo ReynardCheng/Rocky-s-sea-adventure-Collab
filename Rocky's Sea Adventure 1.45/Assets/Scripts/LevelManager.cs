@@ -80,13 +80,17 @@ public class LevelManager : MonoBehaviour
 			if (boatControl.reachedEnd)
 			{
 				Win();
+				theGui.winAnimation();
+				Cursor.visible = true;
 			}
 
 			if (boatCombatScript.shipHealth <= 0)
 			{
 				print("Ship died");
 				theGui.lose = true;
+				theGui.winAnimation();
 				Lose();
+				Cursor.visible = true;
 			}
 		}
 
