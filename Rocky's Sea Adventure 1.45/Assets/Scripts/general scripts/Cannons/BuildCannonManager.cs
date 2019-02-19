@@ -67,9 +67,12 @@ public class BuildCannonManager : MonoBehaviour
 
             if (!menuSpawned && inRangeToBuild)
             {
-				cameraSwitch.switching = true;
-				OpenBuildMenu();
-                LockCameraMovement();
+                if (!cannonSlot.transform.Find("BuildProgressCanvas(Clone)"))    //if theres a better way pls save me .-.
+                {
+                    cameraSwitch.switching = true;
+                    OpenBuildMenu();
+                    LockCameraMovement();
+                }
             }
             else if (!menuSpawned && inShipMastRange)
             {
@@ -190,7 +193,8 @@ public class BuildCannonManager : MonoBehaviour
         {
             resourceCount.WoodenPlankValue(1, 0);
             resourceCount.MetalValue(1, 0);
-            StartCoroutine(BuildTime(7, normalCannon));
+            StartCoroutine(BuildTime(5, normalCannon));
+            UnlockCamera();
         }
     }
 
@@ -201,7 +205,8 @@ public class BuildCannonManager : MonoBehaviour
             resourceCount.WoodenPlankValue(1, 0);
             resourceCount.MetalValue(3, 0);
             print("Aoe");
-            StartCoroutine(BuildTime(15, aoeCannon));
+            StartCoroutine(BuildTime(9, aoeCannon));
+            UnlockCamera();
             //GameObject cannon = Instantiate(aoeCannon, menu.transform.parent.position, Quaternion.identity);
             //cannon.transform.rotation = menu.transform.parent.transform.rotation;
             //cannon.transform.parent = menu.transform.parent.parent;
@@ -218,12 +223,8 @@ public class BuildCannonManager : MonoBehaviour
             resourceCount.WoodenPlankValue(3, 0);
             resourceCount.MetalValue(1, 0);
             print("Slick");
-            StartCoroutine(BuildTime(15, oilSlickCannon));
-            //GameObject cannon = Instantiate(oiSlickCannon, menu.transform.parent.position, Quaternion.identity);
-            //cannon.transform.rotation = menu.transform.parent.transform.rotation;
-            //cannon.transform.parent = menu.transform.parent.parent;
-            //menuSpawned = false;
-            //Destroy(menu.transform.parent.gameObject);
+            StartCoroutine(BuildTime(9, oilSlickCannon));
+            UnlockCamera();
         }
     }
 
@@ -234,12 +235,9 @@ public class BuildCannonManager : MonoBehaviour
             resourceCount.WoodenPlankValue(2, 0);
             resourceCount.MetalValue(2, 0);
             print("Defence");
-            StartCoroutine(BuildTime(15, defenceCannon));
-            //GameObject cannon = Instantiate(defenceCannon, menu.transform.parent.position, Quaternion.identity);
-            //cannon.transform.rotation = menu.transform.parent.transform.rotation;
-            //cannon.transform.parent = menu.transform.parent.parent;
-            //menuSpawned = false;
-            //Destroy(menu.transform.parent.gameObject);
+            StartCoroutine(BuildTime(9, defenceCannon));
+            UnlockCamera();
+
         }
     }
 
@@ -305,52 +303,53 @@ public class BuildCannonManager : MonoBehaviour
                 }
                 break;
         }
+        Destroy(selectedCannon);
+        Destroy(menu.gameObject);
+
+        UnlockCamera();
+    }
+
+    //Called after the "Confirm Build" button is pressed to return camera to player view 
+    //Also menuSpawned = false to allow player to build multiple at once
+    void UnlockCamera()
+    {
+        menuSpawned = false;
         shipPartsToHide.SetActive(true);
         cameraSwitch.locked = false;
         fpsController.controllingShip = false;
 
-        Destroy(selectedCannon);
-        Destroy(menu.gameObject);
-        menuSpawned = false;
     }
-       
-    public IEnumerator BuildTime(int timesToSpam, GameObject cannonToBuild)
+
+    //Called to build the cannon over time
+    public IEnumerator BuildTime(float timeToBuild, GameObject cannonToBuild)
     {
-        float timesSpammed = 0;
-        
-        GameObject canvas = Instantiate(buildProgressSlider, menu.transform.parent.position, Quaternion.identity);
+        float buildTimeElapsed = 0;
+        Transform cannonBuildTransform = menu.transform.parent;
+
+        GameObject canvas = Instantiate(buildProgressSlider, cannonBuildTransform.position, Quaternion.identity);
         Slider slider = canvas.GetComponentInChildren<Slider>();
 
         canvas.transform.SetParent(menu.transform.parent);
         canvas.transform.rotation = Quaternion.Euler(0, -90, 0);
 
-        menu.SetActive(false);
+        Destroy(menu.gameObject);
 
         //Start Spamming - Start Building Sequence
-        while (timesSpammed < timesToSpam)
+        while (buildTimeElapsed < timeToBuild)
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                timesSpammed++;
-                slider.value = timesSpammed / timesToSpam;
-            }
+            buildTimeElapsed += Time.deltaTime;
+            slider.value = buildTimeElapsed / timeToBuild;
             yield return null;
         }
         //Finished Building Sequence
 
-        shipPartsToHide.SetActive(true);
-        cameraSwitch.locked = false;
-        fpsController.controllingShip = false;
-
 		Destroy(canvas);
         Destroy(selectedCannon);
 
-        GameObject cannon = Instantiate(cannonToBuild, menu.transform.parent.position, Quaternion.identity);
+        GameObject cannon = Instantiate(cannonToBuild, cannonBuildTransform.position, Quaternion.identity);
 
-        cannon.transform.parent = menu.transform.parent;
-        cannon.transform.rotation = menu.transform.parent.transform.rotation;
-        menuSpawned = false;
-        Destroy(menu.gameObject);
+        cannon.transform.parent = cannonBuildTransform;
+        cannon.transform.rotation = cannonBuildTransform.transform.rotation;
     }
 
     void OpenMastMenu()
@@ -430,14 +429,8 @@ public class BuildCannonManager : MonoBehaviour
     {
 		if (!cameraSwitch.switching)
 		{
-			shipPartsToHide.SetActive(true);
-			cameraSwitch.locked = false;
-			fpsController.controllingShip = false;
-
+            UnlockCamera();
 			// boostSlider.gameObject.SetActive(false);
-
-
-			menuSpawned = false;
 			selectedCannon = null;
 			Destroy(menu);
 		}
