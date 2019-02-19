@@ -32,10 +32,14 @@ public class CameraSwitch : MonoBehaviour {
 	private void Start()
 	{
 
-		//getting components
-		//playerViewPos = CharacterMovement.characterPos.Find("Player View Pos");
+        //Make the Ship opaque
+        shipMastSharedMaterial.GetComponent<MeshRenderer>().sharedMaterial.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        shipFlagsSharedMaterial.GetComponent<MeshRenderer>().sharedMaterial.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 
-		transform.position = playerViewPos.position;
+        //getting components
+        //playerViewPos = CharacterMovement.characterPos.Find("Player View Pos");
+
+        transform.position = playerViewPos.position;
 		fpsController = FindObjectOfType<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
 		theBoat = FindObjectOfType<BoatController>();
 
@@ -48,7 +52,8 @@ public class CameraSwitch : MonoBehaviour {
 		shipView = false;
 		switching = false; 
 		switchSpeed = 0.1f;
-	}
+
+    }
 
 	// Update is called once per frame
 	void Update () {

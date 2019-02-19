@@ -832,7 +832,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &105409839
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1255,7 +1255,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 31.72, y: 0}
   m_SizeDelta: {x: 63.43, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1378,7 +1378,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &202938746
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1733,7 +1733,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 31.85, y: 0}
   m_SizeDelta: {x: 63.7, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2467,7 +2467,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &417607471
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4493,7 +4493,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &766811588
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6010,8 +6010,8 @@ RectTransform:
   m_Father: {fileID: 87267121}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -31.82, y: 0}
   m_SizeDelta: {x: 63.64, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7251,7 +7251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1264482083
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8453,8 +8453,8 @@ RectTransform:
   m_Father: {fileID: 962450365}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -31.65, y: 0}
   m_SizeDelta: {x: 63.31, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9316,8 +9316,8 @@ RectTransform:
   m_Father: {fileID: 635688668}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -31.77, y: 0}
   m_SizeDelta: {x: 63.54, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10661,7 +10661,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1983708041
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10834,7 +10834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2004355343
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11386,6 +11386,7 @@ GameObject:
   - component: {fileID: 2079820042}
   - component: {fileID: 2079820041}
   - component: {fileID: 2079820038}
+  - component: {fileID: 2079820039}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -11530,6 +11531,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2079820039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2079820036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 238aae47c3c4cd34d8f676b1e6ed9bf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerViewPos: {fileID: 0}
+  shipViewPos: {fileID: 0}
+  ship: {fileID: 0}
+  shipView: 0
+  switchSpeed: 0
+  switching: 0
+  locked: 0
+  shipMastSharedMaterial: {fileID: 533829608}
+  shipFlagsSharedMaterial: {fileID: 315898901}
+  turnSpeed: 0
+  player: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
+  fpsController: {fileID: 0}
 --- !u!45 &2079820041
 Skybox:
   m_ObjectHideFlags: 0
@@ -11666,7 +11691,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 31.72, y: 0}
   m_SizeDelta: {x: 63.44, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

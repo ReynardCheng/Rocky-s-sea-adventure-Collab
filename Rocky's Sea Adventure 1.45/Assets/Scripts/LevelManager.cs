@@ -227,6 +227,7 @@ public class LevelManager : MonoBehaviour
 	public void LoadScene(string sceneName)
 	{
 		LoadingScreen.theLoadingScreen.loadLevel(sceneName);
+        Time.timeScale = 1;
 	}
 
 	void MapStatus()
