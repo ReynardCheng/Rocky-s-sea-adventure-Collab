@@ -903,6 +903,8 @@ GameObject:
   - component: {fileID: 4021656263994446}
   - component: {fileID: 65216568478231736}
   - component: {fileID: 65633984866764288}
+  - component: {fileID: 65019134047500066}
+  - component: {fileID: 65088300922033590}
   m_Layer: 13
   m_Name: main_boat_body_geo
   m_TagString: Untagged
@@ -972,7 +974,7 @@ GameObject:
   - component: {fileID: 114072422546601990}
   - component: {fileID: 114547154529118754}
   - component: {fileID: 114562170340366656}
-  - component: {fileID: 111302734589921550}
+  - component: {fileID: 111100735114726612}
   m_Layer: 13
   m_Name: Ship_Fbx_Subs_7FixedLink (1)
   m_TagString: Ship
@@ -1347,7 +1349,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1893986918432716}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2684.7, y: 0, z: 552.8}
+  m_LocalPosition: {x: 2677.67, y: 0, z: 568.32}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 4021656263994446}
@@ -2365,6 +2367,30 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300006, guid: 4e9e5e18d85b68148807ed6049248782, type: 3}
+--- !u!65 &65019134047500066
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1829253991473738}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.11382675, y: 4.219545, z: 0.8447689}
+  m_Center: {x: -1.15, y: 0.5068287, z: -1.7400625}
+--- !u!65 &65088300922033590
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1829253991473738}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.16899323, y: 4.600343, z: 1.0101773}
+  m_Center: {x: 1.1334108, y: 0.4087458, z: -1.8358742}
 --- !u!65 &65153489658096676
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2503,7 +2529,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!111 &111302734589921550
+--- !u!111 &111100735114726612
 Animation:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4175,10 +4201,10 @@ RectTransform:
   m_Father: {fileID: 224722333709970298}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -293.3, y: 102.3}
-  m_SizeDelta: {x: 45.5, y: -312.96}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 107, y: -69.020004}
+  m_SizeDelta: {x: 45.5, y: 138.04001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224338725148000828
 RectTransform:

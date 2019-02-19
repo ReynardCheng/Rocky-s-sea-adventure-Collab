@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.27088073, g: 0.31663838, b: 0.3408369, a: 1}
+  m_IndirectSpecularColor: {r: 0.26816782, g: 0.31348157, b: 0.33744523, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5564,20 +5564,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1893986918432716, guid: 496d6980401f5f94aa3791496da161b0,
     type: 2}
   m_PrefabInternal: {fileID: 514760499}
---- !u!111 &260053927
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 260053917}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &260141589
 GameObject:
   m_ObjectHideFlags: 0
@@ -9578,16 +9564,6 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114547154529118754, guid: 496d6980401f5f94aa3791496da161b0,
-        type: 2}
-      propertyPath: animations.Array.data[0]
-      value: 
-      objectReference: {fileID: 7400000, guid: acd06a3e5f7c8d648a4f5e4472b1c26d, type: 3}
-    - target: {fileID: 114547154529118754, guid: 496d6980401f5f94aa3791496da161b0,
-        type: 2}
-      propertyPath: animations.Array.data[1]
-      value: 
-      objectReference: {fileID: 7400000, guid: 59e5084ad41b75d42bfa3594cb82a653, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 496d6980401f5f94aa3791496da161b0, type: 2}
   m_IsPrefabAsset: 0
@@ -15908,6 +15884,15 @@ Prefab:
       propertyPath: endScreen
       value: 
       objectReference: {fileID: 2086592077}
+    - target: {fileID: 224471182049014538, guid: dff8b9a3c78c9354a875524aa9c90f6a,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1945879459592580, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
   m_IsPrefabAsset: 0
@@ -29641,11 +29626,6 @@ Prefab:
     m_Modifications:
     - target: {fileID: 224533612923779736, guid: 608dd2e60cacf7941a74c3a7aa1060cd,
         type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 224533612923779736, guid: 608dd2e60cacf7941a74c3a7aa1060cd,
-        type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -29733,11 +29713,6 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114496746538108944, guid: 608dd2e60cacf7941a74c3a7aa1060cd,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Main Menu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 608dd2e60cacf7941a74c3a7aa1060cd, type: 2}
@@ -30181,35 +30156,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1856687811}
   m_CullTransparentMesh: 0
---- !u!1 &1859727630 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1829253991473738, guid: 496d6980401f5f94aa3791496da161b0,
-    type: 2}
-  m_PrefabInternal: {fileID: 514760499}
---- !u!65 &1859727634
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1859727630}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.11382675, y: 4.219545, z: 0.8447689}
-  m_Center: {x: -1.15, y: 0.5068287, z: -1.7400625}
---- !u!65 &1859727635
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1859727630}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.16899323, y: 4.600343, z: 1.0101773}
-  m_Center: {x: 1.1334108, y: 0.4087458, z: -1.8358742}
 --- !u!1 &1861854929
 GameObject:
   m_ObjectHideFlags: 0
