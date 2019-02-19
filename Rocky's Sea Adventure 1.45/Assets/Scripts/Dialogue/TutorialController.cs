@@ -68,8 +68,6 @@ public class TutorialController : MonoBehaviour {
                 Player.canMove = true;
                 Textboxes.SetActive(false);
                 FixedCamera.SetActive(false);
-                //ProceedScript2 = true;
-                //Script2.SetActive(true);
                 OnScript1 = false;
                 sentenceNumber = 0;
             }
@@ -77,29 +75,35 @@ public class TutorialController : MonoBehaviour {
         }
 
         /// *****************
-        /// Navi intro
+        /// Resource intro
         /// ******************
         if (ProceedScript2 == true)
         {
             sentenceNumber = DialogueScript.onSentence;
             print("Sentence index = " + sentenceNumber);
-            ObstructBox.SetActive(false);
+            
 
-            if (sentenceNumber == 1)
+            if (sentenceNumber == 0)
             {
+                ObstructBox.SetActive(false);
+                Text.text = "There are resources right ahead!";
                 Destroy(Script1);
+                Player.canMove = false;
             }
-            if (sentenceNumber == 5)
+            if (sentenceNumber == 4)
             {
                 DialogueSys.isWaitingForUserInput = false;
                 Script2.SetActive(false);
                 Textboxes.SetActive(false);
                 ProceedScript2 = false;
+                Player.canMove = true;
+                ObstructBox.SetActive(true);
+                if (TutorialInstructions.count <= 2) TutorialInstructions.count = 3;
             }
         }
 
         /// *****************
-        /// Resource intro
+        /// Cannon Build
         /// ******************
         if (ProceedScript3 == true)
         {
@@ -108,9 +112,11 @@ public class TutorialController : MonoBehaviour {
 
             if (sentenceNumber == 0)
             {
+                Player.canMove = false;
+                ObstructBox.SetActive(false);
                 Destroy(Script2);
-                Text.text = "The resources are right in front!";
-				Player.canMove = false;
+                Text.text = "Let’s build a cannon before moving ahead.";
+				
             }
             if (sentenceNumber == 4)
             {
@@ -119,7 +125,7 @@ public class TutorialController : MonoBehaviour {
                 Script3.SetActive(false);
                 Textboxes.SetActive(false);
                 ProceedScript3 = false;
-				Player.canMove = true;
+                Player.canMove = true;
 			}
         }
 

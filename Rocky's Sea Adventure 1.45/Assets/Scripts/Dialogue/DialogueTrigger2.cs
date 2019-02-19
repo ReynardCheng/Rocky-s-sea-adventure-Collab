@@ -5,6 +5,7 @@ using UnityEngine;
 public class DialogueTrigger2 : MonoBehaviour {
 
     public TutorialController TutControl;
+    public TutorialInstructions TutInstruct;
 
     // Use this for initialization
     void Start()
@@ -22,10 +23,11 @@ public class DialogueTrigger2 : MonoBehaviour {
     {
         if (other.tag == "Ship")
         {
-            TutControl.ProceedScript4 = true;
-            TutControl.Script4.SetActive(true);
+            DialogueScript.onSentence = 0;
+            TutControl.ProceedScript3 = true;
+            TutControl.Script3.SetActive(true);
             TutControl.Textboxes.SetActive(true);
-
+            TutInstruct.tutorialCannons = true;
         }
     }
 
