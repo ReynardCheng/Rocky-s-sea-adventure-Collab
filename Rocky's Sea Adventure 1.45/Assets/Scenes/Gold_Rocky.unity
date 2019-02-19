@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.5906037, g: 0.6887968, b: 0.741017, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2291,6 +2291,93 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4895154295180678, guid: cfd9d116f2f6e83419fbbe6530085cc5,
     type: 2}
   m_PrefabInternal: {fileID: 886894999}
+--- !u!1001 &913449708
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4440380701669188, guid: ccc24ee11182e5645bf63590b5f34012, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2685.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440380701669188, guid: ccc24ee11182e5645bf63590b5f34012, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 7.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440380701669188, guid: ccc24ee11182e5645bf63590b5f34012, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 542.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440380701669188, guid: ccc24ee11182e5645bf63590b5f34012, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440380701669188, guid: ccc24ee11182e5645bf63590b5f34012, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440380701669188, guid: ccc24ee11182e5645bf63590b5f34012, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440380701669188, guid: ccc24ee11182e5645bf63590b5f34012, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440380701669188, guid: ccc24ee11182e5645bf63590b5f34012, type: 2}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 114350376279433214, guid: ccc24ee11182e5645bf63590b5f34012,
+        type: 2}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 603407264}
+    - target: {fileID: 114350376279433214, guid: ccc24ee11182e5645bf63590b5f34012,
+        type: 2}
+      propertyPath: blackScreen
+      value: 
+      objectReference: {fileID: 1162742026}
+    - target: {fileID: 114350376279433214, guid: ccc24ee11182e5645bf63590b5f34012,
+        type: 2}
+      propertyPath: raycastCam
+      value: 
+      objectReference: {fileID: 1315611702}
+    - target: {fileID: 114350376279433214, guid: ccc24ee11182e5645bf63590b5f34012,
+        type: 2}
+      propertyPath: miniMap
+      value: 
+      objectReference: {fileID: 626875218}
+    - target: {fileID: 114350376279433214, guid: ccc24ee11182e5645bf63590b5f34012,
+        type: 2}
+      propertyPath: shipUI.Array.data[7]
+      value: 
+      objectReference: {fileID: 205951805}
+    - target: {fileID: 114996977904100306, guid: ccc24ee11182e5645bf63590b5f34012,
+        type: 2}
+      propertyPath: shipPartsToHide
+      value: 
+      objectReference: {fileID: 330169730}
+    - target: {fileID: 114996977904100306, guid: ccc24ee11182e5645bf63590b5f34012,
+        type: 2}
+      propertyPath: buildLeftView
+      value: 
+      objectReference: {fileID: 208560689}
+    - target: {fileID: 114996977904100306, guid: ccc24ee11182e5645bf63590b5f34012,
+        type: 2}
+      propertyPath: buildRightView
+      value: 
+      objectReference: {fileID: 1020927750}
+    - target: {fileID: 114996977904100306, guid: ccc24ee11182e5645bf63590b5f34012,
+        type: 2}
+      propertyPath: buildMastView
+      value: 
+      objectReference: {fileID: 538609021}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ccc24ee11182e5645bf63590b5f34012, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &926040316
 Prefab:
   m_ObjectHideFlags: 0
@@ -3970,9 +4057,36 @@ Prefab:
       propertyPath: steeringWheel
       value: 
       objectReference: {fileID: 109708845}
+    - target: {fileID: 1681267902617006, guid: fa664cdfcd570854686b632588826220, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa664cdfcd570854686b632588826220, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1685787240 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1681267902617006, guid: fa664cdfcd570854686b632588826220,
+    type: 2}
+  m_PrefabInternal: {fileID: 1685787239}
+--- !u!95 &1685787241
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1685787240}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eed4af4bca4cad647b6543b046e10c73, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1711716020
 GameObject:
   m_ObjectHideFlags: 0

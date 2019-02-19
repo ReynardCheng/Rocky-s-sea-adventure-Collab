@@ -70,7 +70,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Update is called once per frame
         private void Update()
         {
-			
+           
 			if (!controllingShip)
 			{
 				// RotateView();
@@ -230,7 +230,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 			if (horizontal != 0 || vertical != 0)
 			{
-				Vector3 lookDirection = new Vector3(horizontal, 90, vertical);
+				Vector3 lookDirection = new Vector3(horizontal, 0, vertical);
 				playerMesh.transform.localRotation = Quaternion.LookRotation(lookDirection);
 			}
 			
