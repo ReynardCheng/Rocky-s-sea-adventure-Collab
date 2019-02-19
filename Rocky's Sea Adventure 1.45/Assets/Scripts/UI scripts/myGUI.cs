@@ -17,6 +17,9 @@ public class myGUI : MonoBehaviour {
 
 	public Button nextLevelButton;
 
+	public Image youWin;
+	public Image youLose;
+
 	// Use this for initialization
 	void Start () {
 		rctTransformY = 0;
@@ -25,7 +28,7 @@ public class myGUI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		winAnimation();
+		//winAnimation();
 		if (lose)
 		{
 			nextLevelButton.interactable = false;
@@ -35,10 +38,11 @@ public class myGUI : MonoBehaviour {
 			nextLevelButton.interactable = true;
 		}
 	}
-	void winAnimation()
+	public void winAnimation()
 	{
-		if (!lose) winLoseText.text = ("              " + "Level Cleared");
-		else if (lose) winLoseText.text = ("              "+ "You Lose");
+		if (lose) youLose.gameObject.SetActive(true);
+		else if (!lose) youWin.gameObject.SetActive(true);
+	
 		//rctTransformY += Time.deltaTime * rate;
 		//bckGroundRecttransform.sizeDelta = new Vector2(bckGroundRecttransform.sizeDelta.x, rctTransformY);
 
