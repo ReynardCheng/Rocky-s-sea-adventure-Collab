@@ -8,7 +8,7 @@ public class DialogueTrigger1 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-  
+       
 	}
 	
 	// Update is called once per frame
@@ -20,10 +20,13 @@ public class DialogueTrigger1 : MonoBehaviour {
     {
         if (other.tag == "Ship")
         {
-            TutControl.ProceedScript3 = true;
-            TutControl.Script3.SetActive(true);
+            DialogueScript.onSentence = 0;
+            TutControl = FindObjectOfType<TutorialController>();
+            TutControl.ProceedScript2 = true;
+            TutControl.Script2.SetActive(true);
             TutControl.Textboxes.SetActive(true);
-            
+            print(TutControl);
+            print("is working");
         }
     }
 

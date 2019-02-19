@@ -91,6 +91,14 @@ public class TutorialInstructions : MonoBehaviour {
         }
 
 
+        if (count == 3)
+        {
+            ContinueText(instructText[count]); //call ContinueText with instructText[]
+            count = 3; //change count for new instruction
+            print("count:" + count);
+
+        }
+
         if (tutorialCannons)
         {
             buildCannonScript.enabled = true; //enable build cannon script
