@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5857667, g: 0.6831846, b: 0.73498464, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5009,60 +5009,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 657838816000b144d82c3dbf88a7bae7, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &412448401
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 412448404}
-  - component: {fileID: 412448403}
-  - component: {fileID: 412448402}
-  m_Layer: 0
-  m_Name: DialogueTrigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &412448402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 412448401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aec1175458b0834ca099ee0b6462d75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TutControl: {fileID: 1491490878}
---- !u!65 &412448403
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 412448401}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 73.006546, y: 14.8650055, z: 9.652618}
-  m_Center: {x: -46.31887, y: 72.46189, z: -143.7386}
---- !u!4 &412448404
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 412448401}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 120.4, y: -72, z: 105}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 21
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &413637968
 GameObject:
   m_ObjectHideFlags: 0
@@ -8226,7 +8172,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &649047624
 Prefab:
@@ -9301,11 +9247,7 @@ MonoBehaviour:
   s:
   - Let me help you!
   - l'm Bel and I'll guide you through the first part of your journey.
-  - First, look at the top right of your screen.
-  - This mini-map will show your surroundings.
-  - The compass will also direct you to the goal.
-  - "Press \u2018M\u2019 to enlarge the map or to minimise it."
-  - There are resources ahead, so shall we go and collect them?
+  - Let's learn how to navigate the ship.
   index: 0
 --- !u!61 &753302536
 BoxCollider2D:
@@ -17683,7 +17625,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 87.938, z: 0}
 --- !u!1 &1435310494
 GameObject:
@@ -18447,14 +18389,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildCannonScript: {fileID: 0}
   BoatControls: {fileID: 0}
+  CharacterMove: {fileID: 0}
   ObstructTextbox: {fileID: 1603203695}
   ObstructiveInstruction: {fileID: 831713639}
   haventSteerBefore: 0
   haventEnteredWheelRange: 0
+  text1: 0
+  text2: 0
   tutorialCannons: 0
   instructText:
   - Go to the steering wheel using [WASD]
-  - Press [E] to interact with wheel
+  - 'Press [E] to interact with wheel :'
   - Use [WASD] to steer the ship
   count: 0
 --- !u!1001 &1496702484
@@ -26593,6 +26538,23 @@ Transform:
   m_Father: {fileID: 800462331}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 3.91, y: -90, z: 0}
+--- !u!1 &2127506026 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1541602439043436, guid: 496d6980401f5f94aa3791496da161b0,
+    type: 2}
+  m_PrefabInternal: {fileID: 2100543935}
+--- !u!114 &2127506027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2127506026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aec1175458b0834ca099ee0b6462d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TutControl: {fileID: 0}
 --- !u!1 &2137536011
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,9 @@ public class TutorialInstructions : MonoBehaviour {
 
     public BuildCannonManager buildCannonScript;
     public BoatController BoatControls;
+    public CharacterMovement CharacterMove;
+    public static int sentenceCount;
+    public static int count = 0;
 
     [Header("Obstructive Text Stuff")]
     public GameObject ObstructTextbox;
@@ -19,6 +22,8 @@ public class TutorialInstructions : MonoBehaviour {
     [Header("Instruct to steer")]
     public bool haventSteerBefore; //set to false when steering (need to use boatcontroller)
     public bool haventEnteredWheelRange; //set to false when onTriggerEnter collider
+    public bool text1;
+    public bool text2;
 
     [Header("Instruct to build")]
     public bool tutorialCannons = false;
@@ -34,6 +39,7 @@ public class TutorialInstructions : MonoBehaviour {
         buildCannonScript.enabled = false; //cannot build cannons yet, to enable when its time to build
 
         BoatControls = FindObjectOfType<BoatController>();
+        CharacterMove = FindObjectOfType<CharacterMovement>();
 
 	}
 
@@ -42,24 +48,48 @@ public class TutorialInstructions : MonoBehaviour {
         "Instruction",
 
     };
-    public int count = 0;
+ 
 
 
     // Update is called once per frame
     void Update () {
+
+      //  sentenceCount = count;
+
+        /// *****************
+        /// Navi instruction
+        /// ******************
+        if (CharacterMove.canControlShip == true)
+        {
+            haventEnteredWheelRange = false; //set to false when player enters trigger range
+            text1 = true;
+        }
 
         if (BoatControls.controllingBoat == true)
         {
             haventSteerBefore = false; //set to false when player starts controlling boat
         }
 
-        if (haventSteerBefore == false)
+        if ( count ==1)
         {
-            
             ContinueText(instructText[count]); //call ContinueText with instructText[]
             count = 1; //change count for new instruction
             print("count:" + count);
+         
         }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if ( count <= 2)
+            {
+
+                count = 2; //change count for new instruction
+                ContinueText(instructText[count]); //call ContinueText with instructText[]
+                print("count:" + count);
+               
+            }
+        }
+
 
         if (tutorialCannons)
         {
@@ -80,6 +110,7 @@ public class TutorialInstructions : MonoBehaviour {
     {
         string[] instructions = instructText.Split(':');
         string popUpText = instructions[0];
+        
 
         ObstructiveInstruction.text = popUpText;
     }

@@ -191,7 +191,7 @@ public class CharacterMovement : MonoBehaviour {
 		if (other.tag == "SteeringWheel")
 		{
 			canControlShip = true;
-
+         if(TutorialInstructions.count <= 0)   TutorialInstructions.count = 1;
             OpenSteerMenu();
 		}
 	}

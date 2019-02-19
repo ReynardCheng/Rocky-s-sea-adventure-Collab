@@ -62,36 +62,19 @@ public class TutorialController : MonoBehaviour {
 
             if (sentenceNumber == 3)
             {
-                
-                ObstructBox.SetActive(true);//test
-                MapHighlight.SetActive(true);
-            }
 
-            if (sentenceNumber == 5)
-            {
-                TutInstruct.haventSteerBefore = false;//test
-                MapHighlight.SetActive(false);
-                CompassHighlight.SetActive(true);
-                
-               
-            }
-            if (sentenceNumber == 6)
-            {
-                CompassHighlight.SetActive(false);
-            }
-            if (sentenceNumber == 7)
-            {
+                ObstructBox.SetActive(true);//test
                 DialogueSys.isWaitingForUserInput = false;
                 Player.canMove = true;
-                //Textboxes.SetActive(false);
+                Textboxes.SetActive(false);
                 FixedCamera.SetActive(false);
-                ProceedScript2 = true;
-                Script2.SetActive(true);
+                //ProceedScript2 = true;
+                //Script2.SetActive(true);
                 OnScript1 = false;
                 sentenceNumber = 0;
             }
-        }
 
+        }
 
         /// *****************
         /// Navi intro
@@ -100,8 +83,8 @@ public class TutorialController : MonoBehaviour {
         {
             sentenceNumber = DialogueScript.onSentence;
             print("Sentence index = " + sentenceNumber);
+            ObstructBox.SetActive(false);
 
-            
             if (sentenceNumber == 1)
             {
                 Destroy(Script1);
