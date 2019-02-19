@@ -5,6 +5,7 @@ using UnityEngine;
 public class FaceCamera : MonoBehaviour {
 
 	public Camera mainCam;
+    public bool isSlider;
 
 	// Use this for initialization
 	void Start()
@@ -20,6 +21,9 @@ public class FaceCamera : MonoBehaviour {
 
 	void cameraFace()
 	{
-		transform.LookAt(transform.position + mainCam.transform.rotation * Vector3.back, mainCam.transform.rotation * Vector3.down);
-	}
+        if (!isSlider)
+            transform.LookAt(mainCam.transform);
+        else
+            transform.LookAt(transform.position + mainCam.transform.rotation * Vector3.back, mainCam.transform.rotation * Vector3.down);
+    }
 }

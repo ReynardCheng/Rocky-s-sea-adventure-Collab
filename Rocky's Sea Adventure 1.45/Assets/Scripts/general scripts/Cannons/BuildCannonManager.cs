@@ -44,7 +44,7 @@ public class BuildCannonManager : MonoBehaviour
 
     private bool inRangeToBuild;
     private bool inShipMastRange;
-    private GameObject cannonSlot;
+    private GameObject cannonSlot;  //Nearest cannonslot. Assigned through OnTriggerEnter
 
     //[SerializeField]Button[] buttons;
     // Use this for initialization
@@ -94,10 +94,12 @@ public class BuildCannonManager : MonoBehaviour
             if (cannonSlot.GetComponentInChildren<CannonController>() == null)
             {
                 //Spawning, setting position and parent of menu
-                menu = Instantiate(normalMenu, cannonSlot.transform, true);
+                menu = Instantiate(normalMenu, cannonSlot.transform.position, Quaternion.identity);
                 menu.transform.position = new Vector3(spawnLocation.position.x, spawnLocation.position.y + 2, spawnLocation.position.z);
                 menu.transform.SetParent(cannonSlot.transform);
                 menuSpawned = true;
+
+                selectedCannon = null;
 
                 //Looping through all the buttons and giving them functionality
                 Button[] buttons;
@@ -123,8 +125,8 @@ public class BuildCannonManager : MonoBehaviour
             //But if there is already a normal cannon previously built,
             else if (cannonSlot.GetComponentInChildren<CannonController>().cannonType == cannonTypes.normal)
             {
-                menu = Instantiate(upgradeMenu, cannonSlot.transform, true);
-                menu.transform.position = new Vector3(spawnLocation.position.x, spawnLocation.position.y + 3, spawnLocation.position.z);
+                menu = Instantiate(upgradeMenu, cannonSlot.transform.position, Quaternion.identity);
+                menu.transform.position = new Vector3(spawnLocation.position.x, spawnLocation.position.y + 2, spawnLocation.position.z);
                 menu.transform.SetParent(cannonSlot.transform);
                 menuSpawned = true;
 
@@ -327,8 +329,9 @@ public class BuildCannonManager : MonoBehaviour
     {
         float buildTimeElapsed = 0;
         Transform cannonBuildTransform = menu.transform.parent;
+        GameObject cannonToDestroy = selectedCannon;
 
-        GameObject canvas = Instantiate(buildProgressSlider, cannonBuildTransform.position, Quaternion.identity);
+        GameObject canvas = Instantiate(buildProgressSlider, new Vector3(cannonBuildTransform.position.x, cannonBuildTransform.position.y + 1, cannonBuildTransform.position.z), Quaternion.identity);
         Slider slider = canvas.GetComponentInChildren<Slider>();
 
         canvas.transform.SetParent(menu.transform.parent);
@@ -348,10 +351,11 @@ public class BuildCannonManager : MonoBehaviour
         //Finished Building Sequence
         LevelManager.theLevelManager.PlaySoundEffect(LevelManager.theLevelManager.completeUpgradeClip);
 
-		Destroy(canvas);
-        Destroy(selectedCannon);
+        Destroy(canvas);
+        Destroy(cannonToDestroy);
 
         GameObject cannon = Instantiate(cannonToBuild, cannonBuildTransform.position, Quaternion.identity);
+
 
         cannon.transform.parent = cannonBuildTransform;
         cannon.transform.rotation = cannonBuildTransform.transform.rotation;
@@ -478,9 +482,9 @@ public class BuildCannonManager : MonoBehaviour
         if (other.tag == "MastInteraction")
         {
             cannonSlot = other.gameObject;
+            inShipMastRange = true;
 
             OpenMastInteractionMenu();
-            inShipMastRange = true;
         }
     }
 
