@@ -50,7 +50,7 @@ public class DialogueSystem : MonoBehaviour
     Coroutine speaking = null;
     IEnumerator Speaking(string speech, bool additive, string speaker = "")
     {
-        //speechPanel.SetActive(true);
+
         targetSpeech = speech;
 
         if (!additive)
@@ -76,6 +76,11 @@ public class DialogueSystem : MonoBehaviour
         StopSpeaking();
     }
 
+
+
+
+
+
     string DetermineSpeaker(string s)
     {
         string retVal = speakerNameText.text;//default return is the current name
@@ -95,7 +100,7 @@ public class DialogueSystem : MonoBehaviour
         public Text speakerNameText;
         public Text speechText;
     }
-    //public GameObject speechPanel { get { return elements.speechPanel; } }
+
     public Text speakerNameText { get { return elements.speakerNameText; } }
     public Text speechText { get { return elements.speechText; } }
 }
