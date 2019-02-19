@@ -284,6 +284,18 @@ MonoBehaviour:
   shipHpBarImage: {fileID: 0}
   shipMaxHp: 100
   boatCombatScript: {fileID: 0}
+  bgm: {fileID: 0}
+  sfx: {fileID: 0}
+  levelBgmClip: {fileID: 8300000, guid: e445014af781d8447874f14ef4280d9c, type: 3}
+  levelClearClip: {fileID: 8300000, guid: 163822758f888bf4bb605d7182d9eaf2, type: 3}
+  levelLostClip: {fileID: 8300000, guid: b1dff898d8270384685842fb48ee45dd, type: 3}
+  bossNearClip: {fileID: 8300000, guid: f79d3e8a9cacb894b8db0b169f984b67, type: 3}
+  buttonClickClip: {fileID: 8300000, guid: 67d17386028628646b83d4ef1ec6a9b6, type: 3}
+  upgradeMenuClip: {fileID: 8300000, guid: 02d0e5628bc12ab478364ee9a6eceb49, type: 3}
+  boostRefuelClip: {fileID: 8300000, guid: d46828116f6fcf748a32c2f8bb70b17c, type: 3}
+  collectionClip: {fileID: 8300000, guid: 89cf81c5529b25d4a987b5721aaeda5c, type: 3}
+  upgradingClip: {fileID: 8300000, guid: 9574f6e56b0ce6649bd4c09ef1b8870b, type: 3}
+  completeUpgradeClip: {fileID: 8300000, guid: fb8b25cdb4fe3e841945c2bd94ba342e, type: 3}
   skyboxBossColor: {r: 0.22745098, g: 0.22745098, b: 0.22745098, a: 0.5019608}
   skyboxDefaultColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0.5019608}
   changeSkyboxRadius: 36
@@ -297,7 +309,6 @@ MonoBehaviour:
   mapStatusText: {fileID: 114316932172554376}
   nextLevel: 
   endScreen: {fileID: 0}
-  loseScreen: {fileID: 0}
 --- !u!114 &114316932172554376
 MonoBehaviour:
   m_ObjectHideFlags: 1

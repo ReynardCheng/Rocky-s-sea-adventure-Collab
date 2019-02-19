@@ -339,17 +339,10 @@ public class BuildCannonManager : MonoBehaviour
         //Start Spamming - Start Building Sequence
         while (buildTimeElapsed < timeToBuild)
         {
-<<<<<<< HEAD
+
             buildTimeElapsed += Time.deltaTime;
             slider.value = buildTimeElapsed / timeToBuild;
-=======
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                timesSpammed++;
-                slider.value = timesSpammed / timesToSpam;
-                LevelManager.theLevelManager.PlaySoundEffect(LevelManager.theLevelManager.upgradingClip);
-            }
->>>>>>> 8275b04f60e830f04c7f09e836bf7efc71a62f33
+
             yield return null;
         }
         //Finished Building Sequence

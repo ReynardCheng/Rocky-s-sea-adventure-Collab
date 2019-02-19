@@ -266,7 +266,6 @@ public class LevelManager : MonoBehaviour
     }
  
     //use this method to start a new soundtrack, with a reference to the AudioClip that you want to use
-    //    such as:        newSoundtrack((AudioClip)Resources.Load("Audio/soundtracks/track01"));
     public void newSoundtrack (AudioClip clip) {
  
         int nextSource = !activeMusicSource ? 0 : 1;

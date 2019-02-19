@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.26957402, g: 0.31511703, b: 0.3392015, a: 1}
+  m_IndirectSpecularColor: {r: 0.27088428, g: 0.31664407, b: 0.3408446, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4118,7 +4118,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5244,7 +5244,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -17856,11 +17856,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 224471182049014538, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4560150643538528, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
       propertyPath: m_LocalPosition.x
       value: 91.121254
@@ -17893,55 +17888,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1061369065214696, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
-      propertyPath: m_Name
-      value: The Level Manager (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: levelClearClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 163822758f888bf4bb605d7182d9eaf2, type: 3}
-    - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: levelLostClip
-      value: 
-      objectReference: {fileID: 8300000, guid: b1dff898d8270384685842fb48ee45dd, type: 3}
-    - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: completeUpgradeClip
-      value: 
-      objectReference: {fileID: 8300000, guid: fb8b25cdb4fe3e841945c2bd94ba342e, type: 3}
-    - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: upgradingClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 9574f6e56b0ce6649bd4c09ef1b8870b, type: 3}
-    - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: collectionClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 89cf81c5529b25d4a987b5721aaeda5c, type: 3}
-    - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: boostRefuelClip
-      value: 
-      objectReference: {fileID: 8300000, guid: d46828116f6fcf748a32c2f8bb70b17c, type: 3}
-    - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: upgradeMenuClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 02d0e5628bc12ab478364ee9a6eceb49, type: 3}
-    - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: bossNearClip
-      value: 
-      objectReference: {fileID: 8300000, guid: f79d3e8a9cacb894b8db0b169f984b67, type: 3}
-    - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: boss
-      value: 
-      objectReference: {fileID: 1791525050}
     - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
         type: 2}
       propertyPath: bgm
@@ -17954,19 +17900,18 @@ Prefab:
       objectReference: {fileID: 2020017535}
     - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
         type: 2}
-      propertyPath: levelBgmClip
+      propertyPath: boss
       value: 
-      objectReference: {fileID: 8300000, guid: e445014af781d8447874f14ef4280d9c, type: 3}
-    - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: buttonClickClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 67d17386028628646b83d4ef1ec6a9b6, type: 3}
+      objectReference: {fileID: 1791525050}
     - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
         type: 2}
       propertyPath: endScreen
       value: 
       objectReference: {fileID: 1728985369}
+    - target: {fileID: 1061369065214696, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+      propertyPath: m_Name
+      value: The Level Manager (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
   m_IsPrefabAsset: 0
@@ -27075,62 +27020,62 @@ Prefab:
     - target: {fileID: 224054011474833186, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224821578588382960, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224483129512403796, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224483129512403796, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224483129512403796, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224972359994506678, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224553210680565012, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224553210680565012, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224553210680565012, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224530384521711270, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224530384521711270, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224530384521711270, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224929338241306900, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
