@@ -17,6 +17,9 @@ public class BuildCannonManager : MonoBehaviour
     private CameraSwitch cameraSwitch;
     private UnityStandardAssets.Characters.FirstPerson.FirstPersonController fpsController;
 
+    public static bool hasBuiltCannon = false; //for tutorial
+    public static bool hasUpgradedCannon = false; // for tutorial
+
     [Header("References to Cannons and Ship")]
     public GameObject normalCannon;
     public GameObject aoeCannon;
@@ -72,6 +75,10 @@ public class BuildCannonManager : MonoBehaviour
                     cameraSwitch.switching = true;
                     OpenBuildMenu();
                     LockCameraMovement();
+
+                    if(TutorialController.Tutorial == true)
+                    { TutorialInstructions.count = 6;
+                    } 
                 }
             }
             else if (!menuSpawned && inShipMastRange)
@@ -199,8 +206,24 @@ public class BuildCannonManager : MonoBehaviour
             resourceCount.MetalValue(1, 0);
             StartCoroutine(BuildTime(5, normalCannon));
             UnlockCamera();
+            if (TutorialController.Tutorial == true)
+            { Invoke("TutCannonIsNowBuilt", 5); }
         }
     }
+
+    public void TutCannonIsNowBuilt()
+    {
+        hasBuiltCannon = true;
+        
+            DialogueScript.onSentence = 0;
+            TutorialController tut = FindObjectOfType<TutorialController>();
+            tut.ProceedScript4 = true;
+            tut.Script4.SetActive(true);
+            tut.Textboxes.SetActive(true);
+            
+            
+    }
+
 
     public void upgradeAoe()
     {
@@ -216,6 +239,9 @@ public class BuildCannonManager : MonoBehaviour
             //cannon.transform.parent = menu.transform.parent.parent;
             //menuSpawned = false;
             //Destroy(menu.transform.parent.gameObject);
+
+            if (TutorialController.Tutorial == true)
+            { Invoke("TutCannonIsNowUpgrade", 9); }
         }
 
     }
@@ -229,6 +255,9 @@ public class BuildCannonManager : MonoBehaviour
             print("Slick");
             StartCoroutine(BuildTime(9, oilSlickCannon));
             UnlockCamera();
+
+            if (TutorialController.Tutorial == true)
+            { Invoke("TutCannonIsNowUpgrade", 9); }
         }
     }
 
@@ -242,7 +271,16 @@ public class BuildCannonManager : MonoBehaviour
             StartCoroutine(BuildTime(9, defenceCannon));
             UnlockCamera();
 
+            if (TutorialController.Tutorial == true)
+            { Invoke("TutCannonIsNowUpgrade", 9); }
         }
+    }
+
+    public void TutCannonIsNowUpgrade()
+    {
+        hasUpgradedCannon = true;
+        TutorialInstructions instructs = FindObjectOfType<TutorialInstructions>();
+        instructs.ObstructTextbox.SetActive(false);
     }
 
     public void DismantleCannon()

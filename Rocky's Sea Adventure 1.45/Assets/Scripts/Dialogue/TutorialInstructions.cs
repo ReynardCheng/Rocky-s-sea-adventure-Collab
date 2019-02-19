@@ -99,12 +99,38 @@ public class TutorialInstructions : MonoBehaviour {
 
         }
 
-        if (tutorialCannons)
+        if (tutorialCannons == true)
         {
             buildCannonScript.enabled = true; //enable build cannon script
         }
 
+        if (count == 4)
+        {
+            ContinueText(instructText[count]); //call ContinueText with instructText[]
+            count = 4; //change count for new instruction
+            print("count:" + count);
 
+        }
+
+        if (count == 5)
+        {
+            ContinueText(instructText[count]); //call ContinueText with instructText[]
+            count = 5; //change count for new instruction
+            print("count:" + count);
+
+            buildCannonScript.enabled = true;
+
+        }
+
+        if (count == 6)
+        {
+            ContinueText(instructText[count]); //call ContinueText with instructText[]
+            count = 6; //change count for new instruction
+            print("count:" + count);
+
+        }
+
+        // BUILD CANNON END
 
         if (count >= instructText.Length)
         {
