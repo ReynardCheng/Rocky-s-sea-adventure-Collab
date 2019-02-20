@@ -132,6 +132,23 @@ public class TutorialInstructions : MonoBehaviour {
 
         // BUILD CANNON END
 
+        if (count == 7)
+        {
+            ContinueText(instructText[count]); //call ContinueText with instructText[]
+            count = 7; //change count for new instruction
+            print("count:" + count);
+
+        }
+
+        if (count == 8)
+        {
+            ContinueText(instructText[count]); //call ContinueText with instructText[]
+            count = 8; //change count for new instruction
+            print("count:" + count);
+
+        }
+
+
         if (count >= instructText.Length)
         {
             return;
