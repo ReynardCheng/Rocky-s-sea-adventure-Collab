@@ -33,6 +33,7 @@ public class TutorialController : MonoBehaviour {
     [Header("Cannon")]
     public bool ProceedScript3;
     public GameObject Script3;
+    public GameObject Trigger;
 
     [Header("CannonBuild End")]
     public bool ProceedScript4;
@@ -63,6 +64,7 @@ public class TutorialController : MonoBehaviour {
     void Start () {
         TutInstruct = FindObjectOfType<TutorialInstructions>();
         DialogueSys = FindObjectOfType<DialogueSystem>();
+        Player = FindObjectOfType<CharacterMovement>();
         Player.canMove = false;
         OnScript1 = true;
 
@@ -148,6 +150,7 @@ public class TutorialController : MonoBehaviour {
                 ProceedScript3 = false;
                 Player.canMove = true;
                 ObstructBox.SetActive(true);
+                Trigger.SetActive(true);
                 if (TutorialInstructions.count <= 3) TutorialInstructions.count = 4;
             }
         }
@@ -167,11 +170,12 @@ public class TutorialController : MonoBehaviour {
                 Destroy(Script3);
                 Text.text = "You have a cannon now!";
             }
-            if (sentenceNumber == 6)
+            if (sentenceNumber == 5)
             {
 
                 DialogueSys.isWaitingForUserInput = false;
                 Script4.SetActive(false);
+                Player.canMove = true;
                 Textboxes.SetActive(false);
                 ProceedScript4 = false;
             }
@@ -192,10 +196,11 @@ public class TutorialController : MonoBehaviour {
                 ObstructBox.SetActive(false);
                 Destroy(Script4);
                 Text.text = "There's an enemy!";
+                Player.canMove = false;
             }
             if (sentenceNumber == 5)
             {
-
+                Player.canMove = true;
                 DialogueSys.isWaitingForUserInput = false;
                 Script5.SetActive(false);
                 Textboxes.SetActive(false);
@@ -214,13 +219,14 @@ public class TutorialController : MonoBehaviour {
 
             if (sentenceNumber == 0)
             {
+                Player.canMove = false;
                 ObstructBox.SetActive(false);
                 Destroy(Script5);
                 Text.text = "Phew! That was a close one.";
             }
             if (sentenceNumber == 8)
             {
-
+                Player.canMove = true;
                 DialogueSys.isWaitingForUserInput = false;
                 Script6.SetActive(false);
                 Textboxes.SetActive(false);
@@ -266,13 +272,13 @@ public class TutorialController : MonoBehaviour {
 
              if (sentenceNumber == 0)
              {
-                    
+                Player.canMove = false;
                     Destroy(Script7);
                     Text.text = "Look out! Stronger enemies ahead!";
              }
              if (sentenceNumber == 6)
              {
-
+                Player.canMove = true;
                     DialogueSys.isWaitingForUserInput = false;
                     Script8.SetActive(false);
                     Textboxes.SetActive(false);

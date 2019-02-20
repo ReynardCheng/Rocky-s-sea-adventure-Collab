@@ -28,11 +28,12 @@ public class DialogueTrigger2 : MonoBehaviour {
             TutControl.Script3.SetActive(true);
             TutControl.Textboxes.SetActive(true);
             TutInstruct.tutorialCannons = true;
+            Destroy(gameObject);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Destroy(gameObject);
+       
     }
 }

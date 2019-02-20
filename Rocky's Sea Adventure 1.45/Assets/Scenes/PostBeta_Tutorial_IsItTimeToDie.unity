@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1.89
+  m_AmbientIntensity: 0.98
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 53412155bc1016547b1a77b2333c0380, type: 2}
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.5906037, g: 0.6887968, b: 0.741017, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2987,7 +2987,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &238024918
 Transform:
   m_ObjectHideFlags: 0
@@ -5511,8 +5511,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03852a069491feb4bacccdac3a84e805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TutControl: {fileID: 0}
-  TutInstruct: {fileID: 0}
+  TutControl: {fileID: 1491490878}
+  TutInstruct: {fileID: 1491490879}
 --- !u!65 &427831969
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7170,6 +7170,11 @@ Prefab:
       propertyPath: m_Name
       value: Sticky Squid (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114351384072960684, guid: daba1ac0a033f6f4fb2a7805b8315165,
+        type: 2}
+      propertyPath: spawnTypes
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daba1ac0a033f6f4fb2a7805b8315165, type: 2}
   m_IsPrefabAsset: 0
@@ -7568,8 +7573,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660db676d683c9841aebf89eaeab85b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TutControl: {fileID: 0}
-  TutInstruct: {fileID: 0}
+  TutControl: {fileID: 1491490878}
+  TutInstruct: {fileID: 1491490879}
 --- !u!65 &577339898
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7641,6 +7646,11 @@ Prefab:
     - target: {fileID: 4312394834667790, guid: daba1ac0a033f6f4fb2a7805b8315165, type: 2}
       propertyPath: m_LocalScale.z
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114351384072960684, guid: daba1ac0a033f6f4fb2a7805b8315165,
+        type: 2}
+      propertyPath: spawnTypes
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daba1ac0a033f6f4fb2a7805b8315165, type: 2}
@@ -10147,8 +10157,7 @@ MonoBehaviour:
   s:
   - There are other variations of cannons too.
   - You just need to collect the materials to build them.
-  - There are other variations of cannons too.
-  - Cannons can be destroyed to regain resources.
+  - Cannons can also be destroyed to regain resources.
   - You can try building more cannons or move on ahead.
   - You can try building more cannons or move on ahead.
   index: 0
@@ -12986,8 +12995,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9efd098f483231a46b81cde734578243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TutControl: {fileID: 0}
-  TutInstruct: {fileID: 0}
+  TutControl: {fileID: 1491490878}
+  TutInstruct: {fileID: 1491490879}
 --- !u!65 &1008299684
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15265,6 +15274,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114083533237387016, guid: f9fca98c965c0de4daee4ff0c17392ef,
+        type: 2}
+      propertyPath: spawnTypes
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9fca98c965c0de4daee4ff0c17392ef, type: 2}
   m_IsPrefabAsset: 0
@@ -17036,6 +17050,7 @@ GameObject:
   - component: {fileID: 1337400577}
   - component: {fileID: 1337400576}
   - component: {fileID: 1337400575}
+  - component: {fileID: 1337400578}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -17098,6 +17113,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1337400578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1337400574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7ea12d945b6996438247eeeffac9ee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1337437265
 GameObject:
   m_ObjectHideFlags: 0
@@ -19706,6 +19732,7 @@ MonoBehaviour:
   Script2: {fileID: 1206988007}
   ProceedScript3: 0
   Script3: {fileID: 628719481}
+  Trigger: {fileID: 238024917}
   ProceedScript4: 0
   Script4: {fileID: 792705838}
   Script5: {fileID: 1530640039}
@@ -19746,7 +19773,7 @@ MonoBehaviour:
   - Collect resources floating on the sea
   - Press [E] to stop steering and go to the deck
   - Press [E] to interact with a cannon holder
-  - Press [E] to repeatedly to build the cannon
+  - Select the icon to build
   - Upgrade cannons by pressing [E]
   - Destroy all enemies!
 --- !u!1001 &1496702484
@@ -20020,7 +20047,7 @@ MonoBehaviour:
   s:
   - "Your cannons will automatically attack if it\u2019s within range."
   - Enemies will first destroy your cannons, then start attacking your ship.
-  - "Take note of your cannons\u2019 health and ship's health on the top left.."
+  - "Take note of your cannons\u2019 health and ship's health on the top left."
   - "Come! Let\u2019s fight them head on!"
   - "Come! Let\u2019s fight them head on!"
   index: 0
@@ -24450,7 +24477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TutControl: {fileID: 1491490878}
-  TutInstruct: {fileID: 0}
+  TutInstruct: {fileID: 1491490879}
 --- !u!65 &1852054696
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26441,8 +26468,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae19fb14c0328f749a33c8d960fb0b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TutControl: {fileID: 0}
-  TutInstruct: {fileID: 0}
+  TutControl: {fileID: 1491490878}
+  TutInstruct: {fileID: 1491490879}
 --- !u!65 &2008884724
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27115,8 +27142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef82ab51a5d607e4bbf6cd630a517377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TutControl: {fileID: 0}
-  TutInstruct: {fileID: 0}
+  TutControl: {fileID: 1491490878}
+  TutInstruct: {fileID: 1491490879}
 --- !u!65 &2076686804
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27700,7 +27727,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1f89fcfc96b3bbb47b48620c0cb9c9a5, type: 2}
+      objectReference: {fileID: 2100000, guid: d1ae6083a80fc2f44bc4a5c6b335857f, type: 2}
     - target: {fileID: 4021656263994446, guid: 496d6980401f5f94aa3791496da161b0, type: 2}
       propertyPath: m_RootOrder
       value: 1
@@ -27711,7 +27738,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4934213472712436, guid: 496d6980401f5f94aa3791496da161b0, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4136122418943612, guid: 496d6980401f5f94aa3791496da161b0, type: 2}
       propertyPath: m_RootOrder

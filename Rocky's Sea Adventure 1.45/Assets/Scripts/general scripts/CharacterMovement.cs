@@ -74,6 +74,11 @@ public class CharacterMovement : MonoBehaviour {
         meshAnim.SetBool("Steering", steering);
         meshAnim.SetBool("SteeringLeft", steeringLeft);
         meshAnim.SetBool("SteeringRight", steeringRight);
+        if (!theBoat.controllingBoat)
+        {
+            steeringLeft = false;
+            steeringRight = false;
+        }
 
         PlayerAnimation();
 
