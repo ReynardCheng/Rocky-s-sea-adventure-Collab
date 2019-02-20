@@ -49,10 +49,12 @@ public class EnemyDetectionRange : MonoBehaviour {
 
 		if (other.tag == "Ship")
 		{
+            print("ASIodojd");
 			foreach (EnemyController e in enemies)
 			{
-				e.GetComponent<EnemyController>().chaseShip = true;
-			}
+				//e.GetComponent<EnemyController>().chaseShip = true;
+                e.GetComponent<EnemyController>().spawnTypes = EnemyController.spawnType.Global;
+            }
             ship = other.gameObject;
             enemiesChasing = true;
 		}

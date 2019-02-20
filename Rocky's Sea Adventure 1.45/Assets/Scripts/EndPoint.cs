@@ -23,8 +23,9 @@ public class EndPoint : MonoBehaviour {
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.tag == "Ship")
-		{
-			if (highestLevelCleared < intToSave)
+        {
+            other.GetComponent<BoatController>().reachedEnd = true;
+            if (highestLevelCleared < intToSave)
 			{
 				PlayerPrefs.SetInt("HighestLevelCleared", intToSave);
 				print("Saved");

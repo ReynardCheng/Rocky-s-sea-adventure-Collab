@@ -130,7 +130,7 @@ public class LevelManager : MonoBehaviour
 		}
 
 		Pause();
-		MapStatus();
+	//	MapStatus();
 	}
 
 	private void OnDrawGizmos()
@@ -207,7 +207,7 @@ public class LevelManager : MonoBehaviour
 				Time.timeScale = 1;
 				gamePaused = false;
 				pauseScreen.SetActive(false);
-				Cursor.visible = false;
+				//Cursor.visible = false;
 			}
 		}
 	}
@@ -216,7 +216,7 @@ public class LevelManager : MonoBehaviour
 	{
 		gamePaused = false;
 		pauseScreen.SetActive(false);
-		Cursor.visible = false;
+		//Cursor.visible = false;
 		Time.timeScale = 1;
 	}
 

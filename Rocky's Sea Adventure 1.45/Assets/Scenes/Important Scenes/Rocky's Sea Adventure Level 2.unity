@@ -2247,7 +2247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 238aae47c3c4cd34d8f676b1e6ed9bf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerViewPos: {fileID: 0}
+  playerViewPos: {fileID: 1704370810}
   shipViewPos: {fileID: 1445838468}
   ship: {fileID: 260053917}
   shipView: 1
@@ -2381,7 +2381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &626875219
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8149,6 +8149,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4312394834667790, guid: daba1ac0a033f6f4fb2a7805b8315165,
     type: 2}
   m_PrefabInternal: {fileID: 1673132435}
+--- !u!4 &1704370810 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4990134583872470, guid: 234e3684ac91c7e448879e99024cafbe,
+    type: 2}
+  m_PrefabInternal: {fileID: 270498068}
 --- !u!1 &1711716020
 GameObject:
   m_ObjectHideFlags: 0

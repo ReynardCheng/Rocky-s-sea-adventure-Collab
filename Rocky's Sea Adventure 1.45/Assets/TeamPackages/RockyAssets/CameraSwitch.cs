@@ -159,7 +159,7 @@ public class CameraSwitch : MonoBehaviour {
 				Vector3 posToLerp = player.position + offset;
 				transform.position = Vector3.Lerp(transform.position, posToLerp, Time.deltaTime * rate);
 				transform.LookAt(player.position);
-				if (!theBoat.reachedEnd && theBoat.GetComponent<BoatCombat1>().shipHealth > 0) Cursor.visible = false;
+			//	if (!theBoat.reachedEnd && theBoat.GetComponent<BoatCombat1>().shipHealth > 0) Cursor.visible = false;
 			}
 		}
     }
