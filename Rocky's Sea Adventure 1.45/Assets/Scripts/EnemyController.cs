@@ -154,13 +154,13 @@ public class EnemyController : MonoBehaviour
 
             }
 
-            // Play movement sound
-            if (rb.velocity != Vector3.zero && !myAudioSource.isPlaying)
-            {
-                myAudioSource.clip = LevelManager.theLevelManager.squidMovingClip;
-                myAudioSource.volume = 0.2f;
-                myAudioSource.Play();
-            }
+            //// Play movement sound
+            //if (rb.velocity != Vector3.zero && !myAudioSource.isPlaying)
+            //{
+            //    myAudioSource.clip = LevelManager.theLevelManager.squidMovingClip;
+            //    myAudioSource.volume = 0.2f;
+            //    myAudioSource.Play();
+            //}
 		}
 	}
 
