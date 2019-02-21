@@ -38,6 +38,7 @@ public class BuildCannonManager : MonoBehaviour
     public GameObject cannonInteractMenuPrefab;
     private GameObject cannonInteractMenu;
     public Slider boostSlider;
+    public GameObject normalMenuUi, upgradeMenuUi, dismantleMenuUi;
 
     [SerializeField] GameObject menu;
 
@@ -60,6 +61,8 @@ public class BuildCannonManager : MonoBehaviour
 		cameraSwitch = FindObjectOfType<CameraSwitch>();
         fpsController = GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
         menuSpawned = false;
+
+        TutorialController.Tutorial = false;
     }
 
     // Update is called once per frame
@@ -71,13 +74,15 @@ public class BuildCannonManager : MonoBehaviour
             if (!menuSpawned && inRangeToBuild)
             {
                 if (!cannonSlot.transform.Find("BuildProgressCanvas(Clone)"))    //if theres a better way pls save me .-.
+                // There is a better way, by creating an array of gameobjects for slots. But this is fine :) - Walson
                 {
                     cameraSwitch.switching = true;
-                    OpenBuildMenu();
+                    OpenBuildMenuUi();
                     LockCameraMovement();
 
                     if(TutorialController.Tutorial == true)
-                    { TutorialInstructions.count = 6;
+                    { 
+                        TutorialInstructions.count = 6;
                     } 
                 }
             }
@@ -90,6 +95,106 @@ public class BuildCannonManager : MonoBehaviour
         }
     }
 
+    void OpenBuildMenuUi(){
+        if (cannonSlot != null){
+
+            //If a cannon hasnt been built inside the cannonslot,
+            //start building a normal cannon
+            if (cannonSlot.GetComponentInChildren<CannonController>() == null)
+            {
+                menuSpawned = true;
+                normalMenuUi.SetActive(true);
+
+                selectedCannon = null;
+
+                //Looping through all the buttons and giving them functionality
+                Button[] buttons;
+                buttons = normalMenuUi.GetComponentsInChildren<Button>();
+
+                foreach (Button b in buttons)
+                {
+                    b.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
+                    if (b.gameObject.name.Contains("buildNormal"))
+                    {
+                        b.GetComponentInChildren<Button>().onClick.AddListener(BuildNormalCannon);
+                    }
+                    if (b.gameObject.name.Contains("Cancel"))
+                    {
+                        b.GetComponentInChildren<Button>().onClick.AddListener(Cancel);
+                    }
+                    if (b.gameObject.name.Contains("Dismantle")) 
+                    {
+                        b.GetComponentInChildren<Button>().onClick.AddListener(DismantleCannon);
+                    }
+                }
+            } else {
+
+                if (cannonSlot.GetComponentInChildren<CannonController>().cannonType == cannonTypes.normal)
+                {
+                    menuSpawned = true;
+                    upgradeMenuUi.SetActive(true);
+
+                    selectedCannon = cannonSlot.GetComponentInChildren<CannonController>().gameObject.transform.parent.gameObject;
+
+                    //Looping through all the buttons and giving them functionality
+                    Button[] buttons;
+                    buttons = upgradeMenuUi.GetComponentsInChildren<Button>();
+
+                    foreach (Button b in buttons)
+                    {
+                        b.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
+                        if (b.gameObject.name.Contains("upgradeAoe"))
+                        {
+                            b.GetComponentInChildren<Button>().onClick.AddListener(upgradeAoe);
+                        }
+                        if (b.gameObject.name.Contains("upgradeOilSlick"))
+                        {
+                            b.GetComponentInChildren<Button>().onClick.AddListener(upgradeOilSlick);
+                        }
+                        if (b.gameObject.name.Contains("upgradeDefence"))
+                        {
+                            b.GetComponentInChildren<Button>().onClick.AddListener(upgradeDefence);
+                        }
+                        if (b.gameObject.name.Contains("Cancel"))
+                        {
+                            b.GetComponentInChildren<Button>().onClick.AddListener(Cancel);
+                        }
+                        if (b.gameObject.name.Contains("Dismantle"))
+                        {
+                            b.GetComponentInChildren<Button>().onClick.AddListener(DismantleCannon);
+                        }
+                    }
+
+                    LevelManager.theLevelManager.PlaySoundEffect(LevelManager.theLevelManager.upgradeMenuClip);
+                } else {
+                    // Else it has to be an oil slick, aoe, or defence cannon
+                    menuSpawned = true;
+                    dismantleMenuUi.SetActive(true);
+
+                    selectedCannon = cannonSlot.GetComponentInChildren<CannonController>().gameObject.transform.parent.gameObject;
+
+                    //Looping through all the buttons and giving them functionality
+                    Button[] buttons;
+                    buttons = dismantleMenuUi.GetComponentsInChildren<Button>();
+
+                    foreach (Button b in buttons)
+                    {
+                        b.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
+                        if (b.gameObject.name.Contains("Cancel"))
+                        {
+                            b.GetComponentInChildren<Button>().onClick.AddListener(Cancel);
+                        }
+                        if (b.gameObject.name.Contains("Dismantle"))
+                        {
+                            b.GetComponentInChildren<Button>().onClick.AddListener(DismantleCannon);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #region oldMenu
     void OpenBuildMenu()
     {
         if (cannonSlot != null)
@@ -197,6 +302,7 @@ public class BuildCannonManager : MonoBehaviour
             }
         }
     }
+    #endregion
 
     public void BuildNormalCannon()
     {
@@ -215,11 +321,11 @@ public class BuildCannonManager : MonoBehaviour
     {
         hasBuiltCannon = true;
         
-            DialogueScript.onSentence = 0;
-            TutorialController tut = FindObjectOfType<TutorialController>();
-            tut.ProceedScript4 = true;
-            tut.Script4.SetActive(true);
-            tut.Textboxes.SetActive(true);
+        DialogueScript.onSentence = 0;
+        TutorialController tut = FindObjectOfType<TutorialController>();
+        tut.ProceedScript4 = true;
+        tut.Script4.SetActive(true);
+        tut.Textboxes.SetActive(true);
             
             
     }
@@ -285,7 +391,8 @@ public class BuildCannonManager : MonoBehaviour
 
     public void DismantleCannon()
     {
-        CannonController cannon = menu.transform.parent.GetComponentInChildren<CannonController>();
+        // CannonController cannon = menu.transform.parent.GetComponentInChildren<CannonController>();
+        CannonController cannon = cannonSlot.GetComponentInChildren<CannonController>();
         if (cannon == null)
             return;
 
@@ -355,6 +462,10 @@ public class BuildCannonManager : MonoBehaviour
     //Also menuSpawned = false to allow player to build multiple at once
     void UnlockCamera()
     {
+        normalMenuUi.SetActive(false);
+        upgradeMenuUi.SetActive(false);
+        dismantleMenuUi.SetActive(false);
+
         menuSpawned = false;
         shipPartsToHide.SetActive(true);
         cameraSwitch.locked = false;
@@ -366,16 +477,18 @@ public class BuildCannonManager : MonoBehaviour
     public IEnumerator BuildTime(float timeToBuild, GameObject cannonToBuild)
     {
         float buildTimeElapsed = 0;
-        Transform cannonBuildTransform = menu.transform.parent;
+        // Transform cannonBuildTransform = menu.transform.parent;
         GameObject cannonToDestroy = selectedCannon;
+        Transform cannonBuildTransform = cannonSlot.transform;
 
         GameObject canvas = Instantiate(buildProgressSlider, new Vector3(cannonBuildTransform.position.x, cannonBuildTransform.position.y + 1, cannonBuildTransform.position.z), Quaternion.identity);
         Slider slider = canvas.GetComponentInChildren<Slider>();
 
-        canvas.transform.SetParent(menu.transform.parent);
+        // canvas.transform.SetParent(menu.transform.parent);
+        canvas.transform.SetParent(cannonBuildTransform);
         canvas.transform.rotation = Quaternion.Euler(0, -90, 0);
 
-        Destroy(menu.gameObject);
+        // Destroy(menu.gameObject);
 
         //Start Spamming - Start Building Sequence
         while (buildTimeElapsed < timeToBuild)
@@ -481,7 +594,7 @@ public class BuildCannonManager : MonoBehaviour
             UnlockCamera();
 			// boostSlider.gameObject.SetActive(false);
 			selectedCannon = null;
-			Destroy(menu);
+			// Destroy(menu);
 		}
 	}
 
