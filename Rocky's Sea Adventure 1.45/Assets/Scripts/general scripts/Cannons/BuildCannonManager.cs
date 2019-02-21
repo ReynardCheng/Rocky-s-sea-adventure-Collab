@@ -70,7 +70,6 @@ public class BuildCannonManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && !cameraSwitch.switching)
         {
-
             if (!menuSpawned && inRangeToBuild)
             {
                 if (!cannonSlot.transform.Find("BuildProgressCanvas(Clone)"))    //if theres a better way pls save me .-.
@@ -146,6 +145,7 @@ public class BuildCannonManager : MonoBehaviour
                         if (b.gameObject.name.Contains("upgradeAoe"))
                         {
                             b.GetComponentInChildren<Button>().onClick.AddListener(upgradeAoe);
+                            // b.GetComponentInChildren<Button>()
                         }
                         if (b.gameObject.name.Contains("upgradeOilSlick"))
                         {
