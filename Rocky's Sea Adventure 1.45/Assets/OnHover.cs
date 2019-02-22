@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class OnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+public class OnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
 
 	public string description;
 	public int woodCost, metalCost, essenceCost;
@@ -31,6 +31,10 @@ public class OnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 	}
 
 	public void OnPointerExit(PointerEventData pointerEventData){
+		hoverObject.SetActive(false);
+	}
+
+	public void OnPointerClick(PointerEventData pointerEventData){
 		hoverObject.SetActive(false);
 	}
 }
