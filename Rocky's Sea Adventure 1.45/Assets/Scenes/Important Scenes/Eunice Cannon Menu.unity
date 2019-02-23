@@ -2463,62 +2463,62 @@ Prefab:
     - target: {fileID: 224054011474833186, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224821578588382960, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224483129512403796, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224483129512403796, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224483129512403796, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224972359994506678, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224553210680565012, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224553210680565012, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224553210680565012, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224530384521711270, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224530384521711270, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224530384521711270, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224009951262967504, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
@@ -3037,6 +3037,7 @@ MonoBehaviour:
   normalMenuUi: {fileID: 0}
   upgradeMenuUi: {fileID: 0}
   dismantleMenuUi: {fileID: 0}
+  mastMenuUi: {fileID: 0}
   menu: {fileID: 0}
   buildLeftView: {fileID: 208560689}
   buildRightView: {fileID: 1020927750}
@@ -3750,7 +3751,7 @@ Transform:
   m_PrefabInternal: {fileID: 674731725}
 --- !u!1 &681030381 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 1235208156168360, guid: a3615f99fe349d74aafa02f15d6b0acd,
+  m_CorrespondingSourceObject: {fileID: 1195562852647478, guid: a3615f99fe349d74aafa02f15d6b0acd,
     type: 2}
   m_PrefabInternal: {fileID: 1936831724}
 --- !u!1 &685576089 stripped
@@ -7943,6 +7944,11 @@ Prefab:
       propertyPath: dismantleMenuUi
       value: 
       objectReference: {fileID: 2034284157}
+    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
+        type: 2}
+      propertyPath: mastMenuUi
+      value: 
+      objectReference: {fileID: 2129513719}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234e3684ac91c7e448879e99024cafbe, type: 2}
   m_IsPrefabAsset: 0
@@ -8784,39 +8790,14 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1699802438772820, guid: a3615f99fe349d74aafa02f15d6b0acd, type: 2}
-      propertyPath: m_Name
-      value: Canvas23/2/2019
-      objectReference: {fileID: 0}
     - target: {fileID: 114017136322588102, guid: a3615f99fe349d74aafa02f15d6b0acd,
         type: 2}
       propertyPath: objective
       value: 
       objectReference: {fileID: 1861854931}
-    - target: {fileID: 224916844231016398, guid: a3615f99fe349d74aafa02f15d6b0acd,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224916844231016398, guid: a3615f99fe349d74aafa02f15d6b0acd,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224098793038365794, guid: a3615f99fe349d74aafa02f15d6b0acd,
-        type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224098793038365794, guid: a3615f99fe349d74aafa02f15d6b0acd,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224098793038365794, guid: a3615f99fe349d74aafa02f15d6b0acd,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
+    - target: {fileID: 1699802438772820, guid: a3615f99fe349d74aafa02f15d6b0acd, type: 2}
+      propertyPath: m_Name
+      value: Canvas23/2/2019
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3615f99fe349d74aafa02f15d6b0acd, type: 2}
@@ -9706,6 +9687,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7ea12d945b6996438247eeeffac9ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2129513719 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1235208156168360, guid: a3615f99fe349d74aafa02f15d6b0acd,
+    type: 2}
+  m_PrefabInternal: {fileID: 1936831724}
 --- !u!1 &2130559642 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1856660260983600, guid: a689785357980654e9aeaf1f4820de53,

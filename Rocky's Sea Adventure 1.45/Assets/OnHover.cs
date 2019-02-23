@@ -9,8 +9,10 @@ public class OnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 	public string description;
 	public int woodCost, metalCost, essenceCost;
 	public GameObject hoverObject, hoverResourcesObject;
+	public GameObject hoverEssenceImage, hoverWoodImage, hoverMetalImage;
 	public Text hoverDescriptionText, hoverEssenceText, hoverWoodText, hoverMetalText;
 	public bool showCosts;
+	public bool showEssence = true, showWood = true, showMetal = true;
 
 	public void OnPointerEnter(PointerEventData pointerEventData){
 		hoverObject.transform.position = transform.position;
@@ -22,9 +24,35 @@ public class OnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
 		if (showCosts){
 			hoverResourcesObject.SetActive(true);
+
 			hoverEssenceText.text = essenceCost.ToString();
 			hoverMetalText.text = metalCost.ToString();
 			hoverWoodText.text = woodCost.ToString();
+
+			if (showEssence){
+				hoverEssenceImage.SetActive(true);
+				hoverEssenceText.gameObject.SetActive(true);
+			} else {
+				hoverEssenceImage.SetActive(false);
+				hoverEssenceText.gameObject.SetActive(false);
+			}
+
+			if (showWood){
+				hoverWoodImage.SetActive(true);
+				hoverWoodText.gameObject.SetActive(true);
+			} else {
+				hoverWoodImage.SetActive(false);
+				hoverWoodText.gameObject.SetActive(false);
+			}
+
+			if (showMetal){
+				hoverMetalImage.SetActive(true);
+				hoverMetalText.gameObject.SetActive(true);
+			} else {
+				hoverMetalImage.SetActive(false);
+				hoverMetalText.gameObject.SetActive(false);
+			}
+
 		} else {
 			hoverResourcesObject.SetActive(false);
 		}
