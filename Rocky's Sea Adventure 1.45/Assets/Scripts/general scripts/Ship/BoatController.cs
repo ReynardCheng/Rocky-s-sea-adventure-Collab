@@ -66,15 +66,19 @@ public class BoatController : MonoBehaviour
     [SerializeField] AudioClip BoatBoosted;
     private AudioSource m_AudioSource;
 
-	public LayerMask collisionsThatAffectBoat;
+
 	public Transform[] raycastColliders;
 
 	[Header("miniMap")]
 	CharacterMovement theCharacter;
 
+	[Header("hitting walls")]
+	public GameObject bottomLeft, bottomRight, topLeft, topRight;
+	public LayerMask collisionsThatAffectBoat;
+	public float steerHitRadius;
 
-    //Ramming
-    public int moveFactor;
+	//Ramming
+	public int moveFactor;
     public int RamDamageToShip = 5;
     public float RamDamageToEnemy = 10f;
 	
@@ -114,7 +118,8 @@ public class BoatController : MonoBehaviour
 			if (controllingBoat && !theCharacter.mapOpened && !theCharacter.crRunning)
 			{
 				Movement();
-				Steer();
+				//Steer();
+				newSteer();
 			}
 			Balance();
 
@@ -158,30 +163,30 @@ public class BoatController : MonoBehaviour
 
         float boostFactor = 1;
 
-		RaycastHit hit;
-		foreach(Transform t in raycastColliders)
-		{
-			Ray ray = new Ray(t.position, t.forward);
+		//RaycastHit hit;
+		//foreach(Transform t in raycastColliders)
+		//{
+		//	Ray ray = new Ray(t.position, t.forward);
 
-			Physics.Raycast(ray, out hit, 5f, collisionsThatAffectBoat);
+		//	Physics.Raycast(ray, out hit, 5f, collisionsThatAffectBoat);
 
-			// Hitting something that affects boat
-			if (hit.collider != null)
-			{
-                print("hitWall");
-				return;
-			}
-		}
+		//	// Hitting something that affects boat
+		//	if (hit.collider != null)
+		//	{
+  //              print("hitWall");
+		//		return;
+		//	}
+		//}
 
 		if (hitWall) return;
 
 		boostFactor = (isBoosting) ? 1.5f : 1;
 		transform.Translate(0.0f, 0.0f, (movementFactor * boostFactor * moveSpeed/5));
-		
 	}
 
 	private void OnDrawGizmos()
 	{
+		Gizmos.DrawWireSphere(topRight.transform.position, 1);
 		if (controllingBoat)
 		{
 			foreach (Transform t in raycastColliders)
@@ -222,6 +227,43 @@ public class BoatController : MonoBehaviour
         
 	//	print(horizontalInput);
 	}
+
+	void newSteer()
+	{
+		horizontalInput = Input.GetAxis("Horizontal(P1)");
+		steerFactor = Mathf.Lerp(steerFactor, horizontalInput * steerSpeed, Time.deltaTime * 6);
+
+		if (Physics.OverlapSphere(bottomLeft.transform.position, steerHitRadius, collisionsThatAffectBoat).Length != 0 || Physics.OverlapSphere(topRight.transform.position, steerHitRadius, collisionsThatAffectBoat).Length != 0)
+		{
+			print("Do not steer Right");
+			if (steerFactor > 0) steerFactor = 0;
+		}
+		if (Physics.OverlapSphere(bottomRight.transform.position, steerHitRadius, collisionsThatAffectBoat).Length != 0 || Physics.OverlapSphere(topLeft.transform.position, steerHitRadius, collisionsThatAffectBoat).Length != 0)
+		{
+			print("Do not steer Left");
+			if (steerFactor < 0) steerFactor = 0;
+		}
+
+		// player animation
+		if (horizontalInput < 0)
+		{
+			theCharacter.steeringLeft = true;
+			theCharacter.steeringRight = false;
+		}
+		else if (horizontalInput > 0)
+		{
+			theCharacter.steeringLeft = false;
+			theCharacter.steeringRight = true;
+		}
+		else
+		{
+			theCharacter.steeringLeft = false;
+			theCharacter.steeringRight = false;
+		}
+
+		transform.Rotate(0.0f, steerFactor, 0);
+	}
+
 
 	void Boost()
 	{

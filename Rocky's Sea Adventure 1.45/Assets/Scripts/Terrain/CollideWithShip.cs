@@ -25,19 +25,21 @@ public class CollideWithShip : MonoBehaviour {
             BoatController boatControl = other.GetComponentInParent<BoatController>();
             theBoatCombat.DamageShip(boatControl.RamDamageToShip * boatControl.moveFactor);
             print("damage ship:" + boatControl.RamDamageToShip * boatControl.moveFactor);
-        }
-
-    }
-
-    private void OnTriggerStay(Collider other)
-	{
-		if (other.gameObject.layer == 13)
-		{
-            
 			other.gameObject.GetComponentInParent<BoatController>().movementFactor = 0;
 			other.gameObject.GetComponentInParent<BoatController>().hitWall = true;
 		}
-	}
+
+    }
+
+ //   private void OnTriggerStay(Collider other)
+	//{
+	//	if (other.gameObject.layer == 13)	
+	//	{
+            
+	//		other.gameObject.GetComponentInParent<BoatController>().movementFactor = 0;
+	//		other.gameObject.GetComponentInParent<BoatController>().hitWall = true;
+	//	}
+	//}
 	private void OnTriggerExit(Collider other)
 	{
 		if (other.gameObject.layer == 13)
