@@ -38,7 +38,7 @@ public class BuildCannonManager : MonoBehaviour
     public GameObject cannonInteractMenuPrefab;
     private GameObject cannonInteractMenu;
     public Slider boostSlider;
-    public GameObject normalMenuUi, upgradeMenuUi, dismantleMenuUi;
+    public GameObject normalMenuUi, upgradeMenuUi, dismantleMenuUi, mastMenuUi;
 
     [SerializeField] GameObject menu;
 
@@ -88,7 +88,7 @@ public class BuildCannonManager : MonoBehaviour
             else if (!menuSpawned && inShipMastRange)
             {
 				cameraSwitch.switching = true;
-				OpenMastMenu();
+				OpenMastMenuUi();
                 LockCameraMovement();
             }
         }
@@ -465,6 +465,7 @@ public class BuildCannonManager : MonoBehaviour
         normalMenuUi.SetActive(false);
         upgradeMenuUi.SetActive(false);
         dismantleMenuUi.SetActive(false);
+        mastMenuUi.SetActive(false);
 
         menuSpawned = false;
         shipPartsToHide.SetActive(true);
@@ -510,6 +511,31 @@ public class BuildCannonManager : MonoBehaviour
 
         cannon.transform.parent = cannonBuildTransform;
         cannon.transform.rotation = cannonBuildTransform.transform.rotation;
+    }
+
+    void OpenMastMenuUi(){
+        mastMenuUi.SetActive(true);
+
+        Button[] buttons;
+        buttons = mastMenuUi.GetComponentsInChildren<Button>();
+
+        foreach (Button b in buttons)
+        {
+            b.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
+            
+            if (b.gameObject.name.Contains("Repair"))
+            {
+                b.GetComponentInChildren<Button>().onClick.AddListener(RepairShip);
+            }
+            if (b.gameObject.name.Contains("Refill"))
+            {
+                b.GetComponentInChildren<Button>().onClick.AddListener(RefillBoost);
+            }
+            if (b.gameObject.name.Contains("Cancel"))
+            {
+                b.GetComponentInChildren<Button>().onClick.AddListener(Cancel);
+            }
+        }
     }
 
     void OpenMastMenu()
