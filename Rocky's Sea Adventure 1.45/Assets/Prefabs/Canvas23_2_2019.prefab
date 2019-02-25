@@ -295,7 +295,6 @@ GameObject:
   - component: {fileID: 222252165084990494}
   - component: {fileID: 114711267218335708}
   - component: {fileID: 114202559751863796}
-  - component: {fileID: 114412460604845838}
   m_Layer: 5
   m_Name: Cancel
   m_TagString: Untagged
@@ -562,7 +561,6 @@ GameObject:
   - component: {fileID: 222521091068842946}
   - component: {fileID: 114782774315438210}
   - component: {fileID: 114536765977993152}
-  - component: {fileID: 114610030123312098}
   m_Layer: 5
   m_Name: Cancel
   m_TagString: Untagged
@@ -615,7 +613,6 @@ GameObject:
   - component: {fileID: 222320289133953532}
   - component: {fileID: 114227138321807264}
   - component: {fileID: 114134858998064156}
-  - component: {fileID: 114413522562050000}
   m_Layer: 5
   m_Name: Cancel
   m_TagString: Untagged
@@ -656,7 +653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1938664078211514
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,7 +699,6 @@ GameObject:
   - component: {fileID: 222768832107312032}
   - component: {fileID: 114309149085379524}
   - component: {fileID: 114603881136406992}
-  - component: {fileID: 114238329386849430}
   m_Layer: 5
   m_Name: Cancel
   m_TagString: Untagged
@@ -842,7 +838,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b26cd72cf23ae44a83154e2c97cd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Refill
+  description: Refill the ship boost bar fully.  [Press 'Space Bar' while steering
+    the ship to use the ship boost.
   woodCost: 0
   metalCost: 0
   essenceCost: 1
@@ -1289,34 +1286,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114238329386849430
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1977424324594374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0b26cd72cf23ae44a83154e2c97cd7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: Cancel Building
-  woodCost: 1
-  metalCost: 1
-  essenceCost: 1
-  hoverObject: {fileID: 1938664078211514}
-  hoverResourcesObject: {fileID: 1092338085131282}
-  hoverEssenceImage: {fileID: 1296560455771816}
-  hoverWoodImage: {fileID: 1120859836184390}
-  hoverMetalImage: {fileID: 1944504563301496}
-  hoverDescriptionText: {fileID: 114790763223544628}
-  hoverEssenceText: {fileID: 114936726100301282}
-  hoverWoodText: {fileID: 114894350945290660}
-  hoverMetalText: {fileID: 114584413727181160}
-  showCosts: 0
-  showEssence: 1
-  showWood: 1
-  showMetal: 1
 --- !u!114 &114248155143560898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1589,62 +1558,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114412460604845838
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1305721291450712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0b26cd72cf23ae44a83154e2c97cd7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: Description
-  woodCost: 0
-  metalCost: 0
-  essenceCost: 0
-  hoverObject: {fileID: 1938664078211514}
-  hoverResourcesObject: {fileID: 1092338085131282}
-  hoverEssenceImage: {fileID: 1296560455771816}
-  hoverWoodImage: {fileID: 1120859836184390}
-  hoverMetalImage: {fileID: 1944504563301496}
-  hoverDescriptionText: {fileID: 114790763223544628}
-  hoverEssenceText: {fileID: 114936726100301282}
-  hoverWoodText: {fileID: 114894350945290660}
-  hoverMetalText: {fileID: 114584413727181160}
-  showCosts: 1
-  showEssence: 1
-  showWood: 1
-  showMetal: 1
---- !u!114 &114413522562050000
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1904472525571694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0b26cd72cf23ae44a83154e2c97cd7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: Cancel Building
-  woodCost: 0
-  metalCost: 0
-  essenceCost: 0
-  hoverObject: {fileID: 1938664078211514}
-  hoverResourcesObject: {fileID: 1092338085131282}
-  hoverEssenceImage: {fileID: 1296560455771816}
-  hoverWoodImage: {fileID: 1120859836184390}
-  hoverMetalImage: {fileID: 1944504563301496}
-  hoverDescriptionText: {fileID: 114790763223544628}
-  hoverEssenceText: {fileID: 114936726100301282}
-  hoverWoodText: {fileID: 114894350945290660}
-  hoverMetalText: {fileID: 114584413727181160}
-  showCosts: 0
-  showEssence: 1
-  showWood: 1
-  showMetal: 1
 --- !u!114 &114417665338782138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1697,9 +1610,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b26cd72cf23ae44a83154e2c97cd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Description
-  woodCost: 0
-  metalCost: 0
+  description: Upgrade to a Blaster Cannon. It deals high damage to multiple enemies
+    within a small range.
+  woodCost: 1
+  metalCost: 3
   essenceCost: 0
   hoverObject: {fileID: 1938664078211514}
   hoverResourcesObject: {fileID: 1092338085131282}
@@ -1711,7 +1625,7 @@ MonoBehaviour:
   hoverWoodText: {fileID: 114894350945290660}
   hoverMetalText: {fileID: 114584413727181160}
   showCosts: 1
-  showEssence: 1
+  showEssence: 0
   showWood: 1
   showMetal: 1
 --- !u!114 &114536765977993152
@@ -1766,9 +1680,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b26cd72cf23ae44a83154e2c97cd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Defence Upgrade
-  woodCost: 0
-  metalCost: 0
+  description: Upgrade to a Shield Cannon. Enemies will attack this cannon first if
+    it exists. It has a much higher HP.
+  woodCost: 2
+  metalCost: 2
   essenceCost: 0
   hoverObject: {fileID: 1938664078211514}
   hoverResourcesObject: {fileID: 1092338085131282}
@@ -1780,7 +1695,7 @@ MonoBehaviour:
   hoverWoodText: {fileID: 114894350945290660}
   hoverMetalText: {fileID: 114584413727181160}
   showCosts: 1
-  showEssence: 1
+  showEssence: 0
   showWood: 1
   showMetal: 1
 --- !u!114 &114564761003654498
@@ -1843,7 +1758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1851,8 +1766,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: db1da09cfdc89454c89b979fda28d8ec, type: 3}
+    m_FontSize: 22
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -1875,7 +1790,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b26cd72cf23ae44a83154e2c97cd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Description
+  description: Demolish this cannon. You will get some resources back, ONLY if it
+    has more than 15% HP left.
   woodCost: 0
   metalCost: 0
   essenceCost: 0
@@ -1888,10 +1804,10 @@ MonoBehaviour:
   hoverEssenceText: {fileID: 114936726100301282}
   hoverWoodText: {fileID: 114894350945290660}
   hoverMetalText: {fileID: 114584413727181160}
-  showCosts: 1
-  showEssence: 1
-  showWood: 1
-  showMetal: 1
+  showCosts: 0
+  showEssence: 0
+  showWood: 0
+  showMetal: 0
 --- !u!114 &114598915669434894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1993,34 +1909,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114610030123312098
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1715463497497014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0b26cd72cf23ae44a83154e2c97cd7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: Description
-  woodCost: 0
-  metalCost: 0
-  essenceCost: 0
-  hoverObject: {fileID: 1938664078211514}
-  hoverResourcesObject: {fileID: 1092338085131282}
-  hoverEssenceImage: {fileID: 1296560455771816}
-  hoverWoodImage: {fileID: 1120859836184390}
-  hoverMetalImage: {fileID: 1944504563301496}
-  hoverDescriptionText: {fileID: 114790763223544628}
-  hoverEssenceText: {fileID: 114936726100301282}
-  hoverWoodText: {fileID: 114894350945290660}
-  hoverMetalText: {fileID: 114584413727181160}
-  showCosts: 1
-  showEssence: 1
-  showWood: 1
-  showMetal: 1
 --- !u!114 &114628311599319288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2059,7 +1947,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b26cd72cf23ae44a83154e2c97cd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Repair
+  description: Repair the ship.                        The ship will regenerate 10%
+    of its HP.
   woodCost: 0
   metalCost: 0
   essenceCost: 1
@@ -2195,7 +2084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2203,7 +2092,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 162af86f87bd19c4f8a55b9cff428330, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -2213,7 +2102,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: This is a description.
 --- !u!114 &114798888545157282
@@ -2323,7 +2212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2331,8 +2220,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: db1da09cfdc89454c89b979fda28d8ec, type: 3}
+    m_FontSize: 22
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -2356,7 +2245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2383,7 +2272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2391,8 +2280,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: db1da09cfdc89454c89b979fda28d8ec, type: 3}
+    m_FontSize: 22
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -2415,7 +2304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b26cd72cf23ae44a83154e2c97cd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Description
+  description: Demolish this cannon. You will get some resources back, ONLY if it
+    has more than 15% HP left.
   woodCost: 0
   metalCost: 0
   essenceCost: 0
@@ -2428,10 +2318,10 @@ MonoBehaviour:
   hoverEssenceText: {fileID: 114936726100301282}
   hoverWoodText: {fileID: 114894350945290660}
   hoverMetalText: {fileID: 114584413727181160}
-  showCosts: 1
-  showEssence: 1
-  showWood: 1
-  showMetal: 1
+  showCosts: 0
+  showEssence: 0
+  showWood: 0
+  showMetal: 0
 --- !u!114 &114949103253229694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2511,9 +2401,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b26cd72cf23ae44a83154e2c97cd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Description
-  woodCost: 0
-  metalCost: 0
+  description: Upgrade to a Slowing Cannon. It shoots an oil slick at enemies, slowing
+    them down and dealing damage over time.
+  woodCost: 3
+  metalCost: 1
   essenceCost: 0
   hoverObject: {fileID: 1938664078211514}
   hoverResourcesObject: {fileID: 1092338085131282}
@@ -2525,7 +2416,7 @@ MonoBehaviour:
   hoverWoodText: {fileID: 114894350945290660}
   hoverMetalText: {fileID: 114584413727181160}
   showCosts: 1
-  showEssence: 1
+  showEssence: 0
   showWood: 1
   showMetal: 1
 --- !u!114 &114972840363391604
@@ -2634,7 +2525,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b26cd72cf23ae44a83154e2c97cd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Build Tower
+  description: Build a Basic Cannon. It deals moderate damage and has a moderate firing
+    range. It can be upgraded.
   woodCost: 1
   metalCost: 1
   essenceCost: 1
@@ -2648,7 +2540,7 @@ MonoBehaviour:
   hoverWoodText: {fileID: 114894350945290660}
   hoverMetalText: {fileID: 114584413727181160}
   showCosts: 1
-  showEssence: 1
+  showEssence: 0
   showWood: 1
   showMetal: 1
 --- !u!222 &222000525702095106
@@ -2940,7 +2832,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -150, y: 60.000008}
+  m_AnchoredPosition: {x: -400, y: 60.000008}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224067628374013110
@@ -2979,7 +2871,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -20, y: 5}
+  m_AnchoredPosition: {x: 0, y: 15}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224098793038365794
@@ -2995,8 +2887,8 @@ RectTransform:
   m_Father: {fileID: 224814791019927070}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -0.099998474, y: 3.6999998}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3015,7 +2907,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -20, y: 0}
+  m_AnchoredPosition: {x: -13, y: 15}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224143240009396096
@@ -3033,7 +2925,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -15.000122, y: -20}
+  m_AnchoredPosition: {x: -14, y: -10}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224202073422735190
@@ -3080,14 +2972,14 @@ RectTransform:
   m_GameObject: {fileID: 1296560455771816}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2214375, y: 0.2214375, z: 0.2214375}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 224283938356367558}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 24.100006, y: -60}
+  m_AnchoredPosition: {x: -6, y: -100}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224283938356367558
@@ -3111,7 +3003,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 18.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224314811789115782
@@ -3147,7 +3039,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -23.900002, y: -7}
+  m_AnchoredPosition: {x: -23.7, y: -48}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224326176881658292
@@ -3183,7 +3075,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -20}
+  m_AnchoredPosition: {x: 0, y: -10}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224406597684830932
@@ -3201,7 +3093,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15, y: -20}
+  m_AnchoredPosition: {x: 14, y: -10}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224448472961771914
@@ -3224,7 +3116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -150, y: 60.000008}
+  m_AnchoredPosition: {x: -400, y: 60.000008}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224454852155482622
@@ -3242,7 +3134,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -15, y: -20}
+  m_AnchoredPosition: {x: -14, y: -10}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224455007009485562
@@ -3263,7 +3155,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 249.8, y: -64.8}
-  m_SizeDelta: {x: 90, y: 40}
+  m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224460155485994720
 RectTransform:
@@ -3282,8 +3174,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -150, y: 60}
-  m_SizeDelta: {x: 200, y: 100}
+  m_AnchoredPosition: {x: -400, y: 60}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224474068769361144
 RectTransform:
@@ -3300,7 +3192,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.6999817, y: -7.0000153}
+  m_AnchoredPosition: {x: 44.299988, y: -48.000023}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224540421728342616
@@ -3336,8 +3228,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.037499}
-  m_SizeDelta: {x: 160, y: 79.85}
+  m_AnchoredPosition: {x: 0, y: -4.5}
+  m_SizeDelta: {x: 350, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224555289414949192
 RectTransform:
@@ -3354,7 +3246,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 25}
+  m_AnchoredPosition: {x: -25, y: 15}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224656494275161696
@@ -3372,7 +3264,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 25}
+  m_AnchoredPosition: {x: -15, y: 5}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224657987340768740
@@ -3408,7 +3300,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20, y: 5}
+  m_AnchoredPosition: {x: 25, y: 15}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224713583223191658
@@ -3446,14 +3338,14 @@ RectTransform:
   m_GameObject: {fileID: 1944504563301496}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2214375, y: 0.2214375, z: 0.2214375}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 224283938356367558}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -5.899994, y: -60}
+  m_AnchoredPosition: {x: 26.299988, y: -100}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224772217359799444
@@ -3490,7 +3382,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -20}
+  m_AnchoredPosition: {x: 15, y: 5}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224801748614948740
@@ -3501,14 +3393,14 @@ RectTransform:
   m_GameObject: {fileID: 1120859836184390}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2214375, y: 0.2214375, z: 0.2214375}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 224283938356367558}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -35.899994, y: -60}
+  m_AnchoredPosition: {x: -39.700012, y: -100}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224812829066599884
@@ -3526,7 +3418,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20, y: 0}
+  m_AnchoredPosition: {x: 13, y: 15}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224814791019927070
@@ -3590,7 +3482,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -150, y: 60.000008}
+  m_AnchoredPosition: {x: -400, y: 60.000008}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224870075799298766
@@ -3645,7 +3537,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 35.6, y: -7.0000305}
+  m_AnchoredPosition: {x: 11, y: -48.00004}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224916844231016398
@@ -3662,7 +3554,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0.0000076293945, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3699,7 +3591,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15, y: -20}
+  m_AnchoredPosition: {x: 14, y: -10}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224993306161954018
