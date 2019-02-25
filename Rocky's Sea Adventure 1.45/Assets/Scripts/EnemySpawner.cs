@@ -12,7 +12,6 @@ public class EnemySpawner : MonoBehaviour {
 
 	public bool globalSpawner;
 	public static int waveValue;
-	public bool encountered;
 	[SerializeField] float spawnRate;
 	public waveComp[] numberOfWaves;
 
@@ -21,7 +20,6 @@ public class EnemySpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		waveValue = 2;
 		enemies = new List<GameObject>();
 		//spawnRate = 2;
 	}
@@ -49,7 +47,7 @@ public class EnemySpawner : MonoBehaviour {
 		if (spawnRate <= 0)
 		{
 			Vector3 enemySpawnPosition = new Vector3(transform.position.x, transform.position.y-4, transform.position.z);
-			currentWaveInt = Random.Range(0, waveValue);
+			currentWaveInt = Random.Range(0, numberOfWaves.Length);
 			print(currentWaveInt);
 			foreach (EnemyController e in numberOfWaves[currentWaveInt].enemies)
 			{
@@ -60,29 +58,29 @@ public class EnemySpawner : MonoBehaviour {
                 spawnedEnemy.GetComponent<EnemyController>().spawnTypes = (globalSpawner) ? EnemyController.spawnType.Global : EnemyController.spawnType.Local;
 			}
 
-			spawnRate = Random.Range(5, 8);
+			spawnRate = Random.Range(15, 30);
 		}
 	}
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.tag == "Ship" && !encountered)
+		if (other.tag == "Ship")
 		{
-			waveValue++;
-			encountered = true;
+		
+			
 
 
-            //Local Spawning here
-            Vector3 enemySpawnPosition = new Vector3(transform.position.x, transform.position.y - 4, transform.position.z);
-            int currentWaveInt = Random.Range(0, waveValue);
-            print(currentWaveInt);
-            foreach (EnemyController e in numberOfWaves[currentWaveInt].enemies)
-            {
-                GameObject spawnedEnemy = Instantiate(e, enemySpawnPosition, e.transform.rotation).gameObject;
-                spawnedEnemy.GetComponent<Rigidbody>().AddForce(Random.Range(-300, 300), Random.Range(-300, 300), Random.Range(-300, 300));
-                spawnedEnemy.GetComponent<EnemyController>().spawnTypes = (globalSpawner) ? EnemyController.spawnType.Global : EnemyController.spawnType.Local;
-                spawnedEnemy.GetComponent<EnemyController>().chaseShip = true;
-            }
+            ////Local Spawning here
+            //Vector3 enemySpawnPosition = new Vector3(transform.position.x, transform.position.y - 4, transform.position.z);
+            //int currentWaveInt = Random.Range(0, waveValue);
+            //print(currentWaveInt);
+            //foreach (EnemyController e in numberOfWaves[currentWaveInt].enemies)
+            //{
+            //    GameObject spawnedEnemy = Instantiate(e, enemySpawnPosition, e.transform.rotation).gameObject;
+            //    spawnedEnemy.GetComponent<Rigidbody>().AddForce(Random.Range(-300, 300), Random.Range(-300, 300), Random.Range(-300, 300));
+            //    spawnedEnemy.GetComponent<EnemyController>().spawnTypes = (globalSpawner) ? EnemyController.spawnType.Global : EnemyController.spawnType.Local;
+            //    spawnedEnemy.GetComponent<EnemyController>().chaseShip = true;
+            //}
         }
 
         if(other.tag == "Ship")
