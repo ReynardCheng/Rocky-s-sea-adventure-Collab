@@ -93,7 +93,7 @@ public class EnemyController : MonoBehaviour
 		fireRate = 0f;
 		coolDownTime = 3f;
 
-		moveSpeed = 3.0f;
+		moveSpeed = 5.0f;
 		canMove = true;
         timeBeforeNextPatrol = 5;
 

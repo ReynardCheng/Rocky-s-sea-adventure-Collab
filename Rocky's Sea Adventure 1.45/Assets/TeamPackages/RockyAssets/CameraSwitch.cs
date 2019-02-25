@@ -25,6 +25,7 @@ public class CameraSwitch : MonoBehaviour {
 	public Transform player;
 
 	public Vector3 offset;
+	public Vector3 shipOffset;
 
 	// have to use this for reference because it is from a namespace
 	public UnityStandardAssets.Characters.FirstPerson.FirstPersonController fpsController;
@@ -64,13 +65,20 @@ public class CameraSwitch : MonoBehaviour {
 			{
 				if (chMovement.canControlShip) CameraSwitching();
 
-				playerViewPos.position = player.position + offset;
-				playerViewPos.LookAt(player.position);
-
 				if (!fpsController.controllingShip)
 				{
-					if (!switching) CameraRotate();
+					playerViewPos.position = player.position + offset;
+					playerViewPos.LookAt(player.position);
 				}
+
+				else if (fpsController.controllingShip)
+				{
+					playerViewPos.position = player.position + shipOffset;
+					playerViewPos.LookAt(player.position);
+				}
+
+					if (!switching) CameraRotate();
+				
 			}
 
 			//if (shipView) theBoat.controllingBoat = true;
@@ -160,6 +168,16 @@ public class CameraSwitch : MonoBehaviour {
 				transform.position = Vector3.Lerp(transform.position, posToLerp, Time.deltaTime * rate);
 				transform.LookAt(player.position);
 			//	if (!theBoat.reachedEnd && theBoat.GetComponent<BoatCombat1>().shipHealth > 0) Cursor.visible = false;
+			}
+
+			else if (fpsController.controllingShip)
+			{
+				float nextStep = 2;
+				float rate = 10f + nextStep;
+				shipOffset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * turnSpeed, Vector3.up) * shipOffset;
+				Vector3 posToLerp = player.position + shipOffset;
+				transform.position = Vector3.Lerp(transform.position, posToLerp, Time.deltaTime * rate);
+				transform.LookAt(player.position);
 			}
 		}
     }
