@@ -18,7 +18,9 @@ public class BossEnterTrigger : MonoBehaviour {
         BoatController boat = other.GetComponent<BoatController>();
         if (boat)
         {
-
+            levelManager.InitializeBossFight();
+            boss.stopMovement = false;
+            boss.chaseShip = true;
         }
     }
 

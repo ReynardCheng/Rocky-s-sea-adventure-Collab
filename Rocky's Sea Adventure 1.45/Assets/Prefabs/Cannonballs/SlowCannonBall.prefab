@@ -212,7 +212,6 @@ MonoBehaviour:
   target: {fileID: 0}
   oilSlickPrefab: {fileID: 1847781957341920, guid: 2fb292e28b6f84b4580d730678d203e9,
     type: 2}
-  myAudio: {fileID: 0}
   vfxToPlay: {fileID: 0}
 --- !u!135 &135139759236262896
 SphereCollider:
@@ -221,7 +220,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1924548973427080}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5

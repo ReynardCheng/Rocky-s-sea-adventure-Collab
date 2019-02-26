@@ -104,38 +104,38 @@ public class LevelManager : MonoBehaviour
 			}
 		}
 
-		Collider[] colliders = Physics.OverlapSphere(boatCombatScript.transform.position, changeSkyboxRadius); // Gets all colliders in a radius around the position, and store them into an array.
-		bossIsNear = false;
+		//Collider[] colliders = Physics.OverlapSphere(boatCombatScript.transform.position, changeSkyboxRadius); // Gets all colliders in a radius around the position, and store them into an array.
+		//bossIsNear = false;
 
-		if (colliders.Length > 0)
-		{
-			foreach (Collider c in colliders)
-			{
-				if (c.gameObject == boss)
-				{
-					bossIsNear = true;
+		//if (colliders.Length > 0)
+		//{
+		//	foreach (Collider c in colliders)
+		//	{
+		//		if (c.gameObject == boss)
+		//		{
+		//			bossIsNear = true;
 
-					break;
-				}
-			}
+		//			break;
+		//		}
+		//	}
 
-			if (!bossIsNear)
-			{
-				if (currentSkyboxColor == SkyboxColor.Boss)
-				{
-					newSoundtrack(levelBgmClip);
-					StartCoroutine(ChangeSkyboxColor(SkyboxColor.Default, skyboxTransitionDuration));
-				}
-			}
-			else
-			{
-				if (currentSkyboxColor == SkyboxColor.Default)
-				{
-					newSoundtrack(bossNearClip);
-					StartCoroutine(ChangeSkyboxColor(SkyboxColor.Boss, skyboxTransitionDuration));
-				}
-			}
-		}
+		//	if (!bossIsNear)
+		//	{
+		//		if (currentSkyboxColor == SkyboxColor.Boss)
+		//		{
+		//			newSoundtrack(levelBgmClip);
+		//			StartCoroutine(ChangeSkyboxColor(SkyboxColor.Default, skyboxTransitionDuration));
+		//		}
+		//	}
+		//	else
+		//	{
+		//		if (currentSkyboxColor == SkyboxColor.Default)
+		//		{
+		//			newSoundtrack(bossNearClip);
+		//			StartCoroutine(ChangeSkyboxColor(SkyboxColor.Boss, skyboxTransitionDuration));
+		//		}
+		//	}
+		//}
 
 		Pause();
 	//	MapStatus();
@@ -148,9 +148,16 @@ public class LevelManager : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(boatCombatScript.transform.position, changeSkyboxRadius);
         }
-	}
+    }
+    
+    public void InitializeBossFight()
+    {
+        newSoundtrack(bossNearClip);
+        StartCoroutine(ChangeSkyboxColor(SkyboxColor.Boss, skyboxTransitionDuration));
 
-	public IEnumerator ChangeSkyboxColor(SkyboxColor sc, float duration)
+    }
+
+    public IEnumerator ChangeSkyboxColor(SkyboxColor sc, float duration)
 	{
 		Color oldColor = RenderSettings.skybox.GetColor("_Tint");
 		Color newColor = sc == SkyboxColor.Default ? skyboxDefaultColor : skyboxBossColor;

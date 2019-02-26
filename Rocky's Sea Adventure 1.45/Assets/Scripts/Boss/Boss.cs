@@ -28,7 +28,7 @@ public class Boss : MonoBehaviour {
     [SerializeField] Transform playerPos; // move to the player / normal movement
 
     // movement pattern
-    [SerializeField] bool chaseShip;
+    public bool chaseShip;
     [SerializeField] float moveToShipCounter; // Timer for attacking player. Stops attacking once 0 and instead uses changeMovement timer. 
     [SerializeField] float changeMovement; // acts as a timer such that once it reaches 0 the boss will change its move pattern
     public List<Transform> movementPositions = new List<Transform>(); // sets the positions that the boss will move to
@@ -76,9 +76,11 @@ public class Boss : MonoBehaviour {
 
 		storedPositions = new Transform[movementPositions.Count];
 		movementPositions.CopyTo(storedPositions);
+        movementPositions.Clear();  //Clear to make boss chase the player first thing
 
 		positionToMove = GetRandomIntFromArray();
 
+        stopMovement = true;
         changeMovement = 5;
         moveToShipCounter = 35;
         spAtkCounter = 5;
@@ -140,16 +142,16 @@ public class Boss : MonoBehaviour {
 
             float distance = Vector3.Distance(playerPos.position, transform.position);
 
-            if (distance < 50)
+            if (distance < 40)
             {
                 rb.velocity = direction.normalized * -moveSpeed / 2;
             }
-            else if (distance >= 80)
+            else if (distance >= 65)
             {
                 rb.velocity = direction.normalized * moveSpeed;
                 keepDistance = false;
             }
-            else if (distance >= 65) //sweetspot, try to stay in this range by not moving forwards or backwards
+            else if (distance >= 55) //sweetspot, try to stay in this range by not moving forwards or backwards
             {
                 rb.velocity = Vector3.zero;
             }
@@ -245,12 +247,12 @@ public class Boss : MonoBehaviour {
                 projectile.GetComponent<Rigidbody>().velocity = direction * 60;
                 projectile.transform.rotation = Quaternion.LookRotation(direction);
                 ////////////////////////
-                atkRate = 2f;
+                atkRate = 5f;
                 spAtkCounter--;
             }
             else if (spAtkCounter <= 0)
             {
-                atkRate = 15f;
+                atkRate = 9f;
                 SpecialAttack();
             }
         }

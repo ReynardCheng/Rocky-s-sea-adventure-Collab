@@ -101,7 +101,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1941821989435148}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5436196, y: 0.87, z: 1.0962052}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4147101428313470}
@@ -161,8 +161,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 5, z: 6}
-  m_Center: {x: 0, y: 0, z: 3.6}
+  m_Size: {x: 5, y: 5, z: 6.821293}
+  m_Center: {x: 0, y: 0, z: 4.0106487}
 --- !u!82 &82291543694043118
 AudioSource:
   m_ObjectHideFlags: 1
@@ -301,6 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myAudioSource: {fileID: 0}
   cannonSounds:
+    oilSlickFire: {fileID: 0}
     cannonFire: {fileID: 8300000, guid: 92350560022ee8546926f2ad330e033b, type: 3}
     cannonBallHit: {fileID: 8300000, guid: cea2a671dad15e342a5bfc59a9d08d98, type: 3}
     aoeHit: {fileID: 8300000, guid: 685b46adb5f9a58419ad06c2b4b024ec, type: 3}

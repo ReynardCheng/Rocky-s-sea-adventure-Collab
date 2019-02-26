@@ -7,6 +7,11 @@ public class BossNormalAttack : MonoBehaviour {
     [SerializeField] GameObject splashParticles;
     private bool canDamage = true;
 
+    private void Start()
+    {
+        Destroy(gameObject, 3);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         BoatCombat1 ship = other.GetComponentInParent<BoatCombat1>();

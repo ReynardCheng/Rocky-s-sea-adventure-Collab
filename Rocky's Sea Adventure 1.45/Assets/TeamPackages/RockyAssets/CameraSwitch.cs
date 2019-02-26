@@ -52,7 +52,7 @@ public class CameraSwitch : MonoBehaviour {
 		// setting variables
 		shipView = false;
 		switching = false; 
-		switchSpeed = 0.1f;
+		switchSpeed = 0.5f;
 
     }
 
