@@ -13,16 +13,16 @@ public class BulletFire : MonoBehaviour {
 
     private void Start()
     {
-        Destroy(gameObject, 5);
+        Destroy(gameObject, 3);
     }
-
     // Update is called once per frame
     void Update () {
         if (target) //if enemy target exists
         {
             // Fly towards the target
-			GetComponent<Rigidbody>().velocity = MathScript.ShootInArc(target, this.transform, 30f);
-			transform.position = Vector3.MoveTowards(transform.position, target.position, 0.5f);
+            //GetComponent<Rigidbody>().velocity = MathScript.ShootInArc(target, this.transform, 30f);
+            GetComponent<Rigidbody>().velocity = (target.position - transform.position).normalized * speed;
+            transform.position = Vector3.MoveTowards(transform.position, target.position, 0.5f);
         }
     }
 	Vector3 ShootInArc(float angle)
@@ -61,12 +61,24 @@ public class BulletFire : MonoBehaviour {
             return;
         }
 
-        Boss boss = other.GetComponent<Boss>();
-        if(boss)
+        //Boss boss = other.GetComponent<Boss>();
+        //if(boss)
+        //{
+        //    boss.HealthManager(10);
+        //    Destroy(gameObject);
+        //}       
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Boss boss = collision.gameObject.GetComponentInParent<Boss>();
+        if (boss)
         {
+            print("NORMAL has hitted boss");
             boss.HealthManager(10);
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            SoundSpawned();
             Destroy(gameObject);
         }
-       
     }
 }

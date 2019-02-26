@@ -217,7 +217,6 @@ MonoBehaviour:
   speed: 10
   target: {fileID: 0}
   explosion: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 2}
-  myAudio: {fileID: 0}
   vfxToPlay: {fileID: 8300000, guid: 685b46adb5f9a58419ad06c2b4b024ec, type: 3}
 --- !u!135 &135139759236262896
 SphereCollider:
@@ -226,7 +225,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1924548973427080}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5

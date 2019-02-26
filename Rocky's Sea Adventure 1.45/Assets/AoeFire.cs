@@ -109,7 +109,18 @@ public class AoeFire : MonoBehaviour {
             return;
         }
 
-        Boss boss = other.GetComponent<Boss>();
+        //Boss boss = other.GetComponent<Boss>();
+        //if (boss)
+        //{
+        //    boss.HealthManager(10);
+        //    Destroy(gameObject);
+        //}
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        print(collision.gameObject);
+        Boss boss = collision.gameObject.GetComponentInParent<Boss>();
         if (boss)
         {
             boss.HealthManager(10);
@@ -118,6 +129,6 @@ public class AoeFire : MonoBehaviour {
     }
 
 
-  
+
 
 }
