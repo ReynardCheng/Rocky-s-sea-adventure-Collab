@@ -10,12 +10,13 @@ public class DialogueScript : MonoBehaviour
 
     DialogueSystem dialogueSys;
     public static int onSentence;
-    public bool canContinueDialogue;
+    public static bool canContinueDialogue;
 
 
     void Start()
     {
         dialogueSys = FindObjectOfType<DialogueSystem>();
+        canContinueDialogue = true;
     }
     /// <summary>
     /// Honestly, the string component is the only one you need to know
