@@ -11,6 +11,8 @@ public class ShipCollectResources : MonoBehaviour
     [Header("Sound")]
     [SerializeField] AudioClip ResourceCollectSound;
 
+	public GameObject woodParticle, metalParticle, SeaParticle; // particles that would spawn when resources are collected respectively
+
     // Use this for initialization
     void Start()
     {
@@ -33,7 +35,8 @@ public class ShipCollectResources : MonoBehaviour
 			resourceCountScript.SeaEssenceValue(0, 10);
             Destroy(other.gameObject);
 
-            LevelManager.theLevelManager.PlaySoundEffect(LevelManager.theLevelManager.collectionClip);
+			Instantiate(SeaParticle, other.transform.position, SeaParticle.transform.rotation);
+			LevelManager.theLevelManager.PlaySoundEffect(LevelManager.theLevelManager.collectionClip);
             // Audio.clip = ResourceCollectSound;
             // Audio.Play();
         }
@@ -41,8 +44,8 @@ public class ShipCollectResources : MonoBehaviour
 		{
 			resourceCountScript.WoodenPlankValue(0, 10);
 			Destroy(other.gameObject);
-
-            LevelManager.theLevelManager.PlaySoundEffect(LevelManager.theLevelManager.collectionClip);
+			Instantiate(woodParticle, other.transform.position, woodParticle.transform.rotation);
+			LevelManager.theLevelManager.PlaySoundEffect(LevelManager.theLevelManager.collectionClip);
             // Audio.clip = ResourceCollectSound;
             // Audio.Play();
         }
@@ -51,7 +54,8 @@ public class ShipCollectResources : MonoBehaviour
 			resourceCountScript.MetalValue(0, 10);
 			Destroy(other.gameObject);
 
-            LevelManager.theLevelManager.PlaySoundEffect(LevelManager.theLevelManager.collectionClip);
+			Instantiate(metalParticle, other.transform.position, metalParticle.transform.rotation);
+			LevelManager.theLevelManager.PlaySoundEffect(LevelManager.theLevelManager.collectionClip);
             // Audio.clip = ResourceCollectSound;
             // Audio.Play();
         }
