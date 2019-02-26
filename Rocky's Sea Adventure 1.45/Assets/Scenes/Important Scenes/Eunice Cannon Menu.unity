@@ -3556,6 +3556,7 @@ MonoBehaviour:
   turnSpeed: 3
   player: {fileID: 0}
   offset: {x: 4, y: 2, z: 4}
+  shipOffset: {x: 0, y: 0, z: 0}
   fpsController: {fileID: 0}
 --- !u!45 &603407262
 Skybox:
@@ -8793,6 +8794,12 @@ Prefab:
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114707787730319512, guid: a3615f99fe349d74aafa02f15d6b0acd,
+        type: 2}
+      propertyPath: description
+      value: Repair the ship.                             The ship will regenerate
+        10% of its HP.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3615f99fe349d74aafa02f15d6b0acd, type: 2}
