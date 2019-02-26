@@ -1383,11 +1383,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 98730783}
   m_Mesh: {fileID: 4300000, guid: ea98d46ff88296f4ca2769017bed9e08, type: 3}
---- !u!1 &104732540 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1514127875915670, guid: 234e3684ac91c7e448879e99024cafbe,
-    type: 2}
-  m_PrefabInternal: {fileID: 2058974960}
 --- !u!1 &105604053 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1484062456530186, guid: 496d6980401f5f94aa3791496da161b0,
@@ -27047,6 +27042,51 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
+        type: 2}
+      propertyPath: shipPartsToHide
+      value: 
+      objectReference: {fileID: 1747135344}
+    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
+        type: 2}
+      propertyPath: mastInteractMenu
+      value: 
+      objectReference: {fileID: 241611935}
+    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
+        type: 2}
+      propertyPath: normalMenuUi
+      value: 
+      objectReference: {fileID: 1294213042}
+    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
+        type: 2}
+      propertyPath: upgradeMenuUi
+      value: 
+      objectReference: {fileID: 1294213041}
+    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
+        type: 2}
+      propertyPath: dismantleMenuUi
+      value: 
+      objectReference: {fileID: 1294213040}
+    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
+        type: 2}
+      propertyPath: mastMenuUi
+      value: 
+      objectReference: {fileID: 1294213039}
+    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
+        type: 2}
+      propertyPath: buildLeftView
+      value: 
+      objectReference: {fileID: 1043516713}
+    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
+        type: 2}
+      propertyPath: buildRightView
+      value: 
+      objectReference: {fileID: 886134643}
+    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
+        type: 2}
+      propertyPath: buildMastView
+      value: 
+      objectReference: {fileID: 1295032694}
     - target: {fileID: 114925990618395052, guid: 234e3684ac91c7e448879e99024cafbe,
         type: 2}
       propertyPath: steeringMenu
@@ -27059,19 +27099,9 @@ Prefab:
       objectReference: {fileID: 603407264}
     - target: {fileID: 114925990618395052, guid: 234e3684ac91c7e448879e99024cafbe,
         type: 2}
-      propertyPath: blackScreen
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114925990618395052, guid: 234e3684ac91c7e448879e99024cafbe,
-        type: 2}
       propertyPath: raycastCam
       value: 
       objectReference: {fileID: 1315611702}
-    - target: {fileID: 114925990618395052, guid: 234e3684ac91c7e448879e99024cafbe,
-        type: 2}
-      propertyPath: miniMap
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 114925990618395052, guid: 234e3684ac91c7e448879e99024cafbe,
         type: 2}
       propertyPath: shipUI.Array.data[0]
@@ -27109,57 +27139,6 @@ Prefab:
       objectReference: {fileID: 612257220}
     - target: {fileID: 114925990618395052, guid: 234e3684ac91c7e448879e99024cafbe,
         type: 2}
-      propertyPath: shipUI.Array.data[7]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114925990618395052, guid: 234e3684ac91c7e448879e99024cafbe,
-        type: 2}
-      propertyPath: steeringWheelPlayer
-      value: 
-      objectReference: {fileID: 104732540}
-    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
-        type: 2}
-      propertyPath: resourceCount
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
-        type: 2}
-      propertyPath: shipPartsToHide
-      value: 
-      objectReference: {fileID: 1747135344}
-    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
-        type: 2}
-      propertyPath: mastInteractMenu
-      value: 
-      objectReference: {fileID: 241611935}
-    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
-        type: 2}
-      propertyPath: boostSlider
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
-        type: 2}
-      propertyPath: menu
-      value: 
-      objectReference: {fileID: 1662064079342822, guid: 4077588df07327242a1a8b897e20b767,
-        type: 2}
-    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
-        type: 2}
-      propertyPath: buildLeftView
-      value: 
-      objectReference: {fileID: 1043516713}
-    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
-        type: 2}
-      propertyPath: buildRightView
-      value: 
-      objectReference: {fileID: 886134643}
-    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
-        type: 2}
-      propertyPath: buildMastView
-      value: 
-      objectReference: {fileID: 1295032694}
-    - target: {fileID: 114925990618395052, guid: 234e3684ac91c7e448879e99024cafbe,
-        type: 2}
       propertyPath: steeringWheelStandPosition
       value: 
       objectReference: {fileID: 1335883754}
@@ -27168,26 +27147,6 @@ Prefab:
       propertyPath: steeringWheelBoat
       value: 
       objectReference: {fileID: 1136601300}
-    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
-        type: 2}
-      propertyPath: normalMenuUi
-      value: 
-      objectReference: {fileID: 1294213042}
-    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
-        type: 2}
-      propertyPath: upgradeMenuUi
-      value: 
-      objectReference: {fileID: 1294213041}
-    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
-        type: 2}
-      propertyPath: dismantleMenuUi
-      value: 
-      objectReference: {fileID: 1294213040}
-    - target: {fileID: 114995888806335058, guid: 234e3684ac91c7e448879e99024cafbe,
-        type: 2}
-      propertyPath: mastMenuUi
-      value: 
-      objectReference: {fileID: 1294213039}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234e3684ac91c7e448879e99024cafbe, type: 2}
   m_IsPrefabAsset: 0
