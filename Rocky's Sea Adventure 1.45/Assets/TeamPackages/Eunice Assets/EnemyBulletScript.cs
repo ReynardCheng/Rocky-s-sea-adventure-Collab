@@ -33,6 +33,7 @@ public class EnemyBulletScript : MonoBehaviour
 		if (bulletState == bulletType.normal || bulletState == bulletType.sticky)
 		{
 			transform.Translate(moveDirection * bulletSpd, Space.World);
+			transform.rotation = Quaternion.LookRotation(moveDirection);
 		}
 		if (bulletState == bulletType.laser)
 		{

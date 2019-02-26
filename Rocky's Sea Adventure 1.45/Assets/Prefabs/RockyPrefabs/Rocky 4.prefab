@@ -1415,7 +1415,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1309856340191276}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1951, y: 8.51, z: 542.67}
+  m_LocalPosition: {x: 61.07, y: 5.75, z: -174.77063}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 4990134583872470}
@@ -2015,8 +2015,7 @@ MonoBehaviour:
   canMove: 0
   canControlShip: 0
   gameStart: 0
-  steeringMenu: {fileID: 1662064079342822, guid: 4077588df07327242a1a8b897e20b767,
-    type: 2}
+  steeringMenu: {fileID: 0}
   rb: {fileID: 0}
   mainCam: {fileID: 0}
   rotateTarget: {fileID: 0}
@@ -2073,15 +2072,15 @@ MonoBehaviour:
   buildProgressSlider: {fileID: 1053254712297592, guid: 760dc5738f3b5b44e9a94199750cd602,
     type: 2}
   mastMenu: {fileID: 1400780245194176, guid: 9d98cc66cb67c184aa666188087064d3, type: 2}
-  mastInteractMenu: {fileID: 1662064079342822, guid: 4077588df07327242a1a8b897e20b767,
-    type: 2}
+  mastInteractMenu: {fileID: 0}
   cannonInteractMenuPrefab: {fileID: 1662064079342822, guid: 4077588df07327242a1a8b897e20b767,
     type: 2}
   boostSlider: {fileID: 0}
   normalMenuUi: {fileID: 0}
   upgradeMenuUi: {fileID: 0}
   dismantleMenuUi: {fileID: 0}
-  menu: {fileID: 0}
+  mastMenuUi: {fileID: 0}
+  menu: {fileID: 1662064079342822, guid: 4077588df07327242a1a8b897e20b767, type: 2}
   buildLeftView: {fileID: 0}
   buildRightView: {fileID: 0}
   buildMastView: {fileID: 0}
@@ -2100,7 +2099,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 1f89fcfc96b3bbb47b48620c0cb9c9a5, type: 2}
+  - {fileID: 2100000, guid: fb1e40ba33e3c35449c5f760fab025a3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2189,7 +2188,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 1f89fcfc96b3bbb47b48620c0cb9c9a5, type: 2}
+  - {fileID: 2100000, guid: fb1e40ba33e3c35449c5f760fab025a3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2239,7 +2238,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 1f89fcfc96b3bbb47b48620c0cb9c9a5, type: 2}
+  - {fileID: 2100000, guid: fb1e40ba33e3c35449c5f760fab025a3, type: 2}
   - {fileID: 2100000, guid: 1f89fcfc96b3bbb47b48620c0cb9c9a5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

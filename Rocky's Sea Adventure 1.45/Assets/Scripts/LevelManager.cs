@@ -50,6 +50,14 @@ public class LevelManager : MonoBehaviour
 
 	public Image endScreen;
 
+    [Header("Help Menu")]
+    public GameObject HelpMenuScreen;
+    public GameObject RetryButton;
+    public GameObject ResumeButton;
+    public GameObject MainMenuButton;
+    public GameObject HelpMenuButton;
+    
+
     // Use this for initialization
     void Start()
 	{
@@ -197,28 +205,40 @@ public class LevelManager : MonoBehaviour
 				gamePaused = true;
 				pauseScreen.SetActive(true);
 				Cursor.visible = true;
-			}
+
+                DialogueScript.canContinueDialogue = false; //dialogue won't continue with mouse click if game is paused during dialogue
+            }
 		}
 
 		else if (gamePaused)
 		{
 			if (Input.GetKeyDown(KeyCode.Escape))
 			{
-				Time.timeScale = 1;
+                HelpMenuBack(); //ensure that if esc is used when help menu is open, when pause game again, pause menu is reset and help menu isnt open
+
+                Time.timeScale = 1;
 				gamePaused = false;
 				pauseScreen.SetActive(false);
-				//Cursor.visible = false;
-			}
+                //Cursor.visible = false;
+
+                DialogueScript.canContinueDialogue = true;
+
+            }
 		}
 	}
 
 	public void Resume()
 	{
+
 		gamePaused = false;
-		pauseScreen.SetActive(false);
+        pauseScreen.SetActive(false);
 		//Cursor.visible = false;
 		Time.timeScale = 1;
-	}
+
+        DialogueScript.canContinueDialogue = true;
+        
+
+    }
 
 	public void retry()
 	{
@@ -232,7 +252,29 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 1;
 	}
 
-	void MapStatus()
+    /// ***********
+    /// Help menu stuff
+    /// ***********
+    public void HelpMenu()
+    {
+        HelpMenuScreen.SetActive(true);
+        RetryButton.SetActive(false);
+        ResumeButton.SetActive(false);
+        MainMenuButton.SetActive(false);
+        HelpMenuButton.SetActive(false);
+    }
+
+    public void HelpMenuBack()
+    {
+        HelpMenuScreen.SetActive(false);
+        RetryButton.SetActive(true);
+        ResumeButton.SetActive(true);
+        MainMenuButton.SetActive(true);
+        HelpMenuButton.SetActive(true);
+    }
+
+
+    void MapStatus()
 	{
 		if (PlayerPrefs.GetInt("MapActive") == 1)
 		{

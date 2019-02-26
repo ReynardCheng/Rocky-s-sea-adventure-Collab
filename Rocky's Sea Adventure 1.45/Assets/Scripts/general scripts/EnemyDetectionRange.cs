@@ -23,8 +23,22 @@ public class EnemyDetectionRange : MonoBehaviour {
         {
             CheckShipInRange();
         }
+
+		RemoveEnemies();
+	
     }
 
+	// remove enemies when they die
+	void RemoveEnemies()
+	{
+		foreach (EnemyController e in enemies)
+		{
+			if (e == null)
+			{
+				enemies.Remove(e);
+			}
+		}
+	}
     void CheckShipInRange()
     {        
         if(Vector3.Distance(ship.transform.position, transform.position) > chaseRange)
