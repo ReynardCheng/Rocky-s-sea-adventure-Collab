@@ -73,6 +73,7 @@ public class TutorialController2 : MonoBehaviour {
     public void SkipTutorial()
     {
         Player.canMove = true;
+        DialogueScript.canContinueDialogue = false;
         Textboxes.SetActive(false);
         FixedCamera.SetActive(false);
         OnScript1 = false;

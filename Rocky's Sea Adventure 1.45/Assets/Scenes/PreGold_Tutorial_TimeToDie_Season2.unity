@@ -5869,11 +5869,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 224471182049014538, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4560150643538528, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
       propertyPath: m_LocalPosition.x
       value: 961.63904
@@ -5906,10 +5901,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 1061369065214696, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
-      propertyPath: m_Name
-      value: The Level Manager (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
         type: 2}
       propertyPath: bgm
@@ -5925,65 +5916,13 @@ Prefab:
       propertyPath: endScreen
       value: 
       objectReference: {fileID: 1728985369}
-    - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: defenceCannonDestroyedClip
-      value: 
-      objectReference: {fileID: 8300000, guid: a8aca680992284b4f9b95b51beb4a1a4, type: 3}
-    - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: cannonDestroyedClip
-      value: 
-      objectReference: {fileID: 8300000, guid: e4d2068008369824b9ef95cee8c22139, type: 3}
-    - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: defenceCannonDefendingClip
-      value: 
-      objectReference: {fileID: 8300000, guid: e58891d08630c7f45883fdcd6811de23, type: 3}
-    - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: laserAttackClip
-      value: 
-      objectReference: {fileID: 8300000, guid: a66de60b506f3df45ae40ae6e55e3932, type: 3}
-    - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: stickyAttackClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 47da14e93fe79354580a99a91747b3e5, type: 3}
-    - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: squidMovingClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 29d0c53d62788c54d98cb8430ba6420c, type: 3}
-    - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: boss
-      value: 
+    - target: {fileID: 1061369065214696, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
+      propertyPath: m_Name
+      value: The Level Manager (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: pauseScreen
-      value: 
-      objectReference: {fileID: 524782131}
-    - target: {fileID: 114222781515644666, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-        type: 2}
-      propertyPath: mapStatusText
-      value: 
-      objectReference: {fileID: 524782132}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dff8b9a3c78c9354a875524aa9c90f6a, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &524782131 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1945879459592580, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-    type: 2}
-  m_PrefabInternal: {fileID: 524782130}
---- !u!114 &524782132 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114316932172554376, guid: dff8b9a3c78c9354a875524aa9c90f6a,
-    type: 2}
-  m_PrefabInternal: {fileID: 524782130}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &533347775
 GameObject:
   m_ObjectHideFlags: 0
@@ -6091,10 +6030,10 @@ RectTransform:
   m_Father: {fileID: 81341438}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -61, y: -358}
-  m_SizeDelta: {x: 125.46, y: 30}
+  m_AnchorMin: {x: 0.76000005, y: 0.17089233}
+  m_AnchorMax: {x: 1, y: 0.25800002}
+  m_AnchoredPosition: {x: 34.399994, y: -3.7000122}
+  m_SizeDelta: {x: -87.3, y: -7.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &534091459
 MonoBehaviour:
@@ -8648,7 +8587,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9f5c1a77bc90349ab259218a89d947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canContinueDialogue: 1
   s:
   - Let me help you!
   - l'm Bel and I'll guide you through the first part of your journey.
@@ -23463,6 +23401,11 @@ MonoBehaviour:
   mapStatusText: {fileID: 0}
   nextLevel: Beta_Lv1_Reynard
   endScreen: {fileID: 1728985369}
+  HelpMenuScreen: {fileID: 0}
+  RetryButton: {fileID: 0}
+  ResumeButton: {fileID: 0}
+  MainMenuButton: {fileID: 0}
+  HelpMenuButton: {fileID: 0}
 --- !u!4 &1728726350
 Transform:
   m_ObjectHideFlags: 0
