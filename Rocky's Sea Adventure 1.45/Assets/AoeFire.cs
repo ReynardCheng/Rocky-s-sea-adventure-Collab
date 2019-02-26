@@ -20,10 +20,13 @@ public class AoeFire : MonoBehaviour {
 	[Header ("Sound Related")]
 	public AudioClip vfxToPlay;
 
+    private void Start()
+    {
+        Destroy(gameObject, 5);
+    }
 
-
-	// Update is called once per frame
-	void Update()
+    // Update is called once per frame
+    void Update()
     {
         if (target) //if enemy target exists
         {
@@ -32,11 +35,6 @@ public class AoeFire : MonoBehaviour {
             GetComponent<Rigidbody>().velocity = MathScript.ShootInArc(target, this.transform, 30f);
             transform.position = Vector3.MoveTowards(transform.position, target.position, 0.5f);
 
-        }
-        else
-        {
-            // Otherwise destroy self
-            Destroy(gameObject,5);
         }
 
     }
@@ -107,8 +105,15 @@ public class AoeFire : MonoBehaviour {
             //Destroy(gameObject); //destroy itself
             Explode();
 			SoundSpawned();
-		//	 myAudio.PlayOneShot(vfxToPlay);
+            Destroy(gameObject);
             return;
+        }
+
+        Boss boss = other.GetComponent<Boss>();
+        if (boss)
+        {
+            boss.HealthManager(10);
+            Destroy(gameObject);
         }
     }
 

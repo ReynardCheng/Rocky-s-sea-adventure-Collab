@@ -14,7 +14,6 @@ public class ShipCollectResources : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        print(this);
         Audio = GetComponent<AudioSource>();
         resourceCountScript = FindObjectOfType<ResourceCount>();
     }

@@ -11,21 +11,19 @@ public class BulletFire : MonoBehaviour {
 	// Sounds related
 	public AudioClip vfxToPlay;
 
-	// Update is called once per frame
-	void Update () {
+    private void Start()
+    {
+        Destroy(gameObject, 5);
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (target) //if enemy target exists
         {
             // Fly towards the target
-            Rigidbody rb = GetComponent<Rigidbody>();
-			if(rb) rb.velocity = MathScript.ShootInArc(target, this.transform, 30f);
+			GetComponent<Rigidbody>().velocity = MathScript.ShootInArc(target, this.transform, 30f);
 			transform.position = Vector3.MoveTowards(transform.position, target.position, 0.5f);
         }
-        else
-        {
-            // Otherwise destroy self
-            Destroy(gameObject);
-        }
-
     }
 	Vector3 ShootInArc(float angle)
 	{
@@ -62,5 +60,13 @@ public class BulletFire : MonoBehaviour {
             Destroy(gameObject); //destroy itself
             return;
         }
+
+        Boss boss = other.GetComponent<Boss>();
+        if(boss)
+        {
+            boss.HealthManager(10);
+            Destroy(gameObject);
+        }
+       
     }
 }

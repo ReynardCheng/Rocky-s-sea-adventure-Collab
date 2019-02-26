@@ -6,6 +6,7 @@ public class Boss : MonoBehaviour {
 
     [Header("Components")]
     [SerializeField] Rigidbody rb;
+    private Animator animator;
     //---------------------------------------------------
     [Space]
     [Header ("health variables")]
@@ -27,13 +28,14 @@ public class Boss : MonoBehaviour {
     [SerializeField] Transform playerPos; // move to the player / normal movement
 
     // movement pattern
+    [SerializeField] bool chaseShip;
+    [SerializeField] float moveToShipCounter; // Timer for attacking player. Stops attacking once 0 and instead uses changeMovement timer. 
     [SerializeField] float changeMovement; // acts as a timer such that once it reaches 0 the boss will change its move pattern
     public List<Transform> movementPositions = new List<Transform>(); // sets the positions that the boss will move to
 	private Transform[] storedPositions;
 	public Transform actualPositionToMove;
 	[SerializeField] int positionToMove; // sets the current position for the boss to move to, position is relative to array element
     [SerializeField] int positionsMoved; // counts how many times the enemy has used this different move pattern
-	public Transform bossMesh;
 	
     // to return to original move pattern
     [SerializeField] int movedLimit; // sets the limit of how many times the boss can move in this pattern before returning to original movement
@@ -42,6 +44,8 @@ public class Boss : MonoBehaviour {
     // move pattern when it is low on health
     public Transform nest;
 
+    private Vector3 directionToLook;
+
     //---------------------------------------------------------------------------------------------------------------------------
 
     [Space]
@@ -49,37 +53,49 @@ public class Boss : MonoBehaviour {
     bool canAttack;
     [SerializeField] float atkRate;
     [SerializeField] int spAtkCounter; // when it reaches zero this mob will use a different attack
-    [SerializeField] GameObject hydroPump;
+    [SerializeField] GameObject normalAttack;
+    [SerializeField] GameObject specialAttack;
     [SerializeField] GameObject attackLocation;
+    public bool stopMovement;
     
 
     private void Start()
     {
         // for accessing components
         rb = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
 
         //for setting variables
-        moveSpeed = 10;
-        movedLimit = 5;
+        movedLimit = movementPositions.Count;
+        positionsMoved = 0;
+
         maxHealth = 100;
         health = maxHealth;
         changeMovement = maxChange;
-        playerPos = GameObject.FindGameObjectWithTag("Ship").transform;
+        playerPos = FindObjectOfType<BoatController>().transform;   //Cheat method brb
 
 		storedPositions = new Transform[movementPositions.Count];
 		movementPositions.CopyTo(storedPositions);
 
 		positionToMove = GetRandomIntFromArray();
+
+        changeMovement = 5;
+        moveToShipCounter = 35;
+        spAtkCounter = 5;
 	}
 
     private void Update()
     {
-        Movement();
+        if(!stopMovement)
+            Movement();
 
-        if (shipInAttackRange)
-        {
-            Attack();
-        }
+        if (stopMovement)
+            rb.velocity = Vector3.zero;
+
+        //if (shipInAttackRange)
+        //{
+        //    Attack();
+        //}
     }
 
     //-----------------------------------------------------
@@ -88,41 +104,62 @@ public class Boss : MonoBehaviour {
     {
         changeMovement -= Time.deltaTime;
 
-        if (changeMovement > 0)
+        if (!chaseShip)
         {
+            if (changeMovement >= 0)
+            {
+                transform.rotation = Quaternion.LookRotation(playerPos.position - transform.position);
+            }
+
+            if (changeMovement < 0)
+            {
+                MovePatterns();
+            }
+        }
+        else if (chaseShip)
+        {
+            //Timers for behaviours/////////
+            atkRate -= Time.deltaTime;
+            moveToShipCounter -= Time.deltaTime;
+
+            if (moveToShipCounter <= 0)
+            {
+                movementPositions.Clear();
+                foreach (Transform t in storedPositions)
+                {
+                    movementPositions.Add(t);
+                }
+
+                chaseShip = false;
+                moveToShipCounter = 35;
+            }
+            //////////////////////////////
+            
+            Vector3 direction = playerPos.position - transform.position;
+            transform.rotation = Quaternion.LookRotation(playerPos.position - transform.position);
+
+            float distance = Vector3.Distance(playerPos.position, transform.position);
+
+            if (distance < 50)
+            {
+                rb.velocity = direction.normalized * -moveSpeed / 2;
+            }
+            else if (distance >= 80)
+            {
+                rb.velocity = direction.normalized * moveSpeed;
+                keepDistance = false;
+            }
+            else if (distance >= 65) //sweetspot, try to stay in this range by not moving forwards or backwards
+            {
+                rb.velocity = Vector3.zero;
+            }
+
             if (shipInAttackRange)
             {
-                // normal movement here
-                Vector3 direction = playerPos.position - transform.position;
-
-                float distance = Vector3.Distance(playerPos.position, transform.position);
-                print(distance);
-
-                if (distance < 5)
-                {
-                    keepDistance = true;
-                }
-                if (keepDistance)
-                {
-                    rb.velocity = direction.normalized * -moveSpeed / 2;
-                }
-
-                if (distance > 14)
-                {
-                    rb.velocity = direction.normalized * moveSpeed;
-                    keepDistance = false;
-                }
-				
-				bossMesh.transform.rotation = Quaternion.LookRotation(direction);
-			}
+                Attack();
+            }
         }
 
-        if (changeMovement <= 0)
-        {
-			MovePatterns();
-        }
-
-        atkRate -= Time.deltaTime;
     }
 
     void MovePatterns()
@@ -130,13 +167,34 @@ public class Boss : MonoBehaviour {
         // input movePatterns here
         Vector3 patternDirection = movementPositions[positionToMove].position - transform.position;
 
-		rb.velocity = patternDirection.normalized * moveSpeed * 5;
+        directionToLook = patternDirection;
+        transform.rotation = Quaternion.LookRotation(directionToLook);
 
-        // if low on health move in this pattern
-        if (health < 30)
+        rb.velocity = patternDirection.normalized * moveSpeed;
+
+        //When boss reaches the desired position,
+        if (Vector3.Distance(transform.position, movementPositions[positionToMove].position) <= 2f)
+            ReachedDesiredPosition();
+    }
+
+    void ReachedDesiredPosition()
+    {
+
+        rb.velocity = Vector3.zero;
+
+        movementPositions.Remove(actualPositionToMove);
+
+        positionsMoved++;
+
+        changeMovement = Random.Range(minChange, maxChange + 1);
+
+        if (positionsMoved >= movedLimit)
         {
-            // move to nest
+            chaseShip = true;
+            positionsMoved = 0;
         }
+
+        positionToMove = GetRandomIntFromArray();
     }
 
 	private Vector3 GetPositionFromArray()
@@ -181,31 +239,39 @@ public class Boss : MonoBehaviour {
         {
             if (spAtkCounter > 0)
             {
+                Vector3 direction = Vector3.Normalize(playerPos.position - attackLocation.transform.position);
                 //Normal attack here//////
-                BossBeam beam = Instantiate(hydroPump).GetComponent<BossBeam>();
-                beam.bossMouth = attackLocation.transform;
-                beam.shipLocation = playerPos.position;
-                beam.direction = playerPos.position - attackLocation.transform.position;
+                GameObject projectile = Instantiate(normalAttack, attackLocation.transform.position, normalAttack.transform.rotation);
+                projectile.GetComponent<Rigidbody>().velocity = direction * 60;
+                projectile.transform.rotation = Quaternion.LookRotation(direction);
                 ////////////////////////
-                atkRate = 7f;
+                atkRate = 2f;
                 spAtkCounter--;
             }
             else if (spAtkCounter <= 0)
+            {
+                atkRate = 15f;
                 SpecialAttack();
+            }
         }
-
     }
 
 
     void SpecialAttack()
     {
+        BossSpecialAttack beam = Instantiate(specialAttack, attackLocation.transform.position, specialAttack.transform.rotation).GetComponent<BossSpecialAttack>();
+        beam.bossMouth = attackLocation.transform;
+        beam.transform.parent = attackLocation.transform;
+        beam.transform.rotation = Quaternion.LookRotation((playerPos.position - attackLocation.transform.position).normalized);
 
+        spAtkCounter = 5;
+        //beam.direction = playerPos.position - attackLocation.transform.position;
     }
 
 
     //-----------------------------------------------------
     // health related functions
-    void HealthManager(int DamageToTake)
+    public void HealthManager(int DamageToTake)
     {
         health -= DamageToTake;
 
@@ -219,6 +285,7 @@ public class Boss : MonoBehaviour {
     IEnumerator DeathAnimation()
     {
         yield return new WaitForSeconds(0f);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -229,30 +296,8 @@ public class Boss : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "BossSpots")
-        {
-            movementPositions.Remove(actualPositionToMove);
-
-            positionToMove = GetRandomIntFromArray();
-            positionsMoved++;
-
-            if (positionsMoved >= movedLimit)
-            {
-                changeMovement = Random.Range(minChange, maxChange + 1);
-                positionsMoved = 0;
-            }
-        }
-    }
-
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "BossSpots")
-        {
-            stuck = 0f;
-        }
-
         if (other.tag == "Ship")
         {
             shipInAttackRange = false;
