@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.5906037, g: 0.6887968, b: 0.741017, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -89,7 +89,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000002, guid: b9489ca8e3f09674d8c324a48de7310e,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -1720,7 +1721,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4908029639670292, guid: a689785357980654e9aeaf1f4820de53, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4117281331657972, guid: a689785357980654e9aeaf1f4820de53, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3562,7 +3563,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4562954706210212, guid: 496d6980401f5f94aa3791496da161b0, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114547154529118754, guid: 496d6980401f5f94aa3791496da161b0,
         type: 2}
@@ -4915,7 +4916,7 @@ RectTransform:
   - {fileID: 1162742028}
   - {fileID: 205951806}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5064,7 +5065,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4691739198032742, guid: 418720a53d220db43b521583bcef16a7, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 418720a53d220db43b521583bcef16a7, type: 2}
@@ -5122,7 +5123,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4440380701669188, guid: ccc24ee11182e5645bf63590b5f34012, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4440380701669188, guid: ccc24ee11182e5645bf63590b5f34012, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -6160,7 +6161,7 @@ Transform:
   - {fileID: 1550726656}
   - {fileID: 2115766189}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1039990883 stripped
 GameObject:
@@ -7050,7 +7051,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4341540261885880, guid: 217d41cf3f7407144aab5bfa2b5f81e5, type: 2}
       propertyPath: m_RootOrder
-      value: 18
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 217d41cf3f7407144aab5bfa2b5f81e5, type: 2}
@@ -7201,7 +7202,7 @@ Transform:
   m_Children:
   - {fileID: 1315611700}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &1235929930
 MonoBehaviour:
@@ -8992,7 +8993,7 @@ Prefab:
     - target: {fileID: 224424862238546592, guid: 77a2a3f785b73b649a6809e5e6199148,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224424862238546592, guid: 77a2a3f785b73b649a6809e5e6199148,
         type: 2}
@@ -9334,7 +9335,7 @@ Prefab:
     - target: {fileID: 224533612923779736, guid: 608dd2e60cacf7941a74c3a7aa1060cd,
         type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224533612923779736, guid: 608dd2e60cacf7941a74c3a7aa1060cd,
         type: 2}
@@ -9374,7 +9375,7 @@ Prefab:
     - target: {fileID: 224533612923779736, guid: 608dd2e60cacf7941a74c3a7aa1060cd,
         type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224533612923779736, guid: 608dd2e60cacf7941a74c3a7aa1060cd,
         type: 2}

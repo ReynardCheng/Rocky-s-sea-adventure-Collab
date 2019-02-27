@@ -18,9 +18,6 @@ public class CutSceneController : MonoBehaviour
     public GameObject DialogueThing;
     public GameObject FixedCamera;
 
-
-
-
     // Update is called once per frame
     void Update()
     {
