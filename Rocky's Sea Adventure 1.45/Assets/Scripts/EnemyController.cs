@@ -34,6 +34,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float fireRate;
     [SerializeField] float coolDownTime;    //This value is the attack speed.
     [SerializeField] float moveSpeed, distanceToStopMoving;
+	public GameObject shootPoint;
 
     public float offsetAboveWater;
 
@@ -311,12 +312,12 @@ public class EnemyController : MonoBehaviour
     {
         yield return new WaitForSeconds(51f / 30f);
 
-        GameObject enemyBullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
+        GameObject enemyBullet = Instantiate(normalBullet, shootPoint.transform.position, Quaternion.identity);
         //enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (closestShipSection.transform.position - transform.position).normalized;
 
         Vector3 whereToTarget = new Vector3(closestShipSection.transform.position.x, closestShipSection.transform.position.y - 2, closestShipSection.transform.position.z);
         myAudioSource.PlayOneShot(LevelManager.theLevelManager.normalAttackClip);
-        enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (whereToTarget - transform.position).normalized;
+        enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (whereToTarget - shootPoint.transform.position).normalized;
 
     }
 
@@ -324,12 +325,12 @@ public class EnemyController : MonoBehaviour
     {
         yield return new WaitForSeconds(51f / 30f);
 
-        GameObject enemyBullet = Instantiate(stickBullet.gameObject, transform.position, Quaternion.identity);
+        GameObject enemyBullet = Instantiate(stickBullet.gameObject, shootPoint.transform.position, Quaternion.identity);
         //enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (closestShipSection.transform.position - transform.position).normalized;
 
         Vector3 whereToTarget = new Vector3(closestShipSection.transform.position.x, closestShipSection.transform.position.y - 2, closestShipSection.transform.position.z);
 
-        enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (whereToTarget - transform.position).normalized;
+        enemyBullet.GetComponent<EnemyBulletScript>().moveDirection = (whereToTarget - shootPoint.transform.position).normalized;
 
         myAudioSource.PlayOneShot(LevelManager.theLevelManager.stickyAttackClip);
         spAtk = Random.Range(3, 7);

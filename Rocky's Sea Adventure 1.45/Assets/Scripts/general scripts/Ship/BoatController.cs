@@ -112,7 +112,7 @@ public class BoatController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (!LevelManager.theLevelManager.gamePaused)
+		if (!LevelManager.theLevelManager.gamePaused && !reachedEnd)
 		{
 			// transform.rotation = Quaternion.Euler(0, 0, 0);
 			if (controllingBoat && !theCharacter.mapOpened && !theCharacter.crRunning)
@@ -323,24 +323,43 @@ public class BoatController : MonoBehaviour
          {
             EnemyController enemyController = other.GetComponent<EnemyController>();
             RamDamageToEnemy = 2;
-            enemyController.Health(RamDamageToEnemy*moveFactor);
+			if (RamDamageToEnemy * movementFactor > 0)
+			{
+				enemyController.Health(RamDamageToEnemy * moveFactor);
+			}
+
+			if (RamDamageToEnemy * movementFactor < 0)
+			{
+				enemyController.Health(-RamDamageToEnemy * moveFactor);
+			}
             //max damage to enemy = 2 x 25 = 50
             print("ramming damage to enemy:"+ RamDamageToEnemy*moveFactor);
 
             //damage ship when ram enemy
             BoatCombat1 theBoatCombat = GetComponentInParent<BoatCombat1>();
             RamDamageToShip = 1; // max damage to ship = 1 x (5x5) /5 = 5
-            theBoatCombat.DamageShip(RamDamageToShip * moveFactor/5);
 
-         }
+			if (RamDamageToShip * movementFactor > 0)
+			{ theBoatCombat.DamageShip(RamDamageToShip * moveFactor / 5); }
+
+			if (RamDamageToShip * movementFactor < 0)
+			{ theBoatCombat.DamageShip(-RamDamageToShip * moveFactor / 5); }
+		}
 
         if (other.gameObject.layer == 10)
         {
             //damage ship when ram rocks
             BoatCombat1 theBoatCombat = GetComponentInParent<BoatCombat1>();
             RamDamageToShip = 3; //max damage to ship = 3 x (5x5) / 5 = 15 
-            theBoatCombat.DamageShip(RamDamageToShip * moveFactor/5);
-        }
+
+
+			if (RamDamageToShip * movementFactor > 0)
+			{ theBoatCombat.DamageShip(RamDamageToShip * moveFactor / 5); }
+
+			if (RamDamageToShip * movementFactor < 0)
+			{ theBoatCombat.DamageShip(-RamDamageToShip * moveFactor / 5); }
+
+		}
 
     }
 	

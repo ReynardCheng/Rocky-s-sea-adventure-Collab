@@ -58,6 +58,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1043466287118656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4727709713279904}
+  m_Layer: 0
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1051077043098134
 GameObject:
   m_ObjectHideFlags: 1
@@ -2711,15 +2726,29 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1764379527352412}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.400146, y: 2.79467, z: 26.400024}
+  m_LocalPosition: {x: 633.8718, y: 237.50203, z: -309.11008}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children:
   - {fileID: 4025255302530276}
   - {fileID: 4885391148498404}
   - {fileID: 4147173853697724}
   - {fileID: 224163250633923854}
+  - {fileID: 4727709713279904}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4727709713279904
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1043466287118656}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.826, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4721732502690140}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4751095113110704
 Transform:
@@ -3208,6 +3237,7 @@ MonoBehaviour:
   coolDownTime: 0
   moveSpeed: 0
   distanceToStopMoving: 500
+  shootPoint: {fileID: 1043466287118656}
   offsetAboveWater: -2
   returningHome: 0
   patrolRange: 35
