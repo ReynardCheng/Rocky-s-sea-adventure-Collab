@@ -12,6 +12,7 @@ public class Boss : MonoBehaviour {
     [Header ("health variables")]
     [SerializeField] int health;
     [SerializeField] int maxHealth;
+    [SerializeField] int checkpointHealth;
 
     //---------------------------------------------------
     [Space]
@@ -29,8 +30,9 @@ public class Boss : MonoBehaviour {
 
     // movement pattern
     public bool chaseShip;
-    [SerializeField] float moveToShipCounter; // Timer for attacking player. Stops attacking once 0 and instead uses changeMovement timer. 
+    //[SerializeField] float moveToShipCounter; // Timer for attacking player. Stops attacking once 0 and instead uses changeMovement timer. 
     [SerializeField] float changeMovement; // acts as a timer such that once it reaches 0 the boss will change its move pattern
+    [SerializeField] bool reachedEscapePosition;
     public List<Transform> movementPositions = new List<Transform>(); // sets the positions that the boss will move to
 	private Transform[] storedPositions;
 	public Transform actualPositionToMove;
@@ -56,6 +58,7 @@ public class Boss : MonoBehaviour {
     [SerializeField] GameObject normalAttack;
     [SerializeField] GameObject specialAttack;
     [SerializeField] GameObject attackLocation;
+    BossSpecialAttack beam;
     public bool stopMovement;
     
 
@@ -64,13 +67,16 @@ public class Boss : MonoBehaviour {
         // for accessing components
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
+        beam = GetComponentInChildren<BossSpecialAttack>();
 
         //for setting variables
         movedLimit = movementPositions.Count;
         positionsMoved = 0;
 
-        maxHealth = 100;
+        maxHealth = 200;
         health = maxHealth;
+        checkpointHealth = maxHealth;
+
         changeMovement = maxChange;
         playerPos = FindObjectOfType<BoatController>().transform;   //Cheat method brb
 
@@ -81,14 +87,22 @@ public class Boss : MonoBehaviour {
 		positionToMove = GetRandomIntFromArray();
 
         stopMovement = true;
+        reachedEscapePosition = false;
         changeMovement = 5;
-        moveToShipCounter = 35;
+        //moveToShipCounter = 35;
         spAtkCounter = 5;
 	}
 
     private void Update()
     {
-        if(!stopMovement)
+        if (health <= 0)
+        {
+            animator.Play("Boss_Death");
+            rb.velocity = Vector3.zero;
+            return;
+        }
+
+        if (!stopMovement)
             Movement();
 
         if (stopMovement)
@@ -104,54 +118,54 @@ public class Boss : MonoBehaviour {
     // movement related functions
     void Movement()
     {
-        changeMovement -= Time.deltaTime;
-
         if (!chaseShip)
         {
-            if (changeMovement >= 0)
+            if(changeMovement <= 0)
             {
-                transform.rotation = Quaternion.LookRotation(playerPos.position - transform.position);
+                chaseShip = true;
+                changeMovement = 20;
+                reachedEscapePosition = false;
             }
 
-            if (changeMovement < 0)
-            {
+            if (!reachedEscapePosition)
                 MovePatterns();
+
+            if (reachedEscapePosition)
+            {
+                changeMovement -= Time.deltaTime;
+                transform.rotation = Quaternion.LookRotation(playerPos.position - transform.position);
             }
+            //if (changeMovement >= 0)
+            //{
+            //    transform.rotation = Quaternion.LookRotation(playerPos.position - transform.position);
+            //}
+
+            //if (changeMovement < 0)
+            //{
+            //    MovePatterns();
+            //}
         }
         else if (chaseShip)
         {
             //Timers for behaviours/////////
             atkRate -= Time.deltaTime;
-            moveToShipCounter -= Time.deltaTime;
 
-            if (moveToShipCounter <= 0)
-            {
-                movementPositions.Clear();
-                foreach (Transform t in storedPositions)
-                {
-                    movementPositions.Add(t);
-                }
-
-                chaseShip = false;
-                moveToShipCounter = 35;
-            }
-            //////////////////////////////
             
             Vector3 direction = playerPos.position - transform.position;
             transform.rotation = Quaternion.LookRotation(playerPos.position - transform.position);
 
             float distance = Vector3.Distance(playerPos.position, transform.position);
 
-            if (distance < 40)
+            if (distance < 30)
             {
-                rb.velocity = direction.normalized * -moveSpeed / 2;
+                rb.velocity = direction.normalized * -moveSpeed / 4;
             }
             else if (distance >= 65)
             {
                 rb.velocity = direction.normalized * moveSpeed;
                 keepDistance = false;
             }
-            else if (distance >= 55) //sweetspot, try to stay in this range by not moving forwards or backwards
+            else if (distance >= 45) //sweetspot, try to stay in this range by not moving forwards or backwards
             {
                 rb.velocity = Vector3.zero;
             }
@@ -181,20 +195,21 @@ public class Boss : MonoBehaviour {
 
     void ReachedDesiredPosition()
     {
-
         rb.velocity = Vector3.zero;
 
+        reachedEscapePosition = true;
         movementPositions.Remove(actualPositionToMove);
 
-        positionsMoved++;
+        //positionsMoved++;
 
-        changeMovement = Random.Range(minChange, maxChange + 1);
+        changeMovement = 10;
+        //changeMovement = Random.Range(minChange, maxChange + 1);
 
-        if (positionsMoved >= movedLimit)
-        {
-            chaseShip = true;
-            positionsMoved = 0;
-        }
+        //if (positionsMoved >= movedLimit)
+        //{
+        //    chaseShip = true;
+        //    positionsMoved = 0;
+        //}
 
         positionToMove = GetRandomIntFromArray();
     }
@@ -241,32 +256,34 @@ public class Boss : MonoBehaviour {
         {
             if (spAtkCounter > 0)
             {
-                Vector3 direction = Vector3.Normalize(playerPos.position - attackLocation.transform.position);
-                //Normal attack here//////
-                GameObject projectile = Instantiate(normalAttack, attackLocation.transform.position, normalAttack.transform.rotation);
-                projectile.GetComponent<Rigidbody>().velocity = direction * 60;
-                projectile.transform.rotation = Quaternion.LookRotation(direction);
-                ////////////////////////
-                atkRate = 5f;
-                spAtkCounter--;
+                animator.Play("Boss_NormalAttack");
             }
             else if (spAtkCounter <= 0)
             {
-                atkRate = 9f;
-                SpecialAttack();
+                animator.Play("Boss_Entrance");
             }
         }
     }
 
-
-    void SpecialAttack()
+    //Called through animation events.
+    public void NormalAttack()
     {
-        BossSpecialAttack beam = Instantiate(specialAttack, attackLocation.transform.position, specialAttack.transform.rotation).GetComponent<BossSpecialAttack>();
-        beam.bossMouth = attackLocation.transform;
-        beam.transform.parent = attackLocation.transform;
-        beam.transform.rotation = Quaternion.LookRotation((playerPos.position - attackLocation.transform.position).normalized);
+        Vector3 direction = Vector3.Normalize(playerPos.position - attackLocation.transform.position);
+        //Normal attack here//////
+        GameObject projectile = Instantiate(normalAttack, attackLocation.transform.position, normalAttack.transform.rotation);
+        projectile.GetComponent<Rigidbody>().velocity = direction * 60;
+        projectile.transform.rotation = Quaternion.LookRotation(direction);
+        ////////////////////////
+        atkRate = 5f;
+        spAtkCounter--;
+    }
+    
+    public void SpecialAttack()
+    {
+        //beam.transform.rotation = Quaternion.LookRotation((playerPos.position - attackLocation.transform.position).normalized);
 
-        spAtkCounter = 5;
+        atkRate = 5f;
+        spAtkCounter = Random.Range(3, 5);
         //beam.direction = playerPos.position - attackLocation.transform.position;
     }
 
@@ -277,20 +294,25 @@ public class Boss : MonoBehaviour {
     {
         health -= DamageToTake;
 
-        if (health <= 0)
+        //How much damage the boss took since the boss's last cycle
+        float damageReceivedCheck = checkpointHealth - health;
+
+        if (damageReceivedCheck / maxHealth >= 0.3f)
         {
-            StartCoroutine(DeathAnimation());
+            checkpointHealth = health;;
+            chaseShip = false;
         }
     }
 
 
-    IEnumerator DeathAnimation()
-    {
-        yield return new WaitForSeconds(0f);
-        Destroy(gameObject);
-    }
+    //IEnumerator DeathAnimation()
+    //{
+    //    yield return new WaitForSeconds(0f);
+    //    Destroy(gameObject);
+    //}
+    
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Ship")
         {

@@ -74,7 +74,6 @@ public class BulletFire : MonoBehaviour {
         Boss boss = collision.gameObject.GetComponentInParent<Boss>();
         if (boss)
         {
-            print("NORMAL has hitted boss");
             boss.HealthManager(10);
             Instantiate(explosion, transform.position, Quaternion.identity);
             SoundSpawned();

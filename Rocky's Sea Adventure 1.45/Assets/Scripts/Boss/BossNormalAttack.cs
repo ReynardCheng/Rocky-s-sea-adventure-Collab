@@ -14,14 +14,23 @@ public class BossNormalAttack : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        BoatCombat1 ship = other.GetComponentInParent<BoatCombat1>();
-        if (ship && canDamage)
+        if (other.tag == "Ship" && canDamage)
         {
-            canDamage = false;
-            ship.TakeDamage(10, transform.position);
+            canDamage = false;   //This bool prevents bullets from damaging the ship twice.
+
+            other.gameObject.GetComponentInParent<BoatCombat1>().TakeDamage(10, gameObject);
             Instantiate(splashParticles, transform.position, splashParticles.transform.rotation);
+
             Destroy(gameObject);
         }
+        //BoatCombat1 ship = other.GetComponentInParent<BoatCombat1>();
+        //if (ship && canDamage)
+        //{
+        //    canDamage = false;
+        //    ship.TakeDamage(10, transform.position);
+        //    Instantiate(splashParticles, transform.position, splashParticles.transform.rotation);
+        //    Destroy(gameObject);
+        //}
     }
 
 }

@@ -27,10 +27,9 @@ public class BossSpecialAttack : MonoBehaviour {
         boat = FindObjectOfType<BoatCombat1>();
         boss = GetComponentInParent<Boss>();
         boxCollider = GetComponent<BoxCollider>();
-        layerMask = LayerMask.NameToLayer("ShipFront");
         storedBeamEndTransform = beamEnd.transform;
 
-        StartCoroutine(BeamCoroutine());
+        bossMouth = transform.parent;
     }
 
     public void FixedUpdate()
@@ -38,31 +37,19 @@ public class BossSpecialAttack : MonoBehaviour {
         if (inContactWithShip)
         {
             damageTick++;
-            if (damageTick % 6 == 0)
+            if (damageTick % 4 == 0)
             {
-                Vector3 directionOfRay = bossMouth.position - beamEnd.transform.position;
+                Vector3 directionOfRay = beamEnd.transform.position - bossMouth.position;
+
                 RaycastHit hit;
                 Physics.Raycast(bossMouth.position, directionOfRay, out hit, 1000f, layerMask);
-
-                beamEnd.transform.position = hit.point;
+                Debug.DrawRay(bossMouth.position, directionOfRay, Color.yellow);
 
                 boat.TakeDamage(damageToGive, hit.point);
+
                 Instantiate(waterSprayParticles, hit.point, waterSprayParticles.transform.rotation);
             }
-
-            beamEnd.transform.position = storedBeamEndTransform.position;
         }
-    }
-
-    public IEnumerator BeamCoroutine()
-    {
-        boss.stopMovement = true;
-        yield return new WaitForSeconds(0.3f);  //estimated 0.3seconds before the beam reaches the edge.
-        boxCollider.enabled = true;
-        yield return new WaitForSeconds(3);
-        boss.stopMovement = false;
-        boxCollider.enabled = false;
-        Destroy(gameObject);
     }
 
     public void OnTriggerStay(Collider other)

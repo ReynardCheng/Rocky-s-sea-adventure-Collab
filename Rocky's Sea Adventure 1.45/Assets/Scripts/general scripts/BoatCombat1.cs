@@ -34,7 +34,9 @@ public class BoatCombat1 : MonoBehaviour
 
     public void TakeDamage(int damageToTake, GameObject damageLocation)
 	{
-        bulletType = damageLocation.GetComponent<EnemyBulletScript>().bulletState;
+        EnemyBulletScript enemyBullet = damageLocation.GetComponent<EnemyBulletScript>();
+        if(enemyBullet)
+            bulletType = damageLocation.GetComponent<EnemyBulletScript>().bulletState;
 
         for (int i = 0; i < cannonHolder.Length; i++)
         {
