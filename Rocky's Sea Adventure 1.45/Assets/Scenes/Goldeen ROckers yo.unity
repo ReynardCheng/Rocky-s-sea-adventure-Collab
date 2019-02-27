@@ -20,10 +20,10 @@ RenderSettings:
   m_FogDensity: 0.008
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.39716092, g: 0.42515132, b: 0.4811321, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 0.98
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 53412155bc1016547b1a77b2333c0380, type: 2}
@@ -38,11 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-<<<<<<< HEAD
-  m_IndirectSpecularColor: {r: 0.2789335, g: 0.32601985, b: 0.3509326, a: 1}
-=======
-  m_IndirectSpecularColor: {r: 0.2675196, g: 0.31272686, b: 0.33663037, a: 1}
->>>>>>> d6432a0c18e21f12dfaecaf89e12e94f402242b7
+  m_IndirectSpecularColor: {r: 0.5906037, g: 0.6887968, b: 0.741017, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -27599,7 +27595,6 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: -0.000003051759
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 114608475101631524, guid: 4da35e0dcc066024d9754156c332fb10,
         type: 2}
       propertyPath: turnSpeed
@@ -27830,22 +27825,6 @@ Prefab:
     - target: {fileID: 4886575280088720, guid: 4da35e0dcc066024d9754156c332fb10, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -23.402151
-=======
-    - target: {fileID: 65904139893524982, guid: 4da35e0dcc066024d9754156c332fb10,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 65904139893524982, guid: 4da35e0dcc066024d9754156c332fb10,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 65904139893524982, guid: 4da35e0dcc066024d9754156c332fb10,
-        type: 2}
-      propertyPath: m_Size.z
-      value: 200
->>>>>>> d6432a0c18e21f12dfaecaf89e12e94f402242b7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4da35e0dcc066024d9754156c332fb10, type: 2}
