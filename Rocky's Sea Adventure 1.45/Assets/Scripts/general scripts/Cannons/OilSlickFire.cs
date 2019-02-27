@@ -71,5 +71,16 @@ public class OilSlickFire : MonoBehaviour
             Destroy(gameObject); //destroy itself
             return;
         }
-    }
+		if (other.tag == "Boss")
+		{
+			Boss boss = other.gameObject.GetComponentInParent<Boss>();
+			if (boss)
+			{
+				boss.HealthManager(10);
+				Instantiate(oilSlickPrefab, transform.position, Quaternion.identity);
+				SoundSpawned();
+				Destroy(gameObject);
+			}
+		}
+	}
 }

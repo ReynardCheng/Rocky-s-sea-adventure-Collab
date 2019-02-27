@@ -37,7 +37,7 @@ public class myGUI : MonoBehaviour {
 		{
 			nextLevelButton.interactable = true;
 		}
-		winAnimation();
+		
 	}
 	public void winAnimation()
 	{

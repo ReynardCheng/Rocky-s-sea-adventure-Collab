@@ -61,6 +61,25 @@ public class BulletFire : MonoBehaviour {
             return;
         }
 
+		if (other.tag == "Enemy")
+		{
+			other.GetComponent<EnemyController>().Health(10);
+			Instantiate(explosion, transform.position, Quaternion.identity);
+			Destroy(gameObject); //destroy itself
+			SoundSpawned();
+			return;
+		}
+		if (other.tag == "Boss")
+		{
+			Boss boss = other.gameObject.GetComponentInParent<Boss>();
+			if (boss)
+			{
+				boss.HealthManager(10);
+				Instantiate(explosion, transform.position, Quaternion.identity);
+				SoundSpawned();
+				Destroy(gameObject);
+			}
+		}
         //Boss boss = other.GetComponent<Boss>();
         //if(boss)
         //{
@@ -69,15 +88,15 @@ public class BulletFire : MonoBehaviour {
         //}       
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Boss boss = collision.gameObject.GetComponentInParent<Boss>();
-        if (boss)
-        {
-            boss.HealthManager(10);
-            Instantiate(explosion, transform.position, Quaternion.identity);
-            SoundSpawned();
-            Destroy(gameObject);
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Boss boss = collision.gameObject.GetComponentInParent<Boss>();
+    //    if (boss)
+    //    {
+    //        boss.HealthManager(10);
+    //        Instantiate(explosion, transform.position, Quaternion.identity);
+    //        SoundSpawned();
+    //        Destroy(gameObject);
+    //    }
+    //}
 }
