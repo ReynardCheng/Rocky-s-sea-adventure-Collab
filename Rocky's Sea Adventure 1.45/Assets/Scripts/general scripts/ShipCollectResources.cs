@@ -23,7 +23,10 @@ public class ShipCollectResources : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+		if (resourceCountScript == null)
+		{
+			resourceCountScript = FindObjectOfType<ResourceCount>();
+		}
     }
 
     public void OnTriggerEnter(Collider other)
