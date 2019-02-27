@@ -62,7 +62,8 @@ public class Boss : MonoBehaviour {
     [SerializeField] GameObject attackLocation;
     BossSpecialAttack beam;
     public bool stopMovement;
-    
+
+	[SerializeField] BoatController theBoat;
 
     private void Start()
     {
@@ -70,6 +71,7 @@ public class Boss : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
         beam = GetComponentInChildren<BossSpecialAttack>();
+		theBoat = FindObjectOfType<BoatController>();
 
         //for setting variables
         movedLimit = movementPositions.Count;
@@ -102,6 +104,7 @@ public class Boss : MonoBehaviour {
             animator.Play("Boss_Death");
 			Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
 			rb.velocity = Vector3.zero;
+			theBoat.reachedEnd = true;
             return;
         }
 
