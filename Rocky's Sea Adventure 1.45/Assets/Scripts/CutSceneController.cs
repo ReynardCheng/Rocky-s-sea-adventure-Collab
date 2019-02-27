@@ -18,6 +18,8 @@ public class CutSceneController : MonoBehaviour
     public GameObject DialogueThing;
     public GameObject FixedCamera;
 
+	Camera mainCam;
+
     // Update is called once per frame
     void Update()
     {
@@ -26,6 +28,7 @@ public class CutSceneController : MonoBehaviour
 
     private void Start()
     {
+		mainCam = Camera.main;
         if (!forFunctions)
         {
             //set all the UI stuff false during cutscene
@@ -50,6 +53,7 @@ public class CutSceneController : MonoBehaviour
         DialogueThing.SetActive(true);
         FixedCamera.SetActive(true);
     }
+
     public void offAndStartGame()
     {
         CharacterMovement player = FindObjectOfType<CharacterMovement>();
@@ -66,4 +70,15 @@ public class CutSceneController : MonoBehaviour
         Animator fairyAnim = bel.GetComponent<Animator>();
         fairyAnim.Play("TutorialAnimation", 0, 1f);
     }
+
+	// Boss cutscene animation
+	void OffMainCamera()
+	{
+		mainCam.enabled = false;
+	}
+
+	public void OnCamera()
+	{
+		mainCam.enabled = true;
+	}
 }
