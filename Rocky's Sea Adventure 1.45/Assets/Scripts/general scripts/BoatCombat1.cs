@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class BoatCombat1 : MonoBehaviour
 {
 
-	public int shipHealth = 100;
-    public float shipMaxHP; //Keep this one as float yo
+	public int shipHealth;
+	public float shipMaxHP; //Keep this one as float yo
 
 	public GameObject[] cannonHolder;
     private int cannonToDamageIndex;
@@ -25,7 +25,8 @@ public class BoatCombat1 : MonoBehaviour
 
     public void Start()
     {
-        shipMaxHP = shipHealth;
+		shipHealth = 200;
+		shipMaxHP = shipHealth;
 	
 		shipHealthBar.fillAmount = shipHealth / shipMaxHP;
 		shipHealthText.text = shipHealth.ToString();

@@ -81,7 +81,7 @@ public class EnemySpawner : MonoBehaviour {
 			enemies.Add(spawnedEnemy);
 			totalSpawnedEnemies++;
 			i++;
-			spawnTimer = 4;
+			spawnTimer = 3;
 		}
 		if (i >= numberOfWaves[currentWaveInt].enemies.Length)
 		{

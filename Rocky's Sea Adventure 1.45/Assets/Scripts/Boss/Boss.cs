@@ -73,7 +73,7 @@ public class Boss : MonoBehaviour {
         movedLimit = movementPositions.Count;
         positionsMoved = 0;
 
-        maxHealth = 200;
+        maxHealth = 600;
         health = maxHealth;
         checkpointHealth = maxHealth;
 
@@ -98,7 +98,8 @@ public class Boss : MonoBehaviour {
         if (health <= 0)
         {
             animator.Play("Boss_Death");
-            rb.velocity = Vector3.zero;
+			Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
+			rb.velocity = Vector3.zero;
             return;
         }
 
@@ -283,7 +284,7 @@ public class Boss : MonoBehaviour {
         //beam.transform.rotation = Quaternion.LookRotation((playerPos.position - attackLocation.transform.position).normalized);
 
         atkRate = 5f;
-        spAtkCounter = Random.Range(3, 5);
+        spAtkCounter = Random.Range(2, 4);
         //beam.direction = playerPos.position - attackLocation.transform.position;
     }
 

@@ -10,7 +10,7 @@ public class BoatController : MonoBehaviour
 
 	[Header("Health")]
 	[Space]
-	[SerializeField] float health;
+	public float health;
 
 	// this is for variables
 	[Header("Variables")]
@@ -85,6 +85,7 @@ public class BoatController : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
+		steerSpeed = 0.5f;
 		maxSteerSpeed = steerSpeed;
         m_AudioSource = GetComponent<AudioSource>();
 

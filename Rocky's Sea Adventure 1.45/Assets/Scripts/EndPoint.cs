@@ -25,12 +25,14 @@ public class EndPoint : MonoBehaviour {
 		if (other.tag == "Ship")
         {
             other.GetComponent<BoatController>().reachedEnd = true;
-            if (highestLevelCleared < intToSave)
+			theGui.winAnimation();
+			if (highestLevelCleared < intToSave)
 			{
 				PlayerPrefs.SetInt("HighestLevelCleared", intToSave);
 				print("Saved");
 				other.GetComponent<BoatController>().reachedEnd = true;
 				theGui.lose = false;
+				theGui.winAnimation();
 				//LoadingScreen.theLoadingScreen.loadLevel(levelToLoad);
 			}
 		}

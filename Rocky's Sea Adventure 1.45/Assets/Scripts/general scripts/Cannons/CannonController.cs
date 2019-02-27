@@ -44,7 +44,22 @@ public class CannonController : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		health = 50;
+		switch (cannonType)
+		{
+			case (cannonTypes.normal):
+				health = 30;
+				break;
+			case (cannonTypes.aoe):
+				health = 50;
+				break;
+			case (cannonTypes.defence):
+				health = 70;
+				break;
+
+			default:
+				health = 30;
+				break;
+		}
 		maxHealth = health;
 		smokeEffect.SetActive(false);
 

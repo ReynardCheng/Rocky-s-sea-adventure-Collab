@@ -8,7 +8,7 @@ public class AoeFire : MonoBehaviour {
     public float explodeDelay = 3f;
     public float countdown;
     public bool hasExploded = false;
-    public float explodeRadius = 50f;
+    public float explodeRadius = 200f;
     public float explodeForce = 10f;
     public float damage = 30f;
 
