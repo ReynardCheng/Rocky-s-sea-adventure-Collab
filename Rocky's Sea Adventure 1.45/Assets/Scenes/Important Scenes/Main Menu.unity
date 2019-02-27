@@ -1079,7 +1079,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 850573523}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.1825, y: 0.31300002}
@@ -4146,7 +4146,7 @@ RectTransform:
   m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 0.9999999}
   m_Children: []
   m_Father: {fileID: 850573523}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5338,11 +5338,11 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1539204663}
+  - {fileID: 158672992}
   - {fileID: 1085625702}
   - {fileID: 1238089766}
   - {fileID: 671910899}
   - {fileID: 1685915856}
-  - {fileID: 158672992}
   - {fileID: 650178830}
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -6818,7 +6818,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 850573523}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7279,7 +7279,7 @@ RectTransform:
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_Children: []
   m_Father: {fileID: 850573523}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9394,7 +9394,7 @@ RectTransform:
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_Children: []
   m_Father: {fileID: 850573523}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11583,7 +11583,6 @@ GameObject:
   - component: {fileID: 2079820042}
   - component: {fileID: 2079820041}
   - component: {fileID: 2079820038}
-  - component: {fileID: 2079820039}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -11728,31 +11727,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2079820039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2079820036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 238aae47c3c4cd34d8f676b1e6ed9bf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerViewPos: {fileID: 0}
-  shipViewPos: {fileID: 0}
-  ship: {fileID: 0}
-  shipView: 0
-  switchSpeed: 0
-  switching: 0
-  locked: 0
-  shipMastSharedMaterial: {fileID: 533829608}
-  shipFlagsSharedMaterial: {fileID: 315898901}
-  turnSpeed: 0
-  player: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0}
-  shipOffset: {x: 0, y: 0, z: 0}
-  fpsController: {fileID: 0}
 --- !u!45 &2079820041
 Skybox:
   m_ObjectHideFlags: 0

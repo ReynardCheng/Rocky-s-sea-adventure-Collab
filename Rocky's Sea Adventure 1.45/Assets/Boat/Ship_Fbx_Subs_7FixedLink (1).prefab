@@ -3525,6 +3525,12 @@ MonoBehaviour:
   resourceCountScript: {fileID: 0}
   ResourceCollectSound: {fileID: 8300000, guid: 44c7314e57b8dde40af86b6dae2efde5,
     type: 3}
+  woodParticle: {fileID: 1367666670219680, guid: fd5936d2552291547b4e3a97a71a1147,
+    type: 2}
+  metalParticle: {fileID: 1880475855808880, guid: f5dd03b6b518e6c4db4b88085b965b7a,
+    type: 2}
+  SeaParticle: {fileID: 1434827413802776, guid: ec9c61373514e8a4d8665cfd35dd7d4b,
+    type: 2}
 --- !u!114 &114375991598708642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4531,7 +4537,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!223 &223278952496336016
 Canvas:
@@ -4571,7 +4577,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!223 &223452095101354098
 Canvas:
@@ -4611,7 +4617,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!223 &223560163741321760
 Canvas:
@@ -4631,7 +4637,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!223 &223617956618274406
 Canvas:
@@ -4671,7 +4677,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!223 &223962128499748582
 Canvas:
@@ -4691,7 +4697,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!224 &224009951262967504
 RectTransform:
