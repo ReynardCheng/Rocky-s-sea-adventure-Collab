@@ -18,6 +18,8 @@ public class Boss : MonoBehaviour {
     [Space]
     [Header("Movement Variables")]
     [SerializeField] float moveSpeed;
+    [SerializeField] float turnSpeed;
+    private float timeCount;
 
     // for changing to a different move pattern
     [SerializeField] bool shipInAttackRange;
@@ -109,10 +111,11 @@ public class Boss : MonoBehaviour {
         if (stopMovement)
             rb.velocity = Vector3.zero;
 
-        //if (shipInAttackRange)
-        //{
-        //    Attack();
-        //}
+        //Locks Z rotation
+        Vector3 eulerAngles = transform.rotation.eulerAngles;
+        eulerAngles = new Vector3(eulerAngles.x, eulerAngles.y, 0);
+        transform.rotation = Quaternion.Euler(eulerAngles);
+        ////////////
     }
 
     //-----------------------------------------------------
@@ -134,26 +137,22 @@ public class Boss : MonoBehaviour {
             if (reachedEscapePosition)
             {
                 changeMovement -= Time.deltaTime;
-                transform.rotation = Quaternion.LookRotation(playerPos.position - transform.position);
-            }
-            //if (changeMovement >= 0)
-            //{
-            //    transform.rotation = Quaternion.LookRotation(playerPos.position - transform.position);
-            //}
 
-            //if (changeMovement < 0)
-            //{
-            //    MovePatterns();
-            //}
+                Vector3 direction = playerPos.position - transform.position;
+
+                Quaternion rotation = Quaternion.LookRotation(direction, transform.TransformDirection(Vector3.up));
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
+            }
         }
         else if (chaseShip)
         {
             //Timers for behaviours/////////
             atkRate -= Time.deltaTime;
 
-            
             Vector3 direction = playerPos.position - transform.position;
-            transform.rotation = Quaternion.LookRotation(playerPos.position - transform.position);
+
+            Quaternion rotation = Quaternion.LookRotation(direction, transform.TransformDirection(Vector3.up));
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
 
             float distance = Vector3.Distance(playerPos.position, transform.position);
 
@@ -184,8 +183,11 @@ public class Boss : MonoBehaviour {
         // input movePatterns here
         Vector3 patternDirection = movementPositions[positionToMove].position - transform.position;
 
-        directionToLook = patternDirection;
-        transform.rotation = Quaternion.LookRotation(directionToLook);
+        Quaternion rotation = Quaternion.LookRotation(patternDirection, transform.TransformDirection(Vector3.up));
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
+
+        //directionToLook = patternDirection;
+        //transform.rotation = Quaternion.LookRotation(directionToLook);
 
         rb.velocity = patternDirection.normalized * moveSpeed;
 
@@ -262,6 +264,7 @@ public class Boss : MonoBehaviour {
             else if (spAtkCounter <= 0)
             {
                 animator.Play("Boss_Entrance");
+                stopMovement = true;
             }
         }
     }
@@ -282,7 +285,7 @@ public class Boss : MonoBehaviour {
     public void SpecialAttack()
     {
         //beam.transform.rotation = Quaternion.LookRotation((playerPos.position - attackLocation.transform.position).normalized);
-
+        stopMovement = false;
         atkRate = 5f;
         spAtkCounter = Random.Range(2, 4);
         //beam.direction = playerPos.position - attackLocation.transform.position;
