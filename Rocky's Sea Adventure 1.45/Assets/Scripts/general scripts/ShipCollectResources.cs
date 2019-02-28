@@ -18,6 +18,9 @@ public class ShipCollectResources : MonoBehaviour
     {
         Audio = GetComponent<AudioSource>();
         resourceCountScript = FindObjectOfType<ResourceCount>();
+        resourceCountScript.SeaEssenceValue(0, 5);
+        resourceCountScript.WoodenPlankValue(0, 5);
+        resourceCountScript.MetalValue(0, 5);
     }
 
     // Update is called once per frame
@@ -34,7 +37,7 @@ public class ShipCollectResources : MonoBehaviour
 
 		if (other.tag == "Sea Essence")
 		{
-			resourceCountScript.SeaEssenceValue(0, 10);
+			resourceCountScript.SeaEssenceValue(0, 5);
             Destroy(other.gameObject);
 
 			Instantiate(SeaParticle, other.transform.position, SeaParticle.transform.rotation);
@@ -44,7 +47,7 @@ public class ShipCollectResources : MonoBehaviour
         }
 		if (other.tag == "Wooden Plank")
 		{
-			resourceCountScript.WoodenPlankValue(0, 10);
+			resourceCountScript.WoodenPlankValue(0, 5);
 			Destroy(other.gameObject);
 			Instantiate(woodParticle, other.transform.position, woodParticle.transform.rotation);
 			LevelManager.theLevelManager.PlaySoundEffect(LevelManager.theLevelManager.collectionClip);
@@ -53,7 +56,7 @@ public class ShipCollectResources : MonoBehaviour
         }
 		if (other.tag == "Metal Part")
 		{
-			resourceCountScript.MetalValue(0, 10);
+			resourceCountScript.MetalValue(0, 5);
 			Destroy(other.gameObject);
 
 			Instantiate(metalParticle, other.transform.position, metalParticle.transform.rotation);

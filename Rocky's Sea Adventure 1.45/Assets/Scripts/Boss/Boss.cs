@@ -102,9 +102,8 @@ public class Boss : MonoBehaviour {
         if (health <= 0)
         {
             animator.Play("Boss_Death");
-			Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
+			//Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
 			rb.velocity = Vector3.zero;
-			theBoat.reachedEnd = true;
             return;
         }
 

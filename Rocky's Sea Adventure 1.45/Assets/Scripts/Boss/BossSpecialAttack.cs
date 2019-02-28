@@ -37,7 +37,7 @@ public class BossSpecialAttack : MonoBehaviour {
         if (inContactWithShip)
         {
             damageTick++;
-            if (damageTick % 4 == 0)
+            if (damageTick % 2 == 0)
             {
                 Vector3 directionOfRay = beamEnd.transform.position - bossMouth.position;
 

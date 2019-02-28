@@ -50,5 +50,6 @@ public class BossAnimationManager : MonoBehaviour {
     {
         boss.stopMovement = true;
         boat.reachedEnd = true;
+        Destroy(boss.gameObject);
     }
 }

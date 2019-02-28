@@ -18,7 +18,7 @@ public class BossNormalAttack : MonoBehaviour {
         {
             canDamage = false;   //This bool prevents bullets from damaging the ship twice.
 
-            other.gameObject.GetComponentInParent<BoatCombat1>().TakeDamage(10, gameObject);
+            other.gameObject.GetComponentInParent<BoatCombat1>().TakeDamage(25, gameObject);
             Instantiate(splashParticles, transform.position, splashParticles.transform.rotation);
 
             Destroy(gameObject);
