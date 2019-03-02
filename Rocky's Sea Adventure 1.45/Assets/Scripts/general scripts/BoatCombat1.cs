@@ -113,7 +113,7 @@ public class BoatCombat1 : MonoBehaviour
             {
                 if (cannonHolder[i].GetComponentInChildren<CannonController>().cannonType == cannonTypes.defence)
                 {
-                    if ((cannonHolder[i].transform.position - damageLocation).magnitude < protectionRadius)
+                    if ((cannonHolder[i].transform.position - damageLocation).magnitude < 40)
                     {
                         DamageCannons(cannonHolder[i].gameObject, damageToTake);
                         return;

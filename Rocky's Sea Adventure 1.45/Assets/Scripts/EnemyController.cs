@@ -454,7 +454,12 @@ public class EnemyController : MonoBehaviour
 		{
 			transform.Translate(0, 1 * Time.deltaTime, 0, Space.World);
 		}
-	}
+
+        else if (transform.position.y > sea.transform.position.y + offsetAboveWater)
+        {
+            transform.Translate(0, -1 * Time.deltaTime, 0, Space.World);
+        }
+    }
 
 
 	//
@@ -537,7 +542,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" || other.gameObject.layer == 10)
         {
             ResetPatrol();
         }

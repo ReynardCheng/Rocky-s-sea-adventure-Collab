@@ -588,7 +588,7 @@ public class BuildCannonManager : MonoBehaviour
         if (resourceCount.seaEssenceCount >= 1 && boatController.boost < 100f)
         {
             resourceCount.SeaEssenceValue(1, 0);
-            boatController.boost += 15f;
+            boatController.boost += 100f;
             if (boatController.boost > 100f)
                 boatController.boost = 100f;
             

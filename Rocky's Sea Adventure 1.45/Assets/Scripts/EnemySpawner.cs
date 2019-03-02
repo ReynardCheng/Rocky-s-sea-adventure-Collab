@@ -18,7 +18,7 @@ public class EnemySpawner : MonoBehaviour {
 	[SerializeField] int i; // for the spawning of the enemies
 	public float spawnTimer; // time between each spawning
 
-	public int maxEnemies = 12;
+	public int maxEnemies = 17;
 	public static int totalSpawnedEnemies;
 	public static int currentEnemies;
 	List<GameObject> enemies;
@@ -81,7 +81,7 @@ public class EnemySpawner : MonoBehaviour {
 			enemies.Add(spawnedEnemy);
 			totalSpawnedEnemies++;
 			i++;
-			spawnTimer = 3;
+			spawnTimer = 5;
 		}
 		if (i >= numberOfWaves[currentWaveInt].enemies.Length)
 		{

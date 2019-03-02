@@ -53,7 +53,7 @@ public class CannonController : MonoBehaviour
 				health = 50;
 				break;
 			case (cannonTypes.defence):
-				health = 70;
+				health = 100;
 				break;
 
 			default:
